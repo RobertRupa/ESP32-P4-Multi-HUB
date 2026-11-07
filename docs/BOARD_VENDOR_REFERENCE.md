@@ -125,3 +125,7 @@ Recommended hardware validation order:
 - The board's **RS485 UART1**, **UART0 console**, **C6-connected JP1 pins**, **Ethernet RMII candidates** and **I2C used by display/audio** are not automatically available for the H2.
 - New BSP code belongs in `components/board_4_3p4` when the source tree is implemented; peripheral abstractions must not leak into Matter/Zigbee domain code.
 - The firmware support, memory consumption, camera sensor model *actually shipped*, and connector mapping must be validated on the physical board. This file is a documentation reference, not a passed test report.
+
+## Supplier image registry
+
+The 12 original user-provided AliExpress CDN graphics are referenced and embedded remotely in [IMAGE_SOURCES.md](IMAGE_SOURCES.md). These files have **not** been downloaded into Git or validated as pinout evidence.
