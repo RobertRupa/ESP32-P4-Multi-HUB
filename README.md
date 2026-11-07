@@ -1,6 +1,6 @@
 # ESP32-P4 Multi-HUB
 
-**Status:** architecture/specification stage; no working gateway firmware yet.
+**Status:** host-testable domain components started; no working gateway firmware yet.
 
 A modular, local-first embedded home automation gateway built around **Guition JC4880P443C_I_W** (ESP32-P4 + ESP32-C6), 4.3-inch touch display and an **external ESP32-H2 acting as a Zigbee 802.15.4 RCP**.
 
