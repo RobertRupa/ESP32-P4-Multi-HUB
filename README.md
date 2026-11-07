@@ -24,10 +24,13 @@ Pair and manage Zigbee devices locally, represent supported capabilities as **Ma
 3. [System architecture and contracts](docs/ARCHITECTURE.md)
 4. [Protocols: Zigbee, Matter, Thread](docs/PROTOCOLS.md)
 5. [Roadmap and acceptance criteria](docs/ROADMAP.md)
-6. [Setup and validation](docs/DEVELOPMENT.md)
-7. [Security, storage and updates](docs/OPERATIONS.md)
-8. [Architecture decisions](docs/adr/0001-matter-bridge-over-ip.md)
-9. [LLM agent working instructions](AGENTS.md) and [context summary](docs/llm-memory.md)
+6. [Engineering standards, frameworks and OOP](docs/ENGINEERING.md)
+7. [Service contracts and dependency injection](docs/SERVICE_CONTRACTS.md)
+8. [Agent implementation workflow](docs/AGENT_WORKFLOW.md)
+9. [Setup and validation](docs/DEVELOPMENT.md)
+10. [Security, storage and updates](docs/OPERATIONS.md)
+11. [Architecture decisions](docs/adr/0001-matter-bridge-over-ip.md)
+12. [LLM agent working instructions](AGENTS.md) and [context summary](docs/llm-memory.md)
 
 ## Planned project layout
 

@@ -2,6 +2,8 @@
 
 Read **README.md**, **docs/llm-memory.md**, **docs/ARCHITECTURE.md**, **docs/HARDWARE.md** and **docs/PROTOCOLS.md** before editing code. Treat docs/adr as binding decisions until changed with a new ADR.
 
+Read **docs/ENGINEERING.md**, **docs/SERVICE_CONTRACTS.md** and **docs/AGENT_WORKFLOW.md** for mandatory OOP, SOLID, DRY, KISS, YAGNI, dependency injection, API contracts, coding rules and acceptance criteria.
+
 ## Non-negotiable constraints
 
 1. **Never claim Zigbee devices join Thread.** The interface is **Zigbee -> canonical capabilities -> Matter Bridge over IP**. Thread is a separate IPv6 mesh reached by a Thread Border Router.
@@ -14,6 +16,10 @@ Read **README.md**, **docs/llm-memory.md**, **docs/ARCHITECTURE.md**, **docs/HAR
 8. Keep existing public APIs stable; use versioned migrations for persistent state.
 9. Never claim hardware validation, compilation or tests occurred unless actual command/log evidence exists.
 10. Board GPIOs marked RESERVED or UNVERIFIED in docs/HARDWARE.md cannot be reassigned without a verified schematics update.
+
+11. Use ESP-IDF with C++17 for application/domain services and C where needed for SDK/RCP. Separate SDK adapters from core; prefer composition and constructor injection.
+12. Every new service must document contract: responsibility, API, ownership, task affinity, timeout, errors, concurrency, lifecycle and tests. No God Objects, hidden globals or blocking UI callbacks.
+13. Apply SOLID, DRY, KISS and YAGNI pragmatically; avoid speculative frameworks, runtime plugin engines or complex inheritance trees.
 
 ## Implementation workflow
 

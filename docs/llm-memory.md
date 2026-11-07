@@ -19,3 +19,5 @@
 **Next verified milestone:** board revision/schematic check, screen/touch/Wi-Fi bring-up, UART wiring and H2 RCP handshake, offline registry unit tests. Then validate actual ESP32-P4 Zigbee/Matter build support.
 
 **External references:** Espressif esp-matter/examples/bridge_apps/zigbee_bridge; esp-zigbee-sdk/examples/zigbee_gateway; ESP-IDF ot_rcp; Guition vendor JC4880P443C_I_W zip; ultramcu guition-jc4880p443c-i-w (community).
+
+**Engineering standard:** ESP-IDF with portable C++17 domain/application, LVGL9 UI, ESP-Hosted/C6, FreeRTOS, Zigbee/Matter adapters. Mandatory: ports-and-adapters, SOLID, DRY, KISS, YAGNI, OOP composition over inheritance, constructor DI, immutable snapshots, typed bounded events, explicit service contracts, host-side mock tests. See docs/{ENGINEERING,SERVICE_CONTRACTS,AGENT_WORKFLOW}. No claim of verified framework/SDK support until P4 build tests.
