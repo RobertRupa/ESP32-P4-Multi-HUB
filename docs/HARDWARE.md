@@ -70,3 +70,9 @@ Flash ESP32-H2 with version-pinned ESP-IDF **ot_rcp** variant configured for Zig
 - Espressif host/radio sample: https://github.com/espressif/esp-matter/tree/main/examples/bridge_apps/zigbee_bridge
 
 **Validation deliverable:** a versioned connector pin table (pin number, net label, ESP GPIO, electrical level, shared consumers, verified yes/no) with physical test evidence.
+
+## Vendor documentation added (2026-11-07)
+
+The supplied manufacturer PDFs and schematic are distilled in **[BOARD_VENDOR_REFERENCE.md](BOARD_VENDOR_REFERENCE.md)**, including the manufacturer's 12-connector legend, board dimensions and electrical ratings, JP1 2×13 net table (with unresolved positions explicitly marked), shared UART1/RS485 and I2C dependencies, CSI/DSI details, OV02C10 integration limits and a bring-up checklist. The new reference is **documentary evidence, not electrical validation**; retain RESERVED/UNVERIFIED assignments until tested.
+
+The supplied camera OV02C10 datasheet is marked confidential and is **not committed**. Its factual electrical/interface summary appears in the reference; never apply the sensor's internal 1.2/1.8/2.8 V supply rails directly as a camera-module connector pinout.
