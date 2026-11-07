@@ -86,3 +86,7 @@ Specify no allocation-heavy JSON on the hot path: runtime should use bounded typ
 ## Configuration boundaries
 
 `CONFIG_HUB_ZIGBEE=y`, `CONFIG_HUB_MATTER=y`, `CONFIG_HUB_MQTT=n`, `CONFIG_HUB_WEB=n`, `CONFIG_HUB_RULES=n` are proposed Kconfig module toggles, **not yet implemented**. Use compile-time feature flags and runtime capability discovery.
+
+## Engineering governance
+
+Follow [Engineering standards](ENGINEERING.md), [Service contracts](SERVICE_CONTRACTS.md), and [Agent workflow](AGENT_WORKFLOW.md). The core is a portable C++17 domain; ESP-IDF/FreeRTOS, Zigbee, Matter and LVGL remain infrastructure/adapters. Dependencies are constructor-injected in the application composition root; no service locator. Contract tests verify module boundaries and failure semantics.
