@@ -66,3 +66,7 @@ This tree is a **target design**, not a claim that the directories exist or comp
 - [Independent board BSP notes](https://github.com/ultramcu/guition-jc4880p4-bsp)
 
 External references are inputs for validation; pinout and SDK support must be tested on the specific board revision.
+
+## Board manufacturer's reference
+
+The supplied JC4880P443C_I_W hardware documentation is summarized in [Vendor board and connector reference](docs/BOARD_VENDOR_REFERENCE.md): vendor specs, 2×13 JP1 net names, USB/RS485/UART/I2C, LCD/DSI, camera/CSI, OV02C10 integration notes and bring-up requirements. This is reference material only; any pin assignment and peripheral support must be checked on the actual board revision. Confidential third-party sensor datasheets are not distributed in this repository.
