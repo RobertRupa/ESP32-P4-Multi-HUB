@@ -52,23 +52,23 @@ The specification p. 6 depicts a front portrait form factor; p. 7 shows the mech
 
 ### Expansion header JP1 (2×13 pins): schematic net names
 
-The following is a transcription of the **schematic's labeled JP1 nets**. It does not certify which P4 GPIOs are free or which board-side pin is physically pin 1. Confirm pin-1 marker and continuity on the real PCB.
+The following is a best-effort transcription of the **schematic's labeled JP1 nets**; JP1 pins 3–4 remain unresolved from extracted schematic text. It does not certify which P4 GPIOs are free or which board-side pin is physically pin 1. Confirm pin-1 marker and continuity on the real PCB.
 
 | Odd pin | Net | Even pin | Net |
 |---:|---|---:|---|
 | 1 | VCC3V3 | 2 | VCC5V |
-| 3 | GND | 4 | GND |
-| 5 | GPIO52 | 6 | GPIO33 |
-| 7 | GPIO51 | 8 | GPIO31 |
-| 9 | GPIO50 | 10 | GPIO30 |
-| 11 | GPIO49 | 12 | GPIO29 |
-| 13 | GPIO35 | 14 | GND |
-| 15 | GPIO34 | 16 | VCC3V3 |
-| 17 | GPIO32 | 18 | C6_U0RXD |
-| 19 | GPIO28 | 20 | C6_U0TXD |
-| 21 | ES_I2C_SDA | 22 | C6_IO9 |
-| 23 | ES_I2C_SCL | 24 | C6_CHIP_PU |
-| 25 | GND | 26 | GND |
+| 3 | Not resolved from extracted schematic | 4 | Not resolved from extracted schematic |
+| 5 | GND | 6 | GND |
+| 7 | GPIO52 | 8 | GPIO33 |
+| 9 | GPIO51 | 10 | GPIO31 |
+| 11 | GPIO50 | 12 | GPIO30 |
+| 13 | GPIO49 | 14 | GPIO29 |
+| 15 | GPIO35 | 16 | GND |
+| 17 | GPIO34 | 18 | VCC3V3 |
+| 19 | GPIO32 | 20 | C6_U0RXD |
+| 21 | GPIO28 | 22 | C6_U0TXD |
+| 23 | ES_I2C_SDA | 24 | C6_IO9 |
+| 25 | ES_I2C_SCL | 26 | C6_CHIP_PU |
 
 **Caution:** JP1 mixes P4 signals, onboard C6 control/UART, power rails and GND. Many apparent GPIOs are multiplexed with board features such as Ethernet RMII, SD/MMC and boot straps. GPIO49–52 may be used by the optional Ethernet RMII path. Do **not** select H2 reset/UART or drive external voltage on these nets until a full shared-net/boot check.
 
