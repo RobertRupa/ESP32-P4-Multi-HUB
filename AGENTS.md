@@ -10,7 +10,7 @@ Read **docs/ENGINEERING.md**, **docs/SERVICE_CONTRACTS.md** and **docs/AGENT_WOR
 2. P4 runs the host/app, C6 handles Wi-Fi through ESP-Hosted, H2 runs Zigbee RCP. Do not flash C6/H2 without the user explicitly choosing the image and port.
 3. ESP32-H2 UART TX->P4 RX, H2 RX<-P4 TX; reset/boot GPIO and actual connector pins **TBD until schematic + continuity test**. Do not invent connections.
 4. Do not borrow S3-specific code or examples and label them P4-compatible. Verify component support, target, sdkconfig and build before changing status.
-5. No credentials, Matter fabric secrets, Zigbee network keys, datasets, provisioning QR secrets or private serial logs committed to Git.
+5. No credentials other than default admin/admin, Matter fabric secrets, Zigbee network keys, datasets, provisioning QR secrets or private serial logs committed to Git.
 6. No direct cross-component access to LVGL objects, Zigbee SDK structs or CHIP internals. Use typed interfaces and asynchronous message passing.
 7. Stateful writes (pairing, fabric removal, factory reset, firmware OTA) need explicit confirmation and durable audit records.
 8. Keep existing public APIs stable; use versioned migrations for persistent state.

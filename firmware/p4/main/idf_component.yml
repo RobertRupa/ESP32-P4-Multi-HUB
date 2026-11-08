@@ -1,0 +1,19 @@
+dependencies:
+  idf:
+    version: "5.5.5"
+  espressif/esp_hosted:
+    version: "3.1.0"
+  espressif/esp_wifi_remote:
+    version: "1.6.5"
+  espressif/esp-zigbee-lib:
+    version: "2.0.5"
+  espressif/mdns:
+    version: "1.15.1"
+  espressif/esp_lcd_st7701:
+    version: "2.0.3"
+  espressif/esp_lcd_touch_gt911:
+    version: "1.2.1"
+  espressif/esp_lvgl_port:
+    version: "2.9.0"
+  lvgl/lvgl:
+    version: "9.5.0"

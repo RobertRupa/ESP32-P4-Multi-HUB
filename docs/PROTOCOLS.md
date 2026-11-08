@@ -7,11 +7,15 @@
 - **Matter**: IP application protocol that can run over Wi-Fi, Ethernet or Thread. A **Matter Bridge** exports representations of non-Matter Zigbee devices as bridged endpoints.
 - **Matter controller**: commissions and controls Matter nodes; not identical to a TBR.
 
-**MVP topology:** Zigbee device -> ESP32-H2 radio -> ESP32-P4 Zigbee host -> Matter Bridge over Wi-Fi (onboard C6) -> LAN. A Matter controller on the same IP network accesses bridged devices. Thread-side ecosystem uses a separately provisioned TBR. **The hub does not route Zigbee packets into Thread, does not act as a TBR, and does not need a Thread radio for Matter-over-Wi-Fi bridging.**
+**Accepted baseline topology:** Zigbee device -> ESP32-H2 radio -> ESP32-P4 Zigbee host -> Matter Bridge over Wi-Fi (onboard C6) -> LAN. A Matter controller on the same IP network accesses bridged devices. Thread-side ecosystem uses a separately provisioned TBR. Zigbee devices never join Thread.
 
-## ESP32-H2 responsibility
+**H2 implementation status (2026-11-08):** the P4 Zigbee-over-UART-RCP profile and H2 standard Spinel RCP build with ESP-IDF 5.5.5. The M5Stack Gateway H2 guide specifies UART0 RX=GPIO23/TX=GPIO24 and recommends 230400 baud when Grove wiring fails at 460800; that configuration is now flashed. The board-specific P4 profile uses UART1 GPIO26/27 and was flashed, but P4 received no Spinel response at either rate. The IDF reset-failure path exits the P4 because no reset line is wired. P4 was restored to the C6-backed runtime; no H2 network or device join is claimed. C6 Wi-Fi-only remains a build profile, not a flashed image. This migration does not add Thread or Matter Bridge behavior.
+
+## ESP32-H2 baseline responsibility
 
 The H2 serves a dedicated Zigbee 802.15.4 RCP with UART framing, reset and boot/reflash lines. Radio firmware is version-pinned and paired with compatible host Zigbee stack. The H2 is not the Zigbee coordinator application by itself; Zigbee network coordinator logic lives in the host stack on P4.
+
+H2 is now in the compile/host integration phase, not yet hardware-validated. The C6 multipan candidate remains a separate experiment and does not validate H2 wiring or handshake compatibility.
 
 **Feasibility gate:** Official Espressif Zigbee/Matter bridge reference describes an ESP32-S3 host + H2 RCP. The existence of ESP32-P4 Matter docs does **not** prove the whole Zigbee-Matter example compiles for ESP32-P4. Validate stack dependency target restrictions experimentally before promising implementation. If impossible, keep the ports-and-adapters design and use an external supported Zigbee coprocessor/gateway with a versioned host protocol while preserving the P4 UI/domain, or add supported intermediary MCU (explicit architectural change).
 

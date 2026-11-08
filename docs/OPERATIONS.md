@@ -4,13 +4,15 @@
 
 - Separate Zigbee trust center/network key and PAN identity, Matter fabric credentials and certificates, Wi-Fi credentials, API auth and device registry.
 - Use appropriate encrypted storage/protection mechanisms available on the exact P4 hardware and IDF revision; do not assert flash encryption/secure boot provisioned before validation.
+- The current P4 runtime reports Flash Encryption enabled; Wi-Fi credentials remain in the dedicated `wifi_cfg` partition with key material in `wifi_keys`. This development mode is not production security; Secure Boot remains disabled. No eFuse programming command was run during the IDF 6.2 P4 update.
+- For a device with Flash Encryption enabled, use the matching IDF `encrypted-flash` target, not a plaintext `flash` write. Verify the generated flash arguments, target port and partition offsets first; never use `erase-flash` or burn eFuses without explicit authorization. Encrypted writes may not be read-back-verifiable by esptool, so verify boot logs, partition table, and application health afterward.
 - Never print Zigbee/Matter keys or raw provisioning QR payloads to normal logs. Use short-lived pairing windows, limit web/API exposure to trusted LAN with authentication.
 - Document production Matter attestation and compliance separately; example development credentials are **not** production credentials.
 - Validate mDNS, IPv6 and Matter multicast behavior on routed/VLAN networks; not just DHCP IPv4.
 
 ## Persistence plan
 
-- NVS for small configuration/state/secret handles and stable endpoint mappings; optionally dedicated encrypted partition after hardware validation.
+- NVS for small configuration/state/secret handles and stable endpoint mappings. Wi-Fi credentials use the dedicated encrypted `wifi_cfg` partition; never place them in the default OTA audit namespace.
 - SD card for optional large diagnostic history, backup and media; hub **must boot and pair without SD card**.
 - Schema version fields; versioned migration with power-cut tests.
 - Persist Zigbee coordinator identity/network data and Matter endpoint allocation so routine reboot/OTA doesn't force re-pairing.

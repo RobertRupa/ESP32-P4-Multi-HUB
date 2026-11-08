@@ -1,0 +1,39 @@
+Command: /home/konatsu/.espressif/python_env/idf5.5_py3.14_env/bin/python /home/konatsu/esp/esp-idf/tools/idf_monitor.py -p /dev/ttyACM1 -b 115200 --toolchain-prefix riscv32-esp-elf- --target esp32h2 --revision 0 --decode-panic backtrace /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-uart-diagnostic/hub_h2_zigbee_rcp.elf /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-uart-diagnostic/bootloader/bootloader.elf -m '/home/konatsu/.espressif/python_env/idf5.5_py3.14_env/bin/python' '/home/konatsu/esp/esp-idf/tools/idf.py' '-B' 'build-uart-diagnostic' '-p' '/dev/ttyACM1'
+--- esp-idf-monitor 1.10.0 on /dev/ttyACM1 115200
+--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H
+--- ERROR: Connection to /dev/ttyACM1 failed. Available ports:
+/dev/ttyACM1
+/dev/ttyACM0
+/dev/ttyS4
+/dev/ttyS31
+/dev/ttyS30
+/dev/ttyS29
+/dev/ttyS28
+/dev/ttyS27
+/dev/ttyS26
+/dev/ttyS25
+/dev/ttyS24
+/dev/ttyS23
+/dev/ttyS22
+/dev/ttyS21
+/dev/ttyS20
+/dev/ttyS19
+/dev/ttyS18
+/dev/ttyS17
+/dev/ttyS16
+/dev/ttyS15
+/dev/ttyS14
+/dev/ttyS13
+/dev/ttyS12
+/dev/ttyS11
+/dev/ttyS10
+/dev/ttyS9
+/dev/ttyS8
+/dev/ttyS7
+/dev/ttyS6
+/dev/ttyS5
+/dev/ttyS3
+/dev/ttyS2
+/dev/ttyS1
+/dev/ttyS0
+

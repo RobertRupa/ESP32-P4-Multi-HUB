@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-default-validation/CMakeFiles/bootloader"
+		},
+		{
+			"file" : "/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-default-validation/CMakeFiles/bootloader.rule"
+		},
+		{
+			"file" : "/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-default-validation/CMakeFiles/bootloader-complete.rule"
+		},
+		{
+			"file" : "/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-default-validation/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
+		},
+		{
+			"file" : "/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-default-validation/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
+		},
+		{
+			"file" : "/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-default-validation/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
+		},
+		{
+			"file" : "/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-default-validation/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
+		},
+		{
+			"file" : "/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-default-validation/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
+		},
+		{
+			"file" : "/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-default-validation/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
+		},
+		{
+			"file" : "/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-default-validation/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"bootloader"
+		],
+		"name" : "bootloader"
+	}
+}

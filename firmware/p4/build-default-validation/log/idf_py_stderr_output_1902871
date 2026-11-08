@@ -1,0 +1,19 @@
+Command: cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DPYTHON=/home/konatsu/.espressif/python_env/idf5.5_py3.14_env/bin/python -DESP_PLATFORM=1 -DSDKCONFIG=/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-default-validation/sdkconfig -DIDF_TARGET=esp32p4 -DCCACHE_ENABLE=0 /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4
+CMake Warning at /home/konatsu/esp/esp-idf/tools/cmake/build.cmake:631 (message):
+Call Stack (most recent call first):
+  /home/konatsu/esp/esp-idf/tools/cmake/project.cmake:752 (idf_build_process)
+  CMakeLists.txt:7 (project)
+
+
+warning: <choice TINYUSB_NET_MODE> (defined at /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/managed_components/espressif__esp_hosted/coprocessor/eh_cp_transport/./Kconfig.cp.usb_otg_device:50) defined with type unknown
+warning: <choice TINYUSB_NET_MODE> (defined at /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/managed_components/espressif__esp_hosted/coprocessor/eh_cp_transport/./Kconfig.cp.usb_otg_device:50) defined without a prompt
+warning: the default selection TINYUSB_NET_MODE_ECM_RNDIS (undefined) of <choice TINYUSB_NET_MODE> (defined at /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/managed_components/espressif__esp_hosted/coprocessor/eh_cp_transport/./Kconfig.cp.usb_otg_device:50) is not contained in the choice
+CMake Warning at /home/konatsu/esp/esp-idf/tools/cmake/project.cmake:765 (message):
+  Missing kconfig option.  Re-run the build process...
+Call Stack (most recent call first):
+  CMakeLists.txt:7 (project)
+
+
+warning: <choice TINYUSB_NET_MODE> (defined at /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/managed_components/espressif__esp_hosted/coprocessor/eh_cp_transport/./Kconfig.cp.usb_otg_device:50) defined with type unknown
+warning: <choice TINYUSB_NET_MODE> (defined at /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/managed_components/espressif__esp_hosted/coprocessor/eh_cp_transport/./Kconfig.cp.usb_otg_device:50) defined without a prompt
+warning: the default selection TINYUSB_NET_MODE_ECM_RNDIS (undefined) of <choice TINYUSB_NET_MODE> (defined at /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/managed_components/espressif__esp_hosted/coprocessor/eh_cp_transport/./Kconfig.cp.usb_otg_device:50) is not contained in the choice

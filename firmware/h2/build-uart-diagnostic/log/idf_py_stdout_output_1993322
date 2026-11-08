@@ -1,0 +1,478 @@
+Command: /home/konatsu/.espressif/python_env/idf5.5_py3.14_env/bin/python /home/konatsu/esp/esp-idf/tools/idf_monitor.py -p /dev/ttyACM1 -b 115200 --toolchain-prefix riscv32-esp-elf- --target esp32h2 --revision 0 --decode-panic backtrace /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-uart-diagnostic/hub_h2_zigbee_rcp.elf /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-uart-diagnostic/bootloader/bootloader.elf -m '/home/konatsu/.espressif/python_env/idf5.5_py3.14_env/bin/python' '/home/konatsu/esp/esp-idf/tools/idf.py' '-B' 'build-uart-diagnostic' '-p' '/dev/ttyACM1'
+ESP-ROM:esp32h2-20221101
+Build:Nov  1 2022
+rst:0x15 (USB_UART_HPSYS),boot:0xc (SPI_FAST_FLASH_BOOT)
+Saved PC:0x40802c54
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x408460f0,len:0x16e0
+load:0x4083c2d0,len:0xe70
+load:0x4083efd0,len:0x2fd0
+entry 0x4083c2da
+[0;32mI (23) boot: ESP-IDF v5.5.5 2nd stage bootloader[0m
+[0;32mI (23) boot: compile time Nov  8 2026 09:37:30[0m
+[0;32mI (24) boot: chip revision: v0.1[0m
+[0;32mI (24) boot: efuse block revision: v0.3[0m
+[0;32mI (24) boot.esp32h2: SPI Speed      : 64MHz[0m
+[0;32mI (25) boot.esp32h2: SPI Mode       : DIO[0m
+[0;32mI (25) boot.esp32h2: SPI Flash Size : 2MB[0m
+[0;32mI (25) boot: Enabling RNG early entropy source...[0m
+[0;32mI (26) boot: Partition Table:[0m
+[0;32mI (26) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (27) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (27) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (28) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (29) boot: End of partition table[0m
+[0;32mI (29) esp_image: segment 0: paddr=00010020 vaddr=42018020 size=0940ch ( 37900) map[0m
+[0;32mI (40) esp_image: segment 1: paddr=00019434 vaddr=40800000 size=06be4h ( 27620) load[0m
+[0;32mI (49) esp_image: segment 2: paddr=00020020 vaddr=42000020 size=15cfch ( 89340) map[0m
+[0;32mI (72) esp_image: segment 3: paddr=00035d24 vaddr=40806be4 size=05af0h ( 23280) load[0m
+[0;32mI (80) esp_image: segment 4: paddr=0003b81c vaddr=4080c6e0 size=01854h (  6228) load[0m
+[0;32mI (86) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (86) boot: Disabling RNG early entropy source...[0m
+[0;32mI (88) cpu_start: Unicore app[0m
+[0;32mI (97) cpu_start: Pro cpu start user code[0m
+[0;32mI (97) cpu_start: cpu freq: 96000000 Hz[0m
+[0;32mI (97) app_init: Application information:[0m
+[0;32mI (97) app_init: Project name:     hub_h2_zigbee_rcp[0m
+[0;32mI (98) app_init: App version:      371b9ed-dirty[0m
+[0;32mI (98) app_init: Compile time:     Nov  8 2026 09:37:09[0m
+[0;32mI (98) app_init: ELF file SHA256:  de9fe511d...[0m
+[0;32mI (99) app_init: ESP-IDF:          v5.5.5[0m
+[0;32mI (99) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (99) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (100) efuse_init: Chip rev:         v0.1[0m
+[0;32mI (100) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (100) heap_init: At 4080EFC0 len 0003E3C0 (248 KiB): RAM[0m
+[0;32mI (101) heap_init: At 4084D380 len 00002B60 (10 KiB): RAM[0m
+[0;32mI (101) heap_init: At 50000000 len 00000FE8 (3 KiB): RTCRAM[0m
+[0;32mI (103) spi_flash: detected chip: generic[0m
+[0;32mI (103) spi_flash: flash io: dio[0m
+[0;32mI (103) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (104) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (105) main_task: Started on CPU0[0m
+[0;32mI (105) main_task: Calling app_main()[0m
+[0;32mI (106) uart: ESP_INTR_FLAG_IRAM flag not set while CONFIG_UART_ISR_IN_IRAM is enabled, flag updated[0m
+[0;32mI (107) hub_h2_uart_diag: UART diagnostic ready: UART0 TX=GPIO24 RX=GPIO23, 230400 8N1[0m
+[0;33mW (357) hub_h2_uart_diag: ACK timeout seq=0 total=1[0m
+[0;33mW (857) hub_h2_uart_diag: ACK timeout seq=1 total=2[0m
+[0;33mW (1357) hub_h2_uart_diag: ACK timeout seq=2 total=3[0m
+[0;33mW (1857) hub_h2_uart_diag: ACK timeout seq=3 total=4[0m
+[0;33mW (2357) hub_h2_uart_diag: ACK timeout seq=4 total=5[0m
+[0;33mW (2857) hub_h2_uart_diag: ACK timeout seq=5 total=6[0m
+[0;33mW (3357) hub_h2_uart_diag: ACK timeout seq=6 total=7[0m
+[0;33mW (3857) hub_h2_uart_diag: ACK timeout seq=7 total=8[0m
+[0;33mW (4357) hub_h2_uart_diag: ACK timeout seq=8 total=9[0m
+[0;33mW (4857) hub_h2_uart_diag: ACK timeout seq=9 total=10[0m
+[0;33mW (5357) hub_h2_uart_diag: ACK timeout seq=10 total=11[0m
+[0;33mW (5857) hub_h2_uart_diag: ACK timeout seq=11 total=12[0m
+[0;33mW (6357) hub_h2_uart_diag: ACK timeout seq=12 total=13[0m
+[0;33mW (6857) hub_h2_uart_diag: ACK timeout seq=13 total=14[0m
+[0;33mW (7357) hub_h2_uart_diag: ACK timeout seq=14 total=15[0m
+[0;33mW (7857) hub_h2_uart_diag: ACK timeout seq=15 total=16[0m
+[0;33mW (8357) hub_h2_uart_diag: ACK timeout seq=16 total=17[0m
+[0;33mW (8857) hub_h2_uart_diag: ACK timeout seq=17 total=18[0m
+[0;33mW (9357) hub_h2_uart_diag: ACK timeout seq=18 total=19[0m
+[0;33mW (9857) hub_h2_uart_diag: ACK timeout seq=19 total=20[0m
+[0;33mW (10357) hub_h2_uart_diag: ACK timeout seq=20 total=21[0m
+[0;33mW (10857) hub_h2_uart_diag: ACK timeout seq=21 total=22[0m
+[0;33mW (11357) hub_h2_uart_diag: ACK timeout seq=22 total=23[0m
+[0;33mW (11857) hub_h2_uart_diag: ACK timeout seq=23 total=24[0m
+[0;33mW (12357) hub_h2_uart_diag: ACK timeout seq=24 total=25[0m
+[0;33mW (12857) hub_h2_uart_diag: ACK timeout seq=25 total=26[0m
+[0;33mW (13357) hub_h2_uart_diag: ACK timeout seq=26 total=27[0m
+[0;33mW (13857) hub_h2_uart_diag: ACK timeout seq=27 total=28[0m
+[0;33mW (14357) hub_h2_uart_diag: ACK timeout seq=28 total=29[0m
+[0;33mW (14857) hub_h2_uart_diag: ACK timeout seq=29 total=30[0m
+[0;33mW (15357) hub_h2_uart_diag: ACK timeout seq=30 total=31[0m
+[0;33mW (15857) hub_h2_uart_diag: ACK timeout seq=31 total=32[0m
+[0;33mW (16357) hub_h2_uart_diag: ACK timeout seq=32 total=33[0m
+[0;33mW (16857) hub_h2_uart_diag: ACK timeout seq=33 total=34[0m
+[0;33mW (17357) hub_h2_uart_diag: ACK timeout seq=34 total=35[0m
+[0;33mW (17857) hub_h2_uart_diag: ACK timeout seq=35 total=36[0m
+[0;33mW (18357) hub_h2_uart_diag: ACK timeout seq=36 total=37[0m
+[0;33mW (18857) hub_h2_uart_diag: ACK timeout seq=37 total=38[0m
+[0;33mW (19357) hub_h2_uart_diag: ACK timeout seq=38 total=39[0m
+[0;33mW (19857) hub_h2_uart_diag: ACK timeout seq=39 total=40[0m
+[0;33mW (20357) hub_h2_uart_diag: ACK timeout seq=40 total=41[0m
+[0;33mW (20857) hub_h2_uart_diag: ACK timeout seq=41 total=42[0m
+[0;33mW (21357) hub_h2_uart_diag: ACK timeout seq=42 total=43[0m
+[0;33mW (21857) hub_h2_uart_diag: ACK timeout seq=43 total=44[0m
+[0;33mW (22357) hub_h2_uart_diag: ACK timeout seq=44 total=45[0m
+[0;33mW (22857) hub_h2_uart_diag: ACK timeout seq=45 total=46[0m
+[0;33mW (23357) hub_h2_uart_diag: ACK timeout seq=46 total=47[0m
+[0;33mW (23857) hub_h2_uart_diag: ACK timeout seq=47 total=48[0m
+[0;33mW (24357) hub_h2_uart_diag: ACK timeout seq=48 total=49[0m
+[0;33mW (24857) hub_h2_uart_diag: ACK timeout seq=49 total=50[0m
+[0;33mW (25357) hub_h2_uart_diag: ACK timeout seq=50 total=51[0m
+[0;33mW (25857) hub_h2_uart_diag: ACK timeout seq=51 total=52[0m
+[0;33mW (26357) hub_h2_uart_diag: ACK timeout seq=52 total=53[0m
+[0;33mW (26857) hub_h2_uart_diag: ACK timeout seq=53 total=54[0m
+[0;33mW (27357) hub_h2_uart_diag: ACK timeout seq=54 total=55[0m
+[0;33mW (27857) hub_h2_uart_diag: ACK timeout seq=55 total=56[0m
+[0;33mW (28357) hub_h2_uart_diag: ACK timeout seq=56 total=57[0m
+[0;33mW (28857) hub_h2_uart_diag: ACK timeout seq=57 total=58[0m
+[0;33mW (29357) hub_h2_uart_diag: ACK timeout seq=58 total=59[0m
+[0;33mW (29857) hub_h2_uart_diag: ACK timeout seq=59 total=60[0m
+[0;33mW (30357) hub_h2_uart_diag: ACK timeout seq=60 total=61[0m
+[0;33mW (30857) hub_h2_uart_diag: ACK timeout seq=61 total=62[0m
+[0;33mW (31357) hub_h2_uart_diag: ACK timeout seq=62 total=63[0m
+[0;33mW (31857) hub_h2_uart_diag: ACK timeout seq=63 total=64[0m
+[0;33mW (32357) hub_h2_uart_diag: ACK timeout seq=64 total=65[0m
+[0;33mW (32857) hub_h2_uart_diag: ACK timeout seq=65 total=66[0m
+[0;33mW (33357) hub_h2_uart_diag: ACK timeout seq=66 total=67[0m
+[0;33mW (33857) hub_h2_uart_diag: ACK timeout seq=67 total=68[0m
+[0;33mW (34357) hub_h2_uart_diag: ACK timeout seq=68 total=69[0m
+[0;33mW (34857) hub_h2_uart_diag: ACK timeout seq=69 total=70[0m
+[0;33mW (35357) hub_h2_uart_diag: ACK timeout seq=70 total=71[0m
+[0;33mW (35857) hub_h2_uart_diag: ACK timeout seq=71 total=72[0m
+[0;33mW (36357) hub_h2_uart_diag: ACK timeout seq=72 total=73[0m
+[0;33mW (36857) hub_h2_uart_diag: ACK timeout seq=73 total=74[0m
+[0;33mW (37357) hub_h2_uart_diag: ACK timeout seq=74 total=75[0m
+[0;33mW (37857) hub_h2_uart_diag: ACK timeout seq=75 total=76[0m
+[0;33mW (38357) hub_h2_uart_diag: ACK timeout seq=76 total=77[0m
+[0;33mW (38857) hub_h2_uart_diag: ACK timeout seq=77 total=78[0m
+[0;33mW (39357) hub_h2_uart_diag: ACK timeout seq=78 total=79[0m
+[0;33mW (39857) hub_h2_uart_diag: ACK timeout seq=79 total=80[0m
+[0;33mW (40357) hub_h2_uart_diag: ACK timeout seq=80 total=81[0m
+[0;33mW (40857) hub_h2_uart_diag: ACK timeout seq=81 total=82[0m
+[0;33mW (41357) hub_h2_uart_diag: ACK timeout seq=82 total=83[0m
+[0;33mW (41857) hub_h2_uart_diag: ACK timeout seq=83 total=84[0m
+[0;33mW (42357) hub_h2_uart_diag: ACK timeout seq=84 total=85[0m
+[0;33mW (42857) hub_h2_uart_diag: ACK timeout seq=85 total=86[0m
+[0;33mW (43357) hub_h2_uart_diag: ACK timeout seq=86 total=87[0m
+[0;33mW (43857) hub_h2_uart_diag: ACK timeout seq=87 total=88[0m
+[0;33mW (44357) hub_h2_uart_diag: ACK timeout seq=88 total=89[0m
+[0;33mW (44857) hub_h2_uart_diag: ACK timeout seq=89 total=90[0m
+[0;33mW (45357) hub_h2_uart_diag: ACK timeout seq=90 total=91[0m
+[0;33mW (45857) hub_h2_uart_diag: ACK timeout seq=91 total=92[0m
+[0;33mW (46357) hub_h2_uart_diag: ACK timeout seq=92 total=93[0m
+[0;33mW (46857) hub_h2_uart_diag: ACK timeout seq=93 total=94[0m
+[0;33mW (47357) hub_h2_uart_diag: ACK timeout seq=94 total=95[0m
+[0;33mW (47857) hub_h2_uart_diag: ACK timeout seq=95 total=96[0m
+[0;33mW (48357) hub_h2_uart_diag: ACK timeout seq=96 total=97[0m
+[0;32mI (48632) hub_h2_uart_diag: PEER PING seq=0 ACK sent total=1[0m
+[0;33mW (48857) hub_h2_uart_diag: ACK timeout seq=97 total=98[0m
+[0;32mI (49132) hub_h2_uart_diag: PEER PING seq=1 ACK sent total=2[0m
+[0;33mW (49357) hub_h2_uart_diag: ACK timeout seq=98 total=99[0m
+[0;32mI (49632) hub_h2_uart_diag: PEER PING seq=2 ACK sent total=3[0m
+[0;33mW (49857) hub_h2_uart_diag: ACK timeout seq=99 total=100[0m
+[0;32mI (50132) hub_h2_uart_diag: PEER PING seq=3 ACK sent total=4[0m
+[0;33mW (50357) hub_h2_uart_diag: ACK timeout seq=100 total=101[0m
+[0;32mI (50632) hub_h2_uart_diag: PEER PING seq=4 ACK sent total=5[0m
+[0;33mW (50857) hub_h2_uart_diag: ACK timeout seq=101 total=102[0m
+[0;32mI (51132) hub_h2_uart_diag: PEER PING seq=5 ACK sent total=6[0m
+[0;33mW (51357) hub_h2_uart_diag: ACK timeout seq=102 total=103[0m
+[0;32mI (51632) hub_h2_uart_diag: PEER PING seq=6 ACK sent total=7[0m
+[0;33mW (51857) hub_h2_uart_diag: ACK timeout seq=103 total=104[0m
+[0;32mI (52132) hub_h2_uart_diag: PEER PING seq=7 ACK sent total=8[0m
+[0;33mW (52357) hub_h2_uart_diag: ACK timeout seq=104 total=105[0m
+[0;32mI (52632) hub_h2_uart_diag: PEER PING seq=8 ACK sent total=9[0m
+[0;33mW (52857) hub_h2_uart_diag: ACK timeout seq=105 total=106[0m
+[0;32mI (53132) hub_h2_uart_diag: PEER PING seq=9 ACK sent total=10[0m
+[0;33mW (53357) hub_h2_uart_diag: ACK timeout seq=106 total=107[0m
+[0;32mI (53632) hub_h2_uart_diag: PEER PING seq=10 ACK sent total=11[0m
+[0;33mW (53857) hub_h2_uart_diag: ACK timeout seq=107 total=108[0m
+[0;32mI (54132) hub_h2_uart_diag: PEER PING seq=11 ACK sent total=12[0m
+[0;33mW (54357) hub_h2_uart_diag: ACK timeout seq=108 total=109[0m
+[0;32mI (54632) hub_h2_uart_diag: PEER PING seq=12 ACK sent total=13[0m
+[0;33mW (54857) hub_h2_uart_diag: ACK timeout seq=109 total=110[0m
+[0;32mI (55132) hub_h2_uart_diag: PEER PING seq=13 ACK sent total=14[0m
+[0;33mW (55357) hub_h2_uart_diag: ACK timeout seq=110 total=111[0m
+[0;32mI (55632) hub_h2_uart_diag: PEER PING seq=14 ACK sent total=15[0m
+[0;33mW (55857) hub_h2_uart_diag: ACK timeout seq=111 total=112[0m
+[0;32mI (56132) hub_h2_uart_diag: PEER PING seq=15 ACK sent total=16[0m
+[0;33mW (56357) hub_h2_uart_diag: ACK timeout seq=112 total=113[0m
+[0;32mI (56632) hub_h2_uart_diag: PEER PING seq=16 ACK sent total=17[0m
+[0;33mW (56857) hub_h2_uart_diag: ACK timeout seq=113 total=114[0m
+[0;32mI (57132) hub_h2_uart_diag: PEER PING seq=17 ACK sent total=18[0m
+[0;33mW (57357) hub_h2_uart_diag: ACK timeout seq=114 total=115[0m
+[0;32mI (57632) hub_h2_uart_diag: PEER PING seq=18 ACK sent total=19[0m
+[0;33mW (57857) hub_h2_uart_diag: ACK timeout seq=115 total=116[0m
+[0;32mI (58132) hub_h2_uart_diag: PEER PING seq=19 ACK sent total=20[0m
+[0;33mW (58357) hub_h2_uart_diag: ACK timeout seq=116 total=117[0m
+[0;32mI (58632) hub_h2_uart_diag: PEER PING seq=20 ACK sent total=21[0m
+[0;33mW (58857) hub_h2_uart_diag: ACK timeout seq=117 total=118[0m
+[0;32mI (59132) hub_h2_uart_diag: PEER PING seq=21 ACK sent total=22[0m
+[0;33mW (59357) hub_h2_uart_diag: ACK timeout seq=118 total=119[0m
+[0;32mI (59632) hub_h2_uart_diag: PEER PING seq=22 ACK sent total=23[0m
+[0;33mW (59857) hub_h2_uart_diag: ACK timeout seq=119 total=120[0m
+[0;32mI (60132) hub_h2_uart_diag: PEER PING seq=23 ACK sent total=24[0m
+[0;33mW (60357) hub_h2_uart_diag: ACK timeout seq=120 total=121[0m
+[0;32mI (60632) hub_h2_uart_diag: PEER PING seq=24 ACK sent total=25[0m
+[0;33mW (60857) hub_h2_uart_diag: ACK timeout seq=121 total=122[0m
+[0;32mI (61132) hub_h2_uart_diag: PEER PING seq=25 ACK sent total=26[0m
+[0;33mW (61357) hub_h2_uart_diag: ACK timeout seq=122 total=123[0m
+[0;32mI (61632) hub_h2_uart_diag: PEER PING seq=26 ACK sent total=27[0m
+[0;33mW (61857) hub_h2_uart_diag: ACK timeout seq=123 total=124[0m
+[0;32mI (62132) hub_h2_uart_diag: PEER PING seq=27 ACK sent total=28[0m
+[0;33mW (62357) hub_h2_uart_diag: ACK timeout seq=124 total=125[0m
+[0;32mI (62632) hub_h2_uart_diag: PEER PING seq=28 ACK sent total=29[0m
+[0;33mW (62857) hub_h2_uart_diag: ACK timeout seq=125 total=126[0m
+[0;32mI (63132) hub_h2_uart_diag: PEER PING seq=29 ACK sent total=30[0m
+[0;33mW (63357) hub_h2_uart_diag: ACK timeout seq=126 total=127[0m
+[0;32mI (63632) hub_h2_uart_diag: PEER PING seq=30 ACK sent total=31[0m
+[0;33mW (63857) hub_h2_uart_diag: ACK timeout seq=127 total=128[0m
+[0;32mI (64132) hub_h2_uart_diag: PEER PING seq=31 ACK sent total=32[0m
+[0;33mW (64357) hub_h2_uart_diag: ACK timeout seq=128 total=129[0m
+[0;32mI (64632) hub_h2_uart_diag: PEER PING seq=32 ACK sent total=33[0m
+[0;33mW (64857) hub_h2_uart_diag: ACK timeout seq=129 total=130[0m
+[0;32mI (65132) hub_h2_uart_diag: PEER PING seq=33 ACK sent total=34[0m
+[0;33mW (65357) hub_h2_uart_diag: ACK timeout seq=130 total=131[0m
+[0;32mI (65632) hub_h2_uart_diag: PEER PING seq=34 ACK sent total=35[0m
+[0;33mW (65857) hub_h2_uart_diag: ACK timeout seq=131 total=132[0m
+[0;32mI (66132) hub_h2_uart_diag: PEER PING seq=35 ACK sent total=36[0m
+[0;33mW (66357) hub_h2_uart_diag: ACK timeout seq=132 total=133[0m
+[0;32mI (66632) hub_h2_uart_diag: PEER PING seq=36 ACK sent total=37[0m
+[0;33mW (66857) hub_h2_uart_diag: ACK timeout seq=133 total=134[0m
+[0;32mI (67132) hub_h2_uart_diag: PEER PING seq=37 ACK sent total=38[0m
+[0;33mW (67357) hub_h2_uart_diag: ACK timeout seq=134 total=135[0m
+[0;32mI (67632) hub_h2_uart_diag: PEER PING seq=38 ACK sent total=39[0m
+[0;33mW (67857) hub_h2_uart_diag: ACK timeout seq=135 total=136[0m
+[0;32mI (68132) hub_h2_uart_diag: PEER PING seq=39 ACK sent total=40[0m
+[0;33mW (68357) hub_h2_uart_diag: ACK timeout seq=136 total=137[0m
+[0;32mI (68632) hub_h2_uart_diag: PEER PING seq=40 ACK sent total=41[0m
+[0;33mW (68857) hub_h2_uart_diag: ACK timeout seq=137 total=138[0m
+[0;32mI (69132) hub_h2_uart_diag: PEER PING seq=41 ACK sent total=42[0m
+[0;33mW (69357) hub_h2_uart_diag: ACK timeout seq=138 total=139[0m
+[0;32mI (69632) hub_h2_uart_diag: PEER PING seq=42 ACK sent total=43[0m
+[0;33mW (69857) hub_h2_uart_diag: ACK timeout seq=139 total=140[0m
+[0;32mI (70132) hub_h2_uart_diag: PEER PING seq=43 ACK sent total=44[0m
+[0;33mW (70357) hub_h2_uart_diag: ACK timeout seq=140 total=141[0m
+[0;32mI (70632) hub_h2_uart_diag: PEER PING seq=44 ACK sent total=45[0m
+[0;33mW (70857) hub_h2_uart_diag: ACK timeout seq=141 total=142[0m
+[0;32mI (71132) hub_h2_uart_diag: PEER PING seq=45 ACK sent total=46[0m
+[0;33mW (71357) hub_h2_uart_diag: ACK timeout seq=142 total=143[0m
+[0;32mI (71632) hub_h2_uart_diag: PEER PING seq=46 ACK sent total=47[0m
+[0;33mW (71857) hub_h2_uart_diag: ACK timeout seq=143 total=144[0m
+[0;32mI (72132) hub_h2_uart_diag: PEER PING seq=47 ACK sent total=48[0m
+[0;33mW (72357) hub_h2_uart_diag: ACK timeout seq=144 total=145[0m
+[0;32mI (72632) hub_h2_uart_diag: PEER PING seq=48 ACK sent total=49[0m
+[0;33mW (72857) hub_h2_uart_diag: ACK timeout seq=145 total=146[0m
+[0;32mI (73132) hub_h2_uart_diag: PEER PING seq=49 ACK sent total=50[0m
+[0;33mW (73357) hub_h2_uart_diag: ACK timeout seq=146 total=147[0m
+[0;32mI (73632) hub_h2_uart_diag: PEER PING seq=50 ACK sent total=51[0m
+[0;33mW (73857) hub_h2_uart_diag: ACK timeout seq=147 total=148[0m
+[0;32mI (74132) hub_h2_uart_diag: PEER PING seq=51 ACK sent total=52[0m
+[0;33mW (74357) hub_h2_uart_diag: ACK timeout seq=148 total=149[0m
+[0;32mI (74632) hub_h2_uart_diag: PEER PING seq=52 ACK sent total=53[0m
+[0;33mW (74857) hub_h2_uart_diag: ACK timeout seq=149 total=150[0m
+[0;32mI (75132) hub_h2_uart_diag: PEER PING seq=53 ACK sent total=54[0m
+[0;33mW (75357) hub_h2_uart_diag: ACK timeout seq=150 total=151[0m
+[0;32mI (75632) hub_h2_uart_diag: PEER PING seq=54 ACK sent total=55[0m
+[0;33mW (75857) hub_h2_uart_diag: ACK timeout seq=151 total=152[0m
+[0;32mI (76132) hub_h2_uart_diag: PEER PING seq=55 ACK sent total=56[0m
+[0;33mW (76357) hub_h2_uart_diag: ACK timeout seq=152 total=153[0m
+[0;32mI (76632) hub_h2_uart_diag: PEER PING seq=56 ACK sent total=57[0m
+[0;33mW (76857) hub_h2_uart_diag: ACK timeout seq=153 total=154[0m
+[0;32mI (77132) hub_h2_uart_diag: PEER PING seq=57 ACK sent total=58[0m
+[0;33mW (77357) hub_h2_uart_diag: ACK timeout seq=154 total=155[0m
+[0;32mI (77632) hub_h2_uart_diag: PEER PING seq=58 ACK sent total=59[0m
+[0;33mW (77857) hub_h2_uart_diag: ACK timeout seq=155 total=156[0m
+[0;32mI (78132) hub_h2_uart_diag: PEER PING seq=59 ACK sent total=60[0m
+[0;33mW (78357) hub_h2_uart_diag: ACK timeout seq=156 total=157[0m
+[0;32mI (78632) hub_h2_uart_diag: PEER PING seq=60 ACK sent total=61[0m
+[0;33mW (78857) hub_h2_uart_diag: ACK timeout seq=157 total=158[0m
+[0;32mI (79132) hub_h2_uart_diag: PEER PING seq=61 ACK sent total=62[0m
+[0;33mW (79357) hub_h2_uart_diag: ACK timeout seq=158 total=159[0m
+[0;32mI (79632) hub_h2_uart_diag: PEER PING seq=62 ACK sent total=63[0m
+[0;33mW (79857) hub_h2_uart_diag: ACK timeout seq=159 total=160[0m
+[0;32mI (80132) hub_h2_uart_diag: PEER PING seq=63 ACK sent total=64[0m
+[0;33mW (80357) hub_h2_uart_diag: ACK timeout seq=160 total=161[0m
+[0;32mI (80632) hub_h2_uart_diag: PEER PING seq=64 ACK sent total=65[0m
+[0;33mW (80857) hub_h2_uart_diag: ACK timeout seq=161 total=162[0m
+[0;32mI (81132) hub_h2_uart_diag: PEER PING seq=65 ACK sent total=66[0m
+[0;33mW (81357) hub_h2_uart_diag: ACK timeout seq=162 total=163[0m
+[0;32mI (81632) hub_h2_uart_diag: PEER PING seq=66 ACK sent total=67[0m
+[0;33mW (81857) hub_h2_uart_diag: ACK timeout seq=163 total=164[0m
+[0;32mI (82132) hub_h2_uart_diag: PEER PING seq=67 ACK sent total=68[0m
+[0;33mW (82357) hub_h2_uart_diag: ACK timeout seq=164 total=165[0m
+[0;32mI (82632) hub_h2_uart_diag: PEER PING seq=68 ACK sent total=69[0m
+[0;33mW (82857) hub_h2_uart_diag: ACK timeout seq=165 total=166[0m
+[0;32mI (83132) hub_h2_uart_diag: PEER PING seq=69 ACK sent total=70[0m
+[0;33mW (83357) hub_h2_uart_diag: ACK timeout seq=166 total=167[0m
+[0;32mI (83632) hub_h2_uart_diag: PEER PING seq=70 ACK sent total=71[0m
+[0;33mW (83857) hub_h2_uart_diag: ACK timeout seq=167 total=168[0m
+[0;32mI (84132) hub_h2_uart_diag: PEER PING seq=71 ACK sent total=72[0m
+[0;33mW (84357) hub_h2_uart_diag: ACK timeout seq=168 total=169[0m
+[0;32mI (84632) hub_h2_uart_diag: PEER PING seq=72 ACK sent total=73[0m
+[0;33mW (84857) hub_h2_uart_diag: ACK timeout seq=169 total=170[0m
+[0;32mI (85132) hub_h2_uart_diag: PEER PING seq=73 ACK sent total=74[0m
+[0;33mW (85357) hub_h2_uart_diag: ACK timeout seq=170 total=171[0m
+[0;32mI (85632) hub_h2_uart_diag: PEER PING seq=74 ACK sent total=75[0m
+[0;33mW (85857) hub_h2_uart_diag: ACK timeout seq=171 total=172[0m
+[0;32mI (86132) hub_h2_uart_diag: PEER PING seq=75 ACK sent total=76[0m
+[0;33mW (86357) hub_h2_uart_diag: ACK timeout seq=172 total=173[0m
+[0;32mI (86632) hub_h2_uart_diag: PEER PING seq=76 ACK sent total=77[0m
+[0;33mW (86857) hub_h2_uart_diag: ACK timeout seq=173 total=174[0m
+[0;32mI (87132) hub_h2_uart_diag: PEER PING seq=77 ACK sent total=78[0m
+[0;33mW (87357) hub_h2_uart_diag: ACK timeout seq=174 total=175[0m
+[0;32mI (87632) hub_h2_uart_diag: PEER PING seq=78 ACK sent total=79[0m
+[0;33mW (87857) hub_h2_uart_diag: ACK timeout seq=175 total=176[0m
+[0;32mI (88132) hub_h2_uart_diag: PEER PING seq=79 ACK sent total=80[0m
+[0;33mW (88357) hub_h2_uart_diag: ACK timeout seq=176 total=177[0m
+[0;32mI (88632) hub_h2_uart_diag: PEER PING seq=80 ACK sent total=81[0m
+[0;33mW (88857) hub_h2_uart_diag: ACK timeout seq=177 total=178[0m
+[0;32mI (89132) hub_h2_uart_diag: PEER PING seq=81 ACK sent total=82[0m
+[0;33mW (89357) hub_h2_uart_diag: ACK timeout seq=178 total=179[0m
+[0;32mI (89632) hub_h2_uart_diag: PEER PING seq=82 ACK sent total=83[0m
+[0;33mW (89857) hub_h2_uart_diag: ACK timeout seq=179 total=180[0m
+[0;32mI (90132) hub_h2_uart_diag: PEER PING seq=83 ACK sent total=84[0m
+[0;33mW (90357) hub_h2_uart_diag: ACK timeout seq=180 total=181[0m
+[0;32mI (90632) hub_h2_uart_diag: PEER PING seq=84 ACK sent total=85[0m
+[0;33mW (90857) hub_h2_uart_diag: ACK timeout seq=181 total=182[0m
+[0;32mI (91132) hub_h2_uart_diag: PEER PING seq=85 ACK sent total=86[0m
+[0;33mW (91357) hub_h2_uart_diag: ACK timeout seq=182 total=183[0m
+[0;32mI (91632) hub_h2_uart_diag: PEER PING seq=86 ACK sent total=87[0m
+[0;33mW (91857) hub_h2_uart_diag: ACK timeout seq=183 total=184[0m
+[0;32mI (92132) hub_h2_uart_diag: PEER PING seq=87 ACK sent total=88[0m
+[0;33mW (92357) hub_h2_uart_diag: ACK timeout seq=184 total=185[0m
+[0;32mI (92632) hub_h2_uart_diag: PEER PING seq=88 ACK sent total=89[0m
+[0;33mW (92857) hub_h2_uart_diag: ACK timeout seq=185 total=186[0m
+[0;32mI (93132) hub_h2_uart_diag: PEER PING seq=89 ACK sent total=90[0m
+[0;33mW (93357) hub_h2_uart_diag: ACK timeout seq=186 total=187[0m
+[0;32mI (93632) hub_h2_uart_diag: PEER PING seq=90 ACK sent total=91[0m
+[0;33mW (93857) hub_h2_uart_diag: ACK timeout seq=187 total=188[0m
+[0;32mI (94132) hub_h2_uart_diag: PEER PING seq=91 ACK sent total=92[0m
+[0;33mW (94357) hub_h2_uart_diag: ACK timeout seq=188 total=189[0m
+[0;32mI (94632) hub_h2_uart_diag: PEER PING seq=92 ACK sent total=93[0m
+[0;33mW (94857) hub_h2_uart_diag: ACK timeout seq=189 total=190[0m
+[0;32mI (95132) hub_h2_uart_diag: PEER PING seq=93 ACK sent total=94[0m
+[0;33mW (95357) hub_h2_uart_diag: ACK timeout seq=190 total=191[0m
+[0;32mI (95632) hub_h2_uart_diag: PEER PING seq=94 ACK sent total=95[0m
+[0;33mW (95857) hub_h2_uart_diag: ACK timeout seq=191 total=192[0m
+[0;32mI (96132) hub_h2_uart_diag: PEER PING seq=95 ACK sent total=96[0m
+[0;33mW (96357) hub_h2_uart_diag: ACK timeout seq=192 total=193[0m
+[0;32mI (96632) hub_h2_uart_diag: PEER PING seq=96 ACK sent total=97[0m
+[0;33mW (96857) hub_h2_uart_diag: ACK timeout seq=193 total=194[0m
+[0;32mI (97132) hub_h2_uart_diag: PEER PING seq=97 ACK sent total=98[0m
+[0;33mW (97357) hub_h2_uart_diag: ACK timeout seq=194 total=195[0m
+[0;32mI (97632) hub_h2_uart_diag: PEER PING seq=98 ACK sent total=99[0m
+[0;33mW (97857) hub_h2_uart_diag: ACK timeout seq=195 total=196[0m
+[0;32mI (98132) hub_h2_uart_diag: PEER PING seq=99 ACK sent total=100[0m
+[0;33mW (98357) hub_h2_uart_diag: ACK timeout seq=196 total=197[0m
+[0;32mI (98632) hub_h2_uart_diag: PEER PING seq=100 ACK sent total=101[0m
+[0;33mW (98857) hub_h2_uart_diag: ACK timeout seq=197 total=198[0m
+[0;32mI (99132) hub_h2_uart_diag: PEER PING seq=101 ACK sent total=102[0m
+[0;33mW (99357) hub_h2_uart_diag: ACK timeout seq=198 total=199[0m
+[0;32mI (99632) hub_h2_uart_diag: PEER PING seq=102 ACK sent total=103[0m
+[0;33mW (99857) hub_h2_uart_diag: ACK timeout seq=199 total=200[0m
+[0;32mI (100132) hub_h2_uart_diag: PEER PING seq=103 ACK sent total=104[0m
+[0;33mW (100357) hub_h2_uart_diag: ACK timeout seq=200 total=201[0m
+[0;32mI (100632) hub_h2_uart_diag: PEER PING seq=104 ACK sent total=105[0m
+[0;33mW (100857) hub_h2_uart_diag: ACK timeout seq=201 total=202[0m
+[0;32mI (101132) hub_h2_uart_diag: PEER PING seq=105 ACK sent total=106[0m
+[0;33mW (101357) hub_h2_uart_diag: ACK timeout seq=202 total=203[0m
+[0;32mI (101632) hub_h2_uart_diag: PEER PING seq=106 ACK sent total=107[0m
+[0;33mW (101857) hub_h2_uart_diag: ACK timeout seq=203 total=204[0m
+[0;32mI (102132) hub_h2_uart_diag: PEER PING seq=107 ACK sent total=108[0m
+[0;33mW (102357) hub_h2_uart_diag: ACK timeout seq=204 total=205[0m
+[0;32mI (102632) hub_h2_uart_diag: PEER PING seq=108 ACK sent total=109[0m
+[0;33mW (102857) hub_h2_uart_diag: ACK timeout seq=205 total=206[0m
+[0;32mI (103132) hub_h2_uart_diag: PEER PING seq=109 ACK sent total=110[0m
+[0;33mW (103357) hub_h2_uart_diag: ACK timeout seq=206 total=207[0m
+[0;32mI (103632) hub_h2_uart_diag: PEER PING seq=110 ACK sent total=111[0m
+[0;33mW (103857) hub_h2_uart_diag: ACK timeout seq=207 total=208[0m
+[0;32mI (104132) hub_h2_uart_diag: PEER PING seq=111 ACK sent total=112[0m
+[0;33mW (104357) hub_h2_uart_diag: ACK timeout seq=208 total=209[0m
+[0;32mI (104632) hub_h2_uart_diag: PEER PING seq=112 ACK sent total=113[0m
+[0;33mW (104857) hub_h2_uart_diag: ACK timeout seq=209 total=210[0m
+[0;32mI (105132) hub_h2_uart_diag: PEER PING seq=113 ACK sent total=114[0m
+[0;33mW (105357) hub_h2_uart_diag: ACK timeout seq=210 total=211[0m
+[0;32mI (105632) hub_h2_uart_diag: PEER PING seq=114 ACK sent total=115[0m
+[0;33mW (105857) hub_h2_uart_diag: ACK timeout seq=211 total=212[0m
+[0;32mI (106132) hub_h2_uart_diag: PEER PING seq=115 ACK sent total=116[0m
+[0;33mW (106357) hub_h2_uart_diag: ACK timeout seq=212 total=213[0m
+[0;32mI (106632) hub_h2_uart_diag: PEER PING seq=116 ACK sent total=117[0m
+[0;33mW (106857) hub_h2_uart_diag: ACK timeout seq=213 total=214[0m
+[0;32mI (107132) hub_h2_uart_diag: PEER PING seq=117 ACK sent total=118[0m
+[0;33mW (107357) hub_h2_uart_diag: ACK timeout seq=214 total=215[0m
+[0;32mI (107632) hub_h2_uart_diag: PEER PING seq=118 ACK sent total=119[0m
+[0;33mW (107857) hub_h2_uart_diag: ACK timeout seq=215 total=216[0m
+[0;32mI (108132) hub_h2_uart_diag: PEER PING seq=119 ACK sent total=120[0m
+[0;33mW (108357) hub_h2_uart_diag: ACK timeout seq=216 total=217[0m
+[0;32mI (108632) hub_h2_uart_diag: PEER PING seq=120 ACK sent total=121[0m
+[0;33mW (108857) hub_h2_uart_diag: ACK timeout seq=217 total=218[0m
+[0;32mI (109132) hub_h2_uart_diag: PEER PING seq=121 ACK sent total=122[0m
+[0;33mW (109357) hub_h2_uart_diag: ACK timeout seq=218 total=219[0m
+[0;32mI (109632) hub_h2_uart_diag: PEER PING seq=122 ACK sent total=123[0m
+[0;33mW (109857) hub_h2_uart_diag: ACK timeout seq=219 total=220[0m
+[0;32mI (110132) hub_h2_uart_diag: PEER PING seq=123 ACK sent total=124[0m
+[0;33mW (110357) hub_h2_uart_diag: ACK timeout seq=220 total=221[0m
+[0;32mI (110632) hub_h2_uart_diag: PEER PING seq=124 ACK sent total=125[0m
+[0;33mW (110857) hub_h2_uart_diag: ACK timeout seq=221 total=222[0m
+[0;32mI (111132) hub_h2_uart_diag: PEER PING seq=125 ACK sent total=126[0m
+[0;33mW (111357) hub_h2_uart_diag: ACK timeout seq=222 total=223[0m
+[0;32mI (111632) hub_h2_uart_diag: PEER PING seq=126 ACK sent total=127[0m
+[0;33mW (111857) hub_h2_uart_diag: ACK timeout seq=223 total=224[0m
+[0;32mI (112132) hub_h2_uart_diag: PEER PING seq=127 ACK sent total=128[0m
+[0;33mW (112357) hub_h2_uart_diag: ACK timeout seq=224 total=225[0m
+[0;32mI (112632) hub_h2_uart_diag: PEER PING seq=128 ACK sent total=129[0m
+[0;33mW (112857) hub_h2_uart_diag: ACK timeout seq=225 total=226[0m
+[0;32mI (113132) hub_h2_uart_diag: PEER PING seq=129 ACK sent total=130[0m
+[0;33mW (113357) hub_h2_uart_diag: ACK timeout seq=226 total=227[0m
+[0;32mI (113632) hub_h2_uart_diag: PEER PING seq=130 ACK sent total=131[0m
+[0;33mW (113857) hub_h2_uart_diag: ACK timeout seq=227 total=228[0m
+[0;32mI (114132) hub_h2_uart_diag: PEER PING seq=131 ACK sent total=132[0m
+[0;33mW (114357) hub_h2_uart_diag: ACK timeout seq=228 total=229[0m
+[0;32mI (114632) hub_h2_uart_diag: PEER PING seq=132 ACK sent total=133[0m
+[0;33mW (114857) hub_h2_uart_diag: ACK timeout seq=229 total=230[0m
+[0;32mI (115132) hub_h2_uart_diag: PEER PING seq=133 ACK sent total=134[0m
+[0;33mW (115357) hub_h2_uart_diag: ACK timeout seq=230 total=231[0m
+[0;32mI (115632) hub_h2_uart_diag: PEER PING seq=134 ACK sent total=135[0m
+[0;33mW (115857) hub_h2_uart_diag: ACK timeout seq=231 total=232[0m
+[0;32mI (116132) hub_h2_uart_diag: PEER PING seq=135 ACK sent total=136[0m
+[0;33mW (116357) hub_h2_uart_diag: ACK timeout seq=232 total=233[0m
+[0;32mI (116632) hub_h2_uart_diag: PEER PING seq=136 ACK sent total=137[0m
+[0;33mW (116857) hub_h2_uart_diag: ACK timeout seq=233 total=234[0m
+[0;32mI (117132) hub_h2_uart_diag: PEER PING seq=137 ACK sent total=138[0m
+[0;33mW (117357) hub_h2_uart_diag: ACK timeout seq=234 total=235[0m
+[0;32mI (117632) hub_h2_uart_diag: PEER PING seq=138 ACK sent total=139[0m
+[0;33mW (117857) hub_h2_uart_diag: ACK timeout seq=235 total=236[0m
+[0;32mI (118132) hub_h2_uart_diag: PEER PING seq=139 ACK sent total=140[0m
+[0;33mW (118357) hub_h2_uart_diag: ACK timeout seq=236 total=237[0m
+[0;32mI (118632) hub_h2_uart_diag: PEER PING seq=140 ACK sent total=141[0m
+[0;33mW (118857) hub_h2_uart_diag: ACK timeout seq=237 total=238[0m
+[0;32mI (119132) hub_h2_uart_diag: PEER PING seq=141 ACK sent total=142[0m
+[0;33mW (119357) hub_h2_uart_diag: ACK timeout seq=238 total=239[0m
+[0;32mI (119632) hub_h2_uart_diag: PEER PING seq=142 ACK sent total=143[0m
+[0;33mW (119857) hub_h2_uart_diag: ACK timeout seq=239 total=240[0m
+[0;32mI (120132) hub_h2_uart_diag: PEER PING seq=143 ACK sent total=144[0m
+[0;33mW (120357) hub_h2_uart_diag: ACK timeout seq=240 total=241[0m
+[0;32mI (120632) hub_h2_uart_diag: PEER PING seq=144 ACK sent total=145[0m
+[0;33mW (120857) hub_h2_uart_diag: ACK timeout seq=241 total=242[0m
+[0;32mI (121132) hub_h2_uart_diag: PEER PING seq=145 ACK sent total=146[0m
+[0;33mW (121357) hub_h2_uart_diag: ACK timeout seq=242 total=243[0m
+[0;32mI (121632) hub_h2_uart_diag: PEER PING seq=146 ACK sent total=147[0m
+[0;33mW (121857) hub_h2_uart_diag: ACK timeout seq=243 total=244[0m
+[0;32mI (122132) hub_h2_uart_diag: PEER PING seq=147 ACK sent total=148[0m
+[0;33mW (122357) hub_h2_uart_diag: ACK timeout seq=244 total=245[0m
+[0;32mI (122632) hub_h2_uart_diag: PEER PING seq=148 ACK sent total=149[0m
+[0;33mW (122857) hub_h2_uart_diag: ACK timeout seq=245 total=246[0m
+[0;32mI (123132) hub_h2_uart_diag: PEER PING seq=149 ACK sent total=150[0m
+[0;33mW (123357) hub_h2_uart_diag: ACK timeout seq=246 total=247[0m
+[0;32mI (123632) hub_h2_uart_diag: PEER PING seq=150 ACK sent total=151[0m
+[0;33mW (123857) hub_h2_uart_diag: ACK timeout seq=247 total=248[0m
+[0;32mI (124132) hub_h2_uart_diag: PEER PING seq=151 ACK sent total=152[0m
+[0;33mW (124357) hub_h2_uart_diag: ACK timeout seq=248 total=249[0m
+[0;32mI (124632) hub_h2_uart_diag: PEER PING seq=152 ACK sent total=153[0m
+[0;33mW (124857) hub_h2_uart_diag: ACK timeout seq=249 total=250[0m
+[0;32mI (125132) hub_h2_uart_diag: PEER PING seq=153 ACK sent total=154[0m
+[0;33mW (125357) hub_h2_uart_diag: ACK timeout seq=250 total=251[0m
+[0;32mI (125632) hub_h2_uart_diag: PEER PING seq=154 ACK sent total=155[0m
+[0;33mW (125857) hub_h2_uart_diag: ACK timeout seq=251 total=252[0m
+[0;32mI (126132) hub_h2_uart_diag: PEER PING seq=155 ACK sent total=156[0m
+[0;33mW (126357) hub_h2_uart_diag: ACK timeout seq=252 total=253[0m
+[0;32mI (126632) hub_h2_uart_diag: PEER PING seq=156 ACK sent total=157[0m
+[0;33mW (126857) hub_h2_uart_diag: ACK timeout seq=253 total=254[0m
+[0;32mI (127132) hub_h2_uart_diag: PEER PING seq=157 ACK sent total=158[0m
+[0;33mW (127357) hub_h2_uart_diag: ACK timeout seq=254 total=255[0m
+[0;32mI (127632) hub_h2_uart_diag: PEER PING seq=158 ACK sent total=159[0m
+[0;33mW (127857) hub_h2_uart_diag: ACK timeout seq=255 total=256[0m
+[0;32mI (128132) hub_h2_uart_diag: PEER PING seq=159 ACK sent total=160[0m
+[0;33mW (128357) hub_h2_uart_diag: ACK timeout seq=256 total=257[0m
+[0;32mI (128632) hub_h2_uart_diag: PEER PING seq=160 ACK sent total=161[0m
+[0;33mW (128857) hub_h2_uart_diag: ACK timeout seq=257 total=258[0m
+[0;32mI (129132) hub_h2_uart_diag: PEER PING seq=161 ACK sent total=162[0m
+[0;33mW (129357) hub_h2_uart_diag: ACK timeout seq=258 total=259[0m
+[0;32mI (129632) hub_h2_uart_diag: PEER PING seq=162 ACK sent total=163[0m

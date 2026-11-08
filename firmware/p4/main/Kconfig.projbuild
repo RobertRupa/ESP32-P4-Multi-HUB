@@ -1,0 +1,99 @@
+menu "HUB Web security"
+config HUB_WEB_DEVELOPMENT_MODE
+    bool "Use development Web UI credentials"
+    default n
+    help
+        Use the fixed admin/admin Web UI credential and fewer PBKDF2 iterations.
+        This must remain disabled for production firmware.
+    endmenu
+
+    menu "HUB UART diagnostic"
+
+    config HUB_UART_DIAGNOSTIC_ENABLE
+        bool "Use temporary raw UART diagnostic startup"
+        depends on IDF_TARGET_ESP32P4
+        default n
+        help
+            Bypass normal P4 services and run the bounded H2 UART ping/ACK test.
+
+    config HUB_UART_DIAGNOSTIC_PORT
+        int "UART port connected to H2"
+        depends on HUB_UART_DIAGNOSTIC_ENABLE
+        range 0 2
+        default 1
+
+    config HUB_UART_DIAGNOSTIC_TX_GPIO
+        int "P4 UART TX GPIO to H2 RX"
+        depends on HUB_UART_DIAGNOSTIC_ENABLE
+        range -1 SOC_GPIO_OUT_RANGE_MAX
+        default 26
+
+    config HUB_UART_DIAGNOSTIC_RX_GPIO
+        int "P4 UART RX GPIO from H2 TX"
+        depends on HUB_UART_DIAGNOSTIC_ENABLE
+        range -1 SOC_GPIO_IN_RANGE_MAX
+        default 27
+
+    endmenu
+
+    menu "HUB multipan radio"
+
+config HUB_MULTIPAN_ENABLE
+    bool "Enable Zigbee + Thread multipan coordinator"
+    depends on IDF_TARGET_ESP32P4
+    default n
+    help
+        Starts the P4 multipan host with an external 802.15.4 RCP. Keep disabled
+        until the UART link and shared RS485 nets are verified on the board.
+
+config HUB_MULTIPAN_UART_PORT
+    int "UART port to multipan RCP"
+    depends on HUB_MULTIPAN_ENABLE
+    range 0 2
+    default 1
+
+config HUB_MULTIPAN_UART_TX_GPIO
+    int "P4 UART TX GPIO to RCP RX"
+    depends on HUB_MULTIPAN_ENABLE
+    range -1 SOC_GPIO_OUT_RANGE_MAX
+    default -1
+
+config HUB_MULTIPAN_UART_RX_GPIO
+    int "P4 UART RX GPIO from RCP TX"
+    depends on HUB_MULTIPAN_ENABLE
+    range -1 SOC_GPIO_IN_RANGE_MAX
+    default -1
+
+endmenu
+
+    menu "HUB Zigbee RCP coordinator"
+
+config HUB_H2_ZIGBEE_RCP_ENABLE
+    bool "Host Zigbee coordinator on P4 with an external H2 RCP"
+    depends on IDF_TARGET_ESP32P4 && !HUB_MULTIPAN_ENABLE && !SOC_IEEE802154_SUPPORTED
+    select ZB_ENABLED
+    default n
+    help
+        Build the P4-hosted Zigbee coordinator using a dedicated H2 radio over
+        UART Spinel. Keep disabled until the matching H2 RCP and UART wiring
+        have been verified and the host/RCP handshake has passed.
+
+config HUB_H2_ZIGBEE_UART_PORT
+    int "UART port to H2 Zigbee RCP"
+    depends on HUB_H2_ZIGBEE_RCP_ENABLE
+    range 0 2
+    default 1
+
+config HUB_H2_ZIGBEE_UART_TX_GPIO
+    int "P4 UART TX GPIO to H2 RCP RX"
+    depends on HUB_H2_ZIGBEE_RCP_ENABLE
+    range -1 SOC_GPIO_OUT_RANGE_MAX
+    default -1
+
+config HUB_H2_ZIGBEE_UART_RX_GPIO
+    int "P4 UART RX GPIO from H2 RCP TX"
+    depends on HUB_H2_ZIGBEE_RCP_ENABLE
+    range -1 SOC_GPIO_IN_RANGE_MAX
+    default -1
+
+    endmenu

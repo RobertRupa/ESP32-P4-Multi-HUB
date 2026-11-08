@@ -87,6 +87,18 @@ Specify no allocation-heavy JSON on the hot path: runtime should use bounded typ
 
 `CONFIG_HUB_ZIGBEE=y`, `CONFIG_HUB_MATTER=y`, `CONFIG_HUB_MQTT=n`, `CONFIG_HUB_WEB=n`, `CONFIG_HUB_RULES=n` are proposed Kconfig module toggles, **not yet implemented**. Use compile-time feature flags and runtime capability discovery.
 
+## Experimental C6 multipan port
+
+The accepted baseline above remains unchanged. A separate opt-in ESP-IDF 6.2.0 product profile (`CONFIG_HUB_MULTIPAN_ENABLE`) builds P4-hosted OpenThread/Zigbee stacks with Wi-Fi backhaul from the existing C6 STA netif and a C6 UART multipan RCP image. The combined C6 uses one 2.4 GHz RF path for Wi-Fi and 802.15.4; coexistence is build-enabled but not measured. The profile is disabled by default, has no verified UART pin assignment, and has not been flashed. Thread Border Router readiness requires a previously commissioned operational dataset; no Thread commissioner or Matter Bridge is included. This candidate does not change ADR-0001 or the H2-last-stage constraint.
+
+A separate opt-in SDIO experiment moves Zigbee coordinator ownership to the C6 native 802.15.4 radio while retaining ESP-Hosted Wi-Fi CP; the P4 and C6 exchange bounded Peer Data messages over the existing SDIO transport. The C6 owns Zigbee state, while P4 exposes snapshots and confirmation-gated search commands. This avoids assigning a P4 UART but moves the Zigbee stack from P4 to C6 and shares the C6 RF path with Wi-Fi. Both paths remain experimental until hardware, RF and end-device tests pass; this SDIO-native prototype does not provide Thread or a Matter Bridge.
+
+## H2 Zigbee RCP profile (hardware attempt, 2026-11-08)
+
+The P4 application now exposes an `IZigbeeCoordinator` port implemented by the existing C6 Peer Data bridge and, under `CONFIG_HUB_H2_ZIGBEE_RCP_ENABLE`, by the P4 Zigbee UART-RCP service path. The H2 profile initializes ESP-Zigbee directly over standard UART Spinel and skips the OpenThread/multipan startup. `firmware/h2` builds a dedicated ESP-IDF v5.5.5 H2 RCP image with the vendor hook enabled. The C6 has a separate `sdkconfig.defaults.h2-zigbee-wifi` profile that keeps ESP-Hosted Wi-Fi and omits the native Zigbee coordinator source.
+
+P4, H2 and C6 migration profiles build, including the P4 `esp32p4` remote-radio library. A board-specific H2 P4 image was flashed on the test board, but P4 received no Spinel response at 460800 or 230400 baud and IDF exited after reset recovery failed. The H2 image logs that its RCP app started. The P4 was restored to the default C6-backed runtime. The user reports Grove H2 wiring on P4 UART1 GPIO26/27 and confirms electrical checks; M5Stack documents H2 UART0 GPIO24 TX/GPIO23 RX and recommends 230400 for Grove. No H2 reset line is connected. The exact cause of the UART timeout remains unresolved; no Zigbee network, end-device join or RF coexistence is claimed.
+
 ## Engineering governance
 
 Follow [Engineering standards](ENGINEERING.md), [Service contracts](SERVICE_CONTRACTS.md), and [Agent workflow](AGENT_WORKFLOW.md). The core is a portable C++17 domain; ESP-IDF/FreeRTOS, Zigbee, Matter and LVGL remain infrastructure/adapters. Dependencies are constructor-injected in the application composition root; no service locator. Contract tests verify module boundaries and failure semantics.

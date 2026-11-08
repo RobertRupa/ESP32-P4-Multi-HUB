@@ -1,6 +1,6 @@
 # ADR-0001: Zigbee through external H2, Matter bridge over IP
 
-- **Status:** Accepted as design baseline, implementation pending
+- **Status:** Accepted as design baseline; H2/P4 implementation in progress
 - **Date:** 2026-11-07
 
 ## Context
@@ -32,3 +32,7 @@ P4 build support for Zigbee host and Matter bridge, availability of safe P4 UART
 ## Revisit triggers
 
 Need a native Thread Border Router, Matter Controller, dedicated Ethernet, new protocol stacks, unsupported P4 host SDK or physical hardware revision constraints.
+
+## Implementation note (2026-11-08)
+
+The pinned ESP-Zigbee component provides an `esp32p4` remote-radio archive, and an opt-in P4 UART-RCP profile plus an H2 RCP project compile with ESP-IDF v5.5.5. A board-specific P4 UART1 GPIO26/27 profile and the H2 RCP were flashed on the test board; Spinel timed out at 460800 and 230400 baud, so P4 was restored to the C6-backed runtime. No H2 network or Zigbee pairing is verified. H2 reset/boot pins are not connected, and the IDF timeout recovery path exits the host. C6 remains the installed coordinator.

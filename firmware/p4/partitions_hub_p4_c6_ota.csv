@@ -1,0 +1,9 @@
+# P4 host app and staged C6 ESP-Hosted OTA image; 16 MB flash.
+# Preserve the existing NVS and PHY partition offsets.
+# Name,     Type, SubType, Offset,   Size, Flags
+nvs,        data, nvs,     0x12000,  24K,
+phy_init,   data, phy,     0x18000,  4K,
+factory,    app,  factory, 0x20000,  0x3F0000,
+c6_fw,      data, 0x40,    0x410000, 2M,
+wifi_keys,  data, nvs_keys,0x610000, 4K, encrypted
+wifi_cfg,   data, nvs,     0x611000, 24K,

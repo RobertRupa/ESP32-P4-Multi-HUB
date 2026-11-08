@@ -1,0 +1,390 @@
+Command: /home/konatsu/.espressif/python_env/idf5.5_py3.14_env/bin/python /home/konatsu/esp/esp-idf/tools/idf_monitor.py -p /dev/ttyACM0 -b 115200 --toolchain-prefix riscv32-esp-elf- --target esp32p4 --revision 301 --decode-panic backtrace /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-uart-diagnostic/hub_p4_esp_hosted_host.elf /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-uart-diagnostic/bootloader/bootloader.elf -m '/home/konatsu/.espressif/python_env/idf5.5_py3.14_env/bin/python' '/home/konatsu/esp/esp-idf/tools/idf.py' '-B' 'build-uart-diagnostic' '-p' '/dev/ttyACM0'
+ESP-ROM:esp32p4-eco7-20260109
+Build:Jan  9 2026
+rst:0x17 (CHIP_USB_UART_RESET),boot:0x30d (SPI_FAST_FLASH_BOOT)
+Core0 Saved PC:0x4ff234f8
+Core1 Saved PC:0x4ff234f8
+use legacy efuse key
+SPI mode:DIO, clock div:1
+load:0x4ffb6240,len:0x2924
+load:0x4ffac2c0,len:0x1000
+load:0x4ffaefc0,len:0x5318
+entry 0x4ffac2ca
+[0;32mI (10) boot: ESP-IDF v5.5.5 2nd stage bootloader[0m
+[0;32mI (10) boot: compile time Nov  8 2026 09:39:15[0m
+[0;32mI (10) boot: Multicore bootloader[0m
+[0;32mI (12) boot: chip revision: v3.2[0m
+[0;32mI (12) boot: efuse block revision: v1.2[0m
+[0;32mI (12) boot.esp32p4: SPI Speed      : 80MHz[0m
+[0;32mI (12) boot.esp32p4: SPI Mode       : DIO[0m
+[0;32mI (13) boot.esp32p4: SPI Flash Size : 16MB[0m
+[0;32mI (13) boot: Enabling RNG early entropy source...[0m
+[0;32mI (13) boot: Partition Table:[0m
+[0;32mI (14) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (14) boot:  0 nvs              WiFi data        01 02 00012000 00006000[0m
+[0;32mI (15) boot:  1 phy_init         RF data          01 01 00018000 00001000[0m
+[0;32mI (15) boot:  2 factory          factory app      00 00 00020000 003f0000[0m
+[0;32mI (16) boot:  3 c6_fw            Unknown data     01 40 00410000 00200000[0m
+[0;32mI (16) boot:  4 wifi_keys        NVS keys         01 04 00610000 00001000[0m
+[0;32mI (17) boot:  5 wifi_cfg         WiFi data        01 02 00611000 00006000[0m
+[0;32mI (18) boot: End of partition table[0m
+[0;32mI (19) esp_image: segment 0: paddr=00020020 vaddr=40040020 size=24668h (149096) map[0m
+[0;32mI (40) esp_image: segment 1: paddr=00044690 vaddr=30100000 size=001f4h (   500) load[0m
+[0;32mI (41) esp_image: segment 2: paddr=0004488c vaddr=30100200 size=00048h (    72) load[0m
+[0;32mI (43) esp_image: segment 3: paddr=000448dc vaddr=4ff20000 size=0b73ch ( 46908) load[0m
+[0;32mI (51) esp_image: segment 4: paddr=00050020 vaddr=40000020 size=377f4h (227316) map[0m
+[0;32mI (83) esp_image: segment 5: paddr=0008781c vaddr=4ff2b73c size=08454h ( 33876) load[0m
+[0;32mI (89) esp_image: segment 6: paddr=0008fc78 vaddr=4ff33c00 size=032a4h ( 12964) load[0m
+[0;32mI (93) esp_image: segment 7: paddr=00092f24 vaddr=50108080 size=0000ch (    12) load[0m
+[0;32mI (98) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (98) boot: Checking flash encryption...[0m
+[0;32mI (98) flash_encrypt: flash encryption is enabled (1 plaintext flashes left)[0m
+[0;32mI (99) boot: Disabling RNG early entropy source...[0m
+[0;32mI (102) hex_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (102) hex_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (103) hex_psram: DriveStr.    : 0x00 (25 Ohm)[0m
+[0;32mI (103) hex_psram: dev id       : 0x03 (generation 4)[0m
+[0;32mI (103) hex_psram: density      : 0x07 (256 Mbit)[0m
+[0;32mI (104) hex_psram: good-die     : 0x06 (Pass)[0m
+[0;32mI (104) hex_psram: SRF          : 0x02 (Slow Refresh)[0m
+[0;32mI (104) hex_psram: BurstType    : 0x00 ( Wrap)[0m
+[0;32mI (105) hex_psram: BurstLen     : 0x03 (2048 Byte)[0m
+[0;32mI (105) hex_psram: BitMode      : 0x01 (X16 Mode)[0m
+[0;32mI (105) hex_psram: Readlatency  : 0x04 (14 cycles@Fixed)[0m
+[0;32mI (106) hex_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (106) MSPI Timing: Enter psram timing tuning[0m
+[0;32mI (266) esp_psram: Found 32MB PSRAM device[0m
+[0;32mI (266) esp_psram: Speed: 200MHz[0m
+[0;32mI (267) hex_psram: psram CS IO is dedicated[0m
+[0;32mI (267) cpu_start: Multicore app[0m
+[0;32mI (1488) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (1497) cpu_start: Pro cpu start user code[0m
+[0;32mI (1497) cpu_start: cpu freq: 400000000 Hz[0m
+[0;32mI (1498) app_init: Application information:[0m
+[0;32mI (1498) app_init: Project name:     hub_p4_esp_hosted_host[0m
+[0;32mI (1498) app_init: App version:      371b9ed-dirty[0m
+[0;32mI (1498) app_init: Compile time:     Nov  8 2026 09:38:28[0m
+[0;32mI (1498) app_init: ELF file SHA256:  cbff2706a...[0m
+[0;32mI (1498) app_init: ESP-IDF:          v5.5.5[0m
+[0;32mI (1499) efuse_init: Min chip rev:     v3.1[0m
+[0;32mI (1499) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (1499) efuse_init: Chip rev:         v3.2[0m
+[0;32mI (1499) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1500) heap_init: At 4FF392D0 len 00081CF0 (519 KiB): RETENT_RAM[0m
+[0;32mI (1500) heap_init: At 4FFBAFC0 len 00004BF0 (18 KiB): RAM[0m
+[0;32mI (1501) heap_init: At 5010808C len 00007F74 (31 KiB): RTCRAM[0m
+[0;32mI (1501) heap_init: At 30100248 len 00001DB8 (7 KiB): SPM[0m
+[0;32mI (1501) esp_psram: Adding pool of 32768K of PSRAM memory to heap allocator[0m
+[0;32mI (1502) spi_flash: detected chip: boya[0m
+[0;32mI (1502) spi_flash: flash io: dio[0m
+[0;32mI (1503) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (1504) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (1506) eh_mcu_transport: transport_init: probing bus backend[0m
+[0;32mI (1506) eh_sdio: transport[host]: SDIO 4-bit 5000 kHz CLK=18 CMD=19 D0=14 D1=15 D2=16 D3=17 RESET=54[0m
+[0;33mW (1507) eh_sdio: SDIO clock freq set to [5000]KHz, Max possible (on PCB) is 40000KHz[0m
+[0;32mI (1507) eh_sdio: sdio_data_to_rx_buf_task started[0m
+[0;32mI (1507) eh_mcu_transport: transport_init: bus backend up[0m
+[0;33mW (1508) eh_sdio: Reset co-processor using GPIO[54][0m
+[0;32mI (1508) main_task: Started on CPU0[0m
+[0;32mI (1508) esp_psram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32mI (1508) main_task: Calling app_main()[0m
+[0;32mI (1509) hub_p4_uart_diag: UART diagnostic ready: UART1, TX=26 RX=27, 230400 8N1[0m
+[0;32mI (1509) hub_p4_uart_diag: TX PING seq=0[0m
+[0;32mI (2010) hub_p4_uart_diag: TX PING seq=1[0m
+[0;32mI (2510) hub_p4_uart_diag: TX PING seq=2[0m
+[0;32mI (3010) hub_p4_uart_diag: TX PING seq=3[0m
+[0;32mI (3028) eh_host_port_reset: reset done pin=54 parked=1[0m
+[0;32mI (3061) eh_host_port_sdio: bus applied: clk_khz=5000[0m
+[0;32mI (3062) eh_host_port_sdio: Function 0 Blocksize: 512[0m
+[0;32mI (3062) eh_host_port_sdio: Function 1 Blocksize: 512[0m
+[0;32mI (3162) eh_sdio: Card init success, TRANSPORT_RX_ACTIVE[0m
+[0;32mI (3207) eh_sdio: SDIO Host operating in STREAMING MODE[0m
+[0;32mI (3207) eh_sdio: Open data path at slave[0m
+[0;32mI (3207) eh_sdio: Starting SDIO process rx task[0m
+[0;32mI (3225) eh_init_evt: slave chip id: 0x0d (esp32c6)[0m
+[0;32mI (3225) eh_init_evt: capabilities: 0x01[0m
+[0;32mI (3225) eh_init_evt: Features supported are:[0m
+[0;32mI (3225) eh_init_evt: 	 * WLAN over SDIO[0m
+[0;32mI (3225) eh_init_evt: extended capabilities: 0x00024010[0m
+[0;32mI (3225) eh_init_evt: Extended Features supported:[0m
+[0;32mI (3225) eh_init_evt: 	 * WLAN[0m
+[0;32mI (3226) eh_init_evt: 	 * AUX interface[0m
+[0;32mI (3226) eh_init_evt: SDIO buf-config: e2h mode=0 bufsz=15872B, h2e mode=0 bufsz=15872B[0m
+[0;32mI (3226) eh_init_evt: coprocessor transport size: 1536[0m
+[0;32mI (3226) eh_init_evt: RPC version negotiated: V2[0m
+[0;32mI (3226) eh_init_evt: esp-hosted fw versions: host=3.1.0 coprocessor=3.1.0 (match)[0m
+[0;32mI (3226) eh_init_evt: SDIO SW_AGGR negotiated (e2h=15872B h2e=15872B)[0m
+[0;32mI (3226) eh_init_evt: SDIO mode: slave=streaming host=streaming[0m
+[0;32mI (3227) eh_init_evt: chip=0x0d (esp32c6) fw=0x00030100 caps=0x01 ext=0x00024010[0m
+[0;33mW (3227) eh_host_port_xport_defaults: SDIO clock freq set to [5000]KHz, Max possible (on PCB) is 40000KHz[0m
+[0;32mI (3227) eh_auto_init: auto_init: found 2 descriptor(s)[0m
+[0;32mI (3227) eh_auto_init: auto_init: initialising 'peer_data' (priority 80)[0m
+[0;32mI (3228) eh_auto_init: auto_init: initialising 'wifi' (priority 150)[0m
+[0;32mI (3228) eh_wifi_itwt: wifi iTWT ext init[0m
+[0;32mI (3299) eh_sdio: preallocated 2 SDIO RX staging slot(s), 15872 bytes each[0m
+[0;33mW (3510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (3510) hub_p4_uart_diag: TX PING seq=4[0m
+[0;32mI (4010) hub_p4_uart_diag: TX PING seq=5[0m
+[0;32mI (4510) hub_p4_uart_diag: TX PING seq=6[0m
+[0;32mI (5010) hub_p4_uart_diag: TX PING seq=7[0m
+[0;33mW (5510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (5510) hub_p4_uart_diag: TX PING seq=8[0m
+[0;32mI (6010) hub_p4_uart_diag: TX PING seq=9[0m
+[0;32mI (6510) hub_p4_uart_diag: TX PING seq=10[0m
+[0;32mI (7010) hub_p4_uart_diag: TX PING seq=11[0m
+[0;33mW (7510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (7510) hub_p4_uart_diag: TX PING seq=12[0m
+[0;32mI (8010) hub_p4_uart_diag: TX PING seq=13[0m
+[0;32mI (8510) hub_p4_uart_diag: TX PING seq=14[0m
+[0;32mI (9010) hub_p4_uart_diag: TX PING seq=15[0m
+[0;33mW (9510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (9510) hub_p4_uart_diag: TX PING seq=16[0m
+[0;32mI (10010) hub_p4_uart_diag: TX PING seq=17[0m
+[0;32mI (10510) hub_p4_uart_diag: TX PING seq=18[0m
+[0;32mI (11010) hub_p4_uart_diag: TX PING seq=19[0m
+[0;33mW (11510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (11510) hub_p4_uart_diag: TX PING seq=20[0m
+[0;32mI (12010) hub_p4_uart_diag: TX PING seq=21[0m
+[0;32mI (12510) hub_p4_uart_diag: TX PING seq=22[0m
+[0;32mI (13010) hub_p4_uart_diag: TX PING seq=23[0m
+[0;33mW (13510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (13510) hub_p4_uart_diag: TX PING seq=24[0m
+[0;32mI (14010) hub_p4_uart_diag: TX PING seq=25[0m
+[0;32mI (14510) hub_p4_uart_diag: TX PING seq=26[0m
+[0;32mI (15010) hub_p4_uart_diag: TX PING seq=27[0m
+[0;33mW (15510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (15510) hub_p4_uart_diag: TX PING seq=28[0m
+[0;32mI (16010) hub_p4_uart_diag: TX PING seq=29[0m
+[0;32mI (16510) hub_p4_uart_diag: TX PING seq=30[0m
+[0;32mI (17010) hub_p4_uart_diag: TX PING seq=31[0m
+[0;33mW (17510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (17510) hub_p4_uart_diag: TX PING seq=32[0m
+[0;32mI (18010) hub_p4_uart_diag: TX PING seq=33[0m
+[0;32mI (18510) hub_p4_uart_diag: TX PING seq=34[0m
+[0;32mI (19010) hub_p4_uart_diag: TX PING seq=35[0m
+[0;33mW (19510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (19510) hub_p4_uart_diag: TX PING seq=36[0m
+[0;32mI (20010) hub_p4_uart_diag: TX PING seq=37[0m
+[0;32mI (20510) hub_p4_uart_diag: TX PING seq=38[0m
+[0;32mI (21010) hub_p4_uart_diag: TX PING seq=39[0m
+[0;33mW (21510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (21510) hub_p4_uart_diag: TX PING seq=40[0m
+[0;32mI (22010) hub_p4_uart_diag: TX PING seq=41[0m
+[0;32mI (22510) hub_p4_uart_diag: TX PING seq=42[0m
+[0;32mI (23010) hub_p4_uart_diag: TX PING seq=43[0m
+[0;33mW (23510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (23510) hub_p4_uart_diag: TX PING seq=44[0m
+[0;32mI (24010) hub_p4_uart_diag: TX PING seq=45[0m
+[0;32mI (24510) hub_p4_uart_diag: TX PING seq=46[0m
+[0;32mI (25010) hub_p4_uart_diag: TX PING seq=47[0m
+[0;33mW (25510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (25510) hub_p4_uart_diag: TX PING seq=48[0m
+[0;32mI (26010) hub_p4_uart_diag: TX PING seq=49[0m
+[0;32mI (26510) hub_p4_uart_diag: TX PING seq=50[0m
+[0;32mI (27010) hub_p4_uart_diag: TX PING seq=51[0m
+[0;33mW (27510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (27510) hub_p4_uart_diag: TX PING seq=52[0m
+[0;32mI (28010) hub_p4_uart_diag: TX PING seq=53[0m
+[0;32mI (28510) hub_p4_uart_diag: TX PING seq=54[0m
+[0;32mI (29010) hub_p4_uart_diag: TX PING seq=55[0m
+[0;33mW (29510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (29510) hub_p4_uart_diag: TX PING seq=56[0m
+[0;32mI (30010) hub_p4_uart_diag: TX PING seq=57[0m
+[0;32mI (30510) hub_p4_uart_diag: TX PING seq=58[0m
+[0;32mI (31010) hub_p4_uart_diag: TX PING seq=59[0m
+[0;33mW (31510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (31510) hub_p4_uart_diag: TX PING seq=60[0m
+[0;32mI (32010) hub_p4_uart_diag: TX PING seq=61[0m
+[0;32mI (32510) hub_p4_uart_diag: TX PING seq=62[0m
+[0;32mI (33010) hub_p4_uart_diag: TX PING seq=63[0m
+[0;33mW (33510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (33510) hub_p4_uart_diag: TX PING seq=64[0m
+[0;32mI (34010) hub_p4_uart_diag: TX PING seq=65[0m
+[0;32mI (34510) hub_p4_uart_diag: TX PING seq=66[0m
+[0;32mI (35010) hub_p4_uart_diag: TX PING seq=67[0m
+[0;33mW (35510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (35510) hub_p4_uart_diag: TX PING seq=68[0m
+[0;32mI (36010) hub_p4_uart_diag: TX PING seq=69[0m
+[0;32mI (36510) hub_p4_uart_diag: TX PING seq=70[0m
+[0;32mI (37010) hub_p4_uart_diag: TX PING seq=71[0m
+[0;33mW (37510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (37510) hub_p4_uart_diag: TX PING seq=72[0m
+[0;32mI (38010) hub_p4_uart_diag: TX PING seq=73[0m
+[0;32mI (38510) hub_p4_uart_diag: TX PING seq=74[0m
+[0;32mI (39010) hub_p4_uart_diag: TX PING seq=75[0m
+[0;33mW (39510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (39510) hub_p4_uart_diag: TX PING seq=76[0m
+[0;32mI (40010) hub_p4_uart_diag: TX PING seq=77[0m
+[0;32mI (40510) hub_p4_uart_diag: TX PING seq=78[0m
+[0;32mI (41010) hub_p4_uart_diag: TX PING seq=79[0m
+[0;33mW (41510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (41510) hub_p4_uart_diag: TX PING seq=80[0m
+[0;32mI (42010) hub_p4_uart_diag: TX PING seq=81[0m
+[0;32mI (42510) hub_p4_uart_diag: TX PING seq=82[0m
+[0;32mI (43010) hub_p4_uart_diag: TX PING seq=83[0m
+[0;33mW (43510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (43510) hub_p4_uart_diag: TX PING seq=84[0m
+[0;32mI (44010) hub_p4_uart_diag: TX PING seq=85[0m
+[0;32mI (44510) hub_p4_uart_diag: TX PING seq=86[0m
+[0;32mI (45010) hub_p4_uart_diag: TX PING seq=87[0m
+[0;33mW (45510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (45510) hub_p4_uart_diag: TX PING seq=88[0m
+[0;32mI (46010) hub_p4_uart_diag: TX PING seq=89[0m
+[0;32mI (46510) hub_p4_uart_diag: TX PING seq=90[0m
+[0;32mI (47010) hub_p4_uart_diag: TX PING seq=91[0m
+[0;33mW (47510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (47510) hub_p4_uart_diag: TX PING seq=92[0m
+[0;32mI (48010) hub_p4_uart_diag: TX PING seq=93[0m
+[0;32mI (48510) hub_p4_uart_diag: TX PING seq=94[0m
+[0;32mI (49010) hub_p4_uart_diag: TX PING seq=95[0m
+[0;33mW (49510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (49510) hub_p4_uart_diag: TX PING seq=96[0m
+[0;32mI (50010) hub_p4_uart_diag: TX PING seq=97[0m
+[0;32mI (50510) hub_p4_uart_diag: TX PING seq=98[0m
+[0;32mI (51010) hub_p4_uart_diag: TX PING seq=99[0m
+[0;33mW (51510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (51510) hub_p4_uart_diag: TX PING seq=100[0m
+[0;32mI (52010) hub_p4_uart_diag: TX PING seq=101[0m
+[0;32mI (52510) hub_p4_uart_diag: TX PING seq=102[0m
+[0;32mI (53010) hub_p4_uart_diag: TX PING seq=103[0m
+[0;33mW (53510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (53510) hub_p4_uart_diag: TX PING seq=104[0m
+[0;32mI (54010) hub_p4_uart_diag: TX PING seq=105[0m
+[0;32mI (54510) hub_p4_uart_diag: TX PING seq=106[0m
+[0;32mI (55010) hub_p4_uart_diag: TX PING seq=107[0m
+[0;33mW (55510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (55510) hub_p4_uart_diag: TX PING seq=108[0m
+[0;32mI (56010) hub_p4_uart_diag: TX PING seq=109[0m
+[0;32mI (56510) hub_p4_uart_diag: TX PING seq=110[0m
+[0;32mI (57010) hub_p4_uart_diag: TX PING seq=111[0m
+[0;33mW (57510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (57510) hub_p4_uart_diag: TX PING seq=112[0m
+[0;32mI (58010) hub_p4_uart_diag: TX PING seq=113[0m
+[0;32mI (58510) hub_p4_uart_diag: TX PING seq=114[0m
+[0;32mI (59010) hub_p4_uart_diag: TX PING seq=115[0m
+[0;33mW (59510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (59510) hub_p4_uart_diag: TX PING seq=116[0m
+[0;32mI (60010) hub_p4_uart_diag: TX PING seq=117[0m
+[0;32mI (60510) hub_p4_uart_diag: TX PING seq=118[0m
+[0;32mI (61010) hub_p4_uart_diag: TX PING seq=119[0m
+[0;33mW (61510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (61510) hub_p4_uart_diag: TX PING seq=120[0m
+[0;32mI (62010) hub_p4_uart_diag: TX PING seq=121[0m
+[0;32mI (62510) hub_p4_uart_diag: TX PING seq=122[0m
+[0;32mI (63010) hub_p4_uart_diag: TX PING seq=123[0m
+[0;33mW (63510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (63510) hub_p4_uart_diag: TX PING seq=124[0m
+[0;32mI (64010) hub_p4_uart_diag: TX PING seq=125[0m
+[0;32mI (64510) hub_p4_uart_diag: TX PING seq=126[0m
+[0;32mI (65010) hub_p4_uart_diag: TX PING seq=127[0m
+[0;33mW (65510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (65510) hub_p4_uart_diag: TX PING seq=128[0m
+[0;32mI (66010) hub_p4_uart_diag: TX PING seq=129[0m
+[0;32mI (66510) hub_p4_uart_diag: TX PING seq=130[0m
+[0;32mI (67010) hub_p4_uart_diag: TX PING seq=131[0m
+[0;33mW (67510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (67510) hub_p4_uart_diag: TX PING seq=132[0m
+[0;32mI (68010) hub_p4_uart_diag: TX PING seq=133[0m
+[0;32mI (68510) hub_p4_uart_diag: TX PING seq=134[0m
+[0;32mI (69010) hub_p4_uart_diag: TX PING seq=135[0m
+[0;33mW (69510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (69510) hub_p4_uart_diag: TX PING seq=136[0m
+[0;32mI (70010) hub_p4_uart_diag: TX PING seq=137[0m
+[0;32mI (70510) hub_p4_uart_diag: TX PING seq=138[0m
+[0;32mI (71010) hub_p4_uart_diag: TX PING seq=139[0m
+[0;33mW (71510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (71510) hub_p4_uart_diag: TX PING seq=140[0m
+[0;32mI (72010) hub_p4_uart_diag: TX PING seq=141[0m
+[0;32mI (72510) hub_p4_uart_diag: TX PING seq=142[0m
+[0;32mI (73010) hub_p4_uart_diag: TX PING seq=143[0m
+[0;33mW (73510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (73510) hub_p4_uart_diag: TX PING seq=144[0m
+[0;32mI (74010) hub_p4_uart_diag: TX PING seq=145[0m
+[0;32mI (74510) hub_p4_uart_diag: TX PING seq=146[0m
+[0;32mI (75010) hub_p4_uart_diag: TX PING seq=147[0m
+[0;33mW (75510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (75510) hub_p4_uart_diag: TX PING seq=148[0m
+[0;32mI (76010) hub_p4_uart_diag: TX PING seq=149[0m
+[0;32mI (76510) hub_p4_uart_diag: TX PING seq=150[0m
+[0;32mI (77010) hub_p4_uart_diag: TX PING seq=151[0m
+[0;33mW (77510) hub_p4_uart_diag: RX idle bytes=0 pings=0 crc_errors=0[0m
+[0;32mI (77510) hub_p4_uart_diag: TX PING seq=152[0m
+[0;32mI (78010) hub_p4_uart_diag: TX PING seq=153[0m
+[0;32mI (78260) hub_p4_uart_diag: a5 01 02 00 99 06[0m
+[0;32mI (78260) hub_p4_uart_diag: LOCAL ECHO seq=153 total=1[0m
+[0;32mI (78510) hub_p4_uart_diag: TX PING seq=154[0m
+[0;32mI (79010) hub_p4_uart_diag: TX PING seq=155[0m
+[0;32mI (79510) hub_p4_uart_diag: TX PING seq=156[0m
+[0;32mI (79760) hub_p4_uart_diag: a5 01 02 00 9c 1d[0m
+[0;32mI (79760) hub_p4_uart_diag: LOCAL ECHO seq=156 total=2[0m
+[0;32mI (80010) hub_p4_uart_diag: TX PING seq=157[0m
+[0;32mI (80260) hub_p4_uart_diag: a5 01 02 00 9d 1a[0m
+[0;32mI (80260) hub_p4_uart_diag: LOCAL ECHO seq=157 total=3[0m
+[0;32mI (80510) hub_p4_uart_diag: TX PING seq=158[0m
+[0;32mI (80760) hub_p4_uart_diag: a5 01 02 00 9e 13[0m
+[0;32mI (80760) hub_p4_uart_diag: LOCAL ECHO seq=158 total=4[0m
+[0;32mI (81010) hub_p4_uart_diag: TX PING seq=159[0m
+[0;32mI (81260) hub_p4_uart_diag: a5 01 02 00 9f 14[0m
+[0;32mI (81260) hub_p4_uart_diag: LOCAL ECHO seq=159 total=5[0m
+[0;32mI (81510) hub_p4_uart_diag: TX PING seq=160[0m
+[0;32mI (81760) hub_p4_uart_diag: a5 01 02 00 a0 a9[0m
+[0;32mI (81760) hub_p4_uart_diag: LOCAL ECHO seq=160 total=6[0m
+[0;32mI (82010) hub_p4_uart_diag: TX PING seq=161[0m
+[0;32mI (82260) hub_p4_uart_diag: a5 01 02 00 a1 ae[0m
+[0;32mI (82260) hub_p4_uart_diag: LOCAL ECHO seq=161 total=7[0m
+[0;32mI (82510) hub_p4_uart_diag: TX PING seq=162[0m
+[0;32mI (82760) hub_p4_uart_diag: a5 01 02 00 a2 a7[0m
+[0;32mI (82760) hub_p4_uart_diag: LOCAL ECHO seq=162 total=8[0m
+[0;32mI (83010) hub_p4_uart_diag: TX PING seq=163[0m
+[0;32mI (83260) hub_p4_uart_diag: a5 01 02 00 a3 a0[0m
+[0;32mI (83260) hub_p4_uart_diag: LOCAL ECHO seq=163 total=9[0m
+[0;32mI (83510) hub_p4_uart_diag: TX PING seq=164[0m
+[0;32mI (83760) hub_p4_uart_diag: a5 01 02 00 a4 b5[0m
+[0;32mI (83760) hub_p4_uart_diag: LOCAL ECHO seq=164 total=10[0m
+[0;32mI (84010) hub_p4_uart_diag: TX PING seq=165[0m
+[0;32mI (84260) hub_p4_uart_diag: a5 01 02 00 a5 b2[0m
+[0;32mI (84260) hub_p4_uart_diag: LOCAL ECHO seq=165 total=11[0m
+[0;32mI (84510) hub_p4_uart_diag: TX PING seq=166[0m
+[0;32mI (84760) hub_p4_uart_diag: a5 01 02 00 a6 bb[0m
+[0;32mI (84760) hub_p4_uart_diag: LOCAL ECHO seq=166 total=12[0m
+[0;32mI (85010) hub_p4_uart_diag: TX PING seq=167[0m
+[0;32mI (85260) hub_p4_uart_diag: a5 01 02 00 a7 bc[0m
+[0;32mI (85260) hub_p4_uart_diag: LOCAL ECHO seq=167 total=13[0m
+[0;32mI (85510) hub_p4_uart_diag: TX PING seq=168[0m
+[0;32mI (85760) hub_p4_uart_diag: a5 01 02 00 a8 91[0m
+[0;32mI (85760) hub_p4_uart_diag: LOCAL ECHO seq=168 total=14[0m
+[0;32mI (86010) hub_p4_uart_diag: TX PING seq=169[0m
+[0;32mI (86260) hub_p4_uart_diag: a5 01 02 00 a9 96[0m
+[0;32mI (86260) hub_p4_uart_diag: LOCAL ECHO seq=169 total=15[0m
+[0;32mI (86510) hub_p4_uart_diag: TX PING seq=170[0m
+[0;32mI (87010) hub_p4_uart_diag: TX PING seq=171[0m
+[0;32mI (87510) hub_p4_uart_diag: TX PING seq=172[0m
+[0;32mI (88010) hub_p4_uart_diag: TX PING seq=173[0m
+[0;33mW (88260) hub_p4_uart_diag: RX idle bytes=90 pings=0 crc_errors=0[0m
+[0;32mI (88510) hub_p4_uart_diag: TX PING seq=174[0m
+[0;32mI (89010) hub_p4_uart_diag: TX PING seq=175[0m
+[0;32mI (89510) hub_p4_uart_diag: TX PING seq=176[0m
+[0;32mI (90010) hub_p4_uart_diag: TX PING seq=177[0m
+[0;33mW (90260) hub_p4_uart_diag: RX idle bytes=90 pings=0 crc_errors=0[0m
+[0;32mI (90510) hub_p4_uart_diag: TX PING seq=178[0m
+[0;32mI (91010) hub_p4_uart_diag: TX PING seq=179[0m
+[0;32mI (91510) hub_p4_uart_diag: TX PING seq=180[0m
+[0;32mI (92010) hub_p4_uart_diag: TX PING seq=181[0m
+[0;33mW (92260) hub_p4_uart_diag: RX idle bytes=90 pings=0 crc_errors=0[0m
+[0;32mI (92510) hub_p4_uart_diag: TX PING seq=182[0m
+[0;32mI (93010) hub_p4_uart_diag: TX PING seq=183[0m
+[0;32mI (93510) hub_p4_uart_diag: TX PING seq=184[0m
+[0;32mI (94010) hub_p4_uart_diag: TX PING seq=185[0m
+[0;33mW (94260) hub_p4_uart_diag: RX idle bytes=90 pings=0 crc_errors=0[0m
+[0;32mI (94510) hub_p4_uart_diag: TX PING seq=186[0m
+[0;32mI (95010) hub_p4_uart_diag: TX PING seq=187[0m
+[0;32mI (95510) hub_p4_uart_diag: TX PING seq=188[0m
+[0;32mI (96010) hub_p4_uart_diag: TX PING seq=189[0m
+[0;33mW (96260) hub_p4_uart_diag: RX idle bytes=90 pings=0 crc_errors=0[0m
+[0;32mI (96510) hub_p4_uart_diag: TX PING seq=190[0m
+[0;32mI (97010) hub_p4_uart_diag: TX PING seq=191[0m
+[0;32mI (97510) hub_p4_uart_diag: TX PING seq=192[0m
+[0;32mI (98010) hub_p4_uart_diag: TX PING seq=193[0m
+[0;33mW (98260) hub_p4_uart_diag: RX idle bytes=90 pings=0 crc_errors=0[0m
+[0;32mI (98510) hub_p4_uart_diag: TX PING seq=194[0m
+[0;32mI (99010) hub_p4_uart_diag: TX PING seq=195[0m

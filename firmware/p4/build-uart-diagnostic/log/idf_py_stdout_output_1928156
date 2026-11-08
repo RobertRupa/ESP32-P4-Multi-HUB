@@ -1,0 +1,77 @@
+Command: ninja encrypted-flash
+[1/5] cd "/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-uart-diagnostic/esp-idf/esptool_py" && /home/konatsu/.espressif/python_env/idf5.5_py3.14_env/bin/python /home/konatsu/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x11000 partition --type app /home/konatsu/Documents/ESP32-P4\ Multi\ HUB/firmware/p4/build-uart-diagnostic/partition_table/partition-table.bin /home/konatsu/Documents/ESP32-P4\ Multi\ HUB/firmware/p4/build-uart-diagnostic/hub_p4_esp_hosted_host.bin
+hub_p4_esp_hosted_host.bin binary size 0x72c90 bytes. Smallest app partition is 0x3f0000 bytes. 0x37d370 bytes (89%) free.
+[2/5] Performing build step for 'bootloader'
+[1/1] cd "/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-uart-diagnostic/bootloader/esp-idf/esptool_py" && /home/konatsu/.espressif/python_env/idf5.5_py3.14_env/bin/python /home/konatsu/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x11000 bootloader 0x2000 /home/konatsu/Documents/ESP32-P4\ Multi\ HUB/firmware/p4/build-uart-diagnostic/bootloader/bootloader.bin
+Bootloader binary size 0x8c90 bytes. 0x6370 bytes (41%) free.
+[3/5] No install step for 'bootloader'
+[4/5] Completed 'bootloader'
+[4/5] cd /home/konatsu/esp/esp-idf/components/esptool_py && /usr/bin/cmake -D IDF_PATH=/home/konatsu/esp/esp-idf -D "SERIAL_TOOL=/home/konatsu/.espressif/python_env/idf5.5_py3.14_env/bin/python;;/home/konatsu/esp/esp-idf/components/esptool_py/esptool/esptool.py;--chip;esp32p4" -D "SERIAL_TOOL_ARGS=--before=default_reset;--after=no_reset;write_flash;@encrypted_flash_args" -D "WORKING_DIRECTORY=/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-uart-diagnostic" -P /home/konatsu/esp/esp-idf/components/esptool_py/run_serial_tool.cmake
+esptool.py --chip esp32p4 -p /dev/ttyACM0 -b 460800 --before=default_reset --after=no_reset write_flash --flash_mode dio --flash_freq 80m --flash_size 16MB --encrypt 0x2000 bootloader/bootloader.bin 0x20000 hub_p4_esp_hosted_host.bin 0x11000 partition_table/partition-table.bin
+esptool.py v4.12.0
+Serial port /dev/ttyACM0
+Connecting...
+Chip is ESP32-P4 (revision v3.2)
+Features: High-Performance MCU
+Crystal is 40MHz
+USB mode: USB-Serial/JTAG
+MAC: 80:f1:b2:d6:88:61
+Using the new stub flasher.
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00002000 to 0x0000afff...
+Flash will be erased from 0x00020000 to 0x00092fff...
+Flash will be erased from 0x00011000 to 0x00011fff...
+
+WARNING: - compress and encrypt options are mutually exclusive 
+Will flash bootloader/bootloader.bin uncompressed
+SHA digest in image updated
+Writing at 0x00002000... (33 %)
+Writing at 0x00006000... (66 %)
+Writing at 0x0000a000... (100 %)
+Wrote 49152 bytes at 0x00002000 in 0.5 seconds (863.1 kbit/s)...
+
+WARNING: - compress and encrypt options are mutually exclusive 
+Will flash hub_p4_esp_hosted_host.bin uncompressed
+Writing at 0x00020000... (3 %)
+Writing at 0x00024000... (6 %)
+Writing at 0x00028000... (10 %)
+Writing at 0x0002c000... (13 %)
+Writing at 0x00030000... (17 %)
+Writing at 0x00034000... (20 %)
+Writing at 0x00038000... (24 %)
+Writing at 0x0003c000... (27 %)
+Writing at 0x00040000... (31 %)
+Writing at 0x00044000... (34 %)
+Writing at 0x00048000... (37 %)
+Writing at 0x0004c000... (41 %)
+Writing at 0x00050000... (44 %)
+Writing at 0x00054000... (48 %)
+Writing at 0x00058000... (51 %)
+Writing at 0x0005c000... (55 %)
+Writing at 0x00060000... (58 %)
+Writing at 0x00064000... (62 %)
+Writing at 0x00068000... (65 %)
+Writing at 0x0006c000... (68 %)
+Writing at 0x00070000... (72 %)
+Writing at 0x00074000... (75 %)
+Writing at 0x00078000... (79 %)
+Writing at 0x0007c000... (82 %)
+Writing at 0x00080000... (86 %)
+Writing at 0x00084000... (89 %)
+Writing at 0x00088000... (93 %)
+Writing at 0x0008c000... (96 %)
+Writing at 0x00090000... (100 %)
+Wrote 475136 bytes at 0x00020000 in 3.4 seconds (1110.5 kbit/s)...
+
+WARNING: - compress and encrypt options are mutually exclusive 
+Will flash partition_table/partition-table.bin uncompressed
+Writing at 0x00011000... (100 %)
+Wrote 16384 bytes at 0x00011000 in 0.1 seconds (2527.5 kbit/s)...
+
+Leaving...
+Staying in bootloader.
