@@ -4,8 +4,6 @@ set(HUB_C6_PRIV_REQUIRES esp_event log nvs_flash)
 if(CONFIG_HUB_C6_ZIGBEE_COORD_ENABLE)
     list(APPEND HUB_C6_SOURCES "c6_zigbee_sdio.c")
     list(APPEND HUB_C6_PRIV_REQUIRES esp_coex esp_driver_uart esp-zigbee-lib openthread vfs)
-elseif(CONFIG_HUB_MULTIPAN_RCP_ENABLE)
-    list(APPEND HUB_C6_PRIV_REQUIRES esp_coex esp_driver_uart openthread vfs)
 endif()
 
 idf_component_register(

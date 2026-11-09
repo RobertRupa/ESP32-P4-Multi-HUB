@@ -20,4 +20,16 @@ constexpr ZigbeeSearchAction select_zigbee_search_action(
         : ZigbeeSearchAction::form_and_open_join_window;
 }
 
+struct ZigbeeFormationOutcome {
+    bool network_formed = false;
+    bool search_pending = false;
+    bool formation_timed_out = false;
+    bool open_join_window = false;
+};
+
+constexpr ZigbeeFormationOutcome finish_zigbee_formation(
+    bool succeeded, bool timed_out, bool open_join_after) noexcept {
+    return {succeeded, false, timed_out, succeeded && open_join_after};
+}
+
 }

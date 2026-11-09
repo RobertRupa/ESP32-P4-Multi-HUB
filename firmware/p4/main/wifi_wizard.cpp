@@ -207,11 +207,11 @@ void WifiWizard::render_home() {
     char diagnostics_url[72]{};
     if (update_.ipv4_address[0] != '\0') {
         std::snprintf(diagnostics_url, sizeof(diagnostics_url),
-                      "https://MultiHub.local/");
+                      "http://MultiHub.local/");
     } else {
         std::snprintf(diagnostics_url, sizeof(diagnostics_url),
-                      "%s", text("HTTPS controls available after connection",
-                                  "HTTPS po polaczeniu z siecia"));
+                      "%s", text("Web controls available after connection",
+                                  "Web po polaczeniu z siecia"));
     }
     add_label(root_, 24, setup_y + (compact ? 108 : 126), content_width,
               diagnostics_url, kMuted, 16);
@@ -270,18 +270,9 @@ void WifiWizard::render_devices() {
 
     const lv_coord_t buttons_y = row_y + row_gap * 4 + 8;
     if (web_request_.state == diagnostics::WebZigbeeRequestState::awaiting_touch) {
-        const char* action = web_request_.action == diagnostics::WebZigbeeAction::create_network
-            ? text("Website requested network creation", "Strona prosi o utworzenie sieci")
-            : (web_request_.action == diagnostics::WebZigbeeAction::scan_nearby
-                ? text("Website requested nearby scan", "Strona prosi o skan pobliskich urzadzen")
-                : text("Website requested device search", "Strona prosi o wyszukiwanie urzadzen"));
-        add_label(root_, 24, buttons_y, content_width, action, kAccent, 16);
-        const lv_coord_t button_width = (content_width - 10) / 2;
-        add_button(root_, 24, buttons_y + 28, button_width, compact ? 42 : 46,
-                   text("Approve", "Zatwierdz"), web_approval_confirm_event, this);
-        add_button(root_, 34 + button_width, buttons_y + 28, button_width,
-                   compact ? 42 : 46, text("Reject", "Odrzuc"),
-                   web_approval_reject_event, this);
+        add_label(root_, 24, buttons_y + 12, content_width,
+                  text("Awaiting web approval", "Oczekuje na zatwierdzenie w webGUI"),
+                  kMuted, 16);
     } else if (zigbee_request_pending_ || zigbee_update_.search_pending) {
         add_label(root_, 24, buttons_y + 12, content_width,
                   text("Zigbee request pending", "Zadanie Zigbee oczekuje"), kMuted, 16);
@@ -652,10 +643,6 @@ void WifiWizard::poll_timer(lv_timer_t* timer) {
          web_request.result != wizard->web_request_.result);
     if (web_request_read) {
         wizard->web_request_ = web_request;
-        if (web_request.state == diagnostics::WebZigbeeRequestState::awaiting_touch &&
-            wizard->page_ != Page::Devices) {
-            wizard->page_ = Page::Devices;
-        }
     }
     if (web_request_read &&
         web_request.state == diagnostics::WebZigbeeRequestState::approved) {
@@ -668,6 +655,16 @@ void WifiWizard::poll_timer(lv_timer_t* timer) {
                 status = wizard->zigbee_.request_pairing_window(180);
             } else if (action == diagnostics::WebZigbeeAction::scan_nearby) {
                 status = wizard->zigbee_.request_search();
+            } else if (action == diagnostics::WebZigbeeAction::set_device_on_off ||
+                       action == diagnostics::WebZigbeeAction::set_device_level) {
+                const auto& request = wizard->web_request_;
+                const radio::ZigbeeDeviceCommand command{
+                    request.short_address, request.endpoint_id,
+                    action == diagnostics::WebZigbeeAction::set_device_on_off
+                        ? radio::ZigbeeDeviceCommandKind::set_on_off
+                        : radio::ZigbeeDeviceCommandKind::set_level,
+                    request.value};
+                status = wizard->zigbee_.request_device_command(command);
             }
             (void)wizard->web_approval_.complete(web_request.id, status);
             (void)wizard->web_approval_.read_snapshot(&wizard->web_request_);
@@ -861,37 +858,6 @@ void WifiWizard::scan_nearby_event(lv_event_t* event) {
         wizard->zigbee_network_creation_pending_ = !wizard->zigbee_update_.network_formed;
         wizard->zigbee_request_started_us_ = status == ESP_OK ? esp_timer_get_time() : 0;
     }
-    wizard->render();
-}
-
-void WifiWizard::web_approval_confirm_event(lv_event_t* event) {
-    auto* wizard = static_cast<WifiWizard*>(lv_event_get_user_data(event));
-    if (wizard == nullptr) {
-        return;
-    }
-    diagnostics::WebZigbeeAction action = diagnostics::WebZigbeeAction::none;
-    if (wizard->web_approval_.claim(wizard->web_request_.id, &action)) {
-        esp_err_t status = ESP_ERR_INVALID_STATE;
-        if (action == diagnostics::WebZigbeeAction::create_network) {
-            status = wizard->zigbee_.request_network_start();
-        } else if (action == diagnostics::WebZigbeeAction::open_join_window) {
-            status = wizard->zigbee_.request_pairing_window(180);
-        } else if (action == diagnostics::WebZigbeeAction::scan_nearby) {
-            status = wizard->zigbee_.request_search();
-        }
-        (void)wizard->web_approval_.complete(wizard->web_request_.id, status);
-        wizard->web_approval_.read_snapshot(&wizard->web_request_);
-    }
-    wizard->render();
-}
-
-void WifiWizard::web_approval_reject_event(lv_event_t* event) {
-    auto* wizard = static_cast<WifiWizard*>(lv_event_get_user_data(event));
-    if (wizard == nullptr) {
-        return;
-    }
-    (void)wizard->web_approval_.reject(wizard->web_request_.id);
-    wizard->web_approval_.read_snapshot(&wizard->web_request_);
     wizard->render();
 }
 

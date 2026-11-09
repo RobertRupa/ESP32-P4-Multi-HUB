@@ -1,0 +1,315 @@
+Command: /home/konatsu/.espressif/python_env/idf5.5_py3.14_env/bin/python /home/konatsu/esp/esp-idf/tools/idf_monitor.py -p /dev/ttyACM0 -b 115200 --toolchain-prefix riscv32-esp-elf- --target esp32p4 --revision 301 --decode-panic backtrace /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-h2-rcp-test/hub_p4_esp_hosted_host.elf /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-h2-rcp-test/bootloader/bootloader.elf -m '/home/konatsu/.espressif/python_env/idf5.5_py3.14_env/bin/python' '/home/konatsu/esp/esp-idf/tools/idf.py' '-B' 'build-h2-rcp-test' '-p' '/dev/ttyACM0'
+no response uid=21 msg_id=294 (5000 ms)
+[0;33mW (58888) eh_host_feat_rpc: request: no response uid=22 msg_id=294 (5000 ms)[0m
+[0;33mW (63913) eh_host_feat_rpc: request: no response uid=23 msg_id=294 (5000 ms)[0m
+[0;33mW (68938) eh_host_feat_ESP-ROM:esp32p4-eco7-20260109[0m
+Build:Jan  9 2026
+rst:0x17 (CHIP_USB_UART_RESET),boot:0x30c (SPI_FAST_FLASH_BOOT)
+Core0 Saved PC:0x4ff23f10
+Core1 Saved PC:0x4ff23f10
+use legacy efuse key
+SPI mode:DIO, clock div:1
+load:0x4ffb6240,len:0x2924
+load:0x4ffac2c0,len:0x1000
+load:0x4ffaefc0,len:0x5318
+entry 0x4ffac2ca
+[0;32mI (10) boot: ESP-IDF v5.5.5 2nd stage bootloader[0m
+[0;32mI (10) boot: compile time Nov  8 2026 15:15:19[0m
+[0;32mI (11) boot: Multicore bootloader[0m
+[0;32mI (12) boot: chip revision: v3.2[0m
+[0;32mI (12) boot: efuse block revision: v1.2[0m
+[0;32mI (12) boot.esp32p4: SPI Speed      : 80MHz[0m
+[0;32mI (12) boot.esp32p4: SPI Mode       : DIO[0m
+[0;32mI (13) boot.esp32p4: SPI Flash Size : 16MB[0m
+[0;32mI (13) boot: Enabling RNG early entropy source...[0m
+[0;32mI (13) boot: Partition Table:[0m
+[0;32mI (14) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (14) boot:  0 nvs              WiFi data        01 02 00012000 00006000[0m
+[0;32mI (15) boot:  1 phy_init         RF data          01 01 00018000 00001000[0m
+[0;32mI (15) boot:  2 factory          factory app      00 00 00020000 003f0000[0m
+[0;32mI (16) boot:  3 c6_fw            Unknown data     01 40 00410000 00200000[0m
+[0;32mI (16) boot:  4 wifi_keys        NVS keys         01 04 00610000 00001000[0m
+[0;32mI (17) boot:  5 wifi_cfg         WiFi data        01 02 00611000 00006000[0m
+[0;32mI (18) boot: End of partition table[0m
+[0;32mI (19) esp_image: segment 0: paddr=00020020 vaddr=40150020 size=617d4h (399316) map[0m
+[0;32mI (73) esp_image: segment 1: paddr=000817fc vaddr=30100000 size=001f4h (   500) load[0m
+[0;32mI (75) esp_image: segment 2: paddr=000819f8 vaddr=30100200 size=00048h (    72) load[0m
+[0;32mI (76) esp_image: segment 3: paddr=00081a48 vaddr=4ff20000 size=0e5d0h ( 58832) load[0m
+[0;32mI (86) esp_image: segment 4: paddr=00090020 vaddr=40000020 size=1499c8h (1350088) map[0m
+[0;32mI (268) esp_image: segment 5: paddr=001d99f0 vaddr=4ff2e5d0 size=08d24h ( 36132) load[0m
+[0;32mI (275) esp_image: segment 6: paddr=001e271c vaddr=4ff37300 size=04ca4h ( 19620) load[0m
+[0;32mI (280) esp_image: segment 7: paddr=001e73c8 vaddr=50108080 size=0000ch (    12) load[0m
+[0;32mI (285) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (286) boot: Checking flash encryption...[0m
+[0;32mI (286) flash_encrypt: flash encryption is enabled (1 plaintext flashes left)[0m
+[0;32mI (286) boot: Disabling RNG early entropy source...[0m
+[0;32mI (290) hex_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (290) hex_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (291) hex_psram: DriveStr.    : 0x00 (25 Ohm)[0m
+[0;32mI (291) hex_psram: dev id       : 0x03 (generation 4)[0m
+[0;32mI (291) hex_psram: density      : 0x07 (256 Mbit)[0m
+[0;32mI (292) hex_psram: good-die     : 0x06 (Pass)[0m
+[0;32mI (292) hex_psram: SRF          : 0x02 (Slow Refresh)[0m
+[0;32mI (292) hex_psram: BurstType    : 0x00 ( Wrap)[0m
+[0;32mI (293) hex_psram: BurstLen     : 0x03 (2048 Byte)[0m
+[0;32mI (293) hex_psram: BitMode      : 0x01 (X16 Mode)[0m
+[0;32mI (293) hex_psram: Readlatency  : 0x04 (14 cycles@Fixed)[0m
+[0;32mI (294) hex_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (294) MSPI Timing: Enter psram timing tuning[0m
+[0;32mI (454) esp_psram: Found 32MB PSRAM device[0m
+[0;32mI (455) esp_psram: Speed: 200MHz[0m
+[0;32mI (455) hex_psram: psram CS IO is dedicated[0m
+[0;32mI (456) cpu_start: Multicore app[0m
+[0;32mI (1676) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (1685) cpu_start: Pro cpu start user code[0m
+[0;32mI (1686) cpu_start: cpu freq: 400000000 Hz[0m
+[0;32mI (1686) app_init: Application information:[0m
+[0;32mI (1686) app_init: Project name:     hub_p4_esp_hosted_host[0m
+[0;32mI (1686) app_init: App version:      c7cd5d5-dirty[0m
+[0;32mI (1686) app_init: Compile time:     Nov  8 2026 15:15:37[0m
+[0;32mI (1687) app_init: ELF file SHA256:  f20d0d2ca...[0m
+[0;32mI (1687) app_init: ESP-IDF:          v5.5.5[0m
+[0;32mI (1687) efuse_init: Min chip rev:     v3.1[0m
+[0;32mI (1687) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (1687) efuse_init: Chip rev:         v3.2[0m
+[0;32mI (1688) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1688) heap_init: At 4FF54BB0 len 00066410 (409 KiB): RETENT_RAM[0m
+[0;32mI (1688) heap_init: At 4FFBAFC0 len 00004BF0 (18 KiB): RAM[0m
+[0;32mI (1689) heap_init: At 5010808C len 00007F74 (31 KiB): RTCRAM[0m
+[0;32mI (1689) heap_init: At 30100248 len 00001DB8 (7 KiB): SPM[0m
+[0;32mI (1689) esp_psram: Adding pool of 32768K of PSRAM memory to heap allocator[0m
+[0;32mI (1690) spi_flash: detected chip: boya[0m
+[0;32mI (1690) spi_flash: flash io: dio[0m
+[0;32mI (1692) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (1692) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (1694) eh_mcu_transport: transport_init: probing bus backend[0m
+[0;32mI (1694) eh_sdio: transport[host]: SDIO 4-bit 5000 kHz CLK=18 CMD=19 D0=14 D1=15 D2=16 D3=17 RESET=54[0m
+[0;33mW (1695) eh_sdio: SDIO clock freq set to [5000]KHz, Max possible (on PCB) is 40000KHz[0m
+[0;32mI (1695) eh_sdio: sdio_data_to_rx_buf_task started[0m
+[0;32mI (1695) eh_mcu_transport: transport_init: bus backend up[0m
+[0;32mI (1695) main_task: Started on CPU0[0m
+I W ((16916)6 9eh6_s)d ioe: sReps_etp csor-paromc:es soRre ussieng GPIO[54]
+rving pool of 32K of internal memory for DMA/internal allocations
+[0;32mI (1696) main_task: Calling app_main()[0m
+[0;32mI (3216) eh_host_port_reset: reset done pin=54 parked=1[0m
+[0;32mI (3249) eh_host_port_sdio: bus applied: clk_khz=5000[0m
+[0;32mI (3250) eh_host_port_sdio: Function 0 Blocksize: 512[0m
+[0;32mI (3250) eh_host_port_sdio: Function 1 Blocksize: 512[0m
+[0;32mI (3350) eh_sdio: Card init success, TRANSPORT_RX_ACTIVE[0m
+[0;32mI (3395) eh_sdio: SDIO Host operating in STREAMING MODE[0m
+[0;32mI (3395) eh_sdio: Open data path at slave[0m
+[0;32mI (3395) eh_sdio: Starting SDIO process rx task[0m
+[0;32mI (3413) eh_init_evt: slave chip id: 0x0d (esp32c6)[0m
+[0;32mI (3413) eh_init_evt: capabilities: 0x01[0m
+[0;32mI (3413) eh_init_evt: Features supported are:[0m
+[0;32mI (3413) eh_init_evt: 	 * WLAN over SDIO[0m
+[0;32mI (3413) eh_init_evt: extended capabilities: 0x00024010[0m
+[0;32mI (3413) eh_init_evt: Extended Features supported:[0m
+[0;32mI (3414) eh_init_evt: 	 * WLAN[0m
+[0;32mI (3414) eh_init_evt: 	 * AUX interface[0m
+[0;32mI (3414) eh_init_evt: SDIO buf-config: e2h mode=0 bufsz=15872B, h2e mode=0 bufsz=15872B[0m
+[0;32mI (3414) eh_init_evt: coprocessor transport size: 1536[0m
+[0;32mI (3414) eh_init_evt: RPC version negotiated: V2[0m
+[0;32mI (3414) eh_init_evt: esp-hosted fw versions: host=3.1.0 coprocessor=3.1.0 (match)[0m
+[0;32mI (3414) eh_init_evt: SDIO SW_AGGR negotiated (e2h=15872B h2e=15872B)[0m
+[0;32mI (3415) eh_init_evt: SDIO mode: slave=streaming host=streaming[0m
+[0;32mI (3415) eh_init_evt: chip=0x0d (esp32c6) fw=0x00030100 caps=0x01 ext=0x00024010[0m
+[0;33mW (3415) eh_host_port_xport_defaults: SDIO clock freq set to [5000]KHz, Max possible (on PCB) is 40000KHz[0m
+[0;32mI (3415) eh_auto_init: auto_init: found 2 descriptor(s)[0m
+[0;32mI (3415) eh_auto_init: auto_init: initialising 'peer_data' (priority 80)[0m
+[0;32mI (3416) eh_auto_init: auto_init: initialising 'wifi' (priority 150)[0m
+[0;32mI (3416) eh_wifi_itwt: wifi iTWT ext init[0m
+[0;32mI (3487) eh_sdio: preallocated 2 SDIO RX staging slot(s), 15872 bytes each[0m
+[0;32mI (3551) p4_hosted_host: ESP-Hosted coprocessor firmware: 3.1.0[0m
+[0;32mI (3553) p4_hosted_host: ESP-Hosted coprocessor; target=esp32c6 chip_id=0x0000000d[0m
+[0;32mI (3553) p4_hosted_host: ESP32-P4 host ready; revision=302 cores=2[0m
+[0;33mW (3555) gdma: GDMA channel access encrypted external memory, adjust burst size to 16[0m
+[0;32mI (3568) ESP_RADIO_SPINEL: spinel UART interface initialization completed[0m
+[0;32mI (3569) ESP_RADIO_SPINEL: Spinel UART interface has been successfully enabled[0m
+[0;32mI (3569) ESP_ZIGBEE_RADIO_SPINEL_UART: Spinel UART interface enable successfully[0m
+I(3572) OPENTHREAD:[I] P-SpinelDrive-: co-processor reset: RESET_POWER_ON
+I(3573) OPENTHREAD:[I] P-SpinelDrive-: Software reset co-processor successfully
+[0;32mI (3588) web_security: HTTPS certificate SHA-256 fingerprint: 98:36:20:ea:81:f8:cf:a0:9a:a5:51:51:5e:2f:6c:37:0a:81:35:f1:71:4a:6c:9a:96:3b:83:8e:f2:2c:95:a3[0m
+[0;32mI (3589) esp_https_server: Starting server[0m
+[0;32mI (3590) esp_https_server: Server listening on port 443[0m
+[0;32mI (3592) http_diagnostics: HTTPS Web UI listening on port 443; HTTP redirects to HTTPS[0m
+[0;32mI (3592) mdns_mem: mDNS task will be created from internal RAM[0m
+[0;32mI (3593) p4_hosted_host: mDNS hostname: MultiHub.local[0m
+[0;32mI (3667) multipan: BDB initialization returned raw=0 mapped=ESP_OK[0m
+[0;32mI (3734) st7701: version: 2.0.3[0m
+[0;32mI (3750) st7701_mipi: LCD ID: FF FF FF[0m
+[0;32mI (3751) st7701_mipi:  st7701->madctl_val: 0x0, st7701->colmod_val: 0x55[0m
+[0;32mI (3768) multipan: Restored known Zigbee short addresses: count=1[0m
+[0;32mI (3768) multipan: BDB device-start signal: status=0 factory_new=no joined=yes ready=yes[0m
+[0;32mI (3769) multipan: Restoring device interview: short=0x8362 index=1/1[0m
+[0;32mI (3776) multipan: ZDO active-endpoint request queued: short=0x8362 raw=0[0m
+[0;32mI (3892) LVGL: Starting LVGL task[0m
+[1;31mE (3895) lcd_panel: esp_lcd_panel_swap_xy(50): swap_xy is not supported by this panel[0m
+[0;32mI (3913) GT911: I2C address initialization procedure skipped - using default GT9xx setup[0m
+[0;32mI (3915) GT911: TouchPad_ID:0x39,0x31,0x31[0m
+[0;32mI (3915) GT911: TouchPad_Config_Version:250[0m
+[5n[0;32mI (3972) esp_wifi_remote: esp_wifi_internal_reg_rxcb: sta: 0x400e462e[0m
+
+Type 'help' to get the list of commands.
+Use UP/DOWN arrows to navigate through command history.
+Press TAB when typing command name to auto-complete.
+[6n I (3996) main_task: Returned from app_main()
+[999C [6n [79Dp4-hosted> I (5016) esp_netif_handlers: sta ip: 192.168.69.17, mask: 255.255.254.0, gw: 192.168.68.1
+[0;32mI (5017) eh_rx_guard: sta: 2 held frames delivered[0m
+[0;32mI (8204) esp_https_server: performing session handshake[0m
+[1;31mE (8287) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (8288) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (8289) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (8289) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (8290) esp_https_server: performing session handshake[0m
+[0;32mI (8471) esp_https_server: performing session handshake[0m
+[1;31mE (8555) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (8555) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (8556) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (8557) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (8558) esp_https_server: performing session handshake[0m
+[0;33mW (8777) multipan: ZDO active-endpoint response failed: short=0x8362 raw=7 status=-1 mapped=ESP_ERR_TIMEOUT[0m
+[0;32mI (8876) multipan: Restored device interviews complete: count=1[0m
+[0;32mI (15467) esp_https_server: performing session handshake[0m
+[1;31mE (15553) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (15553) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (15555) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (15555) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (15556) esp_https_server: performing session handshake[0m
+[1;31mE (15639) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (15640) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (15641) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (15641) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (15646) esp_https_server: performing session handshake[0m
+[0;32mI (15831) esp_https_server: performing session handshake[0m
+[0;33mW (23740) eh_host_feat_rpc: request: no response uid=13 msg_id=294 (5000 ms)[0m
+[1;31mE (25911) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (25913) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (25914) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (25923) esp_https_server: performing session handshake[0m
+[0;32mI (26084) esp_https_server: performing session handshake[0m
+[0;33mW (28765) eh_host_feat_rpc: request: no response uid=14 msg_id=294 (5000 ms)[0m
+[0;33mW (33790) eh_host_feat_rpc: request: no response uid=15 msg_id=294 (5000 ms)[0m
+[0;33mW (38817) eh_host_feat_rpc: request: no response uid=16 msg_id=294 (5000 ms)[0m
+[1;31mE (41091) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (41093) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (41093) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (41095) esp_https_server: performing session handshake[0m
+[0;33mW (43843) eh_host_feat_rpc: request: no response uid=17 msg_id=294 (5000 ms)[0m
+[0;33mW (48868) eh_host_feat_rpc: request: no response uid=18 msg_id=294 (5000 ms)[0m
+[0;33mW (53893) eh_host_feat_rpc: request: no response uid=19 msg_id=294 (5000 ms)[0m
+[1;31mE (56102) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (56104) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (56104) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (56106) esp_https_server: performing session handshake[0m
+[0;33mW (58919) eh_host_feat_rpc: request: no response uid=20 msg_id=294 (5000 ms)[0m
+[0Kp4-hosted> c[12C6_status[0Kp4-hosted> c6_status[20C
+[1;31mE (67001) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (67002) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (67003) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (67004) esp_https_server: performing session handshake[0m
+[0;33mW (68499) eh_host_feat_rpc: request: no response uid=22 msg_id=350 (5000 ms)[0m
+[0;33mW (68947) eh_host_feat_rpc: request: no response uid=23 msg_id=294 (5000 ms)[0m
+[0;33mW (73500) eh_host_feat_rpc: request: no response uid=24 msg_id=350 (5000 ms)[0m
+C6 ESP-Hosted CP unavailable: ESP_FAIL
+C6 target info unavailable: ESP_FAIL
+C6 staging: found=yes size=2097152 image=valid image_size=1353584 app_version=371b9ed-dirty image_error=ESP_OK
+C6 staged image SHA-256: 133b8b85130d04c1529268e1d4d94996af42da4a2e25698c6a8815aaa5c12daf
+C6 OTA: in_progress=no audit=verified attempts=3 last_error=0
+[6n [999C [6n [79Dp4-hosted> W (73972) eh_host_feat_rpc: request: no response uid=25 msg_id=294 (5000 ms)
+[1;31mE (77085) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (77087) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (77088) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (77089) esp_https_server: performing session handshake[0m
+[0;33mW (78997) eh_host_feat_rpc: request: no response uid=26 msg_id=294 (5000 ms)[0m
+[0;33mW (84022) eh_host_feat_rpc: request: no response uid=27 msg_id=294 (5000 ms)[0m
+[1;31mE (87169) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (87171) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (87172) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (87173) esp_https_server: performing session handshake[0m
+[0;33mW (89049) eh_host_feat_rpc: request: no response uid=28 msg_id=294 (5000 ms)[0m
+[0;33mW (94074) eh_host_feat_rpc: request: no response uid=29 msg_id=294 (5000 ms)[0m
+[1;31mE (97254) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (97256) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (97257) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (97258) esp_https_server: performing session handshake[0m
+[0;33mW (99100) eh_host_feat_rpc: request: no response uid=30 msg_id=294 (5000 ms)[0m
+[0;33mW (109128) eh_host_feat_rpc: request: no response uid=32 msg_id=294 (5000 ms)[0m
+[1;31mE (112265) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (112267) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (112267) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (112269) esp_https_server: performing session handshake[0m
+[0;33mW (114153) eh_host_feat_rpc: request: no response uid=33 msg_id=294 (5000 ms)[0m
+[0;33mW (119178) eh_host_feat_rpc: request: no response uid=34 msg_id=294 (5000 ms)[0m
+[0;33mW (124204) eh_host_feat_rpc: request: no response uid=35 msg_id=294 (5000 ms)[0m
+[1;31mE (127276) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (127278) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (127279) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (127280) esp_https_server: performing session handshake[0m
+[0;33mW (129230) eh_host_feat_rpc: request: no response uid=36 msg_id=294 (5000 ms)[0m
+[0;33mW (134255) eh_host_feat_rpc: request: no response uid=37 msg_id=294 (5000 ms)[0m
+[1;31mE (137362) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (137364) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (137365) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (137366) esp_https_server: performing session handshake[0m
+[0;33mW (139281) eh_host_feat_rpc: request: no response uid=38 msg_id=294 (5000 ms)[0m
+[0;33mW (144306) eh_host_feat_rpc: request: no response uid=39 msg_id=294 (5000 ms)[0m
+[1;31mE (147448) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (147451) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (147451) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (147993) esp_https_server: performing session handshake[0m
+[0;33mW (149332) eh_host_feat_rpc: request: no response uid=40 msg_id=294 (5000 ms)[0m
+[0;33mW (154357) eh_host_feat_rpc: request: no response uid=41 msg_id=294 (5000 ms)[0m
+[1;31mE (158080) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (158082) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (158083) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (158123) esp_https_server: performing session handshake[0m
+[0;33mW (159383) eh_host_feat_rpc: request: no response uid=42 msg_id=294 (5000 ms)[0m
+[0;33mW (164408) eh_host_feat_rpc: request: no response uid=43 msg_id=294 (5000 ms)[0m
+[1;31mE (168205) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (168208) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (168208) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (168255) esp_https_server: performing session handshake[0m
+[0;33mW (169434) eh_host_feat_rpc: request: no response uid=44 msg_id=294 (5000 ms)[0m
+[0;33mW (174459) eh_host_feat_rpc: request: no response uid=45 msg_id=294 (5000 ms)[0m
+[1;31mE (178336) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (178339) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (178339) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (178403) esp_https_server: performing session handshake[0m
+[0;33mW (179485) eh_host_feat_rpc: request: no response uid=46 msg_id=294 (5000 ms)[0m
+[0;33mW (184511) eh_host_feat_rpc: request: no response uid=47 msg_id=294 (5000 ms)[0m
+[1;31mE (188484) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (188486) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (188486) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (188516) esp_https_server: performing session handshake[0m
+[0;33mW (189537) eh_host_feat_rpc: request: no response uid=48 msg_id=294 (5000 ms)[0m
+[0;33mW (194562) eh_host_feat_rpc: request: no response uid=49 msg_id=294 (5000 ms)[0m
+[1;31mE (198598) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (198601) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (198601) httpd: httpd_server: error accepting new connection[0m
+[0;33mW (199590) eh_host_feat_rpc: request: no response uid=50 msg_id=294 (5000 ms)[0m
+[0;32mI (201108) esp_https_server: performing session handshake[0m
+[0;33mW (209618) eh_host_feat_rpc: request: no response uid=52 msg_id=294 (5000 ms)[0m
+[1;31mE (211191) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (211194) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (211194) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (211233) esp_https_server: performing session handshake[0m
+[0;33mW (214643) eh_host_feat_rpc: request: no response uid=53 msg_id=294 (5000 ms)[0m
+[0;33mW (219668) eh_host_feat_rpc: request: no response uid=54 msg_id=294 (5000 ms)[0m
+[1;31mE (221315) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (221318) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (221318) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (221365) esp_https_server: performing session handshake[0m
+[0;33mW (224694) eh_host_feat_rpc: request: no response uid=55 msg_id=294 (5000 ms)[0m
+[0;33mW (229719) eh_host_feat_rpc: request: no response uid=56 msg_id=294 (5000 ms)[0m
+[1;31mE (231450) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (231452) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (231453) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (231499) esp_https_server: performing session handshake[0m
+[0;33mW (234745) eh_host_feat_rpc: request: no response uid=57 msg_id=294 (5000 ms)[0m
+[0;33mW (239770) eh_host_feat_rpc: request: no response uid=58 msg_id=294 (5000 ms)[0m
+[1;31mE (241807) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (241809) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (241810) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (241836) esp_https_server: performing session handshake[0m
+[0;33mW (244796) eh_host_feat_rpc: request: no response uid=59 msg_id=294 (5000 ms)[0m

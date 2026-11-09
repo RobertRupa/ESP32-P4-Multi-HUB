@@ -6,11 +6,7 @@
 #include "esp_flash_encrypt.h"
 #include "esp_log.h"
 #include "esp_timer.h"
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "mbedtls/pk.h"
 #include "mbedtls/pkcs5.h"
-#include "mbedtls/x509_crt.h"
 #include "nvs.h"
 #include "psa/crypto.h"
 
@@ -18,7 +14,6 @@ namespace hub::diagnostics {
 namespace {
 
 constexpr char kAuthNamespace[] = "web_auth";
-constexpr char kTlsNamespace[] = "web_tls";
 constexpr char kPasswordSaltKey[] = "pw_salt";
 constexpr char kPasswordHashKey[] = "pw_hash";
 constexpr char kPasswordChangeKey[] = "pw_change";
@@ -27,8 +22,6 @@ constexpr char kPasswordResetTimeKey[] = "pw_reset_time";
 constexpr char kDevelopmentModeKey[] = "dev_web_mode";
 constexpr char kDevelopmentMigrationCountKey[] = "dev_mig_count";
 constexpr char kDevelopmentMigrationTimeKey[] = "dev_mig_time";
-constexpr char kCertificateKey[] = "cert";
-constexpr char kPrivateKeyKey[] = "key";
 constexpr char kInitialUsername[] = "admin";
 #if CONFIG_HUB_WEB_DEVELOPMENT_MODE
 constexpr char kDevelopmentPassword[] = "admin";
@@ -37,12 +30,6 @@ constexpr std::size_t kMaxPasswordLength = 64;
 constexpr std::int64_t kLockoutDurationUs = 60000000;
 constexpr char kTag[] = "web_security";
 constexpr char kHexDigits[] = "0123456789abcdef";
-
-int psa_random_callback(void* context, unsigned char* output,
-                        std::size_t length) noexcept {
-    (void)context;
-    return psa_generate_random(output, length) == PSA_SUCCESS ? 0 : -1;
-}
 
 }
 
@@ -56,26 +43,10 @@ esp_err_t WebSecurity::start() noexcept {
                  static_cast<long>(crypto_status));
         return ESP_FAIL;
     }
-    esp_err_t status = initialize_tls_identity();
+    const esp_err_t status = initialize_password_store();
     if (status != ESP_OK) {
-        ESP_LOGE(kTag, "TLS identity initialization failed: %s",
+        ESP_LOGE(kTag, "Password store initialization failed: %s",
                  esp_err_to_name(status));
-    }
-    if (status == ESP_OK) {
-        vTaskDelay(pdMS_TO_TICKS(1));
-        status = initialize_password_store();
-        if (status != ESP_OK) {
-            ESP_LOGE(kTag, "Password store initialization failed: %s",
-                     esp_err_to_name(status));
-        }
-    }
-    if (status == ESP_OK) {
-        vTaskDelay(pdMS_TO_TICKS(1));
-        status = validate_and_log_tls_identity();
-        if (status != ESP_OK) {
-            ESP_LOGE(kTag, "TLS identity validation failed: %s",
-                     esp_err_to_name(status));
-        }
     }
     return status;
 }
@@ -294,22 +265,6 @@ bool WebSecurity::password_change_required() const noexcept {
     return password_change_required_;
 }
 
-const std::uint8_t* WebSecurity::certificate(std::size_t* length) const noexcept {
-    if (length == nullptr || certificate_length_ == 0) {
-        return nullptr;
-    }
-    *length = certificate_length_;
-    return certificate_.data();
-}
-
-const std::uint8_t* WebSecurity::private_key(std::size_t* length) const noexcept {
-    if (length == nullptr || private_key_length_ == 0) {
-        return nullptr;
-    }
-    *length = private_key_length_;
-    return private_key_.data();
-}
-
 esp_err_t WebSecurity::initialize_password_store() noexcept {
     nvs_handle_t handle = 0;
     esp_err_t status = nvs_open(kAuthNamespace, NVS_READWRITE, &handle);
@@ -471,105 +426,6 @@ esp_err_t WebSecurity::initialize_password_store() noexcept {
     return status;
 }
 
-esp_err_t WebSecurity::initialize_tls_identity() noexcept {
-    nvs_handle_t handle = 0;
-    esp_err_t status = nvs_open(kTlsNamespace, NVS_READWRITE, &handle);
-    if (status != ESP_OK) {
-        return status;
-    }
-
-    std::size_t certificate_length = certificate_.size();
-    std::size_t private_key_length = private_key_.size();
-    const esp_err_t certificate_status = nvs_get_blob(
-        handle, kCertificateKey, certificate_.data(), &certificate_length);
-    const esp_err_t private_key_status = nvs_get_blob(
-        handle, kPrivateKeyKey, private_key_.data(), &private_key_length);
-    if (certificate_status == ESP_ERR_NVS_NOT_FOUND &&
-        private_key_status == ESP_ERR_NVS_NOT_FOUND) {
-        status = generate_tls_identity();
-        if (status == ESP_OK) {
-            status = nvs_set_blob(handle, kCertificateKey, certificate_.data(),
-                                  certificate_length_);
-        }
-        if (status == ESP_OK) {
-            status = nvs_set_blob(handle, kPrivateKeyKey, private_key_.data(),
-                                  private_key_length_);
-        }
-        if (status == ESP_OK) {
-            status = nvs_commit(handle);
-        }
-    } else if (certificate_status == ESP_OK && private_key_status == ESP_OK &&
-               certificate_length > 1 && certificate_length <= certificate_.size() &&
-               private_key_length > 1 && private_key_length <= private_key_.size()) {
-        certificate_length_ = certificate_length;
-        private_key_length_ = private_key_length;
-        if (certificate_.back() != 0 || private_key_.back() != 0) {
-            status = ESP_ERR_INVALID_STATE;
-        }
-    } else {
-        status = ESP_ERR_INVALID_STATE;
-    }
-    nvs_close(handle);
-    return status;
-}
-
-esp_err_t WebSecurity::validate_and_log_tls_identity() noexcept {
-    if (certificate_length_ < 2 || private_key_length_ < 2) {
-        return ESP_ERR_INVALID_STATE;
-    }
-
-    mbedtls_x509_crt parsed_certificate;
-    mbedtls_pk_context parsed_private_key;
-    mbedtls_x509_crt_init(&parsed_certificate);
-    mbedtls_pk_init(&parsed_private_key);
-    int status = mbedtls_x509_crt_parse(&parsed_certificate,
-                                        certificate_.data(),
-                                        certificate_length_);
-    if (status == 0) {
-        status = mbedtls_pk_parse_key(&parsed_private_key, private_key_.data(),
-                                      private_key_length_, nullptr, 0,
-                                      psa_random_callback, nullptr);
-    }
-    if (status == 0) {
-        status = mbedtls_pk_check_pair(&parsed_certificate.pk,
-                                       &parsed_private_key,
-                                       psa_random_callback, nullptr);
-    }
-
-    std::array<std::uint8_t, 32> fingerprint{};
-    std::size_t fingerprint_length = 0;
-    psa_status_t hash_status = PSA_ERROR_INVALID_ARGUMENT;
-    if (status == 0) {
-        hash_status = psa_hash_compute(
-            PSA_ALG_SHA_256, parsed_certificate.raw.p,
-            parsed_certificate.raw.len, fingerprint.data(),
-            fingerprint.size(), &fingerprint_length);
-    }
-    mbedtls_pk_free(&parsed_private_key);
-    mbedtls_x509_crt_free(&parsed_certificate);
-    if (status != 0 || hash_status != PSA_SUCCESS ||
-        fingerprint_length != fingerprint.size()) {
-        return ESP_FAIL;
-    }
-
-    char fingerprint_text[96]{};
-    std::size_t output_index = 0;
-    for (std::size_t index = 0; index < fingerprint.size(); ++index) {
-        const int written = std::snprintf(
-            fingerprint_text + output_index,
-            sizeof(fingerprint_text) - output_index,
-            index == 0 ? "%02x" : ":%02x",
-            static_cast<unsigned>(fingerprint[index]));
-        if (written <= 0 || static_cast<std::size_t>(written) >=
-            sizeof(fingerprint_text) - output_index) {
-            return ESP_FAIL;
-        }
-        output_index += static_cast<std::size_t>(written);
-    }
-    ESP_LOGI(kTag, "HTTPS certificate SHA-256 fingerprint: %s", fingerprint_text);
-    return ESP_OK;
-}
-
 esp_err_t WebSecurity::derive_password_hash(const char* password,
                                             std::size_t password_length,
                                             const std::uint8_t* salt,
@@ -588,141 +444,6 @@ esp_err_t WebSecurity::derive_password_hash(const char* password,
                  static_cast<unsigned>(-status));
     }
     return status == 0 ? ESP_OK : ESP_FAIL;
-}
-
-esp_err_t WebSecurity::generate_tls_identity() noexcept {
-    psa_key_attributes_t attributes = PSA_KEY_ATTRIBUTES_INIT;
-    psa_set_key_type(&attributes, PSA_KEY_TYPE_ECC_KEY_PAIR(PSA_ECC_FAMILY_SECP_R1));
-    psa_set_key_bits(&attributes, 256);
-    psa_set_key_usage_flags(&attributes, PSA_KEY_USAGE_EXPORT |
-                                         PSA_KEY_USAGE_SIGN_HASH |
-                                         PSA_KEY_USAGE_VERIFY_HASH);
-    psa_set_key_algorithm(&attributes, PSA_ALG_ECDSA(PSA_ALG_SHA_256));
-    mbedtls_svc_key_id_t key_id = 0;
-    psa_status_t psa_result = psa_generate_key(&attributes, &key_id);
-    psa_reset_key_attributes(&attributes);
-    if (psa_result != PSA_SUCCESS) {
-        ESP_LOGE(kTag, "TLS key generation failed: %ld",
-                 static_cast<long>(psa_result));
-        return ESP_FAIL;
-    }
-
-    std::array<std::uint8_t, 64> private_material{};
-    std::array<std::uint8_t, 128> public_material{};
-    std::size_t private_length = 0;
-    std::size_t public_length = 0;
-    psa_result = psa_export_key(key_id, private_material.data(),
-                                private_material.size(), &private_length);
-    if (psa_result == PSA_SUCCESS) {
-        psa_result = psa_export_public_key(key_id, public_material.data(),
-                                           public_material.size(), &public_length);
-    }
-    (void)psa_destroy_key(key_id);
-    if (psa_result != PSA_SUCCESS || private_length != 32 || public_length != 65) {
-        ESP_LOGE(kTag, "TLS key export failed: status=%ld private=%u public=%u",
-                 static_cast<long>(psa_result),
-                 static_cast<unsigned>(private_length),
-                 static_cast<unsigned>(public_length));
-        return ESP_FAIL;
-    }
-
-    std::array<unsigned char, 128> private_der{};
-    const std::uint8_t der_prefix[] = {
-        0x30, 0x77, 0x02, 0x01, 0x01, 0x04, 0x20,
-    };
-    const std::uint8_t curve_oid[] = {
-        0xA0, 0x0A, 0x06, 0x08, 0x2A, 0x86, 0x48, 0xCE,
-        0x3D, 0x03, 0x01, 0x07,
-    };
-    const std::uint8_t public_prefix[] = {
-        0xA1, 0x44, 0x03, 0x42, 0x00,
-    };
-    std::size_t der_length = 0;
-    std::memcpy(private_der.data() + der_length, der_prefix, sizeof(der_prefix));
-    der_length += sizeof(der_prefix);
-    std::memcpy(private_der.data() + der_length, private_material.data(), private_length);
-    der_length += private_length;
-    std::memcpy(private_der.data() + der_length, curve_oid, sizeof(curve_oid));
-    der_length += sizeof(curve_oid);
-    std::memcpy(private_der.data() + der_length, public_prefix, sizeof(public_prefix));
-    der_length += sizeof(public_prefix);
-    std::memcpy(private_der.data() + der_length, public_material.data(), public_length);
-    der_length += public_length;
-
-    mbedtls_pk_context private_key;
-    mbedtls_pk_init(&private_key);
-    int tls_result = mbedtls_pk_parse_key(&private_key, private_der.data(),
-                                          der_length, nullptr, 0,
-                                          psa_random_callback, nullptr);
-    if (tls_result != 0) {
-        ESP_LOGE(kTag, "TLS private-key parse failed: -0x%04x",
-                 static_cast<unsigned>(-tls_result));
-    }
-    if (tls_result == 0) {
-        tls_result = mbedtls_pk_write_key_pem(&private_key, private_key_.data(),
-                                               private_key_.size());
-        if (tls_result != 0) {
-            ESP_LOGE(kTag, "TLS private-key PEM export failed: -0x%04x",
-                     static_cast<unsigned>(-tls_result));
-        }
-    }
-
-    mbedtls_x509write_cert certificate_writer;
-    mbedtls_x509write_crt_init(&certificate_writer);
-    if (tls_result == 0) {
-        mbedtls_x509write_crt_set_version(&certificate_writer,
-                                          MBEDTLS_X509_CRT_VERSION_3);
-        mbedtls_x509write_crt_set_md_alg(&certificate_writer, MBEDTLS_MD_SHA256);
-        mbedtls_x509write_crt_set_subject_key(&certificate_writer, &private_key);
-        mbedtls_x509write_crt_set_issuer_key(&certificate_writer, &private_key);
-        tls_result = mbedtls_x509write_crt_set_subject_name(
-            &certificate_writer, "CN=P4 Multi Hub");
-    }
-    if (tls_result == 0) {
-        tls_result = mbedtls_x509write_crt_set_issuer_name(
-            &certificate_writer, "CN=P4 Multi Hub");
-    }
-    std::array<std::uint8_t, 8> serial{};
-    if (tls_result == 0 && psa_generate_random(serial.data(), serial.size()) != PSA_SUCCESS) {
-        tls_result = -1;
-    }
-    serial[0] &= 0x7FU;
-    if (tls_result == 0) {
-        tls_result = mbedtls_x509write_crt_set_serial_raw(
-            &certificate_writer, serial.data(), serial.size());
-    }
-    if (tls_result == 0) {
-        tls_result = mbedtls_x509write_crt_set_validity(
-            &certificate_writer, "20200101000000", "20491231235959");
-    }
-    if (tls_result == 0) {
-        tls_result = mbedtls_x509write_crt_set_basic_constraints(
-            &certificate_writer, 0, -1);
-    }
-    if (tls_result == 0) {
-        tls_result = mbedtls_x509write_crt_set_key_usage(
-            &certificate_writer, MBEDTLS_X509_KU_DIGITAL_SIGNATURE);
-    }
-    if (tls_result == 0) {
-        tls_result = mbedtls_x509write_crt_pem(
-            &certificate_writer, certificate_.data(), certificate_.size(),
-            psa_random_callback, nullptr);
-    }
-    mbedtls_x509write_crt_free(&certificate_writer);
-    mbedtls_pk_free(&private_key);
-    std::memset(private_material.data(), 0, private_material.size());
-    std::memset(private_der.data(), 0, private_der.size());
-    if (tls_result != 0) {
-        ESP_LOGE(kTag, "TLS certificate generation failed: -0x%04x",
-                 static_cast<unsigned>(-tls_result));
-        return ESP_FAIL;
-    }
-
-    certificate_length_ = std::strlen(
-        reinterpret_cast<const char*>(certificate_.data())) + 1;
-    private_key_length_ = std::strlen(
-        reinterpret_cast<const char*>(private_key_.data())) + 1;
-    return ESP_OK;
 }
 
 }

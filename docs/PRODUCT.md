@@ -4,6 +4,15 @@
 
 Build an **autonomous, local-first touchscreen multi-protocol hub** centered on ESP32-P4. MVP commissions Zigbee 3.0 devices through ESP32-H2, stores identity/state, presents selected capabilities via a standards-conformant Matter Bridge on the IP LAN and controls them from the screen. No external cloud or Linux server required for core operation.
 
+## Supported system targets
+
+Maintain only these two firmware compositions:
+
+1. **P4 + C6:** P4 application and UI, C6 Wi-Fi plus the native Zigbee coordinator over ESP-Hosted Peer Data/SDIO. This profile is retained as a build target; end-to-end pairing is not currently claimed as validated.
+2. **P4 + C6 + H2:** P4 Zigbee host with the external H2 standard UART Spinel RCP; C6 provides Wi-Fi only. The P4/H2 handshake and existing-network BDB readiness are verified. The C6 Wi-Fi-only image builds but is not flashed, so this composition is not fully deployed until that exact C6 image is selected and installed.
+
+Do not maintain C6 multipan, P4 Thread/Zigbee multipan, or other radio-ownership product profiles. Thread remains a separate network and is not required by either target.
+
 ## In scope (MVP)
 
 - Deterministic boot and recovery; setup for C6 Wi-Fi with safe credential storage.

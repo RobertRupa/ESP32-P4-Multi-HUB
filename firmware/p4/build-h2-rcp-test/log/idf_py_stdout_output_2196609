@@ -1,0 +1,25 @@
+Command: ninja all
+[1/13] Performing build step for 'bootloader'
+[1/1] cd "/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-h2-rcp-test/bootloader/esp-idf/esptool_py" && /home/konatsu/.espressif/python_env/idf5.5_py3.14_env/bin/python /home/konatsu/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x11000 bootloader 0x2000 /home/konatsu/Documents/ESP32-P4\ Multi\ HUB/firmware/p4/build-h2-rcp-test/bootloader/bootloader.bin
+Bootloader binary size 0x8c90 bytes. 0x6370 bytes (41%) free.
+[2/13] No install step for 'bootloader'
+[3/13] Completed 'bootloader'
+[4/13] Building CXX object esp-idf/main/CMakeFiles/__idf_main.dir/c6_zigbee_bridge.cpp.obj
+[5/13] Building CXX object esp-idf/main/CMakeFiles/__idf_main.dir/diagnostics_http.cpp.obj
+[6/13] Building CXX object esp-idf/main/CMakeFiles/__idf_main.dir/multipan_service.cpp.obj
+[7/13] Building CXX object esp-idf/main/CMakeFiles/__idf_main.dir/wifi_wizard.cpp.obj
+[8/13] Building CXX object esp-idf/main/CMakeFiles/__idf_main.dir/main.cpp.obj
+[9/13] Linking C static library esp-idf/main/libmain.a
+[10/13] Generating esp-idf/esp_system/ld/sections.ld
+warning: <choice TINYUSB_NET_MODE> (defined at /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/managed_components/espressif__esp_hosted/coprocessor/eh_cp_transport/./Kconfig.cp.usb_otg_device:50) defined with type unknown
+warning: <choice TINYUSB_NET_MODE> (defined at /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/managed_components/espressif__esp_hosted/coprocessor/eh_cp_transport/./Kconfig.cp.usb_otg_device:50) defined without a prompt
+warning: the default selection TINYUSB_NET_MODE_ECM_RNDIS (undefined) of <choice TINYUSB_NET_MODE> (defined at /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/managed_components/espressif__esp_hosted/coprocessor/eh_cp_transport/./Kconfig.cp.usb_otg_device:50) is not contained in the choice
+[11/13] Linking CXX executable hub_p4_esp_hosted_host.elf
+[12/13] Generating binary image from built executable
+esptool.py v4.12.0
+Creating esp32p4 image...
+Merged 2 ELF sections
+Successfully created esp32p4 image.
+Generated /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-h2-rcp-test/hub_p4_esp_hosted_host.bin
+[13/13] cd "/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-h2-rcp-test/esp-idf/esptool_py" && /home/konatsu/.espressif/python_env/idf5.5_py3.14_env/bin/python /home/konatsu/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x11000 partition --type app /home/konatsu/Documents/ESP32-P4\ Multi\ HUB/firmware/p4/build-h2-rcp-test/partition_table/partition-table.bin /home/konatsu/Documents/ESP32-P4\ Multi\ HUB/firmware/p4/build-h2-rcp-test/hub_p4_esp_hosted_host.bin
+hub_p4_esp_hosted_host.bin binary size 0x1c3c00 bytes. Smallest app partition is 0x3f0000 bytes. 0x22c400 bytes (55%) free.

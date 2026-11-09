@@ -44,11 +44,6 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/esp_driver_gpio/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
   include("/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/esp_timer/cmake_install.cmake")
 endif()
 
@@ -180,6 +175,11 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
   include("/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/cxx/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/esp_driver_gpio/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)

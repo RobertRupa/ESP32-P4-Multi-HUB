@@ -6,10 +6,44 @@ namespace hub::diagnostics {
 
 esp_err_t WebZigbeeApproval::request(WebZigbeeAction action,
                                      std::uint32_t* request_id) noexcept {
-    if (request_id == nullptr ||
-        (action != WebZigbeeAction::create_network &&
-         action != WebZigbeeAction::open_join_window &&
-         action != WebZigbeeAction::scan_nearby)) {
+    return request_impl(action, 0, 0, 0, false, request_id);
+}
+
+esp_err_t WebZigbeeApproval::request_approved(
+    WebZigbeeAction action, std::uint32_t* request_id) noexcept {
+    return request_impl(action, 0, 0, 0, true, request_id);
+}
+
+esp_err_t WebZigbeeApproval::request(
+    WebZigbeeAction action, std::uint16_t short_address,
+    std::uint8_t endpoint_id, std::uint8_t value,
+    std::uint32_t* request_id) noexcept {
+    return request_impl(action, short_address, endpoint_id, value, false,
+                        request_id);
+}
+
+esp_err_t WebZigbeeApproval::request_approved(
+    WebZigbeeAction action, std::uint16_t short_address,
+    std::uint8_t endpoint_id, std::uint8_t value,
+    std::uint32_t* request_id) noexcept {
+    return request_impl(action, short_address, endpoint_id, value, true,
+                        request_id);
+}
+
+esp_err_t WebZigbeeApproval::request_impl(
+    WebZigbeeAction action, std::uint16_t short_address,
+    std::uint8_t endpoint_id, std::uint8_t value, bool approved,
+    std::uint32_t* request_id) noexcept {
+    const bool device_action = action == WebZigbeeAction::set_device_on_off ||
+                               action == WebZigbeeAction::set_device_level;
+    const bool network_action = action == WebZigbeeAction::create_network ||
+        action == WebZigbeeAction::open_join_window ||
+        action == WebZigbeeAction::scan_nearby;
+    if (request_id == nullptr || (!device_action && !network_action) ||
+        (device_action && (short_address == 0 || short_address == 0xFFFFU ||
+                           endpoint_id == 0)) ||
+        (action == WebZigbeeAction::set_device_on_off && value > 1) ||
+        (action == WebZigbeeAction::set_device_level && value > 254)) {
         return ESP_ERR_INVALID_ARG;
     }
     const std::int64_t now_us = esp_timer_get_time();
@@ -25,8 +59,12 @@ esp_err_t WebZigbeeApproval::request(WebZigbeeAction action,
         ++snapshot_.id;
     }
     snapshot_.action = action;
-    snapshot_.state = WebZigbeeRequestState::awaiting_touch;
+    snapshot_.state = approved ? WebZigbeeRequestState::approved
+                               : WebZigbeeRequestState::awaiting_touch;
     snapshot_.result = ESP_OK;
+    snapshot_.short_address = short_address;
+    snapshot_.endpoint_id = endpoint_id;
+    snapshot_.value = value;
     requested_at_us_ = now_us;
     *request_id = snapshot_.id;
     portEXIT_CRITICAL(&mux_);

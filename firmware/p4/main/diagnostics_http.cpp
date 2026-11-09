@@ -1,15 +1,17 @@
 #include "diagnostics_http.hpp"
 
+#include <algorithm>
+#include <cstdlib>
 #include <cstdint>
 #include <cstdio>
 #include <cstring>
 #include <limits>
 
 #include "c6_ota.hpp"
-#include "esp_https_server.h"
 #include "esp_http_server.h"
 #include "esp_log.h"
 #include "esp_system.h"
+#include "esp_timer.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "mbedtls/base64.h"
@@ -27,7 +29,6 @@ hub::radio::IZigbeeCoordinator* zigbee_coordinator = nullptr;
 hub::diagnostics::WebSecurity* web_security = nullptr;
 hub::diagnostics::WebZigbeeApproval* web_zigbee_approval = nullptr;
 httpd_handle_t http_server_handle = nullptr;
-httpd_handle_t https_server_handle = nullptr;
 char session_cookie_response[128]{};
 portMUX_TYPE thread_scan_mux = portMUX_INITIALIZER_UNLOCKED;
 bool thread_scan_running = false;
@@ -86,19 +87,23 @@ footer{color:var(--muted);font-size:13px;margin-top:18px}@media(max-width:580px)
 </head>
 <body><main>
 <header><h1 data-i="title">P4 Multi Hub</h1><button id="language" type="button">PL</button></header>
-<section id="loginSection"><h2 data-i="loginTitle">Hub login</h2><form id="loginForm"><input id="username" aria-label="Username" autocomplete="username" value="admin" required><input id="password" aria-label="Password" type="password" autocomplete="current-password" required><button data-i="login">Sign in</button></form><p id="authMessage" class="notice" role="status"></p><p class="notice" data-i="loginHint">The one-time first-use password is printed once to the P4 serial log. Verify the per-device TLS fingerprint there.</p></section>
+<section id="loginSection"><h2 data-i="loginTitle">Hub login</h2><form id="loginForm"><input id="username" aria-label="Username" autocomplete="username" value="admin" required><input id="password" aria-label="Password" type="password" autocomplete="current-password" required><button data-i="login">Sign in</button></form><p id="authMessage" class="notice" role="status"></p><p class="notice" data-i="loginHint">The one-time first-use password is printed once to the P4 serial log.</p></section>
 <section id="changeSection" class="hidden"><h2 data-i="changeTitle">Set a new admin password</h2><form id="changeForm"><input id="newPassword" type="password" autocomplete="new-password" minlength="12" maxlength="64" required><button data-i="changePassword">Change password</button></form><p class="notice" data-i="changeHint">Use at least 12 characters. Change the one-time password before Zigbee actions.</p></section>
 <div id="app" class="hidden">
 <section><h2 data-i="searchTitle">Zigbee search</h2><div class="grid"><div class="item"><div class="label" data-i="coordinator">Coordinator</div><div class="value" id="coordinator">-</div></div><div class="item"><div class="label" data-i="network">Network</div><div class="value" id="network">-</div></div><div class="item"><div class="label" data-i="joinWindow">Join window</div><div class="value" id="joinWindow">-</div></div><div class="item"><div class="label" data-i="bdb">BDB signal/status</div><div class="value" id="bdb">-</div></div></div><div class="row"><button id="createNetwork" data-i="createNetwork" type="button">Create network</button><button id="openJoin" data-i="openJoin" type="button">Search for devices (180 s)</button></div><p id="requestStatus" class="notice" role="status"></p></section>
 <section><h2 data-i="nearbyTitle">Nearby Zigbee devices</h2><div class="value" id="nearbyCount">-</div><ul id="deviceList" class="device-list"></ul><p id="nearbyEmpty" class="notice"></p></section>
 <section><h2 data-i="systemTitle">System status</h2><div class="item"><div class="label" data-i="wifi">Wi-Fi state</div><div class="value" id="state">Loading</div><div id="address" class="value"></div></div><div class="grid" style="margin-top:10px"><div class="item"><div class="label" data-i="store">Encrypted credential store</div><div class="value" id="store">-</div></div><div class="item"><div class="label" data-i="saved">Credentials saved</div><div class="value" id="saved">-</div></div><div class="item"><div class="label" data-i="rssi">Wi-Fi signal</div><div class="value" id="rssi">-</div></div><div class="item"><div class="label" data-i="flash">Flash encryption</div><div class="value" id="encryption">-</div></div><div class="item"><div class="label" data-i="psram">Free PSRAM</div><div class="value" id="psram">-</div></div><div class="item"><div class="label" data-i="heap">Free internal heap</div><div class="value" id="heap">-</div></div><div class="item"><div class="label" data-i="radio">Radio service</div><div class="value" id="radio">-</div></div><div class="item"><div class="label" data-i="thread">Thread role</div><div class="value" id="thread">-</div></div><div class="item"><div class="label" data-i="tbr">Thread Border Router</div><div class="value" id="tbr">-</div></div><div class="item"><div class="label" data-i="c6version">C6 ESP-Hosted version</div><div class="value" id="c6version">-</div></div><div class="item"><div class="label" data-i="c6identity">C6 target</div><div class="value" id="c6identity">-</div></div><div class="item"><div class="label" data-i="c6stage">C6 staged image</div><div class="value" id="c6stage">-</div></div><div class="item"><div class="label" data-i="c6ota">C6 OTA audit</div><div class="value" id="c6ota">-</div></div></div><div class="row"><button id="refresh" type="button" data-i="refresh">Refresh</button><button id="logout" type="button" data-i="logout">Sign out</button></div></section>
 </div>
-<footer><span data-i="note">HTTPS local controls. Zigbee writes also require confirmation on the hub touchscreen.</span></footer>
+<footer><span data-i="note">HTTP is unencrypted. Use only on a trusted local network. Zigbee actions require browser confirmation.</span></footer>
 </main>
 <script>
 const words={en:{title:'P4 Multi Hub',loginTitle:'Hub login',login:'Sign in',loginHint:'The one-time first-use password is printed once to the P4 serial log. Verify the per-device TLS fingerprint there.',changeTitle:'Set a new admin password',changePassword:'Change password',changeHint:'Use at least 12 characters. Change the one-time password before Zigbee actions.',searchTitle:'Zigbee search',coordinator:'Coordinator',network:'Network',joinWindow:'Join window',bdb:'BDB signal/status',createNetwork:'Create network',openJoin:'Search for devices (180 s)',nearbyTitle:'Nearby Zigbee devices',systemTitle:'System status',wifi:'Wi-Fi state',store:'Encrypted credential store',saved:'Credentials saved',rssi:'Wi-Fi signal',flash:'Flash encryption',psram:'Free PSRAM',heap:'Free internal heap',radio:'Radio service',thread:'Thread role',tbr:'Thread Border Router',c6version:'C6 ESP-Hosted version',c6identity:'C6 target',c6stage:'C6 staged image',c6ota:'C6 OTA audit',note:'HTTPS local controls. Zigbee writes also require confirmation on the hub touchscreen.',refresh:'Refresh',logout:'Sign out',yes:'Yes',no:'No',ready:'Ready',unavailable:'Unavailable',enabled:'Enabled',disabled:'Disabled',online:'Connected',connecting:'Connecting',scanning:'Scanning',failed:'Needs attention',loading:'Loading',formed:'Formed',notFormed:'Not formed',pending:'Awaiting touchscreen confirmation',searchOpen:'Join window open',closed:'Closed',deviceCount:'Announced devices',emptyDevices:'No Zigbee device announcements yet.',detailsPending:'Device details will appear after interview support is added.',confirmCreate:'Create a Zigbee network? The hub touchscreen must approve this request.',confirmJoin:'Open a 180-second Zigbee join window? The hub touchscreen must approve this request.',sent:'Request sent. Confirm it on the hub touchscreen.',rejected:'Request rejected on the hub touchscreen.',accepted:'Command accepted by the hub; coordinator status will update separately.',expired:'Touch confirmation expired.',requestFailed:'Request failed',authFailed:'Sign-in failed.',passwordMismatch:'Password must be at least 12 characters.',passwordChanged:'Password changed. Sign in again.',createDisabled:'Create network is unavailable in the current coordinator state.',joinDisabled:'A formed Zigbee network is required before devices can join.'},pl:{title:'P4 Multi Hub',loginTitle:'Logowanie do huba',login:'Zaloguj',loginHint:'Jednorazowe haslo startowe jest wyswietlane raz w logu szeregowym P4. Tam sprawdz tez odcisk TLS urzadzenia.',changeTitle:'Ustaw nowe haslo administratora',changePassword:'Zmien haslo',changeHint:'Haslo musi miec co najmniej 12 znakow. Zmien jednorazowe haslo przed operacjami Zigbee.',searchTitle:'Wyszukiwanie Zigbee',coordinator:'Koordynator',network:'Siec',joinWindow:'Okno dolaczania',bdb:'Sygnal/status BDB',createNetwork:'Utworz siec',openJoin:'Szukaj urzadzen (180 s)',nearbyTitle:'Urzadzenia Zigbee w poblizu',systemTitle:'Stan systemu',wifi:'Stan Wi-Fi',store:'Szyfrowany magazyn danych',saved:'Dane zapisane',rssi:'Sygnal Wi-Fi',flash:'Szyfrowanie flash',psram:'Wolny PSRAM',heap:'Wolna pamiec wewnetrzna',radio:'Usluga radiowa',thread:'Rola Thread',tbr:'Thread Border Router',c6version:'Wersja ESP-Hosted C6',c6identity:'Cel C6',c6stage:'Obraz C6 w stagingu',c6ota:'Audyt OTA C6',note:'Lokalne sterowanie HTTPS. Operacje Zigbee wymagaja tez zatwierdzenia na ekranie huba.',refresh:'Odswiez',logout:'Wyloguj',yes:'Tak',no:'Nie',ready:'Gotowy',unavailable:'Niedostepny',enabled:'Wlaczone',disabled:'Wylaczone',online:'Polaczono',connecting:'Laczenie',scanning:'Skanowanie',failed:'Wymaga uwagi',loading:'Ladowanie',formed:'Utworzona',notFormed:'Nieutworzona',pending:'Oczekuje na potwierdzenie na ekranie',searchOpen:'Okno dolaczania otwarte',closed:'Zamkniete',deviceCount:'Ogloszone urzadzenia',emptyDevices:'Brak ogloszen urzadzen Zigbee.',detailsPending:'Szczegoly pojawia sie po dodaniu obslugi interview.',confirmCreate:'Utworzyc siec Zigbee? Zatwierdz to zadanie na ekranie huba.',confirmJoin:'Otworzyc 180-sekundowe okno dolaczania? Zatwierdz to zadanie na ekranie huba.',sent:'Zadanie wyslane. Zatwierdz je na ekranie huba.',rejected:'Zadanie odrzucono na ekranie huba.',accepted:'Polecenie zaakceptowane; stan koordynatora zaktualizuje sie osobno.',expired:'Czas na potwierdzenie dotykiem minal.',requestFailed:'Zadanie nie powiodlo sie',authFailed:'Logowanie nie powiodlo sie.',passwordMismatch:'Haslo musi miec co najmniej 12 znakow.',passwordChanged:'Haslo zmienione. Zaloguj sie ponownie.',createDisabled:'Utworzenie sieci jest niedostepne w obecnym stanie koordynatora.',joinDisabled:'Aby dolaczac urzadzenia, najpierw musi powstac siec Zigbee.'}};
 let lang='en',authHeader='',adminUser='',adminPassword='',mustChange=true,loggedIn=false,lastC6=null;
 function setLanguage(){document.documentElement.lang=lang;document.querySelectorAll('[data-i]').forEach(e=>e.textContent=words[lang][e.dataset.i]);document.getElementById('language').textContent=lang==='en'?'PL':'EN'}
+words.en.loginHint='The one-time first-use password is printed once to the P4 serial log.';
+words.pl.loginHint='Haslo pierwszego logowania jest wypisywane raz w logu szeregowym P4.';
+words.en.note='HTTP is unencrypted. Use only on a trusted local network. Zigbee actions require browser confirmation.';
+words.pl.note='HTTP nie jest szyfrowane. Uzywaj tylko w zaufanej sieci lokalnej. Akcje Zigbee wymagaja potwierdzenia w przegladarce.';
 function showAuth(message=''){document.getElementById('app').classList.add('hidden');document.getElementById('changeSection').classList.add('hidden');document.getElementById('loginSection').classList.remove('hidden');document.getElementById('authMessage').textContent=message}
 async function authCheck(){if(!authHeader&&!loggedIn)return showAuth();try{const headers=authHeader?{Authorization:authHeader}:{};const r=await fetch('/api/auth/status',{headers,cache:'no-store'});if(!r.ok)throw new Error('auth');const d=await r.json();mustChange=d.must_change_password;loggedIn=true;authHeader='';adminPassword='';document.getElementById('loginSection').classList.add('hidden');document.getElementById('changeSection').classList.toggle('hidden',!mustChange);document.getElementById('app').classList.toggle('hidden',mustChange);if(!mustChange){refreshAll();refreshRequest()}}catch(_){loggedIn=false;authHeader='';adminPassword='';showAuth(words[lang].authFailed)}}
 document.getElementById('loginForm').addEventListener('submit',async e=>{e.preventDefault();adminUser=document.getElementById('username').value;adminPassword=document.getElementById('password').value;authHeader='Basic '+btoa(adminUser+':'+adminPassword);await authCheck()});
@@ -131,6 +136,76 @@ words.en.confirmScanNearby='Scan nearby? If the network is new, this will form i
 words.pl.confirmScanNearby='Rozpoczac skan pobliskich urzadzen? Dla nowej sieci utworzy ja i otworzy okno dolaczania na 180 s.';
 words.en.refreshC6='Refresh C6 diagnostics';
 words.pl.refreshC6='Odswiez diagnostyke C6';
+words.en.shortAddress='Short address';
+words.pl.shortAddress='Adres krotki';
+words.en.inputClusters='Input clusters';
+words.pl.inputClusters='Klastry wejscia';
+words.en.outputClusters='Output clusters';
+words.pl.outputClusters='Klastry wyjscia';
+words.en.clustersTruncated='Cluster list is truncated';
+words.pl.clustersTruncated='Lista klastrow jest skrocona';
+words.en.on='On';
+words.pl.on='Wl';
+words.en.off='Off';
+words.pl.off='Wyl';
+words.en.readCapabilities='Read capabilities';
+words.pl.readCapabilities='Odczytaj mozliwosci';
+words.en.detailsPending='Capabilities require a successful endpoint interview.';
+words.pl.detailsPending='Mozliwosci wymagaja poprawnego odczytu endpointow.';
+words.en.loginHint='The one-time first-use password is printed once to the P4 serial log.';
+words.pl.loginHint='Haslo pierwszego logowania jest wypisywane raz w logu szeregowym P4.';
+words.en.note='HTTP is unencrypted. Use only on a trusted local network. Zigbee actions require browser confirmation.';
+words.pl.note='HTTP nie jest szyfrowane. Uzywaj tylko w zaufanej sieci lokalnej. Akcje Zigbee wymagaja potwierdzenia w przegladarce.';
+words.en.pending='Pending';
+words.pl.pending='Oczekuje';
+words.en.sent='Request accepted; sending to coordinator.';
+words.pl.sent='Przyjeto zadanie; wysylanie do koordynatora.';
+words.en.confirmCreate='Create a Zigbee network?';
+words.pl.confirmCreate='Utworzyc siec Zigbee?';
+words.en.confirmJoin='Open a 180-second Zigbee join window?';
+words.pl.confirmJoin='Otworzyc 180-sekundowe okno dolaczania Zigbee?';
+words.en.confirmScanNearby='Scan nearby? If the network is new, this will form it and open a 180-second join window.';
+words.pl.confirmScanNearby='Rozpoczac skan pobliskich urzadzen? Dla nowej sieci utworzy ja i otworzy okno dolaczania na 180 s.';
+const webNote=document.querySelector('footer [data-i="note"]');
+if(webNote)webNote.textContent=words[lang].note;
+words.en.inspectAddress='Inspect short address';
+words.pl.inspectAddress='Sprawdz adres krotki';
+words.en.inspect='Inspect';
+words.pl.inspect='Sprawdz';
+words.en.refreshCapabilities='Refresh capabilities';
+words.pl.refreshCapabilities='Odswiez mozliwosci';
+words.en.interviewPending='Reading endpoints and clusters…';
+words.pl.interviewPending='Odczytuje endpointy i klastry…';
+words.en.interviewFailed='Device interview failed';
+words.pl.interviewFailed='Odczyt urzadzenia nie powiodl sie';
+words.en.noEndpoints='No active endpoints reported';
+words.pl.noEndpoints='Urzadzenie nie zglosilo aktywnych endpointow';
+words.en.onOff='On/Off';
+words.pl.onOff='Wl/Wyl';
+words.en.level='Target level (0–254)';
+words.pl.level='Docelowy poziom (0–254)';
+words.en.currentLevel='Reported level';
+words.pl.currentLevel='Poziom raportowany';
+words.en.levelUnknown='Unknown';
+words.pl.levelUnknown='Nieznany';
+words.en.setLevel='Set level';
+words.pl.setLevel='Ustaw poziom';
+words.en.unknownCluster='Other cluster';
+words.pl.unknownCluster='Inny klaster';
+words.en.confirmDeviceOnOff='Send this On/Off command?';
+words.pl.confirmDeviceOnOff='Wyslac polecenie Wl/Wyl?';
+words.en.confirmDeviceLevel='Send this level command?';
+words.pl.confirmDeviceLevel='Wyslac polecenie poziomu?';
+words.en.deviceCommandRequested='Command accepted; waiting for a device report.';
+words.pl.deviceCommandRequested='Polecenie przyjete; oczekiwanie na raport urzadzenia.';
+words.en.onOffUnknown='Unknown';
+words.pl.onOffUnknown='Nieznany';
+words.en.onOffReading='Reading device state…';
+words.pl.onOffReading='Odczyt stanu urzadzenia…';
+words.en.detailsUnavailable='Short addresses are unavailable for this Zigbee backend.';
+words.pl.detailsUnavailable='Krotkie adresy sa niedostepne dla tego backendu Zigbee.';
+words.en.addressesTruncated='List limited to the first 16 announced devices.';
+words.pl.addressesTruncated='Lista ograniczona do pierwszych 16 zgloszonych urzadzen.';
 words.en.openJoin='Open join window (180 s)';
 words.pl.openJoin='Otworz okno dolaczania (180 s)';
 words.en.confirmWebApproveScan='Approve the nearby-device scan?';
@@ -168,6 +243,26 @@ scanNearbyButton.type='button';scanNearbyButton.dataset.i='scanNearby';
 scanNearbyButton.style.width='100%';
 scanNearbyButton.addEventListener('click',()=>postAction('/api/zigbee/scan','confirmScanNearby'));
 document.getElementById('deviceList').after(scanNearbyButton);
+const manualDeviceAddresses=new Set();
+const manualInterviewRow=document.createElement('form');
+manualInterviewRow.className='row';
+const manualAddressInput=document.createElement('input');
+manualAddressInput.type='text';manualAddressInput.maxLength=6;manualAddressInput.placeholder='0x724e';
+manualAddressInput.setAttribute('aria-label',words[lang].inspectAddress);
+const manualInterviewButton=document.createElement('button');
+manualInterviewButton.type='submit';manualInterviewButton.dataset.i='inspect';
+manualInterviewRow.append(manualAddressInput,manualInterviewButton);
+document.getElementById('language').addEventListener('click',()=>manualAddressInput.setAttribute('aria-label',words[lang].inspectAddress));
+manualInterviewRow.addEventListener('submit',event=>{
+    event.preventDefault();
+    const text=manualAddressInput.value.trim().replace(/^0x/i,'');
+    if(!/^[0-9a-fA-F]{1,4}$/.test(text))return;
+    const address=parseInt(text,16);
+    if(!address||address>=0xffff)return;
+    manualDeviceAddresses.add(address);
+    void loadDeviceCapabilities(address);
+});
+document.getElementById('deviceList').after(manualInterviewRow);
 const threadScanRow=document.createElement('div');
 threadScanRow.className='row';
 const threadScanButton=document.createElement('button');
@@ -176,7 +271,7 @@ const threadScanStatus=document.createElement('p');
 threadScanStatus.className='notice';threadScanStatus.setAttribute('role','status');
 threadScanRow.append(threadScanButton,threadScanStatus);
 document.getElementById('tbr').closest('section').append(threadScanRow);
-let webApprovalRequestId=0,webApprovalAction='none',webApprovalBusy=false,loginBusy=false,c6RefreshBusy=false;
+let webApprovalRequestId=0,webApprovalAction='none',webApprovalShortAddress=0,webApprovalEndpoint=0,webApprovalValue=0,webApprovalBusy=false,loginBusy=false,c6RefreshBusy=false;
 const manualRefreshButton=document.createElement('button');
 manualRefreshButton.id='refreshC6';manualRefreshButton.type='button';
 manualRefreshButton.dataset.i='refreshC6';
@@ -236,6 +331,9 @@ refreshRequest=async function(){
         const request=await response.json();
         webApprovalRequestId=Number(request.id)||0;
         webApprovalAction=request.action;
+        webApprovalShortAddress=Number(request.short_address)||0;
+        webApprovalEndpoint=Number(request.endpoint_id)||0;
+        webApprovalValue=Number(request.value)||0;
         const states={
             awaiting_touch:words[lang].approvalPending,
             approved:words[lang].approvalReceived,
@@ -260,7 +358,12 @@ async function decideWebApproval(approve){
     const confirmation=webApprovalAction==='create_network'
         ? words[lang].confirmWebApproveCreate
         : webApprovalAction==='scan_nearby'
-            ? words[lang].confirmWebApproveScan : words[lang].confirmWebApproveJoin;
+            ? words[lang].confirmWebApproveScan
+            : webApprovalAction==='set_device_on_off'
+                ? `${words[lang].confirmDeviceOnOff} 0x${webApprovalShortAddress.toString(16).padStart(4,'0')} ep ${webApprovalEndpoint}: ${webApprovalValue?'ON':'OFF'}`
+                : webApprovalAction==='set_device_level'
+                    ? `${words[lang].confirmDeviceLevel} 0x${webApprovalShortAddress.toString(16).padStart(4,'0')} ep ${webApprovalEndpoint}: ${webApprovalValue}/254`
+                    : words[lang].confirmWebApproveJoin;
     if(approve&&!confirm(confirmation))return;
     webApprovalBusy=true;
     webApproveButton.disabled=true;webRejectButton.disabled=true;
@@ -282,12 +385,247 @@ async function decideWebApproval(approve){
 webApproveButton.addEventListener('click',()=>decideWebApproval(true));
 webRejectButton.addEventListener('click',()=>decideWebApproval(false));
 
+const deviceCapabilityCache=new Map();
+const refreshingDeviceStates=new Set();
+let onOffLastReadEnqueueAt=0;
+let levelLastReadEnqueueAt=0;
+const deviceLevelTargets=new Map();
+const profileName=id=>({260:'Home Automation (0x0104)',41440:'Green Power (0xA1E0)'}[Number(id)]||`Unknown profile 0x${Number(id).toString(16).padStart(4,'0')}`);
+const clusterName=id=>({0:'Basic',3:'Identify',4:'Groups',5:'Scenes',6:'On/Off',8:'Level Control',10:'Time',25:'OTA Upgrade',33:'Green Power',4096:'Touchlink Commissioning'}[id]||'');
+async function loadDeviceCapabilities(shortAddress){
+    const cached=deviceCapabilityCache.get(shortAddress);
+    if(cached?.loading)return;
+    deviceCapabilityCache.set(shortAddress,{loading:true});
+    try{
+        let response=await fetch(`/api/zigbee/device?address=${shortAddress}`,{cache:'no-store'});
+        if(response.status===401){loggedIn=false;showAuth(words[lang].authFailed);return;}
+        if(response.status===404){
+            response=await fetch('/api/zigbee/device',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({operation:'interview',address:String(shortAddress)}),cache:'no-store'});
+            if(!response.ok)throw new Error('interview');
+            deviceCapabilityCache.set(shortAddress,{interview_pending:true});
+            return;
+        }
+        if(!response.ok)throw new Error('device');
+        const details=await response.json();
+        if(details.interview_failed||(!details.interview_complete&&!details.interview_pending)){
+            response=await fetch('/api/zigbee/device',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({operation:'interview',address:String(shortAddress)}),cache:'no-store'});
+            if(!response.ok)throw new Error('interview');
+            deviceCapabilityCache.set(shortAddress,{interview_pending:true});
+            return;
+        }
+        deviceCapabilityCache.set(shortAddress,details);
+    }catch(_){deviceCapabilityCache.set(shortAddress,{interview_failed:true});}
+    finally{refreshZigbee();}
+}
+async function refreshDeviceCapabilityState(shortAddress){
+    if(!deviceCapabilityCache.has(shortAddress)||refreshingDeviceStates.has(shortAddress))return;
+    refreshingDeviceStates.add(shortAddress);
+    try{
+        const response=await fetch(`/api/zigbee/device?address=${shortAddress}`,{cache:'no-store'});
+        if(response.status===401){loggedIn=false;showAuth(words[lang].authFailed);return;}
+        if(!response.ok)throw new Error('device state');
+        const details=await response.json();
+        if(details.interview_complete&&!details.interview_failed){
+            const endpoints=details.endpoints||[];
+            const hasPendingRead=endpoints.some(item=>
+                item.on_off_pending||item.level_pending);
+            const onOffEndpoint=endpoints.find(item=>
+                Array.isArray(item.input)&&item.input.includes(6)&&
+                !item.on_off_known&&!item.on_off_pending);
+            const levelEndpoint=endpoints.find(item=>
+                Array.isArray(item.input)&&item.input.includes(8)&&
+                !item.level_known&&!item.level_pending);
+            if(!hasPendingRead&&onOffEndpoint&&Date.now()-onOffLastReadEnqueueAt>=1000){
+                onOffLastReadEnqueueAt=Date.now();
+                const read=await fetch('/api/zigbee/device',{
+                    method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},
+                    body:new URLSearchParams({operation:'read_on_off',address:String(shortAddress),endpoint:String(onOffEndpoint.id)}),
+                    cache:'no-store'
+                });
+                if(read.status===401){loggedIn=false;showAuth(words[lang].authFailed);return;}
+                if(read.ok)onOffEndpoint.on_off_pending=true;
+            }else if(!hasPendingRead&&levelEndpoint&&Date.now()-levelLastReadEnqueueAt>=1000){
+                levelLastReadEnqueueAt=Date.now();
+                const read=await fetch('/api/zigbee/device',{
+                    method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},
+                    body:new URLSearchParams({operation:'read_level',address:String(shortAddress),endpoint:String(levelEndpoint.id)}),
+                    cache:'no-store'
+                });
+                if(read.status===401){loggedIn=false;showAuth(words[lang].authFailed);return;}
+                if(read.ok)levelEndpoint.level_pending=true;
+            }
+        }
+        deviceCapabilityCache.set(shortAddress,details);
+        updateDeviceCapabilityControls(shortAddress,details);
+    }catch(_){}
+    finally{refreshingDeviceStates.delete(shortAddress);}
+}
+function updateDeviceCapabilityControls(shortAddress,details){
+    const list=document.getElementById('deviceList');
+    const item=[...list.children].find(candidate=>Number(candidate.dataset.shortAddress)===Number(shortAddress));
+    if(!item)return;
+    for(const endpoint of details.endpoints||[]){
+        const section=[...item.querySelectorAll('[data-zigbee-endpoint]')].find(candidate=>Number(candidate.dataset.zigbeeEndpoint)===Number(endpoint.id));
+        if(!section)continue;
+        const toggle=section.querySelector('[data-zigbee-on-off-toggle]');
+        const state=section.querySelector('[data-zigbee-on-off-state]');
+        if(toggle&&state){
+            const known=Boolean(endpoint.on_off_known);
+            const actualOn=known&&Boolean(endpoint.on_off_value);
+            toggle.checked=actualOn;
+            toggle.disabled=!known||Boolean(endpoint.on_off_pending);
+            state.textContent=endpoint.on_off_pending?words[lang].onOffReading
+                :!known?words[lang].onOffUnknown
+                :actualOn?words[lang].on:words[lang].off;
+        }
+        const reportedLevel=section.querySelector('[data-zigbee-level-state]');
+        if(reportedLevel){
+            reportedLevel.textContent=endpoint.level_pending?words[lang].onOffReading
+                :!endpoint.level_known?`${words[lang].currentLevel}: ${words[lang].levelUnknown}`
+                :`${words[lang].currentLevel}: ${endpoint.level_value}`;
+        }
+    }
+}
+setInterval(()=>{
+    if(!loggedIn||mustChange)return;
+    for(const [shortAddress,details] of deviceCapabilityCache){
+        if(details?.endpoints?.some(endpoint=>endpoint.on_off_pending||endpoint.level_pending)){
+            void refreshDeviceCapabilityState(Number(shortAddress));
+        }
+    }
+},500);
+async function sendDeviceCommand(operation,shortAddress,endpoint,value,onOffInput=null,onOffState=null){
+    const message=operation==='on_off'?words[lang].confirmDeviceOnOff:words[lang].confirmDeviceLevel;
+    const target=`0x${shortAddress.toString(16).padStart(4,'0')} ep ${endpoint}`;
+    const setting=operation==='on_off'?(value?'ON':'OFF'):`${value}/254`;
+    if(!confirm(`${message} ${target}: ${setting}`))return false;
+    if(onOffInput)onOffInput.disabled=true;
+    try{
+        const response=await fetch('/api/zigbee/device',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({operation,address:String(shortAddress),endpoint:String(endpoint),value:String(value)}),cache:'no-store'});
+        if(response.status===401){loggedIn=false;showAuth(words[lang].authFailed);return false;}
+        if(!response.ok)throw new Error('command');
+        if(onOffState){
+            if(operation==='on_off'){
+                onOffState.on_off_pending=true;
+                const state=onOffInput&&onOffInput.nextElementSibling;
+                if(state)state.textContent=words[lang].onOffReading;
+            }else{
+                onOffState.level_pending=true;
+                const list=document.getElementById('deviceList');
+                const item=[...list.children].find(candidate=>Number(candidate.dataset.shortAddress)===Number(shortAddress));
+                const section=item&&[...item.querySelectorAll('[data-zigbee-endpoint]')].find(candidate=>Number(candidate.dataset.zigbeeEndpoint)===Number(endpoint));
+                const state=section&&section.querySelector('[data-zigbee-level-state]');
+                if(state)state.textContent=words[lang].onOffReading;
+            }
+        }
+        document.getElementById('requestStatus').textContent=words[lang].deviceCommandRequested;
+        await refreshRequest();
+        return true;
+    }catch(_){if(onOffInput)onOffInput.disabled=false;document.getElementById('requestStatus').textContent=words[lang].requestFailed;return false;}
+}
+function renderDeviceCapabilities(item,shortAddress,details){
+    if(details.interview_pending){const pending=document.createElement('p');pending.textContent=words[lang].interviewPending;item.appendChild(pending);return;}
+    if(details.interview_failed){const failed=document.createElement('p');failed.textContent=`${words[lang].interviewFailed} (${details.interview_error})`;item.appendChild(failed);return;}
+    if(!details.interview_complete){return;}
+    if(!Array.isArray(details.endpoints)||details.endpoints.length===0){const empty=document.createElement('p');empty.textContent=words[lang].noEndpoints;item.appendChild(empty);return;}
+    for(const endpoint of details.endpoints||[]){
+        const section=document.createElement('div');
+        section.dataset.zigbeeEndpoint=String(endpoint.id);
+        const title=document.createElement('strong');title.textContent=`Endpoint ${endpoint.id} · ${profileName(endpoint.profile)} · Device 0x${Number(endpoint.device).toString(16).padStart(4,'0')}`;section.appendChild(title);
+        const inputClusters=Array.isArray(endpoint.input)?endpoint.input:[];
+        const outputClusters=Array.isArray(endpoint.output)?endpoint.output:[];
+        const labels=inputClusters.map(id=>clusterName(Number(id))||`0x${Number(id).toString(16).padStart(4,'0')}`);
+        const clusterSummary=document.createElement('p');clusterSummary.textContent=`${words[lang].inputClusters}: ${labels.join(', ')||'none'}`;section.appendChild(clusterSummary);
+        const outputLabels=outputClusters.map(id=>clusterName(Number(id))||`0x${Number(id).toString(16).padStart(4,'0')}`);
+        const outputSummary=document.createElement('p');outputSummary.textContent=`${words[lang].outputClusters}: ${outputLabels.join(', ')||'none'}`;section.appendChild(outputSummary);
+        if(endpoint.clusters_truncated){const truncated=document.createElement('p');truncated.textContent=words[lang].clustersTruncated;section.appendChild(truncated);}
+        if(inputClusters.includes(6)){
+            const controls=document.createElement('div');controls.className='row';
+            const toggle=document.createElement('input');toggle.type='checkbox';
+            toggle.setAttribute('role','switch');
+            toggle.dataset.zigbeeOnOffToggle='true';
+            const onOffKnown=Boolean(endpoint.on_off_known);
+            const actualOn=onOffKnown&&Boolean(endpoint.on_off_value);
+            toggle.checked=actualOn;
+            toggle.disabled=!onOffKnown||Boolean(endpoint.on_off_pending);
+            toggle.setAttribute('aria-label',`${words[lang].onOff} ${words[lang].shortAddress} 0x${shortAddress.toString(16).padStart(4,'0')} ep ${endpoint.id}`);
+            const state=document.createElement('span');
+            state.dataset.zigbeeOnOffState='true';
+            state.textContent=endpoint.on_off_pending?words[lang].onOffReading
+                :!onOffKnown?words[lang].onOffUnknown
+                :actualOn?words[lang].on:words[lang].off;
+            toggle.addEventListener('change',()=>{
+                const requested=toggle.checked?1:0;
+                toggle.checked=actualOn;
+                void sendDeviceCommand('on_off',shortAddress,endpoint.id,requested,toggle,endpoint);
+            });
+            controls.append(toggle,state);
+            section.appendChild(controls);
+        }
+        if(inputClusters.includes(8)){
+            const levelKey=`${shortAddress}:${endpoint.id}`;
+            const target=deviceLevelTargets.get(levelKey)??{value:endpoint.level_known?Number(endpoint.level_value):0,dirty:false};
+            const slider=document.createElement('input');slider.type='range';slider.min='0';slider.max='254';slider.step='1';slider.value=String(target.value);slider.setAttribute('aria-label',words[lang].level);
+            const value=document.createElement('output');value.textContent=String(target.value);
+            const reported=document.createElement('span');reported.dataset.zigbeeLevelState='true';
+            reported.textContent=endpoint.level_pending?words[lang].onOffReading
+                :!endpoint.level_known?`${words[lang].currentLevel}: ${words[lang].levelUnknown}`
+                :`${words[lang].currentLevel}: ${endpoint.level_value}`;
+            const button=document.createElement('button');button.type='button';button.textContent=words[lang].setLevel;button.disabled=!target.dirty;
+            slider.addEventListener('input',()=>{
+                const next={value:Number(slider.value),dirty:true};
+                deviceLevelTargets.set(levelKey,next);
+                value.textContent=slider.value;button.disabled=false;
+            });
+            button.addEventListener('click',async()=>{
+                if(await sendDeviceCommand('level',shortAddress,endpoint.id,Number(slider.value),null,endpoint)){
+                    const current=deviceLevelTargets.get(levelKey);
+                    if(current)current.dirty=false;
+                    button.disabled=true;
+                }
+            });
+            const controls=document.createElement('div');controls.className='row';controls.append(slider,value,button);section.appendChild(controls);
+            section.appendChild(reported);
+        }
+        item.appendChild(section);
+    }
+}
+
+function deviceCapabilityStructure(details){
+    return JSON.stringify({
+        interview_pending:Boolean(details.interview_pending),
+        interview_complete:Boolean(details.interview_complete),
+        interview_failed:Boolean(details.interview_failed),
+        endpoints:(details.endpoints||[]).map(endpoint=>({
+            id:endpoint.id,profile:endpoint.profile,device:endpoint.device,
+            input:endpoint.input,output:endpoint.output,
+            clusters_truncated:endpoint.clusters_truncated
+        }))
+    });
+}
+function createDeviceRow(address){
+    const item=document.createElement('li');
+    item.dataset.shortAddress=String(address);
+    const label=document.createElement('strong');
+    label.textContent=`${words[lang].shortAddress}: 0x${address.toString(16).padStart(4,'0')}`;
+    item.appendChild(label);
+    const detailsButton=document.createElement('button');
+    detailsButton.type='button';
+    detailsButton.addEventListener('click',()=>loadDeviceCapabilities(address));
+    item.appendChild(detailsButton);
+    const capabilities=document.createElement('div');
+    capabilities.dataset.deviceCapabilities='true';
+    item.appendChild(capabilities);
+    return item;
+}
+
 async function refreshZigbee(){
     try{
         const response=await fetch('/api/zigbee/status',{cache:'no-store'});
         if(response.status===401){loggedIn=false;showAuth(words[lang].authFailed);return;}
         if(!response.ok)throw new Error('zigbee');
         const status=await response.json();
+        manualInterviewRow.style.display=status.device_capabilities_available?'flex':'none';
         const coordinator=document.getElementById('coordinator');
         coordinator.textContent=status.stack_ready?words[lang].ready:words[lang].loading;
         document.getElementById('network').textContent=status.formation_timed_out
@@ -300,9 +638,47 @@ async function refreshZigbee(){
             `0x${Number(status.last_signal_type).toString(16)} / ${status.last_bdb_status} / raw ${status.last_bdb_result} stage ${status.last_bdb_stage_name||status.last_bdb_stage} / err ${status.last_error}`;
         document.getElementById('nearbyCount').textContent=
             `${words[lang].deviceCount}: ${status.device_count}`;
-        document.getElementById('nearbyEmpty').textContent=status.device_count
-            ? words[lang].detailsPending:words[lang].emptyDevices;
-        document.getElementById('deviceList').replaceChildren();
+        const deviceList=document.getElementById('deviceList');
+        const existingRows=new Map([...deviceList.children].map(item=>[
+            Number(item.dataset.shortAddress),item
+        ]));
+        const shortAddresses=Array.isArray(status.short_addresses)
+            ? status.short_addresses.slice(0,16):[];
+        const visibleAddresses=[...new Set([...shortAddresses.map(Number),...manualDeviceAddresses])].slice(0,16);
+        for(const shortAddress of visibleAddresses){
+            const address=Number(shortAddress);
+            let item=existingRows.get(address);
+            if(!item)item=createDeviceRow(address);
+            existingRows.delete(address);
+            const detailsButton=item.querySelector('button');
+            detailsButton.hidden=!status.device_capabilities_available;
+            detailsButton.textContent=deviceCapabilityCache.has(address)
+                ?words[lang].refreshCapabilities:words[lang].readCapabilities;
+            const capabilities=item.querySelector('[data-device-capabilities]');
+            const details=deviceCapabilityCache.get(address);
+            if(status.device_capabilities_available&&details){
+                const signature=deviceCapabilityStructure(details);
+                if(item.dataset.capabilityStructure!==signature){
+                    capabilities.replaceChildren();
+                    item.dataset.capabilityStructure=signature;
+                    renderDeviceCapabilities(capabilities,address,details);
+                }else{
+                    updateDeviceCapabilityControls(address,details);
+                }
+            }
+            deviceList.appendChild(item);
+        }
+        for(const item of existingRows.values())item.remove();
+        const nearbyEmpty=document.getElementById('nearbyEmpty');
+        if(!status.device_count){
+            nearbyEmpty.textContent=words[lang].emptyDevices;
+        }else if(!status.short_address_details_available){
+            nearbyEmpty.textContent=words[lang].detailsUnavailable;
+        }else if(status.short_addresses_truncated){
+            nearbyEmpty.textContent=words[lang].addressesTruncated;
+        }else{
+            nearbyEmpty.textContent=words[lang].detailsPending;
+        }
         document.getElementById('createNetwork').disabled=!status.available||
             !status.stack_ready||status.network_formed||status.search_pending||
             status.formation_timed_out;
@@ -310,6 +686,9 @@ async function refreshZigbee(){
             status.join_seconds>0||status.search_pending;
         scanNearbyButton.disabled=!status.available||!status.stack_ready||
             status.search_pending||status.formation_timed_out||status.join_seconds>0;
+        for(const shortAddress of visibleAddresses){
+            void refreshDeviceCapabilityState(shortAddress);
+        }
     }catch(_){
         document.getElementById('coordinator').textContent=words[lang].unavailable;
         scanNearbyButton.disabled=true;
@@ -397,41 +776,9 @@ const char* state_name(hub::wifi::ProvisioningState state) noexcept {
     return "unknown";
 }
 
-esp_err_t http_root_redirect_handler(httpd_req_t* request) {
-    char host[128]{};
-    if (httpd_req_get_hdr_value_str(request, "Host", host, sizeof(host)) != ESP_OK) {
-        httpd_resp_set_status(request, "400 Bad Request");
-        return httpd_resp_sendstr(request, "host header required");
-    }
-    for (const char character : host) {
-        if (character == '\0') {
-            break;
-        }
-        const bool valid = (character >= 'a' && character <= 'z') ||
-                           (character >= 'A' && character <= 'Z') ||
-                           (character >= '0' && character <= '9') ||
-                           character == '.' || character == '-' ||
-                           character == ':' || character == '[' || character == ']';
-        if (!valid) {
-            httpd_resp_set_status(request, "400 Bad Request");
-            return httpd_resp_sendstr(request, "invalid host header");
-        }
-    }
-    char location[160]{};
-    const int length = std::snprintf(location, sizeof(location), "https://%s/", host);
-    if (length < 0 || static_cast<std::size_t>(length) >= sizeof(location)) {
-        httpd_resp_set_status(request, "400 Bad Request");
-        return httpd_resp_sendstr(request, "invalid host header");
-    }
-    httpd_resp_set_status(request, "308 Permanent Redirect");
-    httpd_resp_set_hdr(request, "Location", location);
-    httpd_resp_set_hdr(request, "Cache-Control", "no-store");
-    return httpd_resp_sendstr(request, "HTTPS required");
-}
-
 bool read_session_cookie(httpd_req_t* request, char* token,
                          std::size_t capacity) {
-    constexpr char kCookieName[] = "p4hub_session=";
+    constexpr char kCookieName[] = "p4hub_http_session=";
     constexpr std::size_t kTokenLength = 32;
     const std::size_t header_length = httpd_req_get_hdr_value_len(request, "Cookie");
     if (token == nullptr || capacity < kTokenLength + 1 ||
@@ -533,7 +880,7 @@ esp_err_t issue_session_cookie(httpd_req_t* request) {
     std::memset(session_cookie_response, 0, sizeof(session_cookie_response));
     const int cookie_length = std::snprintf(
         session_cookie_response, sizeof(session_cookie_response),
-        "p4hub_session=%s; Path=/; Max-Age=600; Secure; HttpOnly; SameSite=Strict",
+        "p4hub_http_session=%s; Path=/; Max-Age=600; HttpOnly; SameSite=Strict",
         session_token);
     std::memset(session_token, 0, sizeof(session_token));
     if (cookie_length < 0 || static_cast<std::size_t>(cookie_length) >=
@@ -570,7 +917,7 @@ esp_err_t require_authenticated_admin(httpd_req_t* request,
     return ESP_OK;
 }
 
-bool request_origin_is_local_https(httpd_req_t* request) {
+bool request_origin_is_local_http(httpd_req_t* request) {
     char host[128]{};
     char origin[160]{};
     if (httpd_req_get_hdr_value_str(request, "Host", host, sizeof(host)) != ESP_OK ||
@@ -578,7 +925,7 @@ bool request_origin_is_local_https(httpd_req_t* request) {
         return false;
     }
     char expected[160]{};
-    const int length = std::snprintf(expected, sizeof(expected), "https://%s", host);
+    const int length = std::snprintf(expected, sizeof(expected), "http://%s", host);
     return length > 0 && static_cast<std::size_t>(length) < sizeof(expected) &&
            std::strcmp(origin, expected) == 0;
 }
@@ -625,6 +972,8 @@ const char* request_action_name(hub::diagnostics::WebZigbeeAction action) {
         case WebZigbeeAction::create_network: return "create_network";
         case WebZigbeeAction::open_join_window: return "open_join_window";
         case WebZigbeeAction::scan_nearby: return "scan_nearby";
+        case WebZigbeeAction::set_device_on_off: return "set_device_on_off";
+        case WebZigbeeAction::set_device_level: return "set_device_level";
         case WebZigbeeAction::none: return "none";
     }
     return "none";
@@ -688,6 +1037,12 @@ esp_err_t root_handler(httpd_req_t* request) {
     return status;
 }
 
+esp_err_t favicon_handler(httpd_req_t* request) {
+    httpd_resp_set_status(request, "204 No Content");
+    httpd_resp_set_hdr(request, "Cache-Control", "no-store");
+    return httpd_resp_sendstr(request, "");
+}
+
 esp_err_t auth_status_handler(httpd_req_t* request) {
     const esp_err_t auth_status = require_authenticated_admin(request, true);
     if (auth_status != ESP_OK) {
@@ -708,9 +1063,9 @@ esp_err_t password_change_handler(httpd_req_t* request) {
     if (auth_status != ESP_OK) {
         return auth_status;
     }
-    if (!request_origin_is_local_https(request)) {
+    if (!request_origin_is_local_http(request)) {
         httpd_resp_set_status(request, "403 Forbidden");
-        return httpd_resp_sendstr(request, "same-origin HTTPS request required");
+        return httpd_resp_sendstr(request, "same-origin HTTP request required");
     }
     char password[65]{};
     std::size_t password_length = 0;
@@ -729,7 +1084,7 @@ esp_err_t password_change_handler(httpd_req_t* request) {
         return httpd_resp_sendstr(request, esp_err_to_name(status));
     }
     httpd_resp_set_hdr(request, "Set-Cookie",
-                       "p4hub_session=; Path=/; Max-Age=0; Secure; HttpOnly; SameSite=Strict");
+                       "p4hub_http_session=; Path=/; Max-Age=0; HttpOnly; SameSite=Strict");
     return httpd_resp_sendstr(request, "password changed");
 }
 
@@ -738,13 +1093,13 @@ esp_err_t auth_logout_handler(httpd_req_t* request) {
     if (auth_status != ESP_OK) {
         return auth_status;
     }
-    if (!request_origin_is_local_https(request)) {
+    if (!request_origin_is_local_http(request)) {
         httpd_resp_set_status(request, "403 Forbidden");
-        return httpd_resp_sendstr(request, "same-origin HTTPS request required");
+        return httpd_resp_sendstr(request, "same-origin HTTP request required");
     }
     web_security->revoke_session();
     httpd_resp_set_hdr(request, "Set-Cookie",
-                       "p4hub_session=; Path=/; Max-Age=0; Secure; HttpOnly; SameSite=Strict");
+                       "p4hub_http_session=; Path=/; Max-Age=0; HttpOnly; SameSite=Strict");
     return httpd_resp_sendstr(request, "signed out");
 }
 
@@ -759,12 +1114,16 @@ esp_err_t zigbee_request_status_handler(httpd_req_t* request) {
         httpd_resp_set_status(request, "503 Service Unavailable");
         return httpd_resp_sendstr(request, "approval status unavailable");
     }
-    char response[160]{};
+    char response[224]{};
     const int length = std::snprintf(
         response, sizeof(response),
-        "{\"id\":%lu,\"action\":\"%s\",\"state\":\"%s\",\"result\":%ld}",
+        "{\"id\":%lu,\"action\":\"%s\",\"state\":\"%s\",\"result\":%ld,"
+        "\"short_address\":%u,\"endpoint_id\":%u,\"value\":%u}",
         static_cast<unsigned long>(snapshot.id), request_action_name(snapshot.action),
-        request_state_name(snapshot.state), static_cast<long>(snapshot.result));
+        request_state_name(snapshot.state), static_cast<long>(snapshot.result),
+        static_cast<unsigned>(snapshot.short_address),
+        static_cast<unsigned>(snapshot.endpoint_id),
+        static_cast<unsigned>(snapshot.value));
     httpd_resp_set_type(request, "application/json");
     httpd_resp_set_hdr(request, "Cache-Control", "no-store");
     return httpd_resp_send(request, response, length);
@@ -781,20 +1140,47 @@ esp_err_t zigbee_status_handler(httpd_req_t* request) {
         httpd_resp_set_status(request, "503 Service Unavailable");
         return httpd_resp_sendstr(request, "Zigbee status unavailable");
     }
-    char response[384]{};
-    const int length = std::snprintf(
+    char response[512]{};
+    const int prefix_length = std::snprintf(
         response, sizeof(response),
         "{\"available\":true,\"stack_ready\":%s,\"network_formed\":%s,"
         "\"search_pending\":%s,\"formation_timed_out\":%s,"
-        "\"device_count\":%u,\"join_seconds\":%u,\"last_error\":%ld,"
-        "\"last_signal_type\":%u,\"last_bdb_status\":%u,"
-        "\"last_bdb_result\":%ld,\"last_bdb_stage\":%u,"
-        "\"last_bdb_stage_name\":\"%s\"}",
+        "\"device_count\":%u,\"short_address_details_available\":%s,"
+        "\"device_capabilities_available\":%s,"
+        "\"short_addresses\":[",
         snapshot.stack_ready ? "true" : "false",
         snapshot.network_formed ? "true" : "false",
         snapshot.search_pending ? "true" : "false",
         snapshot.formation_timed_out ? "true" : "false",
         static_cast<unsigned>(snapshot.device_count),
+        snapshot.short_address_details_available ? "true" : "false",
+        snapshot.device_capabilities_available ? "true" : "false");
+    if (prefix_length < 0 || static_cast<std::size_t>(prefix_length) >= sizeof(response)) {
+        httpd_resp_set_status(request, "500 Internal Server Error");
+        return httpd_resp_sendstr(request, "Zigbee status formatting failed");
+    }
+    std::size_t offset = static_cast<std::size_t>(prefix_length);
+    const std::size_t address_count = std::min<std::size_t>(
+        snapshot.short_address_count, snapshot.short_addresses.size());
+    for (std::size_t index = 0; index < address_count; ++index) {
+        const int address_length = std::snprintf(
+            response + offset, sizeof(response) - offset, "%s%u",
+            index == 0 ? "" : ",",
+            static_cast<unsigned>(snapshot.short_addresses[index]));
+        if (address_length < 0 ||
+            static_cast<std::size_t>(address_length) >= sizeof(response) - offset) {
+            httpd_resp_set_status(request, "500 Internal Server Error");
+            return httpd_resp_sendstr(request, "Zigbee status formatting failed");
+        }
+        offset += static_cast<std::size_t>(address_length);
+    }
+    const int suffix_length = std::snprintf(
+        response + offset, sizeof(response) - offset,
+        "],\"short_addresses_truncated\":%s,\"join_seconds\":%u,"
+        "\"last_error\":%ld,\"last_signal_type\":%u,\"last_bdb_status\":%u,"
+        "\"last_bdb_result\":%ld,\"last_bdb_stage\":%u,"
+        "\"last_bdb_stage_name\":\"%s\"}",
+        snapshot.short_addresses_truncated ? "true" : "false",
         static_cast<unsigned>(snapshot.pairing_seconds_remaining),
         static_cast<long>(snapshot.last_error),
         static_cast<unsigned>(snapshot.last_signal_type),
@@ -802,13 +1188,342 @@ esp_err_t zigbee_status_handler(httpd_req_t* request) {
         static_cast<long>(snapshot.last_bdb_result),
         static_cast<unsigned>(snapshot.last_bdb_stage),
         bdb_stage_name(snapshot.last_bdb_stage));
-    if (length < 0 || static_cast<std::size_t>(length) >= sizeof(response)) {
+    if (suffix_length < 0 ||
+        static_cast<std::size_t>(suffix_length) >= sizeof(response) - offset) {
         httpd_resp_set_status(request, "500 Internal Server Error");
         return httpd_resp_sendstr(request, "Zigbee status formatting failed");
     }
+    offset += static_cast<std::size_t>(suffix_length);
     httpd_resp_set_type(request, "application/json");
     httpd_resp_set_hdr(request, "Cache-Control", "no-store");
-    return httpd_resp_send(request, response, length);
+    return httpd_resp_send(request, response, static_cast<ssize_t>(offset));
+}
+
+esp_err_t zigbee_device_handler(httpd_req_t* request) {
+    const bool is_read = request->method == HTTP_GET;
+    const esp_err_t auth_status = require_authenticated_admin(request, is_read);
+    if (auth_status != ESP_OK) {
+        return auth_status;
+    }
+    if (!is_read && !request_origin_is_local_http(request)) {
+        httpd_resp_set_status(request, "403 Forbidden");
+        return httpd_resp_sendstr(request, "same-origin HTTP request required");
+    }
+
+    char values[160]{};
+    char short_address_text[16]{};
+    char endpoint_text[8]{};
+    char value_text[8]{};
+    char operation[24]{};
+    std::uint16_t short_address = 0;
+    std::uint32_t endpoint_value = 0;
+    std::uint32_t command_value = 0;
+    if (is_read) {
+        if (httpd_req_get_url_query_str(request, values, sizeof(values)) != ESP_OK ||
+            httpd_query_key_value(values, "address", short_address_text,
+                                  sizeof(short_address_text)) != ESP_OK) {
+            httpd_resp_set_status(request, "400 Bad Request");
+            return httpd_resp_sendstr(request, "address query parameter required");
+        }
+    } else {
+        std::size_t body_length = 0;
+        if (read_request_body(request, values, sizeof(values), &body_length) != ESP_OK ||
+            httpd_query_key_value(values, "operation", operation,
+                                  sizeof(operation)) != ESP_OK ||
+            httpd_query_key_value(values, "address", short_address_text,
+                                  sizeof(short_address_text)) != ESP_OK) {
+            httpd_resp_set_status(request, "400 Bad Request");
+            return httpd_resp_sendstr(request, "invalid device request");
+        }
+        (void)body_length;
+    }
+    char* end = nullptr;
+    const unsigned long parsed_address = std::strtoul(short_address_text, &end, 10);
+    if (end == short_address_text || *end != '\0' || parsed_address == 0 ||
+        parsed_address >= 0xFFFFUL) {
+        httpd_resp_set_status(request, "400 Bad Request");
+        return httpd_resp_sendstr(request, "invalid short address");
+    }
+    short_address = static_cast<std::uint16_t>(parsed_address);
+
+    if (!is_read) {
+        hub::radio::ZigbeeCoordinatorSnapshot coordinator{};
+        if (zigbee_coordinator == nullptr ||
+            !zigbee_coordinator->read_snapshot(&coordinator) ||
+            !coordinator.available || !coordinator.stack_ready) {
+            httpd_resp_set_status(request, "503 Service Unavailable");
+            return httpd_resp_sendstr(request, "Zigbee coordinator unavailable");
+        }
+        if (!coordinator.network_formed) {
+            httpd_resp_set_status(request, "409 Conflict");
+            return httpd_resp_sendstr(request, "Zigbee network is not formed");
+        }
+    }
+
+    if (!is_read && std::strcmp(operation, "interview") == 0) {
+        const esp_err_t status = zigbee_coordinator == nullptr
+            ? ESP_ERR_INVALID_STATE
+            : zigbee_coordinator->request_device_interview(short_address);
+        if (status != ESP_OK) {
+            httpd_resp_set_status(request, "409 Conflict");
+            return httpd_resp_sendstr(request, "device interview unavailable");
+        }
+        httpd_resp_set_status(request, "202 Accepted");
+        httpd_resp_set_type(request, "application/json");
+        httpd_resp_set_hdr(request, "Cache-Control", "no-store");
+        return httpd_resp_sendstr(request, "{\"accepted\":true}");
+    }
+
+    hub::radio::ZigbeeDeviceCapabilities capabilities{};
+    if (zigbee_coordinator == nullptr ||
+        !zigbee_coordinator->read_device_capabilities(short_address,
+                                                       &capabilities)) {
+        httpd_resp_set_status(request, "404 Not Found");
+        return httpd_resp_sendstr(request, "device capabilities unavailable");
+    }
+
+    const bool read_on_off = std::strcmp(operation, "read_on_off") == 0;
+    const bool read_level = std::strcmp(operation, "read_level") == 0;
+    if (!is_read && (read_on_off || read_level)) {
+        if (httpd_query_key_value(values, "endpoint", endpoint_text,
+                                  sizeof(endpoint_text)) != ESP_OK) {
+            httpd_resp_set_status(request, "400 Bad Request");
+            return httpd_resp_sendstr(request, "endpoint required");
+        }
+        end = nullptr;
+        const unsigned long parsed_endpoint = std::strtoul(endpoint_text, &end, 10);
+        if (end == endpoint_text || *end != '\0' || parsed_endpoint == 0 ||
+            parsed_endpoint > 240) {
+            httpd_resp_set_status(request, "400 Bad Request");
+            return httpd_resp_sendstr(request, "invalid endpoint");
+        }
+        if (!capabilities.interview_complete || capabilities.interview_failed) {
+            httpd_resp_set_status(request, "409 Conflict");
+            return httpd_resp_sendstr(request, "device interview is not complete");
+        }
+        const auto endpoint = std::find_if(
+            capabilities.endpoints.begin(),
+            capabilities.endpoints.begin() + capabilities.endpoint_count,
+            [parsed_endpoint](const auto& item) {
+                return item.endpoint_id == parsed_endpoint;
+            });
+        if (endpoint == capabilities.endpoints.begin() +
+                            capabilities.endpoint_count) {
+            httpd_resp_set_status(request, "409 Conflict");
+            return httpd_resp_sendstr(request, "endpoint not discovered");
+        }
+        const auto cluster_end = endpoint->input_clusters.begin() +
+                                 endpoint->input_cluster_count;
+        const std::uint16_t required_cluster = read_on_off
+            ? hub::radio::kZigbeeOnOffClusterId
+            : hub::radio::kZigbeeLevelControlClusterId;
+        if (std::find(endpoint->input_clusters.begin(), cluster_end,
+                      required_cluster) == cluster_end) {
+            httpd_resp_set_status(request, "409 Conflict");
+            return httpd_resp_sendstr(request, "requested cluster not advertised");
+        }
+        const bool read_pending = read_on_off
+            ? endpoint->on_off_state.read_pending
+            : endpoint->level_state.read_pending;
+        if (!read_pending) {
+            const esp_err_t status = read_on_off
+                ? zigbee_coordinator->request_device_on_off_read(
+                      short_address, static_cast<std::uint8_t>(parsed_endpoint))
+                : zigbee_coordinator->request_device_level_read(
+                      short_address, static_cast<std::uint8_t>(parsed_endpoint));
+            if (status != ESP_OK) {
+                httpd_resp_set_status(request, "503 Service Unavailable");
+                return httpd_resp_sendstr(request, esp_err_to_name(status));
+            }
+        }
+        httpd_resp_set_status(request, "202 Accepted");
+        httpd_resp_set_type(request, "application/json");
+        httpd_resp_set_hdr(request, "Cache-Control", "no-store");
+        return httpd_resp_sendstr(request, "{\"accepted\":true}");
+    }
+
+    if (!is_read) {
+        if (httpd_query_key_value(values, "endpoint", endpoint_text,
+                                  sizeof(endpoint_text)) != ESP_OK ||
+            httpd_query_key_value(values, "value", value_text,
+                                  sizeof(value_text)) != ESP_OK) {
+            httpd_resp_set_status(request, "400 Bad Request");
+            return httpd_resp_sendstr(request, "endpoint and value required");
+        }
+        end = nullptr;
+        const unsigned long parsed_endpoint = std::strtoul(endpoint_text, &end, 10);
+        if (end == endpoint_text || *end != '\0' || parsed_endpoint == 0 ||
+            parsed_endpoint > 240) {
+            httpd_resp_set_status(request, "400 Bad Request");
+            return httpd_resp_sendstr(request, "invalid endpoint");
+        }
+        endpoint_value = static_cast<std::uint32_t>(parsed_endpoint);
+        end = nullptr;
+        const unsigned long parsed_value = std::strtoul(value_text, &end, 10);
+        if (end == value_text || *end != '\0' || parsed_value > 254) {
+            httpd_resp_set_status(request, "400 Bad Request");
+            return httpd_resp_sendstr(request, "invalid value");
+        }
+        command_value = static_cast<std::uint32_t>(parsed_value);
+
+        const bool set_on_off = std::strcmp(operation, "on_off") == 0;
+        const bool set_level = std::strcmp(operation, "level") == 0;
+        if ((!set_on_off && !set_level) || (set_on_off && command_value > 1) ||
+            !capabilities.interview_complete || capabilities.interview_failed) {
+            httpd_resp_set_status(request, "409 Conflict");
+            return httpd_resp_sendstr(request, "device capability not available");
+        }
+        const auto endpoint = std::find_if(
+            capabilities.endpoints.begin(),
+            capabilities.endpoints.begin() + capabilities.endpoint_count,
+            [endpoint_value](const auto& item) {
+                return item.endpoint_id == endpoint_value;
+            });
+        if (endpoint == capabilities.endpoints.begin() +
+                            capabilities.endpoint_count) {
+            httpd_resp_set_status(request, "409 Conflict");
+            return httpd_resp_sendstr(request, "endpoint not discovered");
+        }
+        const std::uint16_t required_cluster = set_on_off
+            ? hub::radio::kZigbeeOnOffClusterId
+            : hub::radio::kZigbeeLevelControlClusterId;
+        const auto cluster_end = endpoint->input_clusters.begin() +
+                                 endpoint->input_cluster_count;
+        if (std::find(endpoint->input_clusters.begin(), cluster_end,
+                      required_cluster) == cluster_end) {
+            httpd_resp_set_status(request, "409 Conflict");
+            return httpd_resp_sendstr(request, "cluster not advertised by endpoint");
+        }
+        std::uint32_t request_id = 0;
+        const auto action = set_on_off
+            ? hub::diagnostics::WebZigbeeAction::set_device_on_off
+            : hub::diagnostics::WebZigbeeAction::set_device_level;
+        const esp_err_t status = web_zigbee_approval == nullptr
+            ? ESP_ERR_INVALID_STATE
+            : web_zigbee_approval->request_approved(
+                  action, short_address,
+                  static_cast<std::uint8_t>(endpoint_value),
+                  static_cast<std::uint8_t>(command_value), &request_id);
+        if (status != ESP_OK) {
+            httpd_resp_set_status(request, "409 Conflict");
+            return httpd_resp_sendstr(request, "another request is already pending");
+        }
+        char accepted[80]{};
+        const int length = std::snprintf(
+            accepted, sizeof(accepted),
+            "{\"accepted\":true,\"id\":%lu,\"state\":\"approved\"}",
+            static_cast<unsigned long>(request_id));
+        httpd_resp_set_status(request, "202 Accepted");
+        httpd_resp_set_type(request, "application/json");
+        httpd_resp_set_hdr(request, "Cache-Control", "no-store");
+        return httpd_resp_send(request, accepted, length);
+    }
+
+    char response[2048]{};
+    int length = std::snprintf(
+        response, sizeof(response),
+        "{\"address\":%u,\"interview_complete\":%s,"
+        "\"interview_pending\":%s,\"interview_failed\":%s,"
+        "\"interview_error\":%ld,\"endpoints\":[",
+        static_cast<unsigned>(capabilities.short_address),
+        capabilities.interview_complete ? "true" : "false",
+        capabilities.interview_pending ? "true" : "false",
+        capabilities.interview_failed ? "true" : "false",
+        static_cast<long>(capabilities.interview_error));
+    if (length < 0 || static_cast<std::size_t>(length) >= sizeof(response)) {
+        httpd_resp_set_status(request, "500 Internal Server Error");
+        return httpd_resp_sendstr(request, "device status formatting failed");
+    }
+    std::size_t offset = static_cast<std::size_t>(length);
+    const std::uint32_t now_ms = static_cast<std::uint32_t>(
+        esp_timer_get_time() / 1000);
+    const std::size_t endpoint_count = std::min<std::size_t>(
+        capabilities.endpoint_count, capabilities.endpoints.size());
+    for (std::size_t endpoint_index = 0;
+         endpoint_index < endpoint_count; ++endpoint_index) {
+        const auto& endpoint = capabilities.endpoints[endpoint_index];
+        const std::size_t input_count = std::min<std::size_t>(
+            endpoint.input_cluster_count, endpoint.input_clusters.size());
+        const std::size_t output_count = std::min<std::size_t>(
+            endpoint.output_cluster_count, endpoint.output_clusters.size());
+        const bool on_off_known = hub::radio::zigbee_on_off_state_is_fresh(
+            endpoint.on_off_state, now_ms);
+        const bool level_known = hub::radio::zigbee_level_state_is_fresh(
+            endpoint.level_state, now_ms);
+        length = std::snprintf(
+            response + offset, sizeof(response) - offset,
+            "%s{\"id\":%u,\"profile\":%u,\"device\":%u,"
+            "\"on_off_known\":%s,\"on_off_value\":%s,"
+            "\"on_off_pending\":%s,\"on_off_updated_at_ms\":%lu,"
+            "\"level_known\":%s,\"level_value\":%u,"
+            "\"level_pending\":%s,\"level_updated_at_ms\":%lu,"
+            "\"input\":[",
+            endpoint_index == 0 ? "" : ",",
+            static_cast<unsigned>(endpoint.endpoint_id),
+            static_cast<unsigned>(endpoint.profile_id),
+            static_cast<unsigned>(endpoint.device_id),
+            on_off_known ? "true" : "false",
+            endpoint.on_off_state.value ? "true" : "false",
+            endpoint.on_off_state.read_pending ? "true" : "false",
+            static_cast<unsigned long>(endpoint.on_off_state.updated_at_ms),
+            level_known ? "true" : "false",
+            static_cast<unsigned>(endpoint.level_state.value),
+            endpoint.level_state.read_pending ? "true" : "false",
+            static_cast<unsigned long>(endpoint.level_state.updated_at_ms));
+        if (length < 0 || static_cast<std::size_t>(length) >= sizeof(response) - offset) {
+            httpd_resp_set_status(request, "500 Internal Server Error");
+            return httpd_resp_sendstr(request, "device status formatting failed");
+        }
+        offset += static_cast<std::size_t>(length);
+        for (std::size_t index = 0; index < input_count; ++index) {
+            length = std::snprintf(
+                response + offset, sizeof(response) - offset, "%s%u",
+                index == 0 ? "" : ",",
+                static_cast<unsigned>(endpoint.input_clusters[index]));
+            if (length < 0 || static_cast<std::size_t>(length) >= sizeof(response) - offset) {
+                httpd_resp_set_status(request, "500 Internal Server Error");
+                return httpd_resp_sendstr(request, "device status formatting failed");
+            }
+            offset += static_cast<std::size_t>(length);
+        }
+        length = std::snprintf(response + offset, sizeof(response) - offset,
+                               "],\"output\":[");
+        if (length < 0 || static_cast<std::size_t>(length) >= sizeof(response) - offset) {
+            httpd_resp_set_status(request, "500 Internal Server Error");
+            return httpd_resp_sendstr(request, "device status formatting failed");
+        }
+        offset += static_cast<std::size_t>(length);
+        for (std::size_t index = 0; index < output_count; ++index) {
+            length = std::snprintf(
+                response + offset, sizeof(response) - offset, "%s%u",
+                index == 0 ? "" : ",",
+                static_cast<unsigned>(endpoint.output_clusters[index]));
+            if (length < 0 || static_cast<std::size_t>(length) >= sizeof(response) - offset) {
+                httpd_resp_set_status(request, "500 Internal Server Error");
+                return httpd_resp_sendstr(request, "device status formatting failed");
+            }
+            offset += static_cast<std::size_t>(length);
+        }
+        length = std::snprintf(
+            response + offset, sizeof(response) - offset,
+            "],\"clusters_truncated\":%s}",
+            endpoint.clusters_truncated ? "true" : "false");
+        if (length < 0 || static_cast<std::size_t>(length) >= sizeof(response) - offset) {
+            httpd_resp_set_status(request, "500 Internal Server Error");
+            return httpd_resp_sendstr(request, "device status formatting failed");
+        }
+        offset += static_cast<std::size_t>(length);
+    }
+    length = std::snprintf(response + offset, sizeof(response) - offset,
+                           "]}");
+    if (length < 0 || static_cast<std::size_t>(length) >= sizeof(response) - offset) {
+        httpd_resp_set_status(request, "500 Internal Server Error");
+        return httpd_resp_sendstr(request, "device status formatting failed");
+    }
+    offset += static_cast<std::size_t>(length);
+    httpd_resp_set_type(request, "application/json");
+    httpd_resp_set_hdr(request, "Cache-Control", "no-store");
+    return httpd_resp_send(request, response, static_cast<ssize_t>(offset));
 }
 
 esp_err_t thread_scan_status_handler(httpd_req_t* request) {
@@ -847,9 +1562,9 @@ esp_err_t thread_scan_handler(httpd_req_t* request) {
     if (auth_status != ESP_OK) {
         return auth_status;
     }
-    if (!request_origin_is_local_https(request)) {
+    if (!request_origin_is_local_http(request)) {
         httpd_resp_set_status(request, "403 Forbidden");
-        return httpd_resp_sendstr(request, "same-origin HTTPS request required");
+        return httpd_resp_sendstr(request, "same-origin HTTP request required");
     }
     portENTER_CRITICAL(&thread_scan_mux);
     if (thread_scan_running) {
@@ -882,9 +1597,9 @@ esp_err_t decide_zigbee_web_request(httpd_req_t* request, bool approve) {
     if (auth_status != ESP_OK) {
         return auth_status;
     }
-    if (!request_origin_is_local_https(request)) {
+    if (!request_origin_is_local_http(request)) {
         httpd_resp_set_status(request, "403 Forbidden");
-        return httpd_resp_sendstr(request, "same-origin HTTPS request required");
+        return httpd_resp_sendstr(request, "same-origin HTTP request required");
     }
     if (web_zigbee_approval == nullptr) {
         httpd_resp_set_status(request, "503 Service Unavailable");
@@ -948,9 +1663,9 @@ esp_err_t submit_zigbee_web_request(httpd_req_t* request,
     if (auth_status != ESP_OK) {
         return auth_status;
     }
-    if (!request_origin_is_local_https(request)) {
+    if (!request_origin_is_local_http(request)) {
         httpd_resp_set_status(request, "403 Forbidden");
-        return httpd_resp_sendstr(request, "same-origin HTTPS request required");
+        return httpd_resp_sendstr(request, "same-origin HTTP request required");
     }
     hub::radio::ZigbeeCoordinatorSnapshot zigbee_snapshot{};
     if (zigbee_coordinator == nullptr ||
@@ -973,15 +1688,15 @@ esp_err_t submit_zigbee_web_request(httpd_req_t* request,
         return httpd_resp_sendstr(request, "Zigbee action unavailable in current state");
     }
     std::uint32_t request_id = 0;
-    const esp_err_t status = web_zigbee_approval->request(action, &request_id);
+    const esp_err_t status = web_zigbee_approval->request_approved(action, &request_id);
     if (status != ESP_OK) {
         httpd_resp_set_status(request, "409 Conflict");
-        return httpd_resp_sendstr(request, "another request is awaiting confirmation");
+        return httpd_resp_sendstr(request, "another request is already pending");
     }
     char response[96]{};
     const int length = std::snprintf(
         response, sizeof(response),
-        "{\"accepted\":true,\"id\":%lu,\"state\":\"awaiting_touch\"}",
+        "{\"accepted\":true,\"id\":%lu,\"state\":\"approved\"}",
         static_cast<unsigned long>(request_id));
     httpd_resp_set_status(request, "202 Accepted");
     httpd_resp_set_type(request, "application/json");
@@ -1162,7 +1877,7 @@ esp_err_t start_http(wifi::Provisioning& provisioning,
                      radio::IZigbeeCoordinator& zigbee,
                      WebSecurity& security,
                      WebZigbeeApproval& approval) noexcept {
-    if (http_server_handle != nullptr || https_server_handle != nullptr) {
+    if (http_server_handle != nullptr) {
         return ESP_ERR_INVALID_STATE;
     }
     provisioning_service = &provisioning;
@@ -1177,31 +1892,21 @@ esp_err_t start_http(wifi::Provisioning& provisioning,
         return status;
     }
 
-    std::size_t certificate_length = 0;
-    std::size_t private_key_length = 0;
-    const std::uint8_t* certificate = security.certificate(&certificate_length);
-    const std::uint8_t* private_key = security.private_key(&private_key_length);
-    if (certificate == nullptr || private_key == nullptr) {
-        return ESP_ERR_INVALID_STATE;
-    }
-
-    httpd_ssl_config_t https_config = HTTPD_SSL_CONFIG_DEFAULT();
-    https_config.httpd.max_open_sockets = 3;
-    https_config.httpd.max_uri_handlers = 15;
-    https_config.httpd.uri_match_fn = httpd_uri_match_wildcard;
-    https_config.servercert = certificate;
-    https_config.servercert_len = certificate_length;
-    https_config.prvtkey_pem = private_key;
-    https_config.prvtkey_len = private_key_length;
-    status = httpd_ssl_start(&https_server_handle, &https_config);
+    httpd_config_t config = HTTPD_DEFAULT_CONFIG();
+    config.server_port = 80;
+    config.stack_size = 8192;
+    config.max_open_sockets = 3;
+    config.max_uri_handlers = 18;
+    config.lru_purge_enable = true;
+    config.uri_match_fn = httpd_uri_match_wildcard;
+    status = httpd_start(&http_server_handle, &config);
     if (status != ESP_OK) {
-        https_server_handle = nullptr;
-        ESP_LOGE(kTag, "HTTPS server start failed: %s", esp_err_to_name(status));
+        ESP_LOGE(kTag, "HTTP server start failed: %s", esp_err_to_name(status));
+        http_server_handle = nullptr;
         return status;
     }
 
-    const auto register_route = [](httpd_handle_t server, const char* uri,
-                                   httpd_method_t method,
+    const auto register_route = [](const char* uri, httpd_method_t method,
                                    esp_err_t (*handler)(httpd_req_t*)) {
         const httpd_uri_t route = {
             .uri = uri,
@@ -1209,57 +1914,36 @@ esp_err_t start_http(wifi::Provisioning& provisioning,
             .handler = handler,
             .user_ctx = nullptr,
         };
-        return httpd_register_uri_handler(server, &route);
+        return httpd_register_uri_handler(http_server_handle, &route);
     };
 
-    status = register_route(https_server_handle, "/", HTTP_GET, root_handler);
-    if (status == ESP_OK) status = register_route(https_server_handle, "/api/status", HTTP_GET, status_handler);
-    if (status == ESP_OK) status = register_route(https_server_handle, "/api/c6/status", HTTP_GET, c6_status_handler);
-    if (status == ESP_OK) status = register_route(https_server_handle, "/api/auth/status", HTTP_GET, auth_status_handler);
-    if (status == ESP_OK) status = register_route(https_server_handle, "/api/auth/password", HTTP_POST, password_change_handler);
-    if (status == ESP_OK) status = register_route(https_server_handle, "/api/auth/logout", HTTP_POST, auth_logout_handler);
-    if (status == ESP_OK) status = register_route(https_server_handle, "/api/zigbee/request", HTTP_GET, zigbee_request_status_handler);
-    if (status == ESP_OK) status = register_route(https_server_handle, "/api/zigbee/create", HTTP_POST, zigbee_create_handler);
-    if (status == ESP_OK) status = register_route(https_server_handle, "/api/zigbee/join", HTTP_POST, zigbee_join_handler);
-    if (status == ESP_OK) status = register_route(https_server_handle, "/api/zigbee/status", HTTP_GET, zigbee_status_handler);
-    if (status == ESP_OK) status = register_route(https_server_handle, "/api/zigbee/approve", HTTP_POST, zigbee_approve_handler);
-    if (status == ESP_OK) status = register_route(https_server_handle, "/api/zigbee/reject", HTTP_POST, zigbee_reject_handler);
-    if (status == ESP_OK) status = register_route(https_server_handle, "/api/zigbee/scan", HTTP_POST, zigbee_scan_handler);
-    if (status == ESP_OK) status = register_route(https_server_handle, "/api/thread/status", HTTP_GET, thread_scan_status_handler);
-    if (status == ESP_OK) status = register_route(https_server_handle, "/api/thread/scan", HTTP_POST, thread_scan_handler);
-    if (status != ESP_OK) {
-        ESP_LOGE(kTag, "HTTPS route registration failed: %s", esp_err_to_name(status));
-        (void)httpd_ssl_stop(https_server_handle);
-        https_server_handle = nullptr;
-        return status;
-    }
-
-    httpd_config_t config = HTTPD_DEFAULT_CONFIG();
-    config.server_port = 80;
-    config.max_open_sockets = 2;
-    config.lru_purge_enable = true;
-    config.uri_match_fn = httpd_uri_match_wildcard;
-    status = httpd_start(&http_server_handle, &config);
-    if (status != ESP_OK) {
-        ESP_LOGE(kTag, "HTTP server start failed: %s", esp_err_to_name(status));
-        http_server_handle = nullptr;
-        (void)httpd_ssl_stop(https_server_handle);
-        https_server_handle = nullptr;
-        return status;
-    }
-
-    status = register_route(http_server_handle, "/", HTTP_GET,
-                            http_root_redirect_handler);
+    status = register_route("/", HTTP_GET, root_handler);
+    if (status == ESP_OK) status = register_route("/favicon.ico", HTTP_GET, favicon_handler);
+    if (status == ESP_OK) status = register_route("/api/status", HTTP_GET, status_handler);
+    if (status == ESP_OK) status = register_route("/api/c6/status", HTTP_GET, c6_status_handler);
+    if (status == ESP_OK) status = register_route("/api/auth/status", HTTP_GET, auth_status_handler);
+    if (status == ESP_OK) status = register_route("/api/auth/password", HTTP_POST, password_change_handler);
+    if (status == ESP_OK) status = register_route("/api/auth/logout", HTTP_POST, auth_logout_handler);
+    if (status == ESP_OK) status = register_route("/api/zigbee/request", HTTP_GET, zigbee_request_status_handler);
+    if (status == ESP_OK) status = register_route("/api/zigbee/create", HTTP_POST, zigbee_create_handler);
+    if (status == ESP_OK) status = register_route("/api/zigbee/join", HTTP_POST, zigbee_join_handler);
+    if (status == ESP_OK) status = register_route("/api/zigbee/status", HTTP_GET, zigbee_status_handler);
+    if (status == ESP_OK) status = register_route("/api/zigbee/device", HTTP_GET, zigbee_device_handler);
+    if (status == ESP_OK) status = register_route("/api/zigbee/device", HTTP_POST, zigbee_device_handler);
+    if (status == ESP_OK) status = register_route("/api/zigbee/approve", HTTP_POST, zigbee_approve_handler);
+    if (status == ESP_OK) status = register_route("/api/zigbee/reject", HTTP_POST, zigbee_reject_handler);
+    if (status == ESP_OK) status = register_route("/api/zigbee/scan", HTTP_POST, zigbee_scan_handler);
+    if (status == ESP_OK) status = register_route("/api/thread/status", HTTP_GET, thread_scan_status_handler);
+    if (status == ESP_OK) status = register_route("/api/thread/scan", HTTP_POST, thread_scan_handler);
     if (status != ESP_OK) {
         ESP_LOGE(kTag, "HTTP route registration failed: %s", esp_err_to_name(status));
         (void)httpd_stop(http_server_handle);
         http_server_handle = nullptr;
-        (void)httpd_ssl_stop(https_server_handle);
-        https_server_handle = nullptr;
         return status;
     }
 
-    ESP_LOGI(kTag, "HTTPS Web UI listening on port 443; HTTP redirects to HTTPS");
+    ESP_LOGW(kTag,
+             "HTTP Web UI listening on port 80; credentials and sessions are unencrypted");
     return ESP_OK;
 }
 

@@ -1,0 +1,173 @@
+Command: /home/konatsu/.espressif/python_env/idf5.5_py3.14_env/bin/python /home/konatsu/esp/esp-idf/tools/idf_monitor.py -p /dev/ttyACM0 -b 115200 --toolchain-prefix riscv32-esp-elf- --target esp32p4 --revision 301 --decode-panic backtrace /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-h2-rcp-test/hub_p4_esp_hosted_host.elf /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-h2-rcp-test/bootloader/bootloader.elf -m '/home/konatsu/.espressif/python_env/idf5.5_py3.14_env/bin/python' '/home/konatsu/esp/esp-idf/tools/idf.py' '-B' 'build-h2-rcp-test' '-p' '/dev/ttyACM0'
+ESP-ROM:esp32p4-eco7-20260109
+Build:Jan  9 2026
+rst:0x17 (CHIP_USB_UART_RESET),boot:0xc (SPI_FAST_FLASH_BOOT)
+Core0 Saved PC:0x4ff5029a
+Core1 Saved PC:0x4fc06020
+use legacy efuse key
+SPI mode:DIO, clock div:1
+load:0x4ffb6240,len:0x2924
+load:0x4ffac2c0,len:0x1000
+load:0x4ffaefc0,len:0x5318
+entry 0x4ffac2ca
+[0;32mI (10) boot: ESP-IDF v5.5.5 2nd stage bootloader[0m
+[0;32mI (10) boot: compile time Nov  8 2026 12:08:39[0m
+[0;32mI (10) boot: Multicore bootloader[0m
+[0;32mI (12) boot: chip revision: v3.2[0m
+[0;32mI (12) boot: efuse block revision: v1.2[0m
+[0;32mI (12) boot.esp32p4: SPI Speed      : 80MHz[0m
+[0;32mI (12) boot.esp32p4: SPI Mode       : DIO[0m
+[0;32mI (13) boot.esp32p4: SPI Flash Size : 16MB[0m
+[0;32mI (13) boot: Enabling RNG early entropy source...[0m
+[0;32mI (13) boot: Partition Table:[0m
+[0;32mI (14) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (14) boot:  0 nvs              WiFi data        01 02 00012000 00006000[0m
+[0;32mI (15) boot:  1 phy_init         RF data          01 01 00018000 00001000[0m
+[0;32mI (15) boot:  2 factory          factory app      00 00 00020000 003f0000[0m
+[0;32mI (16) boot:  3 c6_fw            Unknown data     01 40 00410000 00200000[0m
+[0;32mI (16) boot:  4 wifi_keys        NVS keys         01 04 00610000 00001000[0m
+[0;32mI (17) boot:  5 wifi_cfg         WiFi data        01 02 00611000 00006000[0m
+[0;32mI (18) boot: End of partition table[0m
+[0;32mI (18) esp_image: segment 0: paddr=00020020 vaddr=40150020 size=5d294h (381588) map[0m
+[0;32mI (71) esp_image: segment 1: paddr=0007d2bc vaddr=30100000 size=001f4h (   500) load[0m
+[0;32mI (72) esp_image: segment 2: paddr=0007d4b8 vaddr=30100200 size=00048h (    72) load[0m
+[0;32mI (73) esp_image: segment 3: paddr=0007d508 vaddr=4ff20000 size=02b10h ( 11024) load[0m
+[0;32mI (77) esp_image: segment 4: paddr=00080020 vaddr=40000020 size=145368h (1332072) map[0m
+[0;32mI (256) esp_image: segment 5: paddr=001c5390 vaddr=4ff22b10 size=147e4h ( 83940) load[0m
+[0;32mI (270) esp_image: segment 6: paddr=001d9b7c vaddr=4ff37300 size=04ca4h ( 19620) load[0m
+[0;32mI (275) esp_image: segment 7: paddr=001de828 vaddr=50108080 size=0000ch (    12) load[0m
+[0;32mI (280) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (281) boot: Checking flash encryption...[0m
+[0;32mI (281) flash_encrypt: flash encryption is enabled (1 plaintext flashes left)[0m
+[0;32mI (281) boot: Disabling RNG early entropy source...[0m
+[0;32mI (285) hex_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (285) hex_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (286) hex_psram: DriveStr.    : 0x00 (25 Ohm)[0m
+[0;32mI (286) hex_psram: dev id       : 0x03 (generation 4)[0m
+[0;32mI (286) hex_psram: density      : 0x07 (256 Mbit)[0m
+[0;32mI (287) hex_psram: good-die     : 0x06 (Pass)[0m
+[0;32mI (287) hex_psram: SRF          : 0x02 (Slow Refresh)[0m
+[0;32mI (287) hex_psram: BurstType    : 0x00 ( Wrap)[0m
+[0;32mI (288) hex_psram: BurstLen     : 0x03 (2048 Byte)[0m
+[0;32mI (288) hex_psram: BitMode      : 0x01 (X16 Mode)[0m
+[0;32mI (289) hex_psram: Readlatency  : 0x04 (14 cycles@Fixed)[0m
+[0;32mI (289) hex_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (289) MSPI Timing: Enter psram timing tuning[0m
+[0;32mI (450) esp_psram: Found 32MB PSRAM device[0m
+[0;32mI (450) esp_psram: Speed: 200MHz[0m
+[0;32mI (451) hex_psram: psram CS IO is dedicated[0m
+[0;32mI (451) cpu_start: Multicore app[0m
+[0;32mI (1671) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (1681) cpu_start: Pro cpu start user code[0m
+[0;32mI (1681) cpu_start: cpu freq: 400000000 Hz[0m
+[0;32mI (1681) app_init: Application information:[0m
+[0;32mI (1681) app_init: Project name:     hub_p4_esp_hosted_host[0m
+[0;32mI (1681) app_init: App version:      c7cd5d5-dirty[0m
+[0;32mI (1681) app_init: Compile time:     Nov  8 2026 12:10:19[0m
+[0;32mI (1682) app_init: ELF file SHA256:  b6a79b857...[0m
+[0;32mI (1682) app_init: ESP-IDF:          v5.5.5[0m
+[0;32mI (1682) efuse_init: Min chip rev:     v3.1[0m
+[0;32mI (1682) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (1682) efuse_init: Chip rev:         v3.2[0m
+[0;32mI (1683) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1683) heap_init: At 4FF52FE0 len 00067FE0 (415 KiB): RETENT_RAM[0m
+[0;32mI (1683) heap_init: At 4FFBAFC0 len 00004BF0 (18 KiB): RAM[0m
+[0;32mI (1684) heap_init: At 5010808C len 00007F74 (31 KiB): RTCRAM[0m
+[0;32mI (1684) heap_init: At 30100248 len 00001DB8 (7 KiB): SPM[0m
+[0;32mI (1684) esp_psram: Adding pool of 32768K of PSRAM memory to heap allocator[0m
+[0;32mI (1685) spi_flash: detected chip: boya[0m
+[0;32mI (1685) spi_flash: flash io: dio[0m
+[0;32mI (1687) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (1687) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (1689) eh_mcu_transport: transport_init: probing bus backend[0m
+[0;32mI (1689) eh_sdio: transport[host]: SDIO 4-bit 5000 kHz CLK=18 CMD=19 D0=14 D1=15 D2=16 D3=17 RESET=54[0m
+[0;33mW (1690) eh_sdio: SDIO clock freq set to [5000]KHz, Max possible (on PCB) is 40000KHz[0m
+[0;32mI (1690) eh_sdio: sdio_data_to_rx_buf_task started[0m
+[0;32mI (1690) eh_mcu_transport: transport_init: bus backend up[0m
+[0;32mI (1690) main_task: Started on CPU0[0m
+I (W1 6(196911))  ehe_ssdpio_:p Rsesreat mco:- prRoceessseorr vusing GPIO[54]
+ing pool of 32K of internal memory for DMA/internal allocations
+[0;32mI (1691) main_task: Calling app_main()[0m
+[0;32mI (3211) eh_host_port_reset: reset done pin=54 parked=1[0m
+[0;32mI (3244) eh_host_port_sdio: bus applied: clk_khz=5000[0m
+[0;32mI (3245) eh_host_port_sdio: Function 0 Blocksize: 512[0m
+[0;32mI (3245) eh_host_port_sdio: Function 1 Blocksize: 512[0m
+[0;32mI (3345) eh_sdio: Card init success, TRANSPORT_RX_ACTIVE[0m
+[0;32mI (3390) eh_sdio: SDIO Host operating in STREAMING MODE[0m
+[0;32mI (3390) eh_sdio: Open data path at slave[0m
+[0;32mI (3390) eh_sdio: Starting SDIO process rx task[0m
+[0;32mI (3408) eh_init_evt: slave chip id: 0x0d (esp32c6)[0m
+[0;32mI (3408) eh_init_evt: capabilities: 0x01[0m
+[0;32mI (3408) eh_init_evt: Features supported are:[0m
+[0;32mI (3408) eh_init_evt: 	 * WLAN over SDIO[0m
+[0;32mI (3408) eh_init_evt: extended capabilities: 0x00024010[0m
+[0;32mI (3408) eh_init_evt: Extended Features supported:[0m
+[0;32mI (3409) eh_init_evt: 	 * WLAN[0m
+[0;32mI (3409) eh_init_evt: 	 * AUX interface[0m
+[0;32mI (3409) eh_init_evt: SDIO buf-config: e2h mode=0 bufsz=15872B, h2e mode=0 bufsz=15872B[0m
+[0;32mI (3409) eh_init_evt: coprocessor transport size: 1536[0m
+[0;32mI (3409) eh_init_evt: RPC version negotiated: V2[0m
+[0;32mI (3409) eh_init_evt: esp-hosted fw versions: host=3.1.0 coprocessor=3.1.0 (match)[0m
+[0;32mI (3409) eh_init_evt: SDIO SW_AGGR negotiated (e2h=15872B h2e=15872B)[0m
+[0;32mI (3410) eh_init_evt: SDIO mode: slave=streaming host=streaming[0m
+[0;32mI (3410) eh_init_evt: chip=0x0d (esp32c6) fw=0x00030100 caps=0x01 ext=0x00024010[0m
+[0;33mW (3410) eh_host_port_xport_defaults: SDIO clock freq set to [5000]KHz, Max possible (on PCB) is 40000KHz[0m
+[0;32mI (3410) eh_auto_init: auto_init: found 2 descriptor(s)[0m
+[0;32mI (3411) eh_auto_init: auto_init: initialising 'peer_data' (priority 80)[0m
+[0;32mI (3411) eh_auto_init: auto_init: initialising 'wifi' (priority 150)[0m
+[0;32mI (3411) eh_wifi_itwt: wifi iTWT ext init[0m
+[0;32mI (3482) eh_sdio: preallocated 2 SDIO RX staging slot(s), 15872 bytes each[0m
+[0;32mI (3546) p4_hosted_host: ESP-Hosted coprocessor firmware: 3.1.0[0m
+[0;32mI (3548) p4_hosted_host: ESP-Hosted coprocessor; target=esp32c6 chip_id=0x0000000d[0m
+[0;32mI (3549) p4_hosted_host: ESP32-P4 host ready; revision=302 cores=2[0m
+[0;33mW (3550) gdma: GDMA channel access encrypted external memory, adjust burst size to 16[0m
+[0;32mI (3563) ESP_RADIO_SPINEL: spinel UART interface initialization completed[0m
+[0;32mI (3564) ESP_RADIO_SPINEL: Spinel UART interface has been successfully enabled[0m
+[0;32mI (3564) ESP_ZIGBEE_RADIO_SPINEL_UART: Spinel UART interface enable successfully[0m
+I(3567) OPENTHREAD:[I] P-SpinelDrive-: co-processor reset: RESET_POWER_ON
+I(3568) OPENTHREAD:[I] P-SpinelDrive-: Software reset co-processor successfully
+[0;32mI (3580) web_security: HTTPS certificate SHA-256 fingerprint: 98:36:20:ea:81:f8:cf:a0:9a:a5:51:51:5e:2f:6c:37:0a:81:35:f1:71:4a:6c:9a:96:3b:83:8e:f2:2c:95:a3[0m
+[0;32mI (3581) esp_https_server: Starting server[0m
+[0;32mI (3582) esp_https_server: Server listening on port 443[0m
+[0;32mI (3583) http_diagnostics: HTTPS Web UI listening on port 443; HTTP redirects to HTTPS[0m
+[0;32mI (3584) mdns_mem: mDNS task will be created from internal RAM[0m
+[0;32mI (3585) p4_hosted_host: mDNS hostname: MultiHub.local[0m
+[0;32mI (3726) st7701: version: 2.0.3[0m
+[0;32mI (3740) st7701_mipi: LCD ID: FF FF FF[0m
+[0;32mI (3740) st7701_mipi:  st7701->madctl_val: 0x0, st7701->colmod_val: 0x55[0m
+[0;32mI (3881) LVGL: Starting LVGL task[0m
+[1;31mE (3884) lcd_panel: esp_lcd_panel_swap_xy(50): swap_xy is not supported by this panel[0m
+[0;32mI (3902) GT911: I2C address initialization procedure skipped - using default GT9xx setup[0m
+[0;32mI (3904) GT911: TouchPad_ID:0x39,0x31,0x31[0m
+[0;32mI (3904) GT911: TouchPad_Config_Version:250[0m
+[5n
+Type 'help' to get the list of commands.
+Use UP/DOWN arrows to navigate through command history.
+Press TAB when typing command name to auto-complete.
+[6n I (3986) main_task: Returned from app_main()
+[999C [6n [79Dp4-hosted> I (17408) esp_wifi_remote: esp_wifi_internal_reg_rxcb: sta: 0x400dffd6
+[0;32mI (18446) esp_netif_handlers: sta ip: 192.168.69.17, mask: 255.255.254.0, gw: 192.168.68.1[0m
+[0;32mI (20736) esp_https_server: performing session handshake[0m
+[1;31mE (20823) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (20824) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (20825) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (20826) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (20828) esp_https_server: performing session handshake[0m
+[0;32mI (21229) esp_https_server: performing session handshake[0m
+[1;31mE (21310) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (21311) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (21312) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (21313) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (21314) esp_https_server: performing session handshake[0m
+[0;32mI (23178) esp_https_server: performing session handshake[0m
+[1;31mE (23260) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (23261) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (23262) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (23263) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (23264) esp_https_server: performing session handshake[0m
+[1;31mE (23345) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (23345) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (23347) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (23347) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (23352) esp_https_server: performing session handshake[0m
+[0;32mI (23542) esp_https_server: performing session handshake[0m

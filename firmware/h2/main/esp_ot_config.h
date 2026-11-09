@@ -1,5 +1,6 @@
 #pragma once
 
+#include "driver/gpio.h"
 #include "esp_openthread_types.h"
 
 #define HUB_H2_RCP_UART_BAUD 230400
@@ -21,8 +22,8 @@
                 .rx_flow_ctrl_thresh = 0, \
                 .source_clk = UART_SCLK_DEFAULT, \
             }, \
-            .rx_pin = UART_PIN_NO_CHANGE, \
-            .tx_pin = UART_PIN_NO_CHANGE, \
+            .rx_pin = GPIO_NUM_23, \
+            .tx_pin = GPIO_NUM_24, \
         }, \
     }
 

@@ -11,7 +11,7 @@ idf.py set-target esp32h2
 idf.py build
 ```
 
-The RCP uses standard UART Spinel at 230400 baud on H2 UART0 with the SoC's default UART pins (GPIO24 TX, GPIO23 RX). This reduced rate follows M5Stack's Gateway H2 Grove guidance for links that do not work reliably at 460800 baud. System logs use USB Serial/JTAG, leaving UART0 dedicated to Spinel. The P4-side UART uses a separate UART instance and requires explicit pin configuration. Do not infer H2 reset/boot wiring from this firmware.
+The RCP uses standard UART Spinel at 230400 baud on H2 UART0, explicitly routed to GPIO24 TX / GPIO23 RX. These are module TX0/RX0 pads 31/30 in the user-supplied H2-MINI-1 pin diagram. This reduced rate follows M5Stack's Gateway H2 Grove guidance for links that do not work reliably at 460800 baud. System logs use USB Serial/JTAG, leaving UART0 dedicated to Spinel. The P4-side UART uses a separate UART instance and explicit pin configuration. No H2 reset/boot wire is configured by this firmware.
 
 ## Temporary UART diagnostic
 
@@ -39,8 +39,9 @@ Do not flash until the exact H2 port and temporary image are explicitly selected
 The diagnostic image is not a Zigbee RCP and must be replaced with the normal
 RCP image after the byte-level test.
 
-## Limitations
+## Hardware status
 
-- The P4 build currently compiles a separate ESP-Zigbee UART-RCP coordinator profile, but no host/RCP handshake has been verified.
-- Board documentation reserves P4 GPIO26/27 for the shared UART1/MAX485 nets. Confirm the matching schematic revision and transceiver isolation before enabling the P4 profile.
-- No Zigbee network formation, end-device join, persistence, or RF coexistence is claimed by a successful build.
+- The standard H2 RCP image is installed on `/dev/ttyACM1`; boot logs report the RCP application started.
+- The P4 board profile on UART1 GPIO26/27 at 230400 baud successfully resets the RCP over Spinel and initializes BDB. BDB reports an existing joined network.
+- No fresh network formation or device join is claimed. P4 interview succeeds for `0x1a02`; `0x8362` still times out. Level command readback is implemented in the P4 host, but physical actuation with this latest path is not yet verified.
+- The Grove link has no H2 reset/boot wire. UART1 shares the board's MAX485 nets; do not enable RS485 concurrently.

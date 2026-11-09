@@ -17,6 +17,7 @@
 #include "uart_diagnostic.hpp"
 #include "c6_zigbee_bridge.hpp"
 
+#include <cstdlib>
 #include <cstdio>
 #include <cstring>
 
@@ -27,6 +28,7 @@ constexpr char kMdnsHostname[] = "MultiHub";
 constexpr char kWebPasswordResetConfirmation[] =
     "CONFIRM-WEB-PASSWORD-RESET";
 hub::diagnostics::WebSecurity* web_security_for_console = nullptr;
+hub::radio::MultipanService* h2_zigbee_for_console = nullptr;
 
 void start_mdns_services() {
     esp_err_t status = mdns_init();
@@ -45,11 +47,9 @@ void start_mdns_services() {
     }
     const esp_err_t http_status = mdns_service_add(
         kMdnsHostname, "_http", "_tcp", 80, nullptr, 0);
-    const esp_err_t https_status = mdns_service_add(
-        kMdnsHostname, "_https", "_tcp", 443, nullptr, 0);
-    if (http_status != ESP_OK || https_status != ESP_OK) {
-        ESP_LOGW(kTag, "mDNS service registration failed: http=%s https=%s",
-                 esp_err_to_name(http_status), esp_err_to_name(https_status));
+    if (http_status != ESP_OK) {
+        ESP_LOGW(kTag, "mDNS HTTP service registration failed: %s",
+                 esp_err_to_name(http_status));
         return;
     }
     ESP_LOGI(kTag, "mDNS hostname: %s.local", kMdnsHostname);
@@ -81,7 +81,36 @@ int web_password_reset_command(int argc, char** argv) {
     return 0;
 }
 
+int zigbee_interview_command(int argc, char** argv) {
+    if (argc != 2 || argv == nullptr || argv[1] == nullptr) {
+        std::printf("Usage: zigbee_interview <short-address>\n");
+        return 1;
+    }
+    char* end = nullptr;
+    const unsigned long address = std::strtoul(argv[1], &end, 0);
+    if (end == argv[1] || *end != '\0' || address == 0 ||
+        address >= 0xFFFFUL) {
+        std::printf("Invalid Zigbee short address\n");
+        return 1;
+    }
+    if (h2_zigbee_for_console == nullptr) {
+        std::printf("H2 Zigbee coordinator is unavailable\n");
+        return 1;
+    }
+    const esp_err_t status = h2_zigbee_for_console->request_device_interview(
+        static_cast<std::uint16_t>(address));
+    if (status != ESP_OK) {
+        std::printf("Zigbee interview request failed: %s\n",
+                    esp_err_to_name(status));
+        return 1;
+    }
+    std::printf("Read-only interview queued for short address 0x%04lx.\n",
+                address);
+    return 0;
+}
+
 void start_console(hub::radio::C6ZigbeeBridge* c6_zigbee_bridge,
+                   hub::radio::MultipanService* h2_zigbee_service,
                    hub::diagnostics::WebSecurity& web_security) {
     esp_console_dev_usb_serial_jtag_config_t device_config =
         ESP_CONSOLE_DEV_USB_SERIAL_JTAG_CONFIG_DEFAULT();
@@ -110,6 +139,21 @@ void start_console(hub::radio::C6ZigbeeBridge* c6_zigbee_bridge,
         status = hub::radio::register_c6_zigbee_console(*c6_zigbee_bridge);
         if (status != ESP_OK) {
             ESP_LOGE(kTag, "C6 Zigbee console registration failed: %s",
+                     esp_err_to_name(status));
+            return;
+        }
+    }
+    if (h2_zigbee_service != nullptr) {
+        h2_zigbee_for_console = h2_zigbee_service;
+        esp_console_cmd_t interview_command{};
+        interview_command.command = "zigbee_interview";
+        interview_command.help =
+            "Queue a read-only interview and persist the short address";
+        interview_command.hint = "<short-address>";
+        interview_command.func = zigbee_interview_command;
+        status = esp_console_cmd_register(&interview_command);
+        if (status != ESP_OK) {
+            ESP_LOGE(kTag, "H2 Zigbee interview command registration failed: %s",
                      esp_err_to_name(status));
             return;
         }
@@ -209,8 +253,10 @@ extern "C" void app_main(void) {
     static hub::diagnostics::WebZigbeeApproval web_zigbee_approval;
     hub::radio::IZigbeeCoordinator* zigbee_coordinator = nullptr;
     hub::radio::C6ZigbeeBridge* c6_zigbee_console = nullptr;
+    hub::radio::MultipanService* h2_zigbee_console = nullptr;
 #if CONFIG_HUB_H2_ZIGBEE_RCP_ENABLE
     zigbee_coordinator = &multipan_service;
+    h2_zigbee_console = &multipan_service;
 #else
     zigbee_coordinator = &c6_zigbee_bridge;
     c6_zigbee_console = &c6_zigbee_bridge;
@@ -222,7 +268,7 @@ extern "C" void app_main(void) {
     } else {
 #if CONFIG_HUB_H2_ZIGBEE_RCP_ENABLE
         const esp_err_t zigbee_status = multipan_service.start();
-        hub::radio::MultipanSnapshot rcp_snapshot{};
+    static hub::radio::MultipanSnapshot rcp_snapshot{};
         if (multipan_service.read_snapshot(&rcp_snapshot) &&
             rcp_snapshot.state == hub::radio::MultipanState::needs_uart_configuration) {
             ESP_LOGE(kTag, "H2 Zigbee RCP is disabled until UART pins are configured");
@@ -264,5 +310,5 @@ extern "C" void app_main(void) {
                      esp_err_to_name(wizard_status));
         }
     }
-    start_console(c6_zigbee_console, web_security);
+    start_console(c6_zigbee_console, h2_zigbee_console, web_security);
 }

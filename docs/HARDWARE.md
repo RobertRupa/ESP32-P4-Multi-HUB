@@ -62,37 +62,19 @@ J5 GPIO26/27 matches the UART1/RS485 signals already marked RESERVED above. Do n
 
 ## H2-to-P4 wiring update (2026-11-08)
 
-The user clarified that this board has separate UART1 and MAX485 headers on the same UART1 signals, and H2 is connected through Grove using 5 V, GND, TX and RX only. The vendor schematic transcription identifies UART1 TX1 as P4 GPIO26 and RX1 as GPIO27, also shared with the MAX485 path. The user confirms TX/RX direction, continuity, 3.3 V logic and no MAX485 conflict for this test setup. A board-revision identifier and measurement log are not in the repository; the assignment is therefore limited to the separate, user-directed JC4880P443C_I_W test profile and is not promoted to shared defaults or a production pin reservation change. `firmware/p4/sdkconfig.defaults.h2-jc4880p443c` configures UART1, P4 TX GPIO26 and P4 RX GPIO27 for that test profile. M5Stack's [Gateway H2 Zigbee Gateway guide](https://docs.m5stack.com/en/esp_idf/zigbee/unit_gateway_h2/zigbee_gateway) documents H2 UART0 RX=GPIO23/TX=GPIO24 and recommends 230400 baud for Grove links that fail at 460800. Its nominal host example sets reset/boot to `-1`; this board also has no H2 EN/reset/boot wire on Grove. The current IDF timeout recovery path nevertheless exits the P4 after no Spinel response.
+The user clarified that this board has separate UART1 and MAX485 headers on the same UART1 signals, and H2 is connected through Grove using 5 V, GND, TX and RX only. The vendor schematic transcription identifies UART1 TX1 as P4 GPIO26 and RX1 as GPIO27, also shared with the MAX485 path. The user confirms TX/RX direction, continuity, 3.3 V logic and no MAX485 conflict for this test setup. A board-revision identifier and measurement log are not in the repository; the assignment is therefore limited to the separate, user-directed JC4880P443C_I_W test profile and is not promoted to shared defaults or a production pin reservation change. `firmware/p4/sdkconfig.defaults.h2-jc4880p443c` configures UART1, P4 TX GPIO26 and P4 RX GPIO27 for that test profile. M5Stack's [Gateway H2 Zigbee Gateway guide](https://docs.m5stack.com/en/esp_idf/zigbee/unit_gateway_h2/zigbee_gateway) documents H2 UART0 RX=GPIO23/TX=GPIO24 and recommends 230400 baud for Grove links that fail at 460800. Its nominal host example sets reset/boot to `-1`; this board's Grove connection has no H2 EN/reset/boot wire. In ESP-IDF 5.5.5 the UART Spinel `HardwareReset()` path reinitializes the P4 UART and invokes the RCP failure callback; it does not toggle H2 reset. A missing Spinel response can still cause `SpinelDriver::ResetCoprocessor()` to exit the P4, so the absent external reset line limits hard recovery but is not established as the cause of the initial timeout.
 
-## User-reported C6 multipan wiring (2026-11-07)
-
-The user reports the following C6-to-P4 connections and says RS485 is unused. These mappings have not been independently checked against the board revision or continuity-tested:
-
-| C6 signal | User-reported P4 destination | Status |
-|---|---|---|
-| C6_IO9 | P4 package pin 18 | UNVERIFIED; GPIO/net not established |
-| C6_U0TXD | P4 package pin 17; user also says GPIO17 | UNVERIFIED; GPIO17 is reserved for ESP-Hosted SDIO D3 |
-| C6_U0RXD | P4 package pin 16; user also says GPIO16 | UNVERIFIED; GPIO16 is reserved for ESP-Hosted SDIO D2 |
-| C6_IO2 | P4 package pin 10; user also says GPIO10 | UNVERIFIED; GPIO10 is reserved for ES8311 I2S LRCK |
-| C6_CHIP_PU | P4 package pin 75 | UNVERIFIED; package pin-to-net mapping unknown, not a P4 GPIO number |
-
-If the numbers 16/17/18/10 are intended as P4 GPIO numbers, they conflict with the live ESP-Hosted SDIO and I2S assignments above; GPIO18 is SDIO CLK. RS485 being unused does not resolve these SDIO/I2S conflicts. Do not enable the multipan host or attach these nets to the current P4 configuration until the package-pin/net/GPIO mapping is established and a compatible, non-conflicting UART assignment is verified. The current C6 multipan image has been transferred, but the P4 multipan host remains disabled and Zigbee search has not been run.
-
-## External ESP32-H2 RCP interface (build profile; wiring record incomplete)
+## P4 + H2 UART interface (test hardware)
 
 | P4 side | H2 side | Notes |
 |---|---|---|
-| allocated UART TX | H2 configurable UART RX | 3.3V logic, cross TX/RX |
-| allocated UART RX | H2 configurable UART TX | dedicated, no console logs |
-| allocated GPIO | H2 EN/RST | safe boot and recovery |
-| allocated GPIO | H2 boot strap | firmware updates; avoid unsafe default strap |
+| UART1 TX GPIO26 | UART0 RX GPIO23 | 3.3V logic, TX/RX crossed |
+| UART1 RX GPIO27 | UART0 TX GPIO24 | H2 logs use USB Serial/JTAG |
 | GND | GND | common ground |
-| regulated 3.3V | H2 supply | confirm peak current/regulator margin, decoupling |
-| optional GPIOs | PTA coexistence | assess RF collision / available GPIOs |
+| board 5V | H2 Grove VCC | User-reported wiring; confirm supply margin for the exact module |
 
-The in-repository H2 image uses UART0 (TX GPIO24, RX GPIO23) and standard Spinel. M5Stack's Gateway H2 guide warns that 460800 baud may fail on Grove wiring and recommends reducing to 230400; the latest H2 image and P4 test profile use 230400. The P4 generic profile leaves UART pins unset, while the board-specific test profile uses UART1 GPIO26/27. No reset/boot connection is assigned.
+The P4 H2-host profile uses 230400 baud. The existing connection has passed Spinel reset and BDB readiness checks. No H2 EN/reset or boot wire is connected. UART1 shares board signals with MAX485; the user removed the zero-ohm RX coupling resistor and reports no transceiver conflict for this test setup. Do not enable RS485 concurrently. This is the P4+C6+H2 target; Zigbee devices do not join Thread.
 
-Flash ESP32-H2 with version-pinned ESP-IDF **ot_rcp** variant configured for Zigbee gateway requirements (upstream Matter example requires `OPENTHREAD_NCP_VENDOR_HOOK=y`). Although the binary is called OpenThread RCP, Zigbee host examples use its 802.15.4 radio abstraction. This is *not* a Thread network in this project.
 
 ## RF, bring-up and hazards
 
@@ -120,7 +102,7 @@ The supplied camera OV02C10 datasheet is marked confidential and is **not commit
 
 ## Physical probe (2026-11-07)
 
-An esptool read-only probe identified ESP32-P4 revision 3.2 and 16 MB flash on `/dev/ttyACM0`. The initial P4 ESP-Hosted image booted and initialized the documented SDIO map (Slot 1, 4-bit, 5 MHz, P4 GPIO18/19/14-17, reset GPIO54); runtime discovered the onboard C6 and reported WLAN/HCI over SDIO and RPC v2. The existing C6 firmware identifies as ESP-Hosted 2.3.2, while the P4 host is 3.1.0; the log reports a major-version mismatch. No C6 image was flashed, and no Wi-Fi association was tested. The PCB revision and electrical continuity were not separately verified. Full command, image hash and results are in the [P4 flash audit](audits/2026-11-07-p4-esp-hosted-flash.md).
+An esptool read-only probe identified ESP32-P4 revision 3.2 and 16 MB flash on `/dev/ttyACM0`. The initial P4 ESP-Hosted image booted and initialized the documented SDIO map; the onboard C6 has since been updated to ESP-Hosted 3.1.0. The PCB revision and electrical continuity remain separately unverified. Current P4/H2 build and hardware status are in the [H2 migration audit](audits/2026-11-08-h2-zigbee-migration.md).
 
 ## HMI and Wi-Fi validation update (2026-11-07)
 

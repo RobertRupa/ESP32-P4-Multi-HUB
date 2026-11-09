@@ -36,13 +36,6 @@
 /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/riscv/CMakeFiles/install.dir
 /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/riscv/CMakeFiles/install/local.dir
 /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/riscv/CMakeFiles/install/strip.dir
-/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/esp_driver_gpio/CMakeFiles/__idf_esp_driver_gpio.dir
-/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/esp_driver_gpio/CMakeFiles/edit_cache.dir
-/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/esp_driver_gpio/CMakeFiles/rebuild_cache.dir
-/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/esp_driver_gpio/CMakeFiles/list_install_components.dir
-/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/esp_driver_gpio/CMakeFiles/install.dir
-/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/esp_driver_gpio/CMakeFiles/install/local.dir
-/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/esp_driver_gpio/CMakeFiles/install/strip.dir
 /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/esp_timer/CMakeFiles/__idf_esp_timer.dir
 /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/esp_timer/CMakeFiles/edit_cache.dir
 /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/esp_timer/CMakeFiles/rebuild_cache.dir
@@ -329,6 +322,13 @@
 /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/cxx/CMakeFiles/install.dir
 /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/cxx/CMakeFiles/install/local.dir
 /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/cxx/CMakeFiles/install/strip.dir
+/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/esp_driver_gpio/CMakeFiles/__idf_esp_driver_gpio.dir
+/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/esp_driver_gpio/CMakeFiles/edit_cache.dir
+/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/esp_driver_gpio/CMakeFiles/rebuild_cache.dir
+/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/esp_driver_gpio/CMakeFiles/list_install_components.dir
+/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/esp_driver_gpio/CMakeFiles/install.dir
+/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/esp_driver_gpio/CMakeFiles/install/local.dir
+/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/esp_driver_gpio/CMakeFiles/install/strip.dir
 /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/esp_ringbuf/CMakeFiles/__idf_esp_ringbuf.dir
 /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/esp_ringbuf/CMakeFiles/edit_cache.dir
 /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/esp-idf/esp_ringbuf/CMakeFiles/rebuild_cache.dir

@@ -1,12 +1,12 @@
 set(HUB_MAIN_REQUIRES
     bootloader_support console efuse esp_app_format esp_event esp_hosted
-    esp_hw_support esp_http_server esp_https_server esp_lcd esp_lcd_st7701
+    esp_hw_support esp_http_server esp_lcd esp_lcd_st7701
     esp_lcd_touch_gt911 esp_lvgl_port esp_netif esp_partition esp_system
     esp_wifi_remote esp_driver_gpio esp_driver_i2c esp_driver_uart freertos
     log lvgl mdns nvs_flash openthread vfs
 )
 
-if(CONFIG_HUB_H2_ZIGBEE_RCP_ENABLE OR CONFIG_HUB_MULTIPAN_ENABLE)
+if(CONFIG_HUB_H2_ZIGBEE_RCP_ENABLE)
     list(APPEND HUB_MAIN_REQUIRES esp-zigbee-lib)
 endif()
 

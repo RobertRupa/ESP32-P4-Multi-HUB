@@ -1,10 +1,10 @@
 # ESP32-P4 ESP-Hosted host target
 
-This target compiles the P4 side of the integrated C6 Wi-Fi coprocessor link.
-It uses the same ESP-Hosted 3.1.0 protocol as `firmware/c6`, plus
-`esp_wifi_remote` 1.3.1 for ESP-IDF 5.5. Wi-Fi credentials are not stored in
-the repository; this build-only smoke application initializes ESP-Hosted and
-queries the connected coprocessor identity.
+This target provides the P4 host used by both supported compositions: P4+C6
+and P4+C6+H2. The default profile selects the C6 Peer Data Zigbee bridge; the
+board-specific H2 profile selects the P4 Zigbee host over UART Spinel while
+retaining C6 ESP-Hosted Wi-Fi. Wi-Fi credentials are not stored in the
+repository.
 
 ## Guition SDIO configuration
 
@@ -24,9 +24,9 @@ idf.py set-target esp32p4
 idf.py build
 ```
 
-The build command does not flash either chip. A successful build does not prove
-a C6 handshake; that requires the matching C6 image and a physical test with
-the selected serial/recovery path.
+The default build is the P4+C6 target. For P4+C6+H2, see the isolated profile
+commands in `docs/DEVELOPMENT.md`. Builds do not authorize flashing. The H2
+board profile uses the verified test wiring UART1 GPIO26/27 at 230400 baud.
 
 ## Temporary H2 UART diagnostic
 
@@ -53,13 +53,12 @@ SDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.defaults.esp32p4;sdkconfig.defa
 	-D SDKCONFIG="$PWD/build-uart-diagnostic/sdkconfig" build
 ```
 
-Do not flash until the exact P4 port and temporary image are explicitly selected.
-After testing, restore the normal C6-backed runtime image.
+This temporary diagnostic profile is not a product target. Do not select it
+for deployment; after a byte test, rebuild one of the two supported profiles.
 
 ## Local build result
 
-Built with ESP-IDF v5.5.5, RISC-V GCC 14.2.0, ESP-Hosted 3.1.0 and
-`esp_wifi_remote` 1.3.1. The updated image was flashed to P4 revision 3.2 with a
-16 MB flash header. Runtime discovered C6 2.3.2 over SDIO and reported the host
-3.1.0 major-version mismatch. Wi-Fi association was not tested. Three upstream
-optional TinyUSB Kconfig warnings remain. See [the flash audit](../../docs/audits/2026-11-07-p4-esp-hosted-flash.md).
+The board-specific H2 profile builds with ESP-IDF v5.5.5 and has been
+encrypted-flashed to P4 revision 3.2. Runtime verifies H2 Spinel reset and BDB
+readiness on the existing network; C6 ESP-Hosted 3.1.0 and Wi-Fi/DHCP also
+start. See the [H2 migration audit](../../docs/audits/2026-11-08-h2-zigbee-migration.md).

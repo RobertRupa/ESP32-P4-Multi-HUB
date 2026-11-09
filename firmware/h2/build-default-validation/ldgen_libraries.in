@@ -67,7 +67,6 @@ $<TARGET_FILE:__idf_esp_wifi>
 $<TARGET_FILE:__idf_esp_hal_ieee802154>
 $<TARGET_FILE:__idf_esp_security>
 $<TARGET_FILE:__idf_pthread>
-$<TARGET_FILE:idf::esp_driver_gpio>
 $<TARGET_FILE:idf::esp_timer>
 $<TARGET_FILE:idf::esp_pm>
 $<TARGET_FILE:idf::esp_app_format>
@@ -88,6 +87,7 @@ $<TARGET_FILE:idf::freertos>
 $<TARGET_FILE:idf::newlib>
 $<TARGET_FILE:idf::pthread>
 $<TARGET_FILE:idf::cxx>
+$<TARGET_FILE:idf::esp_driver_gpio>
 $<TARGET_FILE:idf::esp_ringbuf>
 $<TARGET_FILE:idf::esp_psram>
 $<TARGET_FILE:idf::esp_driver_uart>

@@ -47,8 +47,6 @@ private:
     static void network_start_event(lv_event_t* event);
     static void pairing_window_event(lv_event_t* event);
     static void scan_nearby_event(lv_event_t* event);
-    static void web_approval_confirm_event(lv_event_t* event);
-    static void web_approval_reject_event(lv_event_t* event);
 
     const char* text(const char* english, const char* polish) const noexcept;
     void render();

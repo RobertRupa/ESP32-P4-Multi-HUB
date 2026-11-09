@@ -1,6 +1,6 @@
 # ESP32-P4 Multi-HUB
 
-**Status:** The P4 was briefly flashed with the board-specific H2 host profile (UART1 GPIO26/27, 230400 baud), but P4 timed out waiting for Spinel and IDF exited during RCP reset recovery. The P4 was restored to the default C6-backed image; `p4-hosted>` returned, C6 ESP-Hosted 3.1.0 and Wi-Fi/DHCP started, and C6 Zigbee remains available but has no formed network or joined devices. The M5Stack Gateway H2 RCP image was flashed to the external H2 and logs that its RCP app started, but P4/H2 handshake did not succeed at either 460800 or 230400 baud. C6 firmware/NVS were not modified. The H2 host/RCP integration, Zigbee commissioning, Thread and Matter Bridge remain unvalidated.
+**Status (2026-11-08):** The active P4 image uses the H2 UART-RCP coordinator profile (UART1 GPIO26/27, 230400 baud). Spinel reset succeeds, BDB reports the existing Zigbee network joined, and `0x1a02` interviews with On/Off and Level Control clusters. Read-only `CurrentLevel` returns `3`. User-approved Level targets of `93` using both ZCL command variants returned Default Response success, including with On/Off confirmed true, but `CurrentLevel` remained `3`; the dimmer is not applying the requested level. Saved device `0x8362` still times out during ZDO interview. No new network or device join was performed. C6 and H2 firmware/NVS were not modified. Thread and Matter Bridge remain unimplemented/unvalidated.
 
 A modular, local-first embedded home automation gateway built around **Guition JC4880P443C_I_W** (ESP32-P4 + ESP32-C6), 4.3-inch touch display and an **external ESP32-H2 acting as a Zigbee 802.15.4 RCP**.
 
@@ -8,13 +8,22 @@ A modular, local-first embedded home automation gateway built around **Guition J
 
 Pair and manage Zigbee devices locally, represent supported capabilities as **Matter bridged endpoints** on the IP network, and allow Matter controllers reachable via Wi-Fi/Ethernet/**Thread Border Router** to operate them. Add a touchscreen UI, local API, optional MQTT, automation and diagnostics without requiring cloud services.
 
-**Important protocol distinction:** Zigbee devices are **not** turned into native Thread nodes. The accepted product baseline remains a Matter bridge advertised on the IP LAN. The installed runtime still runs Zigbee natively on the C6 over ESP-Hosted Peer Data/SDIO and does not provide Thread. An opt-in P4 Zigbee-over-UART-RCP build profile now exists, but it does not activate in the default image. The H2 host/RCP handshake and Zigbee commissioning remain unverified. No Matter Bridge or Home Assistant discovery has been validated.
+**Important protocol distinction:** Zigbee devices are **not** turned into native Thread nodes. Thread is separate from the two supported Zigbee compositions below. No Matter Bridge or Home Assistant discovery has been validated.
+
+## Supported system targets
+
+| Target | Coordinator | C6 role | Status |
+|---|---|---|---|
+| P4 + C6 | C6 native Zigbee over ESP-Hosted Peer Data/SDIO | Wi-Fi and Zigbee | Build profile retained; end-to-end commissioning is not currently accepted as validated. |
+| P4 + C6 + H2 | P4 Zigbee host over H2 UART Spinel | Wi-Fi only | P4/H2 handshake and existing-network readiness verified; one device interview works, one times out. The C6 Wi-Fi-only image builds but has not been installed. |
+
+No C6 multipan or Thread/Zigbee multipan product target is maintained.
 
 ## Hardware roles
 
-- **ESP32-P4** — application processor, display/UI, device registry, Zigbee host stack, Matter Bridge, local services.
-- **Onboard ESP32-C6** — provides Wi-Fi over ESP-Hosted SDIO and currently runs the experimental native Zigbee coordinator; Zigbee shares its 2.4 GHz RF path with Wi-Fi. The opt-in migration profile builds it as Wi-Fi-only, but that image is not installed.
-- **External ESP32-H2** — intended dedicated Zigbee RCP. `firmware/h2` now builds a standard UART Spinel RCP image; compatibility with the P4 host, wiring and runtime are not yet validated.
+- **ESP32-P4** — application processor, display/UI, registry and local services; Zigbee host in the H2 target.
+- **Onboard ESP32-C6** — Wi-Fi over ESP-Hosted SDIO. It also owns native Zigbee only in the P4+C6 target. For P4+C6+H2, use the separate Wi-Fi-only C6 profile; it is build-validated but not flashed.
+- **External ESP32-H2** — Zigbee RCP for the P4+C6+H2 target. Standard UART Spinel reset and existing-network readiness are hardware-verified.
 - **Network** — Wi-Fi via C6, with optional Ethernet in future; Matter over IP, not an 802.15.4 Thread interface in MVP.
 
 ## Docs index
@@ -29,7 +38,7 @@ Pair and manage Zigbee devices locally, represent supported capabilities as **Ma
 8. [Agent implementation workflow](docs/AGENT_WORKFLOW.md)
 9. [Setup and validation](docs/DEVELOPMENT.md)
 10. [Security, storage and updates](docs/OPERATIONS.md)
-11. [Architecture decisions](docs/adr/0001-matter-bridge-over-ip.md)
+11. [Architecture decisions](docs/adr/0001-matter-bridge-over-ip.md), [HTTP-only Web UI](docs/adr/0002-http-only-webgui.md)
 12. [LLM agent working instructions](AGENTS.md) and [context summary](docs/llm-memory.md)
 
 ## Planned project layout
@@ -56,7 +65,7 @@ tools/
 docs/
 ```
 
-The component tree remains a **target design**, not a claim that all directories exist or compile. The P4 host, C6 profiles and H2 RCP project have the build evidence documented in `docs/audits/2026-11-08-h2-zigbee-migration.md`; hardware integration is still pending.
+The component tree remains a **target design**, not a claim that all directories exist or compile. The current two target profiles and their actual build/hardware evidence are recorded in [the H2 migration audit](docs/audits/2026-11-08-h2-zigbee-migration.md).
 
 ## Technical references
 

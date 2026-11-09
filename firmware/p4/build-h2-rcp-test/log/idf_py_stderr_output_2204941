@@ -1,0 +1,135 @@
+Command: /home/konatsu/.espressif/python_env/idf5.5_py3.14_env/bin/python /home/konatsu/esp/esp-idf/tools/idf_monitor.py -p /dev/ttyACM0 -b 115200 --toolchain-prefix riscv32-esp-elf- --target esp32p4 --revision 301 --decode-panic backtrace /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-h2-rcp-test/hub_p4_esp_hosted_host.elf /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-h2-rcp-test/bootloader/bootloader.elf -m '/home/konatsu/.espressif/python_env/idf5.5_py3.14_env/bin/python' '/home/konatsu/esp/esp-idf/tools/idf.py' '-B' 'build-h2-rcp-test' '-p' '/dev/ttyACM0'
+--- esp-idf-monitor 1.10.0 on /dev/ttyACM0 115200
+--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H
+--- 0x4fc06020: MD5Transform in ROM
+--- 0x4ffac2c0: esp_bootloader_get_description at /home/konatsu/esp/esp-idf/components/esp_bootloader_format/esp_bootloader_desc.c:39
+--- 0x4ffaefc0: esp_flash_encryption_enabled at /home/konatsu/esp/esp-idf/components/bootloader_support/src/flash_encrypt.c:89
+--- 0x4ffac2ca: call_start_cpu0 at /home/konatsu/esp/esp-idf/components/bootloader/subproject/main/bootloader_start.c:27
+--- 0x4ff2f154: xTaskGetSchedulerState at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5000
+--- Stack dump detected
+--- 0x4ff2f162: xTaskGetSchedulerState at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+--- 0x4ff2f15e: xTaskGetSchedulerState at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+--- 0x4fc1a588: qsort in ROM
+--- 0x4ff20003: _vector_table at ??:?
+--- Backtrace:
+
+
+--- 0x4ff23dc8: cpu_utility_ll_reset_cpu at /home/konatsu/esp/esp-idf/components/hal/esp32p4/include/hal/cpu_utility_ll.h:25(inlined by) esp_cpu_reset at /home/konatsu/esp/esp-idf/components/esp_hw_support/cpu.c:49
+--- 0x40001d76: panic_handler at /home/konatsu/esp/esp-idf/components/esp_system/port/panic_handler.c:196
+--- 0x4ffac2c0: esp_bootloader_get_description at /home/konatsu/esp/esp-idf/components/esp_bootloader_format/esp_bootloader_desc.c:39
+--- 0x4ffaefc0: esp_flash_encryption_enabled at /home/konatsu/esp/esp-idf/components/bootloader_support/src/flash_encrypt.c:89
+--- 0x4ffac2ca: call_start_cpu0 at /home/konatsu/esp/esp-idf/components/bootloader/subproject/main/bootloader_start.c:27
+--- 0x4ff20228: _interrupt_handler at /home/konatsu/esp/esp-idf/components/riscv/vectors.S:389
+--- Stack dump detected
+--- 0x4ff20284: _interrupt_handler at /home/konatsu/esp/esp-idf/components/riscv/vectors.S:457
+--- 0x4ff20274: _interrupt_handler at /home/konatsu/esp/esp-idf/components/riscv/vectors.S:408
+--- 0x4ff20003: _vector_table at ??:?
+--- Backtrace:
+
+
+--- 0x4ff23dc8: cpu_utility_ll_reset_cpu at /home/konatsu/esp/esp-idf/components/hal/esp32p4/include/hal/cpu_utility_ll.h:25(inlined by) esp_cpu_reset at /home/konatsu/esp/esp-idf/components/esp_hw_support/cpu.c:49
+--- 0x40001d76: panic_handler at /home/konatsu/esp/esp-idf/components/esp_system/port/panic_handler.c:196
+--- 0x4ffac2c0: esp_bootloader_get_description at /home/konatsu/esp/esp-idf/components/esp_bootloader_format/esp_bootloader_desc.c:39
+--- 0x4ffaefc0: esp_flash_encryption_enabled at /home/konatsu/esp/esp-idf/components/bootloader_support/src/flash_encrypt.c:89
+--- 0x4ffac2ca: call_start_cpu0 at /home/konatsu/esp/esp-idf/components/bootloader/subproject/main/bootloader_start.c:27
+--- 0x4ff2f154: xTaskGetSchedulerState at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5000
+--- Stack dump detected
+--- 0x4ff2f162: xTaskGetSchedulerState at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+--- 0x4ff2f15e: xTaskGetSchedulerState at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+--- 0x4fc1a588: qsort in ROM
+--- 0x4ff20003: _vector_table at ??:?
+--- Backtrace:
+
+
+--- 0x4ff23dc8: cpu_utility_ll_reset_cpu at /home/konatsu/esp/esp-idf/components/hal/esp32p4/include/hal/cpu_utility_ll.h:25(inlined by) esp_cpu_reset at /home/konatsu/esp/esp-idf/components/esp_hw_support/cpu.c:49
+--- 0x40001d76: panic_handler at /home/konatsu/esp/esp-idf/components/esp_system/port/panic_handler.c:196
+--- 0x4ffac2c0: esp_bootloader_get_description at /home/konatsu/esp/esp-idf/components/esp_bootloader_format/esp_bootloader_desc.c:39
+--- 0x4ffaefc0: esp_flash_encryption_enabled at /home/konatsu/esp/esp-idf/components/bootloader_support/src/flash_encrypt.c:89
+--- 0x4ffac2ca: call_start_cpu0 at /home/konatsu/esp/esp-idf/components/bootloader/subproject/main/bootloader_start.c:27
+--- 0x4ff2f154: xTaskGetSchedulerState at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5000
+--- Stack dump detected
+--- 0x4ff2f162: xTaskGetSchedulerState at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+--- 0x4ff2f15e: xTaskGetSchedulerState at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+--- 0x4fc1a588: qsort in ROM
+--- 0x4ff20003: _vector_table at ??:?
+--- Backtrace:
+
+
+--- 0x4ff20a5c: heap_caps_malloc_base at /home/konatsu/esp/esp-idf/components/heap/heap_caps_base.c:203
+--- 0x4ff2074e: heap_caps_malloc_default at /home/konatsu/esp/esp-idf/components/heap/heap_caps.c:118
+--- 0x4ff34948: malloc at /home/konatsu/esp/esp-idf/components/newlib/src/heap.c:25
+--- 0x400dc66a: nvs::NVSPartitionManager::init_custom(nvs::Partition*, unsigned long, unsigned long) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_partition_manager.cpp:95
+--- 0x400dc700: nvs::NVSPartitionManager::init_partition(char const*) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_partition_manager.cpp:57
+--- 0x400d8dfe: nvs_flash_init_partition at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_api.cpp:133
+--- 0x400d8e3c: nvs_flash_init at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_api.cpp:163
+--- 0x4000c642: app_main at /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/main/main.cpp:144
+--- 0x4ff23dc8: cpu_utility_ll_reset_cpu at /home/konatsu/esp/esp-idf/components/hal/esp32p4/include/hal/cpu_utility_ll.h:25(inlined by) esp_cpu_reset at /home/konatsu/esp/esp-idf/components/esp_hw_support/cpu.c:49
+--- 0x40001d76: panic_handler at /home/konatsu/esp/esp-idf/components/esp_system/port/panic_handler.c:196
+--- 0x4ffac2c0: esp_bootloader_get_description at /home/konatsu/esp/esp-idf/components/esp_bootloader_format/esp_bootloader_desc.c:39
+--- 0x4ffaefc0: esp_flash_encryption_enabled at /home/konatsu/esp/esp-idf/components/bootloader_support/src/flash_encrypt.c:89
+--- 0x4ffac2ca: call_start_cpu0 at /home/konatsu/esp/esp-idf/components/bootloader/subproject/main/bootloader_start.c:27
+--- 0x4ff2f154: xTaskGetSchedulerState at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5000
+--- Stack dump detected
+--- 0x4ff2f162: xTaskGetSchedulerState at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+--- 0x4ff2f15e: xTaskGetSchedulerState at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+--- 0x4fc1a588: qsort in ROM
+--- 0x4ff20003: _vector_table at ??:?
+--- Backtrace:
+
+
+--- 0x4ff23dc8: cpu_utility_ll_reset_cpu at /home/konatsu/esp/esp-idf/components/hal/esp32p4/include/hal/cpu_utility_ll.h:25(inlined by) esp_cpu_reset at /home/konatsu/esp/esp-idf/components/esp_hw_support/cpu.c:49
+--- 0x40001d76: panic_handler at /home/konatsu/esp/esp-idf/components/esp_system/port/panic_handler.c:196
+--- 0x4ffac2c0: esp_bootloader_get_description at /home/konatsu/esp/esp-idf/components/esp_bootloader_format/esp_bootloader_desc.c:39
+--- 0x4ffaefc0: esp_flash_encryption_enabled at /home/konatsu/esp/esp-idf/components/bootloader_support/src/flash_encrypt.c:89
+--- 0x4ffac2ca: call_start_cpu0 at /home/konatsu/esp/esp-idf/components/bootloader/subproject/main/bootloader_start.c:27
+--- 0x4ff2f154: xTaskGetSchedulerState at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5000
+--- Stack dump detected
+--- 0x4ff2f162: xTaskGetSchedulerState at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+--- 0x4ff2f15e: xTaskGetSchedulerState at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+--- 0x4fc1a588: qsort in ROM
+--- 0x4ff20003: _vector_table at ??:?
+--- Backtrace:
+
+
+--- 0x4ff23dc8: cpu_utility_ll_reset_cpu at /home/konatsu/esp/esp-idf/components/hal/esp32p4/include/hal/cpu_utility_ll.h:25(inlined by) esp_cpu_reset at /home/konatsu/esp/esp-idf/components/esp_hw_support/cpu.c:49
+--- 0x40001d76: panic_handler at /home/konatsu/esp/esp-idf/components/esp_system/port/panic_handler.c:196
+--- 0x4ffac2c0: esp_bootloader_get_description at /home/konatsu/esp/esp-idf/components/esp_bootloader_format/esp_bootloader_desc.c:39
+--- 0x4ffaefc0: esp_flash_encryption_enabled at /home/konatsu/esp/esp-idf/components/bootloader_support/src/flash_encrypt.c:89
+--- 0x4ffac2ca: call_start_cpu0 at /home/konatsu/esp/esp-idf/components/bootloader/subproject/main/bootloader_start.c:27
+--- 0x4ff2f154: xTaskGetSchedulerState at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5000
+--- Stack dump detected
+--- 0x4ff2f162: xTaskGetSchedulerState at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+--- 0x4ff2f15e: xTaskGetSchedulerState at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+--- 0x4fc1a588: qsort in ROM
+--- 0x4ff20003: _vector_table at ??:?
+--- NOTE: IDF Monitor will decode all received data and close. If you want to stop the monitor immediately, press exit key again.
+--- Backtrace:
+
+
+--- 0x4ff23dc8: cpu_utility_ll_reset_cpu at /home/konatsu/esp/esp-idf/components/hal/esp32p4/include/hal/cpu_utility_ll.h:25(inlined by) esp_cpu_reset at /home/konatsu/esp/esp-idf/components/esp_hw_support/cpu.c:49
+--- 0x40001d76: panic_handler at /home/konatsu/esp/esp-idf/components/esp_system/port/panic_handler.c:196
+--- 0x4ffac2c0: esp_bootloader_get_description at /home/konatsu/esp/esp-idf/components/esp_bootloader_format/esp_bootloader_desc.c:39
+--- 0x4ffaefc0: esp_flash_encryption_enabled at /home/konatsu/esp/esp-idf/components/bootloader_support/src/flash_encrypt.c:89
+--- 0x4ffac2ca: call_start_cpu0 at /home/konatsu/esp/esp-idf/components/bootloader/subproject/main/bootloader_start.c:27
+--- 0x4ff2f154: xTaskGetSchedulerState at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5000
+--- Stack dump detected
+--- 0x4ff2f162: xTaskGetSchedulerState at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+--- 0x4ff2f15e: xTaskGetSchedulerState at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+--- 0x4fc1a588: qsort in ROM
+--- 0x4ff20003: _vector_table at ??:?
+--- Backtrace:
+
+
+--- 0x4ff23dc8: cpu_utility_ll_reset_cpu at /home/konatsu/esp/esp-idf/components/hal/esp32p4/include/hal/cpu_utility_ll.h:25(inlined by) esp_cpu_reset at /home/konatsu/esp/esp-idf/components/esp_hw_support/cpu.c:49
+--- 0x40001d76: panic_handler at /home/konatsu/esp/esp-idf/components/esp_system/port/panic_handler.c:196
+--- 0x4ffac2c0: esp_bootloader_get_description at /home/konatsu/esp/esp-idf/components/esp_bootloader_format/esp_bootloader_desc.c:39
+--- 0x4ffaefc0: esp_flash_encryption_enabled at /home/konatsu/esp/esp-idf/components/bootloader_support/src/flash_encrypt.c:89
+--- 0x4ffac2ca: call_start_cpu0 at /home/konatsu/esp/esp-idf/components/bootloader/subproject/main/bootloader_start.c:27
+--- 0x4ff2f154: xTaskGetSchedulerState at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5000
+--- Stack dump detected
+--- 0x4ff2f162: xTaskGetSchedulerState at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+--- 0x4ff2f15e: xTaskGetSchedulerState at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+--- 0x4fc1a588: qsort in ROM
+--- 0x4ff20003: _vector_table at ??:?
+--- Multiple stop commands received, forcing quit monitor
+

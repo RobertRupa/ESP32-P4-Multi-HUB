@@ -4,6 +4,7 @@
 
 - Separate Zigbee trust center/network key and PAN identity, Matter fabric credentials and certificates, Wi-Fi credentials, API auth and device registry.
 - Use appropriate encrypted storage/protection mechanisms available on the exact P4 hardware and IDF revision; do not assert flash encryption/secure boot provisioned before validation.
+- The local Web UI is HTTP-only by ADR-0002. Basic credentials and session cookies are unencrypted in transit; Flash Encryption protects NVS at rest only. Use port 80 solely on a trusted, isolated LAN. Never expose it through port forwarding or a shared/guest/untrusted network.
 - The current P4 runtime reports Flash Encryption enabled; Wi-Fi credentials remain in the dedicated `wifi_cfg` partition with key material in `wifi_keys`. This development mode is not production security; Secure Boot remains disabled. No eFuse programming command was run during the IDF 6.2 P4 update.
 - For a device with Flash Encryption enabled, use the matching IDF `encrypted-flash` target, not a plaintext `flash` write. Verify the generated flash arguments, target port and partition offsets first; never use `erase-flash` or burn eFuses without explicit authorization. Encrypted writes may not be read-back-verifiable by esptool, so verify boot logs, partition table, and application health afterward.
 - Never print Zigbee/Matter keys or raw provisioning QR payloads to normal logs. Use short-lived pairing windows, limit web/API exposure to trusted LAN with authentication.

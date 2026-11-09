@@ -1,0 +1,78 @@
+Command: /home/konatsu/.espressif/python_env/idf5.5_py3.14_env/bin/python /home/konatsu/esp/esp-idf/tools/idf_monitor.py -p /dev/ttyACM0 -b 115200 --toolchain-prefix riscv32-esp-elf- --target esp32p4 --revision 301 --decode-panic backtrace /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-h2-rcp-test/hub_p4_esp_hosted_host.elf /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-h2-rcp-test/bootloader/bootloader.elf -m '/home/konatsu/.espressif/python_env/idf5.5_py3.14_env/bin/python' '/home/konatsu/esp/esp-idf/tools/idf.py' '-B' 'build-h2-rcp-test' '-p' '/dev/ttyACM0'
+--- esp-idf-monitor 1.10.0 on /dev/ttyACM0 115200
+--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H
+--- 0x4fc06020: MD5Transform in ROM
+--- 0x4ffac2c0: esp_bootloader_get_description at /home/konatsu/esp/esp-idf/components/esp_bootloader_format/esp_bootloader_desc.c:39
+--- 0x4ffaefc0: esp_flash_encryption_enabled at /home/konatsu/esp/esp-idf/components/bootloader_support/src/flash_encrypt.c:89
+--- 0x4ffac2ca: call_start_cpu0 at /home/konatsu/esp/esp-idf/components/bootloader/subproject/main/bootloader_start.c:27
+--- 0x400dff36: wifi_sta_receive at /home/konatsu/esp/esp-idf/components/esp_wifi/src/wifi_netif.c:38
+--- 0x40007c7b: _exit at /home/konatsu/esp/esp-idf/components/newlib/src/syscalls.c:123
+--- Stack dump detected
+--- 0x4ff2abe0: panic_abort at /home/konatsu/esp/esp-idf/components/esp_system/panic.c:491
+--- 0x4ff2ab92: esp_vApplicationTickHook at /home/konatsu/esp/esp-idf/components/esp_system/freertos_hooks.c:31
+--- 0x4ff20003: _vector_table at ??:?
+--- Backtrace:
+
+
+--- 0x4ff23f10: esp_cpu_wait_for_intr at /home/konatsu/esp/esp-idf/components/esp_hw_support/cpu.c:57
+--- 0x4ff23e02: esp_cpu_reset at /home/konatsu/esp/esp-idf/components/esp_hw_support/cpu.c:50
+--- 0x4ffac2c0: esp_bootloader_get_description at /home/konatsu/esp/esp-idf/components/esp_bootloader_format/esp_bootloader_desc.c:39
+--- 0x4ffaefc0: esp_flash_encryption_enabled at /home/konatsu/esp/esp-idf/components/bootloader_support/src/flash_encrypt.c:89
+--- 0x4ffac2ca: call_start_cpu0 at /home/konatsu/esp/esp-idf/components/bootloader/subproject/main/bootloader_start.c:27
+--- 0x400dff36: wifi_sta_receive at /home/konatsu/esp/esp-idf/components/esp_wifi/src/wifi_netif.c:38
+--- 0x40007c7b: _exit at /home/konatsu/esp/esp-idf/components/newlib/src/syscalls.c:123
+--- Stack dump detected
+--- 0x4ff2abe0: panic_abort at /home/konatsu/esp/esp-idf/components/esp_system/panic.c:491
+--- 0x4ff2ab92: esp_vApplicationTickHook at /home/konatsu/esp/esp-idf/components/esp_system/freertos_hooks.c:31
+--- 0x4ff20003: _vector_table at ??:?
+--- Backtrace:
+
+
+--- 0x4ff23f10: esp_cpu_wait_for_intr at /home/konatsu/esp/esp-idf/components/esp_hw_support/cpu.c:57
+--- 0x4ff23e02: esp_cpu_reset at /home/konatsu/esp/esp-idf/components/esp_hw_support/cpu.c:50
+--- 0x4ffac2c0: esp_bootloader_get_description at /home/konatsu/esp/esp-idf/components/esp_bootloader_format/esp_bootloader_desc.c:39
+--- 0x4ffaefc0: esp_flash_encryption_enabled at /home/konatsu/esp/esp-idf/components/bootloader_support/src/flash_encrypt.c:89
+--- 0x4ffac2ca: call_start_cpu0 at /home/konatsu/esp/esp-idf/components/bootloader/subproject/main/bootloader_start.c:27
+--- 0x400dff36: wifi_sta_receive at /home/konatsu/esp/esp-idf/components/esp_wifi/src/wifi_netif.c:38
+--- 0x40007c7b: _exit at /home/konatsu/esp/esp-idf/components/newlib/src/syscalls.c:123
+--- Stack dump detected
+--- 0x4ff2abe0: panic_abort at /home/konatsu/esp/esp-idf/components/esp_system/panic.c:491
+--- 0x4ff2ab92: esp_vApplicationTickHook at /home/konatsu/esp/esp-idf/components/esp_system/freertos_hooks.c:31
+--- 0x4ff20003: _vector_table at ??:?
+--- Backtrace:
+
+
+--- 0x4ff23f10: esp_cpu_wait_for_intr at /home/konatsu/esp/esp-idf/components/esp_hw_support/cpu.c:57
+--- 0x4ff23e02: esp_cpu_reset at /home/konatsu/esp/esp-idf/components/esp_hw_support/cpu.c:50
+--- 0x4ffac2c0: esp_bootloader_get_description at /home/konatsu/esp/esp-idf/components/esp_bootloader_format/esp_bootloader_desc.c:39
+--- 0x4ffaefc0: esp_flash_encryption_enabled at /home/konatsu/esp/esp-idf/components/bootloader_support/src/flash_encrypt.c:89
+--- 0x4ffac2ca: call_start_cpu0 at /home/konatsu/esp/esp-idf/components/bootloader/subproject/main/bootloader_start.c:27
+--- 0x400dff36: wifi_sta_receive at /home/konatsu/esp/esp-idf/components/esp_wifi/src/wifi_netif.c:38
+--- 0x40007c7b: _exit at /home/konatsu/esp/esp-idf/components/newlib/src/syscalls.c:123
+--- Stack dump detected
+--- 0x4ff2abe0: panic_abort at /home/konatsu/esp/esp-idf/components/esp_system/panic.c:491
+--- 0x4ff2ab92: esp_vApplicationTickHook at /home/konatsu/esp/esp-idf/components/esp_system/freertos_hooks.c:31
+--- 0x4ff20003: _vector_table at ??:?
+--- Backtrace:
+
+
+--- 0x4ff23dc8: cpu_utility_ll_reset_cpu at /home/konatsu/esp/esp-idf/components/hal/esp32p4/include/hal/cpu_utility_ll.h:25(inlined by) esp_cpu_reset at /home/konatsu/esp/esp-idf/components/esp_hw_support/cpu.c:49
+--- 0x4ff23f10: esp_cpu_wait_for_intr at /home/konatsu/esp/esp-idf/components/esp_hw_support/cpu.c:57
+--- 0x4ffac2c0: esp_bootloader_get_description at /home/konatsu/esp/esp-idf/components/esp_bootloader_format/esp_bootloader_desc.c:39
+--- 0x4ffaefc0: esp_flash_encryption_enabled at /home/konatsu/esp/esp-idf/components/bootloader_support/src/flash_encrypt.c:89
+--- 0x4ffac2ca: call_start_cpu0 at /home/konatsu/esp/esp-idf/components/bootloader/subproject/main/bootloader_start.c:27
+--- 0x400dff36: wifi_sta_receive at /home/konatsu/esp/esp-idf/components/esp_wifi/src/wifi_netif.c:38
+--- 0x40007c7b: _exit at /home/konatsu/esp/esp-idf/components/newlib/src/syscalls.c:123
+--- Stack dump detected
+--- 0x4ff2abe0: panic_abort at /home/konatsu/esp/esp-idf/components/esp_system/panic.c:491
+--- 0x4ff2ab92: esp_vApplicationTickHook at /home/konatsu/esp/esp-idf/components/esp_system/freertos_hooks.c:31
+--- 0x4ff20003: _vector_table at ??:?
+--- Backtrace:
+
+
+--- 0x4ff23f10: esp_cpu_wait_for_intr at /home/konatsu/esp/esp-idf/components/esp_hw_support/cpu.c:57
+--- 0x4ff23e02: esp_cpu_reset at /home/konatsu/esp/esp-idf/components/esp_hw_support/cpu.c:50
+--- 0x4ffac2c0: esp_bootloader_get_description at /home/konatsu/esp/esp-idf/components/esp_bootloader_format/esp_bootloader_desc.c:39
+--- 0x4ffaefc0: esp_flash_encryption_enabled at /home/konatsu/esp/esp-idf/components/bootloader_support/src/flash_encrypt.c:89
+--- 0x4ffac2ca: call_start_cpu0 at /home/konatsu/esp/esp-idf/components/bootloader/subproject/main/bootloader_start.c:27
+

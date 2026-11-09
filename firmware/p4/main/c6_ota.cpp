@@ -39,6 +39,8 @@ constexpr char kSdioZigbeeBdbTraceConfirmation[] =
     "CONFIRM-C6-ZIGBEE-LOGS-3403B461EFBB0873";
 constexpr char kSdioZigbeeBdbV3Confirmation[] =
     "CONFIRM-C6-ZIGBEE-BDB-V3-133B8B85130D04C1";
+constexpr char kH2WifiOnlyConfirmation[] =
+    "CONFIRM-C6-H2-WIFI-7C7A58CA92276F35";
 constexpr std::array<std::uint8_t, 32> kMultipanImageSha256 = {
     0x69, 0xF6, 0xE8, 0xC7, 0xD6, 0xE6, 0xCF, 0x00,
     0x39, 0x86, 0x14, 0x8F, 0xBC, 0xEA, 0xD6, 0x46,
@@ -68,6 +70,12 @@ constexpr std::array<std::uint8_t, 32> kSdioZigbeeBdbV3ImageSha256 = {
     0x52, 0x92, 0x68, 0xE1, 0xD4, 0xD9, 0x49, 0x96,
     0xAF, 0x42, 0xDA, 0x4A, 0x2E, 0x25, 0x69, 0x8C,
     0x6A, 0x88, 0x15, 0xAA, 0xA5, 0xC1, 0x2D, 0xAF,
+};
+constexpr std::array<std::uint8_t, 32> kH2WifiOnlyImageSha256 = {
+    0x7C, 0x7A, 0x58, 0xCA, 0x92, 0x27, 0x6F, 0x35,
+    0x2F, 0x79, 0x98, 0xF1, 0x41, 0xDB, 0x0C, 0x44,
+    0x2B, 0x18, 0x45, 0x18, 0xDE, 0x0A, 0xEE, 0x8A,
+    0xBA, 0x04, 0x7C, 0x84, 0x81, 0xD4, 0x59, 0xB9,
 };
 constexpr std::uint32_t kTargetMajor = 3;
 constexpr std::uint32_t kTargetMinor = 1;
@@ -303,18 +311,22 @@ int c6_ota_command(int argc, char** argv) {
         std::strcmp(argv[1], kSdioZigbeeBdbTraceConfirmation) == 0;
     const bool sdio_zigbee_bdb_v3_confirmation = argc == 2 &&
         std::strcmp(argv[1], kSdioZigbeeBdbV3Confirmation) == 0;
+    const bool h2_wifi_only_confirmation = argc == 2 &&
+        std::strcmp(argv[1], kH2WifiOnlyConfirmation) == 0;
     const bool standard_confirmation = argc == 2 &&
         std::strcmp(argv[1], kConfirmation) == 0;
     if (!multipan_confirmation && !sdio_zigbee_confirmation &&
         !sdio_zigbee_bdb_timeout_confirmation &&
         !sdio_zigbee_bdb_trace_confirmation &&
-        !sdio_zigbee_bdb_v3_confirmation && !standard_confirmation) {
-        std::printf("Usage: c6_ota %s | c6_ota %s | c6_ota %s | c6_ota %s | c6_ota %s | c6_ota %s\n",
+        !sdio_zigbee_bdb_v3_confirmation && !h2_wifi_only_confirmation &&
+        !standard_confirmation) {
+        std::printf("Usage: c6_ota %s | c6_ota %s | c6_ota %s | c6_ota %s | c6_ota %s | c6_ota %s | c6_ota %s\n",
                     kConfirmation, kMultipanConfirmation,
                     kSdioZigbeeConfirmation,
                     kSdioZigbeeBdbTimeoutConfirmation,
-                kSdioZigbeeBdbTraceConfirmation,
-                kSdioZigbeeBdbV3Confirmation);
+                    kSdioZigbeeBdbTraceConfirmation,
+                    kSdioZigbeeBdbV3Confirmation,
+                    kH2WifiOnlyConfirmation);
         return 1;
     }
     bool expected = false;
@@ -348,7 +360,7 @@ int c6_ota_command(int argc, char** argv) {
         multipan_confirmation || sdio_zigbee_confirmation ||
         sdio_zigbee_bdb_timeout_confirmation ||
         sdio_zigbee_bdb_trace_confirmation ||
-        sdio_zigbee_bdb_v3_confirmation;
+        sdio_zigbee_bdb_v3_confirmation || h2_wifi_only_confirmation;
     if (current_version_is_newer ||
         (current_version_is_same && !hash_bound_confirmation)) {
         ESP_LOGW(kTag, "Refusing downgrade or duplicate update from %lu.%lu.%lu",
@@ -387,6 +399,8 @@ int c6_ota_command(int argc, char** argv) {
         image.sha256 == kSdioZigbeeBdbTraceImageSha256;
     const bool staged_image_is_sdio_zigbee_bdb_v3 =
         image.sha256 == kSdioZigbeeBdbV3ImageSha256;
+    const bool staged_image_is_h2_wifi_only =
+        image.sha256 == kH2WifiOnlyImageSha256;
     const bool staged_image_matches_confirmation =
         (multipan_confirmation && staged_image_is_multipan) ||
         (sdio_zigbee_confirmation && staged_image_is_sdio_zigbee) ||
@@ -396,11 +410,13 @@ int c6_ota_command(int argc, char** argv) {
          staged_image_is_sdio_zigbee_bdb_trace) ||
         (sdio_zigbee_bdb_v3_confirmation &&
          staged_image_is_sdio_zigbee_bdb_v3) ||
+        (h2_wifi_only_confirmation && staged_image_is_h2_wifi_only) ||
         (standard_confirmation && !staged_image_is_multipan &&
          !staged_image_is_sdio_zigbee &&
          !staged_image_is_sdio_zigbee_bdb_timeout &&
          !staged_image_is_sdio_zigbee_bdb_trace &&
-         !staged_image_is_sdio_zigbee_bdb_v3);
+         !staged_image_is_sdio_zigbee_bdb_v3 &&
+         !staged_image_is_h2_wifi_only);
     if (!staged_image_matches_confirmation) {
         ESP_LOGE(kTag, "Confirmation token does not match the staged image SHA-256");
         update_in_progress.store(false, std::memory_order_release);
