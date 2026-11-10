@@ -1,0 +1,4 @@
+--flash_mode dio --flash_freq 80m --flash_size 16MB
+0x2000 bootloader/bootloader.bin
+0x20000 hub_p4_esp_hosted_host.bin
+0x11000 partition_table/partition-table.bin

@@ -1,0 +1,60 @@
+Command: /home/konatsu/.espressif/python_env/idf5.5_py3.14_env/bin/python /home/konatsu/esp/esp-idf/tools/idf_monitor.py -p /dev/ttyACM1 -b 115200 --toolchain-prefix riscv32-esp-elf- --target esp32h2 --revision 0 --decode-panic backtrace /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/hub_h2_zigbee_rcp.elf /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/h2/build-default-validation/bootloader/bootloader.elf -m '/home/konatsu/.espressif/python_env/idf5.5_py3.14_env/bin/python' '/home/konatsu/esp/esp-idf/tools/idf.py' '-B' 'build-default-validation' '-p' '/dev/ttyACM1'
+[0;32mI (101) esp_image: segment 3: paddr=000523f4 vaddr=40802338 sizeESP-ROM:esp32h2-20221101[0m
+Build:Nov  1 2022
+rst:0x15 (USB_UART_HPSYS),boot:0xc (SPI_FAST_FLASH_BOOT)
+Saved PC:0x4080483e
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x408460f0,len:0x16e0
+load:0x4083c2d0,len:0xe70
+load:0x4083efd0,len:0x2fd0
+entry 0x4083c2da
+[0;32mI (23) boot: ESP-IDF v5.5.5 2nd stage bootloader[0m
+[0;32mI (23) boot: compile time Nov  8 2026 09:42:19[0m
+[0;32mI (24) boot: chip revision: v0.1[0m
+[0;32mI (24) boot: efuse block revision: v0.3[0m
+[0;32mI (24) boot.esp32h2: SPI Speed      : 64MHz[0m
+[0;32mI (25) boot.esp32h2: SPI Mode       : DIO[0m
+[0;32mI (25) boot.esp32h2: SPI Flash Size : 2MB[0m
+[0;32mI (25) boot: Enabling RNG early entropy source...[0m
+[0;32mI (26) boot: Partition Table:[0m
+[0;32mI (26) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (27) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (27) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (28) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (29) boot: End of partition table[0m
+[0;32mI (29) esp_image: segment 0: paddr=00010020 vaddr=42038020 size=0dcb8h ( 56504) map[0m
+[0;32mI (45) esp_image: segment 1: paddr=0001dce0 vaddr=40800000 size=02338h (  9016) load[0m
+[0;32mI (48) esp_image: segment 2: paddr=00020020 vaddr=42000020 size=323cch (205772) map[0m
+[0;32mI (101) esp_image: segment 3: paddr=000523f4 vaddr=40802338 size=0e910h ( 59664) load[0m
+[0;32mI (119) esp_image: segment 4: paddr=00060d0c vaddr=40810c50 size=023d4h (  9172) load[0m
+[0;32mI (127) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (128) boot: Disabling RNG early entropy source...[0m
+[0;32mI (129) cpu_start: Unicore app[0m
+[0;32mI (138) cpu_start: Pro cpu start user code[0m
+[0;32mI (138) cpu_start: cpu freq: 96000000 Hz[0m
+[0;32mI (138) app_init: Application information:[0m
+[0;32mI (139) app_init: Project name:     hub_h2_zigbee_rcp[0m
+[0;32mI (139) app_init: App version:      c7cd5d5-dirty[0m
+[0;32mI (139) app_init: Compile time:     Nov  8 2026 12:09:31[0m
+[0;32mI (140) app_init: ELF file SHA256:  a311a7136...[0m
+[0;32mI (140) app_init: ESP-IDF:          v5.5.5[0m
+[0;32mI (140) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (141) efuse_init: Max chip rev:     v1.99 [0m
+[0;32mI (141) efuse_init: Chip rev:         v0.1[0m
+[0;32mI (141) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (142) heap_init: At 40817210 len 00036170 (216 KiB): RAM[0m
+[0;32mI (142) heap_init: At 4084D380 len 00002B60 (10 KiB): RAM[0m
+[0;32mI (143) heap_init: At 50000000 len 00000FE8 (3 KiB): RTCRAM[0m
+[0;32mI (144) spi_flash: detected chip: generic[0m
+[0;32mI (144) spi_flash: flash io: dio[0m
+[0;32mI (145) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (146) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (147) main_task: Started on CPU0[0m
+[0;32mI (147) main_task: Calling app_main()[0m
+[0;32mI (158) uart: ESP_INTR_FLAG_IRAM flag not set while CONFIG_UART_ISR_IN_IRAM is enabled, flag updated[0m
+[0;32mI (169) phy: phy_version: 324,2, 0d8cd71, Apr 10 2026, 13:58:46[0m
+[0;32mI (170) phy: libbtbb version: 8db04ea, Apr 10 2026, 13:58:59[0m
+[0;32mI (171) OPENTHREAD: OpenThread enter mainloop[0m
+[0;32mI (174) hub_h2_zigbee_rcp: H2 radio RCP started; host owns Zigbee coordinator state[0m
+[0;32mI (174) main_task: Returned from app_main()[0m

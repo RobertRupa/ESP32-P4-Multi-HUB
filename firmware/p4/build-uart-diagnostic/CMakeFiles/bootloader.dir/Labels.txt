@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-uart-diagnostic/CMakeFiles/bootloader
+/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-uart-diagnostic/CMakeFiles/bootloader.rule
+/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-uart-diagnostic/CMakeFiles/bootloader-complete.rule
+/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-uart-diagnostic/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-uart-diagnostic/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-uart-diagnostic/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-uart-diagnostic/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-uart-diagnostic/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-uart-diagnostic/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-uart-diagnostic/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

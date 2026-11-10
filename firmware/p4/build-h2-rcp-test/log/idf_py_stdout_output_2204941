@@ -1,0 +1,1226 @@
+Command: /home/konatsu/.espressif/python_env/idf5.5_py3.14_env/bin/python /home/konatsu/esp/esp-idf/tools/idf_monitor.py -p /dev/ttyACM0 -b 115200 --toolchain-prefix riscv32-esp-elf- --target esp32p4 --revision 301 --decode-panic backtrace /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-h2-rcp-test/hub_p4_esp_hosted_host.elf /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-h2-rcp-test/bootloader/bootloader.elf -m '/home/konatsu/.espressif/python_env/idf5.5_py3.14_env/bin/python' '/home/konatsu/esp/esp-idf/tools/idf.py' '-B' 'build-h2-rcp-test' '-p' '/dev/ttyACM0'
+ESP-ROM:esp32p4-eco7-20260109
+Build:Jan  9 2026
+rst:0x17 (CHIP_USB_UART_RESET),boot:0x30d (SPI_FAST_FLASH_BOOT)
+Core0 Saved PC:0x4ff5005c
+Core1 Saved PC:0x4fc06020
+use legacy efuse key
+SPI mode:DIO, clock div:1
+load:0x4ffb6240,len:0x2924
+load:0x4ffac2c0,len:0x1000
+load:0x4ffaefc0,len:0x5318
+entry 0x4ffac2ca
+[0;32mI (10) boot: ESP-IDF v5.5.5 2nd stage bootloader[0m
+[0;32mI (10) boot: compile time Nov  8 2026 12:08:39[0m
+[0;32mI (11) boot: Multicore bootloader[0m
+[0;32mI (12) boot: chip revision: v3.2[0m
+[0;32mI (12) boot: efuse block revision: v1.2[0m
+[0;32mI (12) boot.esp32p4: SPI Speed      : 80MHz[0m
+[0;32mI (12) boot.esp32p4: SPI Mode       : DIO[0m
+[0;32mI (13) boot.esp32p4: SPI Flash Size : 16MB[0m
+[0;32mI (13) boot: Enabling RNG early entropy source...[0m
+[0;32mI (14) boot: Partition Table:[0m
+[0;32mI (14) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (14) boot:  0 nvs              WiFi data        01 02 00012000 00006000[0m
+[0;32mI (15) boot:  1 phy_init         RF data          01 01 00018000 00001000[0m
+[0;32mI (15) boot:  2 factory          factory app      00 00 00020000 003f0000[0m
+[0;32mI (16) boot:  3 c6_fw            Unknown data     01 40 00410000 00200000[0m
+[0;32mI (16) boot:  4 wifi_keys        NVS keys         01 04 00610000 00001000[0m
+[0;32mI (17) boot:  5 wifi_cfg         WiFi data        01 02 00611000 00006000[0m
+[0;32mI (18) boot: End of partition table[0m
+[0;32mI (19) esp_image: segment 0: paddr=00020020 vaddr=40150020 size=5fedch (392924) map[0m
+[0;32mI (73) esp_image: segment 1: paddr=0007ff04 vaddr=30100000 size=00114h (   276) load[0m
+[0;32mI (74) esp_image: segment 2: paddr=00080020 vaddr=40000020 size=148384h (1344388) map[0m
+[0;32mI (255) esp_image: segment 3: paddr=001c83ac vaddr=30100114 size=000e0h (   224) load[0m
+[0;32mI (256) esp_image: segment 4: paddr=001c8494 vaddr=30100200 size=00048h (    72) load[0m
+[0;32mI (258) esp_image: segment 5: paddr=001c84e4 vaddr=4ff20000 size=172f4h ( 94964) load[0m
+[0;32mI (274) esp_image: segment 6: paddr=001df7e0 vaddr=4ff37300 size=04ca4h ( 19620) load[0m
+[0;32mI (278) esp_image: segment 7: paddr=001e448c vaddr=50108080 size=0000ch (    12) load[0m
+[0;32mI (284) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (284) boot: Checking flash encryption...[0m
+[0;32mI (284) flash_encrypt: flash encryption is enabled (1 plaintext flashes left)[0m
+[0;32mI (285) boot: Disabling RNG early entropy source...[0m
+[0;32mI (289) hex_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (289) hex_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (289) hex_psram: DriveStr.    : 0x00 (25 Ohm)[0m
+[0;32mI (289) hex_psram: dev id       : 0x03 (generation 4)[0m
+[0;32mI (290) hex_psram: density      : 0x07 (256 Mbit)[0m
+[0;32mI (290) hex_psram: good-die     : 0x06 (Pass)[0m
+[0;32mI (290) hex_psram: SRF          : 0x02 (Slow Refresh)[0m
+[0;32mI (291) hex_psram: BurstType    : 0x00 ( Wrap)[0m
+[0;32mI (291) hex_psram: BurstLen     : 0x03 (2048 Byte)[0m
+[0;32mI (292) hex_psram: BitMode      : 0x01 (X16 Mode)[0m
+[0;32mI (292) hex_psram: Readlatency  : 0x04 (14 cycles@Fixed)[0m
+[0;32mI (292) hex_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (293) MSPI Timing: Enter psram timing tuning[0m
+[0;32mI (453) esp_psram: Found 32MB PSRAM device[0m
+[0;32mI (453) esp_psram: Speed: 200MHz[0m
+[0;32mI (454) hex_psram: psram CS IO is dedicated[0m
+[0;32mI (454) cpu_start: Multicore app[0m
+[0;32mI (1674) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (1684) cpu_start: Pro cpu start user code[0m
+[0;32mI (1684) cpu_start: cpu freq: 400000000 Hz[0m
+[0;32mI (1684) app_init: Application information:[0m
+[0;32mI (1684) app_init: Project name:     hub_p4_esp_hosted_host[0m
+[0;32mI (1685) app_init: App version:      c7cd5d5-dirty[0m
+[0;32mI (1685) app_init: Compile time:     Nov  8 2026 12:10:19[0m
+[0;32mI (1685) app_init: ELF file SHA256:  76ba3b71f...[0m
+[0;32mI (1685) app_init: ESP-IDF:          v5.5.5[0m
+[0;32mI (1685) efuse_init: Min chip rev:     v3.1[0m
+[0;32mI (1686) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (1686) efuse_init: Chip rev:         v3.2[0m
+[0;32mI (1686) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1686) heap_init: At 4FF54740 len 00066880 (410 KiB): RETENT_RAM[0m
+[0;32mI (1687) heap_init: At 4FFBAFC0 len 00004BF0 (18 KiB): RAM[0m
+[0;32mI (1687) heap_init: At 5010808C len 00007F74 (31 KiB): RTCRAM[0m
+[0;32mI (1687) heap_init: At 30100248 len 00001DB8 (7 KiB): SPM[0m
+[0;32mI (1688) esp_psram: Adding pool of 32768K of PSRAM memory to heap allocator[0m
+[0;32mI (1689) spi_flash: detected chip: boya[0m
+[0;32mI (1689) spi_flash: flash io: dio[0m
+[0;32mI (1690) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (1691) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (1693) eh_mcu_transport: transport_init: probing bus backend[0m
+[0;32mI (1693) eh_sdio: transport[host]: SDIO 4-bit 5000 kHz CLK=18 CMD=19 D0=14 D1=15 D2=16 D3=17 RESET=54[0m
+[0;33mW (1694) eh_sdio: SDIO clock freq set to [5000]KHz, Max possible (on PCB) is 40000KHz[0m
+[0;32mI (1694) eh_sdio: sdio_data_to_rx_buf_task started[0m
+[0;32mI (1694) eh_mcu_transport: transport_init: bus backend up[0m
+[0;32mI (1694) main_task: Started on CPU0[0m
+[0;33mW (1695) eh_sdio: Reset co-processor using GPIO[54][0m
+[0;32mI (1695) esp_psram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32mI (1695) main_task: Calling app_main()[0m
+Guru Meditation Error: Core  0 panic'ed (Stack protection fault). 
+
+Detected in task "main" at 0x4ff2f154
+Stack pointer: 0x4ff584a0
+Stack bounds: 0x4ff584a4 - 0x4ff594a0
+
+
+Core  0 register dump:
+MEPC    : 0x4ff2f162  RA      : 0x4ff2f15e  SP      : 0x4ff584a0  GP      : 0x4ff37b00  
+TP      : 0x4ff59470  T0      : 0x4fc1a588  T1      : 0x0000000f  T2      : 0xffffffff  
+S0/FP   : 0x4ff55300  S1      : 0xffffffff  A0      : 0x0000001f  A1      : 0xffffffff  
+A2      : 0x00013860  A3      : 0x000c0000  A4      : 0x00000000  A5      : 0x4ff54000  
+A6      : 0x00000003  A7      : 0x80808080  S2      : 0x00000000  S3      : 0x00013860  
+S4      : 0x4ff586a0  S5      : 0x00000000  S6      : 0x00000020  S7      : 0x4ff58688  
+S8      : 0x00000042  S9      : 0x000000ff  S10     : 0x4ff5867c  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0xc40b22a7  T6      : 0x00000000  
+MSTATUS : 0x00011881  MTVEC   : 0x4ff20003  MCAUSE  : 0x0000001b  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+Unrecognized argument "HUB/firmware/p4/build-h2-rcp-test/bootloader/bootloader.elf"
+0x4ff2f162 in xTaskGetSchedulerState () at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+5015	            if( xSchedulerRunning == pdFALSE )
+#0  0x4ff2f162 in xTaskGetSchedulerState () at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+#1  0x4ff2bbac in xQueueSemaphoreTake (xQueue=xQueue@entry=0x4ff55300, xTicksToWait=<optimized out>, xTicksToWait@entry=4294967295) at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c:1718
+#2  0x4ff2bcf2 in xQueueTakeMutexRecursive (xMutex=0x4ff55300, xTicksToWait=xTicksToWait@entry=4294967295) at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c:835
+#3  0x400b2de6 in spi_flash_op_lock () at /home/konatsu/esp/esp-idf/components/spi_flash/cache_utils.c:75
+#4  0x4ff22848 in spi_flash_disable_interrupts_caches_and_other_cpu () at /home/konatsu/esp/esp-idf/components/spi_flash/cache_utils.c:129
+#5  0x4ff22c5c in cache_disable (arg=arg@entry=0x0) at /home/konatsu/esp/esp-idf/components/spi_flash/spi_flash_os_func_app.c:75
+#6  0x4ff22c6c in spi1_start (arg=<optimized out>, flags=<optimized out>) at /home/konatsu/esp/esp-idf/components/spi_flash/spi_flash_os_func_app.c:133
+#7  0x4ff35b92 in spiflash_start_core (chip=0x4ff39a48 <default_chip>, flags=0) at /home/konatsu/esp/esp-idf/components/spi_flash/esp_flash_api.c:238
+#8  0x4ff35bcc in spiflash_start_default (chip=<optimized out>) at /home/konatsu/esp/esp-idf/components/spi_flash/esp_flash_api.c:249
+#9  0x4ff35620 in esp_flash_read (chip=<optimized out>, buffer=buffer@entry=0x4ff586a0, address=79968, length=32) at /home/konatsu/esp/esp-idf/components/spi_flash/esp_flash_api.c:981
+#10 0x400b1cdc in esp_partition_read (partition=<optimized out>, src_offset=<optimized out>, dst=0x4ff586a0, size=32) at /home/konatsu/esp/esp-idf/components/esp_partition/partition_target.c:38
+#11 0x400dc3b2 in nvs::NVSPartition::read (this=<optimized out>, src_offset=<optimized out>, dst=<optimized out>, size=<optimized out>) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_partition.cpp:37
+#12 0x400d99b6 in nvs::Page::readEntry (this=this@entry=0x4ffbb724, index=index@entry=65, dst=...) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:895
+#13 0x400da2c8 in nvs::Page::findItem (this=this@entry=0x4ffbb724, nsIndex=5 '\005', datatype=nvs::ItemType::BLOB_IDX, key=key@entry=0x4ff58688 "ZB0905", itemIndex=itemIndex@entry=@0x4ff5867c: 0, item=..., chunkIdx=chunkIdx@entry=255 '\377', chunkStart=chunkStart@entry=nvs::VerOffset::VER_ANY) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:948
+#14 0x400da8bc in nvs::Page::mLoadEntryTable (this=this@entry=0x4ffbb724) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:738
+#15 0x400daada in nvs::Page::load (this=0x4ffbb724, partition=partition@entry=0x4ffbb408, sectorNumber=sectorNumber@entry=1) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:88
+#16 0x400dd03e in nvs::PageManager::load (this=this@entry=0x4ffbb670, partition=0x4ffbb408, baseSector=baseSector@entry=0, sectorCount=sectorCount@entry=6) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_pagemanager.cpp:27
+#17 0x400db9d4 in nvs::Storage::init (this=this@entry=0x4ffbb660, baseSector=baseSector@entry=0, sectorCount=sectorCount@entry=6) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_storage.cpp:185
+#18 0x400dc66a in nvs::NVSPartitionManager::init_custom (this=this@entry=0x4ffbb384, partition=0x4ffbb408, baseSector=baseSector@entry=0, sectorCount=6) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_partition_manager.cpp:95
+#19 0x400dc700 in nvs::NVSPartitionManager::init_partition (this=0x4ffbb384, partition_label=partition_label@entry=0x4015c170 "") at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_partition_manager.cpp:57
+#20 0x400d8dfe in nvs_flash_init_partition (part_name=part_name@entry=0x4015c170 "") at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_api.cpp:133
+#21 0x400d8e3c in nvs_flash_init () at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_api.cpp:161
+#22 0x4000c642 in app_main () at /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/main/main.cpp:144
+#23 0x00000000 in ?? ()
+Backtrace stopped: frame did not save the PC
+
+
+
+ELF file SHA256: 76ba3b71f
+
+Rebooting...
+ESP-ROM:esp32p4-eco7-20260109
+Build:Jan  9 2026
+rst:0xc (SW_CPU_RESET),boot:0x30d (SPI_FAST_FLASH_BOOT)
+Core0 Saved PC:0x4ff23dc8
+Core1 Saved PC:0x40001d76
+use legacy efuse key
+SPI mode:DIO, clock div:1
+load:0x4ffb6240,len:0x2924
+load:0x4ffac2c0,len:0x1000
+load:0x4ffaefc0,len:0x5318
+entry 0x4ffac2ca
+[0;32mI (26) boot: ESP-IDF v5.5.5 2nd stage bootloader[0m
+[0;32mI (26) boot: compile time Nov  8 2026 12:08:39[0m
+[0;32mI (26) boot: Multicore bootloader[0m
+[0;32mI (27) boot: chip revision: v3.2[0m
+[0;32mI (27) boot: efuse block revision: v1.2[0m
+[0;32mI (28) boot.esp32p4: SPI Speed      : 80MHz[0m
+[0;32mI (28) boot.esp32p4: SPI Mode       : DIO[0m
+[0;32mI (28) boot.esp32p4: SPI Flash Size : 16MB[0m
+[0;32mI (28) boot: Enabling RNG early entropy source...[0m
+[0;32mI (29) boot: Partition Table:[0m
+[0;32mI (29) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (29) boot:  0 nvs              WiFi data        01 02 00012000 00006000[0m
+[0;32mI (30) boot:  1 phy_init         RF data          01 01 00018000 00001000[0m
+[0;32mI (30) boot:  2 factory          factory app      00 00 00020000 003f0000[0m
+[0;32mI (31) boot:  3 c6_fw            Unknown data     01 40 00410000 00200000[0m
+[0;32mI (31) boot:  4 wifi_keys        NVS keys         01 04 00610000 00001000[0m
+[0;32mI (32) boot:  5 wifi_cfg         WiFi data        01 02 00611000 00006000[0m
+[0;32mI (33) boot: End of partition table[0m
+[0;32mI (33) esp_image: segment 0: paddr=00020020 vaddr=40150020 size=5fedch (392924) map[0m
+[0;32mI (87) esp_image: segment 1: paddr=0007ff04 vaddr=30100000 size=00114h (   276) load[0m
+[0;32mI (89) esp_image: segment 2: paddr=00080020 vaddr=40000020 size=148384h (1344388) map[0m
+[0;32mI (270) esp_image: segment 3: paddr=001c83ac vaddr=30100114 size=000e0h (   224) load[0m
+[0;32mI (271) esp_image: segment 4: paddr=001c8494 vaddr=30100200 size=00048h (    72) load[0m
+[0;32mI (272) esp_image: segment 5: paddr=001c84e4 vaddr=4ff20000 size=172f4h ( 94964) load[0m
+[0;32mI (288) esp_image: segment 6: paddr=001df7e0 vaddr=4ff37300 size=04ca4h ( 19620) load[0m
+[0;32mI (292) esp_image: segment 7: paddr=001e448c vaddr=50108080 size=0000ch (    12) load[0m
+[0;32mI (298) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (298) boot: Checking flash encryption...[0m
+[0;32mI (298) flash_encrypt: flash encryption is enabled (1 plaintext flashes left)[0m
+[0;32mI (299) boot: Disabling RNG early entropy source...[0m
+[0;32mI (303) hex_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (303) hex_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (303) hex_psram: DriveStr.    : 0x00 (25 Ohm)[0m
+[0;32mI (303) hex_psram: dev id       : 0x03 (generation 4)[0m
+[0;32mI (304) hex_psram: density      : 0x07 (256 Mbit)[0m
+[0;32mI (304) hex_psram: good-die     : 0x06 (Pass)[0m
+[0;32mI (304) hex_psram: SRF          : 0x02 (Slow Refresh)[0m
+[0;32mI (304) hex_psram: BurstType    : 0x00 ( Wrap)[0m
+[0;32mI (305) hex_psram: BurstLen     : 0x03 (2048 Byte)[0m
+[0;32mI (305) hex_psram: BitMode      : 0x01 (X16 Mode)[0m
+[0;32mI (305) hex_psram: Readlatency  : 0x04 (14 cycles@Fixed)[0m
+[0;32mI (306) hex_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (306) MSPI Timing: Enter psram timing tuning[0m
+[0;32mI (466) esp_psram: Found 32MB PSRAM device[0m
+[0;32mI (466) esp_psram: Speed: 200MHz[0m
+[0;32mI (467) hex_psram: psram CS IO is dedicated[0m
+[0;32mI (467) cpu_start: Multicore app[0m
+[0;32mI (1688) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (1697) cpu_start: Pro cpu start user code[0m
+[0;32mI (1697) cpu_start: cpu freq: 400000000 Hz[0m
+[0;32mI (1697) app_init: Application information:[0m
+[0;32mI (1698) app_init: Project name:     hub_p4_esp_hosted_host[0m
+[0;32mI (1698) app_init: App version:      c7cd5d5-dirty[0m
+[0;32mI (1698) app_init: Compile time:     Nov  8 2026 12:10:19[0m
+[0;32mI (1698) app_init: ELF file SHA256:  76ba3b71f...[0m
+[0;32mI (1698) app_init: ESP-IDF:          v5.5.5[0m
+[0;32mI (1699) efuse_init: Min chip rev:     v3.1[0m
+[0;32mI (1699) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (1699) efuse_init: Chip rev:         v3.2[0m
+[0;32mI (1699) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1700) heap_init: At 4FF54740 len 00066880 (410 KiB): RETENT_RAM[0m
+[0;32mI (1700) heap_init: At 4FFBAFC0 len 00004BF0 (18 KiB): RAM[0m
+[0;32mI (1700) heap_init: At 5010808C len 00007F74 (31 KiB): RTCRAM[0m
+[0;32mI (1700) heap_init: At 30100248 len 00001DB8 (7 KiB): SPM[0m
+[0;32mI (1701) esp_psram: Adding pool of 32768K of PSRAM memory to heap allocator[0m
+[0;32mI (1702) spi_flash: detected chip: boya[0m
+[0;32mI (1702) spi_flash: flash io: dio[0m
+[0;32mI (1703) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (1704) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (1706) eh_mcu_transport: transport_init: probing bus backend[0m
+[0;32mI (1706) eh_sdio: transport[host]: SDIO 4-bit 5000 kHz CLK=18 CMD=19 D0=14 D1=15 D2=16 D3=17 RESET=54[0m
+[0;33mW (1707) eh_sdio: SDIO clock freq set to [5000]KHz, Max possible (on PCB) is 40000KHz[0m
+[0;32mI (1707) eh_sdio: sdio_data_to_rx_buf_task started[0m
+[0;32mI (1707) eh_mcu_transport: transport_init: bus backend up[0m
+[0;32mI (1707) main_task: Started on CPU0[0m
+[0;33mW (1707) eh_sdio: Reset co-processor using GPIO[54][0m
+[0;32mI (1708) esp_psram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32mI (1708) main_task: Calling app_main()[0m
+Guru Meditation Error: Core  0 panic'ed (Stack protection fault). 
+
+Detected in task "main" at 0x4ff20228
+Stack pointer: 0x4ff3c9b0
+Stack bounds: 0x4ff3c3b0 - 0x4ff3c9b0
+
+
+Core  0 register dump:
+MEPC    : 0x4ff20284  RA      : 0x4ff20274  SP      : 0x4ff3c9b0  GP      : 0x4ff37b00  
+TP      : 0x4ff59470  T0      : 0x00000008  T1      : 0x0000000f  T2      : 0xffffffff  
+S0/FP   : 0x00000000  S1      : 0xb8000013  A0      : 0x00000000  A1      : 0x00000300  
+A2      : 0x3ff06000  A3      : 0x00000004  A4      : 0x5012d000  A5      : 0x5012d000  
+A6      : 0x00000003  A7      : 0x3bebb514  S2      : 0x00001881  S3      : 0x00000003  
+S4      : 0x00000000  S5      : 0x000000bb  S6      : 0x80000000  S7      : 0x4ff39a48  
+S8      : 0x00000100  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0xc40b22a7  T6      : 0x00000000  
+MSTATUS : 0x00001881  MTVEC   : 0x4ff20003  MCAUSE  : 0x0000001b  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+Unrecognized argument "HUB/firmware/p4/build-h2-rcp-test/bootloader/bootloader.elf"
+_interrupt_handler () at /home/konatsu/esp/esp-idf/components/riscv/vectors.S:457
+457	    mv      a0, sp      /* argument 1, stack pointer */
+#0  _interrupt_handler () at /home/konatsu/esp/esp-idf/components/riscv/vectors.S:457
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+
+
+
+ELF file SHA256: 76ba3b71f
+
+Rebooting...
+ESP-ROM:esp32p4-eco7-20260109
+Build:Jan  9 2026
+rst:0xc (SW_CPU_RESET),boot:0x30d (SPI_FAST_FLASH_BOOT)
+Core0 Saved PC:0x4ff23dc8
+Core1 Saved PC:0x40001d76
+use legacy efuse key
+SPI mode:DIO, clock div:1
+load:0x4ffb6240,len:0x2924
+load:0x4ffac2c0,len:0x1000
+load:0x4ffaefc0,len:0x5318
+entry 0x4ffac2ca
+[0;32mI (26) boot: ESP-IDF v5.5.5 2nd stage bootloader[0m
+[0;32mI (26) boot: compile time Nov  8 2026 12:08:39[0m
+[0;32mI (26) boot: Multicore bootloader[0m
+[0;32mI (27) boot: chip revision: v3.2[0m
+[0;32mI (27) boot: efuse block revision: v1.2[0m
+[0;32mI (28) boot.esp32p4: SPI Speed      : 80MHz[0m
+[0;32mI (28) boot.esp32p4: SPI Mode       : DIO[0m
+[0;32mI (28) boot.esp32p4: SPI Flash Size : 16MB[0m
+[0;32mI (28) boot: Enabling RNG early entropy source...[0m
+[0;32mI (29) boot: Partition Table:[0m
+[0;32mI (29) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (29) boot:  0 nvs              WiFi data        01 02 00012000 00006000[0m
+[0;32mI (30) boot:  1 phy_init         RF data          01 01 00018000 00001000[0m
+[0;32mI (30) boot:  2 factory          factory app      00 00 00020000 003f0000[0m
+[0;32mI (31) boot:  3 c6_fw            Unknown data     01 40 00410000 00200000[0m
+[0;32mI (31) boot:  4 wifi_keys        NVS keys         01 04 00610000 00001000[0m
+[0;32mI (32) boot:  5 wifi_cfg         WiFi data        01 02 00611000 00006000[0m
+[0;32mI (33) boot: End of partition table[0m
+[0;32mI (33) esp_image: segment 0: paddr=00020020 vaddr=40150020 size=5fedch (392924) map[0m
+[0;32mI (87) esp_image: segment 1: paddr=0007ff04 vaddr=30100000 size=00114h (   276) load[0m
+[0;32mI (89) esp_image: segment 2: paddr=00080020 vaddr=40000020 size=148384h (1344388) map[0m
+[0;32mI (270) esp_image: segment 3: paddr=001c83ac vaddr=30100114 size=000e0h (   224) load[0m
+[0;32mI (271) esp_image: segment 4: paddr=001c8494 vaddr=30100200 size=00048h (    72) load[0m
+[0;32mI (272) esp_image: segment 5: paddr=001c84e4 vaddr=4ff20000 size=172f4h ( 94964) load[0m
+[0;32mI (288) esp_image: segment 6: paddr=001df7e0 vaddr=4ff37300 size=04ca4h ( 19620) load[0m
+[0;32mI (292) esp_image: segment 7: paddr=001e448c vaddr=50108080 size=0000ch (    12) load[0m
+[0;32mI (298) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (298) boot: Checking flash encryption...[0m
+[0;32mI (299) flash_encrypt: flash encryption is enabled (1 plaintext flashes left)[0m
+[0;32mI (299) boot: Disabling RNG early entropy source...[0m
+[0;32mI (303) hex_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (303) hex_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (303) hex_psram: DriveStr.    : 0x00 (25 Ohm)[0m
+[0;32mI (303) hex_psram: dev id       : 0x03 (generation 4)[0m
+[0;32mI (304) hex_psram: density      : 0x07 (256 Mbit)[0m
+[0;32mI (304) hex_psram: good-die     : 0x06 (Pass)[0m
+[0;32mI (304) hex_psram: SRF          : 0x02 (Slow Refresh)[0m
+[0;32mI (305) hex_psram: BurstType    : 0x00 ( Wrap)[0m
+[0;32mI (305) hex_psram: BurstLen     : 0x03 (2048 Byte)[0m
+[0;32mI (305) hex_psram: BitMode      : 0x01 (X16 Mode)[0m
+[0;32mI (306) hex_psram: Readlatency  : 0x04 (14 cycles@Fixed)[0m
+[0;32mI (306) hex_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (306) MSPI Timing: Enter psram timing tuning[0m
+[0;32mI (466) esp_psram: Found 32MB PSRAM device[0m
+[0;32mI (467) esp_psram: Speed: 200MHz[0m
+[0;32mI (467) hex_psram: psram CS IO is dedicated[0m
+[0;32mI (468) cpu_start: Multicore app[0m
+[0;32mI (1688) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (1697) cpu_start: Pro cpu start user code[0m
+[0;32mI (1697) cpu_start: cpu freq: 400000000 Hz[0m
+[0;32mI (1698) app_init: Application information:[0m
+[0;32mI (1698) app_init: Project name:     hub_p4_esp_hosted_host[0m
+[0;32mI (1698) app_init: App version:      c7cd5d5-dirty[0m
+[0;32mI (1698) app_init: Compile time:     Nov  8 2026 12:10:19[0m
+[0;32mI (1698) app_init: ELF file SHA256:  76ba3b71f...[0m
+[0;32mI (1699) app_init: ESP-IDF:          v5.5.5[0m
+[0;32mI (1699) efuse_init: Min chip rev:     v3.1[0m
+[0;32mI (1699) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (1699) efuse_init: Chip rev:         v3.2[0m
+[0;32mI (1699) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1700) heap_init: At 4FF54740 len 00066880 (410 KiB): RETENT_RAM[0m
+[0;32mI (1700) heap_init: At 4FFBAFC0 len 00004BF0 (18 KiB): RAM[0m
+[0;32mI (1700) heap_init: At 5010808C len 00007F74 (31 KiB): RTCRAM[0m
+[0;32mI (1701) heap_init: At 30100248 len 00001DB8 (7 KiB): SPM[0m
+[0;32mI (1701) esp_psram: Adding pool of 32768K of PSRAM memory to heap allocator[0m
+[0;32mI (1702) spi_flash: detected chip: boya[0m
+[0;32mI (1702) spi_flash: flash io: dio[0m
+[0;32mI (1703) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (1704) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (1706) eh_mcu_transport: transport_init: probing bus backend[0m
+[0;32mI (1706) eh_sdio: transport[host]: SDIO 4-bit 5000 kHz CLK=18 CMD=19 D0=14 D1=15 D2=16 D3=17 RESET=54[0m
+[0;33mW (1707) eh_sdio: SDIO clock freq set to [5000]KHz, Max possible (on PCB) is 40000KHz[0m
+[0;32mI (1707) eh_sdio: sdio_data_to_rx_buf_task started[0m
+[0;32mI (1707) eh_mcu_transport: transport_init: bus backend up[0m
+[0;32mI (1707) main_task: Started on CPU0[0m
+I (W 1(1770078) )e h_esdsiop:_ Rpessert acmo-:pr oRceesssoer rusing GPIO[54]
+ing pool of 32K of internal memory for DMA/internal allocations
+[0;32mI (1708) main_task: Calling app_main()[0m
+Guru Meditation Error: Core  0 panic'ed (Stack protection fault). 
+
+Detected in task "main" at 0x4ff2f154
+Stack pointer: 0x4ff584a0
+Stack bounds: 0x4ff584a4 - 0x4ff594a0
+
+
+Core  0 register dump:
+MEPC    : 0x4ff2f162  RA      : 0x4ff2f15e  SP      : 0x4ff584a0  GP      : 0x4ff37b00  
+TP      : 0x4ff59470  T0      : 0x4fc1a588  T1      : 0x0000000f  T2      : 0xffffffff  
+S0/FP   : 0x4ff55300  S1      : 0xffffffff  A0      : 0x0000001f  A1      : 0xffffffff  
+A2      : 0x00013860  A3      : 0x000c0000  A4      : 0x00000000  A5      : 0x4ff54000  
+A6      : 0x00000003  A7      : 0x80808080  S2      : 0x00000000  S3      : 0x00013860  
+S4      : 0x4ff586a0  S5      : 0x00000000  S6      : 0x00000020  S7      : 0x4ff58688  
+S8      : 0x00000042  S9      : 0x000000ff  S10     : 0x4ff5867c  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0xc40b22a7  T6      : 0x00000000  
+MSTATUS : 0x00011881  MTVEC   : 0x4ff20003  MCAUSE  : 0x0000001b  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+Unrecognized argument "HUB/firmware/p4/build-h2-rcp-test/bootloader/bootloader.elf"
+0x4ff2f162 in xTaskGetSchedulerState () at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+5015	            if( xSchedulerRunning == pdFALSE )
+#0  0x4ff2f162 in xTaskGetSchedulerState () at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+#1  0x4ff2bbac in xQueueSemaphoreTake (xQueue=xQueue@entry=0x4ff55300, xTicksToWait=<optimized out>, xTicksToWait@entry=4294967295) at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c:1718
+#2  0x4ff2bcf2 in xQueueTakeMutexRecursive (xMutex=0x4ff55300, xTicksToWait=xTicksToWait@entry=4294967295) at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c:835
+#3  0x400b2de6 in spi_flash_op_lock () at /home/konatsu/esp/esp-idf/components/spi_flash/cache_utils.c:75
+#4  0x4ff22848 in spi_flash_disable_interrupts_caches_and_other_cpu () at /home/konatsu/esp/esp-idf/components/spi_flash/cache_utils.c:129
+#5  0x4ff22c5c in cache_disable (arg=arg@entry=0x0) at /home/konatsu/esp/esp-idf/components/spi_flash/spi_flash_os_func_app.c:75
+#6  0x4ff22c6c in spi1_start (arg=<optimized out>, flags=<optimized out>) at /home/konatsu/esp/esp-idf/components/spi_flash/spi_flash_os_func_app.c:133
+#7  0x4ff35b92 in spiflash_start_core (chip=0x4ff39a48 <default_chip>, flags=0) at /home/konatsu/esp/esp-idf/components/spi_flash/esp_flash_api.c:238
+#8  0x4ff35bcc in spiflash_start_default (chip=<optimized out>) at /home/konatsu/esp/esp-idf/components/spi_flash/esp_flash_api.c:249
+#9  0x4ff35620 in esp_flash_read (chip=<optimized out>, buffer=buffer@entry=0x4ff586a0, address=79968, length=32) at /home/konatsu/esp/esp-idf/components/spi_flash/esp_flash_api.c:981
+#10 0x400b1cdc in esp_partition_read (partition=<optimized out>, src_offset=<optimized out>, dst=0x4ff586a0, size=32) at /home/konatsu/esp/esp-idf/components/esp_partition/partition_target.c:38
+#11 0x400dc3b2 in nvs::NVSPartition::read (this=<optimized out>, src_offset=<optimized out>, dst=<optimized out>, size=<optimized out>) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_partition.cpp:37
+#12 0x400d99b6 in nvs::Page::readEntry (this=this@entry=0x4ffbb724, index=index@entry=65, dst=...) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:895
+#13 0x400da2c8 in nvs::Page::findItem (this=this@entry=0x4ffbb724, nsIndex=5 '\005', datatype=nvs::ItemType::BLOB_IDX, key=key@entry=0x4ff58688 "ZB0905", itemIndex=itemIndex@entry=@0x4ff5867c: 0, item=..., chunkIdx=chunkIdx@entry=255 '\377', chunkStart=chunkStart@entry=nvs::VerOffset::VER_ANY) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:948
+#14 0x400da8bc in nvs::Page::mLoadEntryTable (this=this@entry=0x4ffbb724) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:738
+#15 0x400daada in nvs::Page::load (this=0x4ffbb724, partition=partition@entry=0x4ffbb408, sectorNumber=sectorNumber@entry=1) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:88
+#16 0x400dd03e in nvs::PageManager::load (this=this@entry=0x4ffbb670, partition=0x4ffbb408, baseSector=baseSector@entry=0, sectorCount=sectorCount@entry=6) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_pagemanager.cpp:27
+#17 0x400db9d4 in nvs::Storage::init (this=this@entry=0x4ffbb660, baseSector=baseSector@entry=0, sectorCount=sectorCount@entry=6) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_storage.cpp:185
+#18 0x400dc66a in nvs::NVSPartitionManager::init_custom (this=this@entry=0x4ffbb384, partition=0x4ffbb408, baseSector=baseSector@entry=0, sectorCount=6) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_partition_manager.cpp:95
+#19 0x400dc700 in nvs::NVSPartitionManager::init_partition (this=0x4ffbb384, partition_label=partition_label@entry=0x4015c170 "") at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_partition_manager.cpp:57
+#20 0x400d8dfe in nvs_flash_init_partition (part_name=part_name@entry=0x4015c170 "") at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_api.cpp:133
+#21 0x400d8e3c in nvs_flash_init () at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_api.cpp:161
+#22 0x4000c642 in app_main () at /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/main/main.cpp:144
+#23 0x00000000 in ?? ()
+Backtrace stopped: frame did not save the PC
+
+
+
+ELF file SHA256: 76ba3b71f
+
+Rebooting...
+ESP-ROM:esp32p4-eco7-20260109
+Build:Jan  9 2026
+rst:0xc (SW_CPU_RESET),boot:0x30d (SPI_FAST_FLASH_BOOT)
+Core0 Saved PC:0x4ff23dc8
+Core1 Saved PC:0x40001d76
+use legacy efuse key
+SPI mode:DIO, clock div:1
+load:0x4ffb6240,len:0x2924
+load:0x4ffac2c0,len:0x1000
+load:0x4ffaefc0,len:0x5318
+entry 0x4ffac2ca
+[0;32mI (26) boot: ESP-IDF v5.5.5 2nd stage bootloader[0m
+[0;32mI (26) boot: compile time Nov  8 2026 12:08:39[0m
+[0;32mI (26) boot: Multicore bootloader[0m
+[0;32mI (27) boot: chip revision: v3.2[0m
+[0;32mI (27) boot: efuse block revision: v1.2[0m
+[0;32mI (28) boot.esp32p4: SPI Speed      : 80MHz[0m
+[0;32mI (28) boot.esp32p4: SPI Mode       : DIO[0m
+[0;32mI (28) boot.esp32p4: SPI Flash Size : 16MB[0m
+[0;32mI (28) boot: Enabling RNG early entropy source...[0m
+[0;32mI (29) boot: Partition Table:[0m
+[0;32mI (29) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (29) boot:  0 nvs              WiFi data        01 02 00012000 00006000[0m
+[0;32mI (30) boot:  1 phy_init         RF data          01 01 00018000 00001000[0m
+[0;32mI (30) boot:  2 factory          factory app      00 00 00020000 003f0000[0m
+[0;32mI (31) boot:  3 c6_fw            Unknown data     01 40 00410000 00200000[0m
+[0;32mI (31) boot:  4 wifi_keys        NVS keys         01 04 00610000 00001000[0m
+[0;32mI (32) boot:  5 wifi_cfg         WiFi data        01 02 00611000 00006000[0m
+[0;32mI (33) boot: End of partition table[0m
+[0;32mI (33) esp_image: segment 0: paddr=00020020 vaddr=40150020 size=5fedch (392924) map[0m
+[0;32mI (87) esp_image: segment 1: paddr=0007ff04 vaddr=30100000 size=00114h (   276) load[0m
+[0;32mI (88) esp_image: segment 2: paddr=00080020 vaddr=40000020 size=148384h (1344388) map[0m
+[0;32mI (269) esp_image: segment 3: paddr=001c83ac vaddr=30100114 size=000e0h (   224) load[0m
+[0;32mI (271) esp_image: segment 4: paddr=001c8494 vaddr=30100200 size=00048h (    72) load[0m
+[0;32mI (272) esp_image: segment 5: paddr=001c84e4 vaddr=4ff20000 size=172f4h ( 94964) load[0m
+[0;32mI (288) esp_image: segment 6: paddr=001df7e0 vaddr=4ff37300 size=04ca4h ( 19620) load[0m
+[0;32mI (292) esp_image: segment 7: paddr=001e448c vaddr=50108080 size=0000ch (    12) load[0m
+[0;32mI (298) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (298) boot: Checking flash encryption...[0m
+[0;32mI (298) flash_encrypt: flash encryption is enabled (1 plaintext flashes left)[0m
+[0;32mI (299) boot: Disabling RNG early entropy source...[0m
+[0;32mI (302) hex_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (303) hex_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (303) hex_psram: DriveStr.    : 0x00 (25 Ohm)[0m
+[0;32mI (303) hex_psram: dev id       : 0x03 (generation 4)[0m
+[0;32mI (304) hex_psram: density      : 0x07 (256 Mbit)[0m
+[0;32mI (304) hex_psram: good-die     : 0x06 (Pass)[0m
+[0;32mI (304) hex_psram: SRF          : 0x02 (Slow Refresh)[0m
+[0;32mI (304) hex_psram: BurstType    : 0x00 ( Wrap)[0m
+[0;32mI (305) hex_psram: BurstLen     : 0x03 (2048 Byte)[0m
+[0;32mI (305) hex_psram: BitMode      : 0x01 (X16 Mode)[0m
+[0;32mI (305) hex_psram: Readlatency  : 0x04 (14 cycles@Fixed)[0m
+[0;32mI (306) hex_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (306) MSPI Timing: Enter psram timing tuning[0m
+[0;32mI (466) esp_psram: Found 32MB PSRAM device[0m
+[0;32mI (466) esp_psram: Speed: 200MHz[0m
+[0;32mI (467) hex_psram: psram CS IO is dedicated[0m
+[0;32mI (467) cpu_start: Multicore app[0m
+[0;32mI (1687) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (1697) cpu_start: Pro cpu start user code[0m
+[0;32mI (1697) cpu_start: cpu freq: 400000000 Hz[0m
+[0;32mI (1697) app_init: Application information:[0m
+[0;32mI (1697) app_init: Project name:     hub_p4_esp_hosted_host[0m
+[0;32mI (1697) app_init: App version:      c7cd5d5-dirty[0m
+[0;32mI (1698) app_init: Compile time:     Nov  8 2026 12:10:19[0m
+[0;32mI (1698) app_init: ELF file SHA256:  76ba3b71f...[0m
+[0;32mI (1698) app_init: ESP-IDF:          v5.5.5[0m
+[0;32mI (1698) efuse_init: Min chip rev:     v3.1[0m
+[0;32mI (1698) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (1699) efuse_init: Chip rev:         v3.2[0m
+[0;32mI (1699) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1699) heap_init: At 4FF54740 len 00066880 (410 KiB): RETENT_RAM[0m
+[0;32mI (1699) heap_init: At 4FFBAFC0 len 00004BF0 (18 KiB): RAM[0m
+[0;32mI (1700) heap_init: At 5010808C len 00007F74 (31 KiB): RTCRAM[0m
+[0;32mI (1700) heap_init: At 30100248 len 00001DB8 (7 KiB): SPM[0m
+[0;32mI (1700) esp_psram: Adding pool of 32768K of PSRAM memory to heap allocator[0m
+[0;32mI (1702) spi_flash: detected chip: boya[0m
+[0;32mI (1702) spi_flash: flash io: dio[0m
+[0;32mI (1703) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (1703) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (1706) eh_mcu_transport: transport_init: probing bus backend[0m
+[0;32mI (1706) eh_sdio: transport[host]: SDIO 4-bit 5000 kHz CLK=18 CMD=19 D0=14 D1=15 D2=16 D3=17 RESET=54[0m
+[0;33mW (1707) eh_sdio: SDIO clock freq set to [5000]KHz, Max possible (on PCB) is 40000KHz[0m
+[0;32mI (1707) eh_sdio: sdio_data_to_rx_buf_task started[0m
+[0;32mI (1707) main_task: Started on CPU0[0m
+[0;32mI (1707) eh_mcu_transport: transport_init: bus backend up[0m
+[0;33mW (1708) eh_sdio: Reset co-processor using GPIO[54][0m
+[0;32mI (1708) esp_psram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32mI (1708) main_task: Calling app_main()[0m
+Guru Meditation Error: Core  0 panic'ed (Stack protection fault). 
+
+Detected in task "main" at 0x4ff2f154
+Stack pointer: 0x4ff584a0
+Stack bounds: 0x4ff584a4 - 0x4ff594a0
+
+
+Core  0 register dump:
+MEPC    : 0x4ff2f162  RA      : 0x4ff2f15e  SP      : 0x4ff584a0  GP      : 0x4ff37b00  
+TP      : 0x4ff59470  T0      : 0x4fc1a588  T1      : 0x0000000f  T2      : 0xffffffff  
+S0/FP   : 0x4ff55300  S1      : 0xffffffff  A0      : 0x0000001f  A1      : 0xffffffff  
+A2      : 0x00013860  A3      : 0x000c0000  A4      : 0x00000000  A5      : 0x4ff54000  
+A6      : 0x00000003  A7      : 0x80808080  S2      : 0x00000000  S3      : 0x00013860  
+S4      : 0x4ff586a0  S5      : 0x00000000  S6      : 0x00000020  S7      : 0x4ff58688  
+S8      : 0x00000042  S9      : 0x000000ff  S10     : 0x4ff5867c  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0xc40b22a7  T6      : 0x00000000  
+MSTATUS : 0x00011881  MTVEC   : 0x4ff20003  MCAUSE  : 0x0000001b  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+Unrecognized argument "HUB/firmware/p4/build-h2-rcp-test/bootloader/bootloader.elf"
+0x4ff2f162 in xTaskGetSchedulerState () at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+5015	            if( xSchedulerRunning == pdFALSE )
+#0  0x4ff2f162 in xTaskGetSchedulerState () at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+#1  0x4ff2bbac in xQueueSemaphoreTake (xQueue=xQueue@entry=0x4ff55300, xTicksToWait=<optimized out>, xTicksToWait@entry=4294967295) at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c:1718
+#2  0x4ff2bcf2 in xQueueTakeMutexRecursive (xMutex=0x4ff55300, xTicksToWait=xTicksToWait@entry=4294967295) at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c:835
+#3  0x400b2de6 in spi_flash_op_lock () at /home/konatsu/esp/esp-idf/components/spi_flash/cache_utils.c:75
+#4  0x4ff22848 in spi_flash_disable_interrupts_caches_and_other_cpu () at /home/konatsu/esp/esp-idf/components/spi_flash/cache_utils.c:129
+#5  0x4ff22c5c in cache_disable (arg=arg@entry=0x0) at /home/konatsu/esp/esp-idf/components/spi_flash/spi_flash_os_func_app.c:75
+#6  0x4ff22c6c in spi1_start (arg=<optimized out>, flags=<optimized out>) at /home/konatsu/esp/esp-idf/components/spi_flash/spi_flash_os_func_app.c:133
+#7  0x4ff35b92 in spiflash_start_core (chip=0x4ff39a48 <default_chip>, flags=0) at /home/konatsu/esp/esp-idf/components/spi_flash/esp_flash_api.c:238
+#8  0x4ff35bcc in spiflash_start_default (chip=<optimized out>) at /home/konatsu/esp/esp-idf/components/spi_flash/esp_flash_api.c:249
+#9  0x4ff35620 in esp_flash_read (chip=<optimized out>, buffer=buffer@entry=0x4ff586a0, address=79968, length=32) at /home/konatsu/esp/esp-idf/components/spi_flash/esp_flash_api.c:981
+#10 0x400b1cdc in esp_partition_read (partition=<optimized out>, src_offset=<optimized out>, dst=0x4ff586a0, size=32) at /home/konatsu/esp/esp-idf/components/esp_partition/partition_target.c:38
+#11 0x400dc3b2 in nvs::NVSPartition::read (this=<optimized out>, src_offset=<optimized out>, dst=<optimized out>, size=<optimized out>) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_partition.cpp:37
+#12 0x400d99b6 in nvs::Page::readEntry (this=this@entry=0x4ffbb724, index=index@entry=65, dst=...) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:895
+#13 0x400da2c8 in nvs::Page::findItem (this=this@entry=0x4ffbb724, nsIndex=5 '\005', datatype=nvs::ItemType::BLOB_IDX, key=key@entry=0x4ff58688 "ZB0905", itemIndex=itemIndex@entry=@0x4ff5867c: 0, item=..., chunkIdx=chunkIdx@entry=255 '\377', chunkStart=chunkStart@entry=nvs::VerOffset::VER_ANY) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:948
+#14 0x400da8bc in nvs::Page::mLoadEntryTable (this=this@entry=0x4ffbb724) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:738
+#15 0x400daada in nvs::Page::load (this=0x4ffbb724, partition=partition@entry=0x4ffbb408, sectorNumber=sectorNumber@entry=1) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:88
+#16 0x400dd03e in nvs::PageManager::load (this=0x4ffbb670, partition=0x4ffbb408, baseSector=0, sectorCount=6) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_pagemanager.cpp:27
+#17 0x00000000 in ?? ()
+Backtrace stopped: frame did not save the PC
+
+4ff58780: 0x4015c170 0x00000068 0x4ffbb408 0x4ff20a5c 0x4015c170 0x4ffbb384 0x4ffbb408 0x4ff2074e
+4ff587a0: 0x4015c170 0x4ffbb384 0x4ffbb408 0x4ff34948 0x4ffbb660 0x4ffbb384 0x4ffbb408 0x400dc66a
+4ff587c0: 0xa5a5a5a5 0x00000000 0x00000000 0x00000000 0x4ffbb384 0x00001000 0x00000000 0x400dc700
+4ff587e0: 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5 0x4ffbb408 0x00000000 0x4015c170 0x00000000 0x400d8dfe
+4ff58800: 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5 0x00000003 0x40152000 0x400d8e3c
+4ff58820: 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5 0x4000c642 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5
+4ff58840: 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5
+4ff58860: 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5
+4ff58880: 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5 0xa5a5a5a5
+
+
+
+ELF file SHA256: 76ba3b71f
+
+Rebooting...
+ESP-ROM:esp32p4-eco7-20260109
+Build:Jan  9 2026
+rst:0xc (SW_CPU_RESET),boot:0x30d (SPI_FAST_FLASH_BOOT)
+Core0 Saved PC:0x4ff23dc8
+Core1 Saved PC:0x40001d76
+use legacy efuse key
+SPI mode:DIO, clock div:1
+load:0x4ffb6240,len:0x2924
+load:0x4ffac2c0,len:0x1000
+load:0x4ffaefc0,len:0x5318
+entry 0x4ffac2ca
+[0;32mI (26) boot: ESP-IDF v5.5.5 2nd stage bootloader[0m
+[0;32mI (26) boot: compile time Nov  8 2026 12:08:39[0m
+[0;32mI (26) boot: Multicore bootloader[0m
+[0;32mI (27) boot: chip revision: v3.2[0m
+[0;32mI (27) boot: efuse block revision: v1.2[0m
+[0;32mI (28) boot.esp32p4: SPI Speed      : 80MHz[0m
+[0;32mI (28) boot.esp32p4: SPI Mode       : DIO[0m
+[0;32mI (28) boot.esp32p4: SPI Flash Size : 16MB[0m
+[0;32mI (28) boot: Enabling RNG early entropy source...[0m
+[0;32mI (29) boot: Partition Table:[0m
+[0;32mI (29) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (29) boot:  0 nvs              WiFi data        01 02 00012000 00006000[0m
+[0;32mI (30) boot:  1 phy_init         RF data          01 01 00018000 00001000[0m
+[0;32mI (30) boot:  2 factory          factory app      00 00 00020000 003f0000[0m
+[0;32mI (31) boot:  3 c6_fw            Unknown data     01 40 00410000 00200000[0m
+[0;32mI (31) boot:  4 wifi_keys        NVS keys         01 04 00610000 00001000[0m
+[0;32mI (32) boot:  5 wifi_cfg         WiFi data        01 02 00611000 00006000[0m
+[0;32mI (33) boot: End of partition table[0m
+[0;32mI (33) esp_image: segment 0: paddr=00020020 vaddr=40150020 size=5fedch (392924) map[0m
+[0;32mI (87) esp_image: segment 1: paddr=0007ff04 vaddr=30100000 size=00114h (   276) load[0m
+[0;32mI (89) esp_image: segment 2: paddr=00080020 vaddr=40000020 size=148384h (1344388) map[0m
+[0;32mI (270) esp_image: segment 3: paddr=001c83ac vaddr=30100114 size=000e0h (   224) load[0m
+[0;32mI (271) esp_image: segment 4: paddr=001c8494 vaddr=30100200 size=00048h (    72) load[0m
+[0;32mI (272) esp_image: segment 5: paddr=001c84e4 vaddr=4ff20000 size=172f4h ( 94964) load[0m
+[0;32mI (288) esp_image: segment 6: paddr=001df7e0 vaddr=4ff37300 size=04ca4h ( 19620) load[0m
+[0;32mI (292) esp_image: segment 7: paddr=001e448c vaddr=50108080 size=0000ch (    12) load[0m
+[0;32mI (298) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (298) boot: Checking flash encryption...[0m
+[0;32mI (298) flash_encrypt: flash encryption is enabled (1 plaintext flashes left)[0m
+[0;32mI (299) boot: Disabling RNG early entropy source...[0m
+[0;32mI (303) hex_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (303) hex_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (303) hex_psram: DriveStr.    : 0x00 (25 Ohm)[0m
+[0;32mI (303) hex_psram: dev id       : 0x03 (generation 4)[0m
+[0;32mI (304) hex_psram: density      : 0x07 (256 Mbit)[0m
+[0;32mI (304) hex_psram: good-die     : 0x06 (Pass)[0m
+[0;32mI (304) hex_psram: SRF          : 0x02 (Slow Refresh)[0m
+[0;32mI (304) hex_psram: BurstType    : 0x00 ( Wrap)[0m
+[0;32mI (305) hex_psram: BurstLen     : 0x03 (2048 Byte)[0m
+[0;32mI (305) hex_psram: BitMode      : 0x01 (X16 Mode)[0m
+[0;32mI (305) hex_psram: Readlatency  : 0x04 (14 cycles@Fixed)[0m
+[0;32mI (306) hex_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (306) MSPI Timing: Enter psram timing tuning[0m
+[0;32mI (466) esp_psram: Found 32MB PSRAM device[0m
+[0;32mI (466) esp_psram: Speed: 200MHz[0m
+[0;32mI (467) hex_psram: psram CS IO is dedicated[0m
+[0;32mI (467) cpu_start: Multicore app[0m
+[0;32mI (1687) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (1697) cpu_start: Pro cpu start user code[0m
+[0;32mI (1697) cpu_start: cpu freq: 400000000 Hz[0m
+[0;32mI (1697) app_init: Application information:[0m
+[0;32mI (1697) app_init: Project name:     hub_p4_esp_hosted_host[0m
+[0;32mI (1698) app_init: App version:      c7cd5d5-dirty[0m
+[0;32mI (1698) app_init: Compile time:     Nov  8 2026 12:10:19[0m
+[0;32mI (1698) app_init: ELF file SHA256:  76ba3b71f...[0m
+[0;32mI (1698) app_init: ESP-IDF:          v5.5.5[0m
+[0;32mI (1698) efuse_init: Min chip rev:     v3.1[0m
+[0;32mI (1698) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (1699) efuse_init: Chip rev:         v3.2[0m
+[0;32mI (1699) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1699) heap_init: At 4FF54740 len 00066880 (410 KiB): RETENT_RAM[0m
+[0;32mI (1700) heap_init: At 4FFBAFC0 len 00004BF0 (18 KiB): RAM[0m
+[0;32mI (1700) heap_init: At 5010808C len 00007F74 (31 KiB): RTCRAM[0m
+[0;32mI (1700) heap_init: At 30100248 len 00001DB8 (7 KiB): SPM[0m
+[0;32mI (1701) esp_psram: Adding pool of 32768K of PSRAM memory to heap allocator[0m
+[0;32mI (1702) spi_flash: detected chip: boya[0m
+[0;32mI (1702) spi_flash: flash io: dio[0m
+[0;32mI (1703) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (1703) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (1706) eh_mcu_transport: transport_init: probing bus backend[0m
+[0;32mI (1706) eh_sdio: transport[host]: SDIO 4-bit 5000 kHz CLK=18 CMD=19 D0=14 D1=15 D2=16 D3=17 RESET=54[0m
+[0;33mW (1707) eh_sdio: SDIO clock freq set to [5000]KHz, Max possible (on PCB) is 40000KHz[0m
+[0;32mI (1707) eh_sdio: sdio_data_to_rx_buf_task started[0m
+[0;32mI (1707) eh_mcu_transport: transport_init: bus backend up[0m
+[0;32mI (1707) main_task: Started on CPU0[0m
+[0;33mW (1708) eh_sdio: Reset co-processor using GPIO[54][0m
+[0;32mI (1708) esp_psram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32mI (1708) main_task: Calling app_main()[0m
+Guru Meditation Error: Core  0 panic'ed (Stack protection fault). 
+
+Detected in task "main" at 0x4ff2f154
+Stack pointer: 0x4ff584a0
+Stack bounds: 0x4ff584a4 - 0x4ff594a0
+
+
+Core  0 register dump:
+MEPC    : 0x4ff2f162  RA      : 0x4ff2f15e  SP      : 0x4ff584a0  GP      : 0x4ff37b00  
+TP      : 0x4ff59470  T0      : 0x4fc1a588  T1      : 0x0000000f  T2      : 0xffffffff  
+S0/FP   : 0x4ff55300  S1      : 0xffffffff  A0      : 0x0000001f  A1      : 0xffffffff  
+A2      : 0x00013860  A3      : 0x000c0000  A4      : 0x00000000  A5      : 0x4ff54000  
+A6      : 0x00000003  A7      : 0x80808080  S2      : 0x00000000  S3      : 0x00013860  
+S4      : 0x4ff586a0  S5      : 0x00000000  S6      : 0x00000020  S7      : 0x4ff58688  
+S8      : 0x00000042  S9      : 0x000000ff  S10     : 0x4ff5867c  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0xc40b22a7  T6      : 0x00000000  
+MSTATUS : 0x00011881  MTVEC   : 0x4ff20003  MCAUSE  : 0x0000001b  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+Unrecognized argument "HUB/firmware/p4/build-h2-rcp-test/bootloader/bootloader.elf"
+0x4ff2f162 in xTaskGetSchedulerState () at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+5015	            if( xSchedulerRunning == pdFALSE )
+#0  0x4ff2f162 in xTaskGetSchedulerState () at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+#1  0x4ff2bbac in xQueueSemaphoreTake (xQueue=xQueue@entry=0x4ff55300, xTicksToWait=<optimized out>, xTicksToWait@entry=4294967295) at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c:1718
+#2  0x4ff2bcf2 in xQueueTakeMutexRecursive (xMutex=0x4ff55300, xTicksToWait=xTicksToWait@entry=4294967295) at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c:835
+#3  0x400b2de6 in spi_flash_op_lock () at /home/konatsu/esp/esp-idf/components/spi_flash/cache_utils.c:75
+#4  0x4ff22848 in spi_flash_disable_interrupts_caches_and_other_cpu () at /home/konatsu/esp/esp-idf/components/spi_flash/cache_utils.c:129
+#5  0x4ff22c5c in cache_disable (arg=arg@entry=0x0) at /home/konatsu/esp/esp-idf/components/spi_flash/spi_flash_os_func_app.c:75
+#6  0x4ff22c6c in spi1_start (arg=<optimized out>, flags=<optimized out>) at /home/konatsu/esp/esp-idf/components/spi_flash/spi_flash_os_func_app.c:133
+#7  0x4ff35b92 in spiflash_start_core (chip=0x4ff39a48 <default_chip>, flags=0) at /home/konatsu/esp/esp-idf/components/spi_flash/esp_flash_api.c:238
+#8  0x4ff35bcc in spiflash_start_default (chip=<optimized out>) at /home/konatsu/esp/esp-idf/components/spi_flash/esp_flash_api.c:249
+#9  0x4ff35620 in esp_flash_read (chip=<optimized out>, buffer=buffer@entry=0x4ff586a0, address=79968, length=32) at /home/konatsu/esp/esp-idf/components/spi_flash/esp_flash_api.c:981
+#10 0x400b1cdc in esp_partition_read (partition=<optimized out>, src_offset=<optimized out>, dst=0x4ff586a0, size=32) at /home/konatsu/esp/esp-idf/components/esp_partition/partition_target.c:38
+#11 0x400dc3b2 in nvs::NVSPartition::read (this=<optimized out>, src_offset=<optimized out>, dst=<optimized out>, size=<optimized out>) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_partition.cpp:37
+#12 0x400d99b6 in nvs::Page::readEntry (this=this@entry=0x4ffbb724, index=index@entry=65, dst=...) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:895
+#13 0x400da2c8 in nvs::Page::findItem (this=this@entry=0x4ffbb724, nsIndex=5 '\005', datatype=nvs::ItemType::BLOB_IDX, key=key@entry=0x4ff58688 "ZB0905", itemIndex=itemIndex@entry=@0x4ff5867c: 0, item=..., chunkIdx=chunkIdx@entry=255 '\377', chunkStart=chunkStart@entry=nvs::VerOffset::VER_ANY) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:948
+#14 0x400da8bc in nvs::Page::mLoadEntryTable (this=this@entry=0x4ffbb724) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:738
+#15 0x400daada in nvs::Page::load (this=0x4ffbb724, partition=partition@entry=0x4ffbb408, sectorNumber=sectorNumber@entry=1) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:88
+#16 0x400dd03e in nvs::PageManager::load (this=this@entry=0x4ffbb670, partition=0x4ffbb408, baseSector=baseSector@entry=0, sectorCount=sectorCount@entry=6) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_pagemanager.cpp:27
+#17 0x400db9d4 in nvs::Storage::init (this=this@entry=0x4ffbb660, baseSector=baseSector@entry=0, sectorCount=sectorCount@entry=6) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_storage.cpp:185
+#18 0x400dc66a in nvs::NVSPartitionManager::init_custom (this=this@entry=0x4ffbb384, partition=0x4ffbb408, baseSector=baseSector@entry=0, sectorCount=6) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_partition_manager.cpp:95
+#19 0x400dc700 in nvs::NVSPartitionManager::init_partition (this=0x4ffbb384, partition_label=partition_label@entry=0x4015c170 "") at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_partition_manager.cpp:57
+#20 0x400d8dfe in nvs_flash_init_partition (part_name=part_name@entry=0x4015c170 "") at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_api.cpp:133
+#21 0x400d8e3c in nvs_flash_init () at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_api.cpp:161
+#22 0x4000c642 in app_main () at /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/main/main.cpp:144
+#23 0x00000000 in ?? ()
+Backtrace stopped: frame did not save the PC
+
+
+
+ELF file SHA256: 76ba3b71f
+
+Rebooting...
+ESP-ROM:esp32p4-eco7-20260109
+Build:Jan  9 2026
+rst:0xc (SW_CPU_RESET),boot:0x30d (SPI_FAST_FLASH_BOOT)
+Core0 Saved PC:0x4ff23dc8
+Core1 Saved PC:0x40001d76
+use legacy efuse key
+SPI mode:DIO, clock div:1
+load:0x4ffb6240,len:0x2924
+load:0x4ffac2c0,len:0x1000
+load:0x4ffaefc0,len:0x5318
+entry 0x4ffac2ca
+[0;32mI (25) boot: ESP-IDF v5.5.5 2nd stage bootloader[0m
+[0;32mI (26) boot: compile time Nov  8 2026 12:08:39[0m
+[0;32mI (26) boot: Multicore bootloader[0m
+[0;32mI (27) boot: chip revision: v3.2[0m
+[0;32mI (27) boot: efuse block revision: v1.2[0m
+[0;32mI (27) boot.esp32p4: SPI Speed      : 80MHz[0m
+[0;32mI (28) boot.esp32p4: SPI Mode       : DIO[0m
+[0;32mI (28) boot.esp32p4: SPI Flash Size : 16MB[0m
+[0;32mI (28) boot: Enabling RNG early entropy source...[0m
+[0;32mI (29) boot: Partition Table:[0m
+[0;32mI (29) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (29) boot:  0 nvs              WiFi data        01 02 00012000 00006000[0m
+[0;32mI (30) boot:  1 phy_init         RF data          01 01 00018000 00001000[0m
+[0;32mI (30) boot:  2 factory          factory app      00 00 00020000 003f0000[0m
+[0;32mI (31) boot:  3 c6_fw            Unknown data     01 40 00410000 00200000[0m
+[0;32mI (31) boot:  4 wifi_keys        NVS keys         01 04 00610000 00001000[0m
+[0;32mI (32) boot:  5 wifi_cfg         WiFi data        01 02 00611000 00006000[0m
+[0;32mI (33) boot: End of partition table[0m
+[0;32mI (33) esp_image: segment 0: paddr=00020020 vaddr=40150020 size=5fedch (392924) map[0m
+[0;32mI (87) esp_image: segment 1: paddr=0007ff04 vaddr=30100000 size=00114h (   276) load[0m
+[0;32mI (88) esp_image: segment 2: paddr=00080020 vaddr=40000020 size=148384h (1344388) map[0m
+[0;32mI (269) esp_image: segment 3: paddr=001c83ac vaddr=30100114 size=000e0h (   224) load[0m
+[0;32mI (271) esp_image: segment 4: paddr=001c8494 vaddr=30100200 size=00048h (    72) load[0m
+[0;32mI (272) esp_image: segment 5: paddr=001c84e4 vaddr=4ff20000 size=172f4h ( 94964) load[0m
+[0;32mI (288) esp_image: segment 6: paddr=001df7e0 vaddr=4ff37300 size=04ca4h ( 19620) load[0m
+[0;32mI (292) esp_image: segment 7: paddr=001e448c vaddr=50108080 size=0000ch (    12) load[0m
+[0;32mI (298) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (298) boot: Checking flash encryption...[0m
+[0;32mI (298) flash_encrypt: flash encryption is enabled (1 plaintext flashes left)[0m
+[0;32mI (299) boot: Disabling RNG early entropy source...[0m
+[0;32mI (302) hex_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (303) hex_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (303) hex_psram: DriveStr.    : 0x00 (25 Ohm)[0m
+[0;32mI (303) hex_psram: dev id       : 0x03 (generation 4)[0m
+[0;32mI (304) hex_psram: density      : 0x07 (256 Mbit)[0m
+[0;32mI (304) hex_psram: good-die     : 0x06 (Pass)[0m
+[0;32mI (304) hex_psram: SRF          : 0x02 (Slow Refresh)[0m
+[0;32mI (304) hex_psram: BurstType    : 0x00 ( Wrap)[0m
+[0;32mI (305) hex_psram: BurstLen     : 0x03 (2048 Byte)[0m
+[0;32mI (305) hex_psram: BitMode      : 0x01 (X16 Mode)[0m
+[0;32mI (305) hex_psram: Readlatency  : 0x04 (14 cycles@Fixed)[0m
+[0;32mI (306) hex_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (306) MSPI Timing: Enter psram timing tuning[0m
+[0;32mI (466) esp_psram: Found 32MB PSRAM device[0m
+[0;32mI (466) esp_psram: Speed: 200MHz[0m
+[0;32mI (467) hex_psram: psram CS IO is dedicated[0m
+[0;32mI (467) cpu_start: Multicore app[0m
+[0;32mI (1687) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (1697) cpu_start: Pro cpu start user code[0m
+[0;32mI (1697) cpu_start: cpu freq: 400000000 Hz[0m
+[0;32mI (1697) app_init: Application information:[0m
+[0;32mI (1697) app_init: Project name:     hub_p4_esp_hosted_host[0m
+[0;32mI (1698) app_init: App version:      c7cd5d5-dirty[0m
+[0;32mI (1698) app_init: Compile time:     Nov  8 2026 12:10:19[0m
+[0;32mI (1698) app_init: ELF file SHA256:  76ba3b71f...[0m
+[0;32mI (1698) app_init: ESP-IDF:          v5.5.5[0m
+[0;32mI (1698) efuse_init: Min chip rev:     v3.1[0m
+[0;32mI (1699) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (1699) efuse_init: Chip rev:         v3.2[0m
+[0;32mI (1699) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1699) heap_init: At 4FF54740 len 00066880 (410 KiB): RETENT_RAM[0m
+[0;32mI (1700) heap_init: At 4FFBAFC0 len 00004BF0 (18 KiB): RAM[0m
+[0;32mI (1700) heap_init: At 5010808C len 00007F74 (31 KiB): RTCRAM[0m
+[0;32mI (1700) heap_init: At 30100248 len 00001DB8 (7 KiB): SPM[0m
+[0;32mI (1701) esp_psram: Adding pool of 32768K of PSRAM memory to heap allocator[0m
+[0;32mI (1702) spi_flash: detected chip: boya[0m
+[0;32mI (1702) spi_flash: flash io: dio[0m
+[0;32mI (1703) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (1704) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (1706) eh_mcu_transport: transport_init: probing bus backend[0m
+[0;32mI (1706) eh_sdio: transport[host]: SDIO 4-bit 5000 kHz CLK=18 CMD=19 D0=14 D1=15 D2=16 D3=17 RESET=54[0m
+[0;33mW (1707) eh_sdio: SDIO clock freq set to [5000]KHz, Max possible (on PCB) is 40000KHz[0m
+[0;32mI (1707) eh_sdio: sdio_data_to_rx_buf_task started[0m
+[0;32mI (1707) eh_mcu_transport: transport_init: bus backend up[0m
+[0;32mI (1707) main_task: Started on CPU0[0m
+[0;33mW (1708) eh_sdio: Reset co-processor using GPIO[54][0m
+[0;32mI (1708) esp_psram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32mI (1708) main_task: Calling app_main()[0m
+Guru Meditation Error: Core  0 panic'ed (Stack protection fault). 
+
+Detected in task "main" at 0x4ff2f154
+Stack pointer: 0x4ff584a0
+Stack bounds: 0x4ff584a4 - 0x4ff594a0
+
+
+Core  0 register dump:
+MEPC    : 0x4ff2f162  RA      : 0x4ff2f15e  SP      : 0x4ff584a0  GP      : 0x4ff37b00  
+TP      : 0x4ff59470  T0      : 0x4fc1a588  T1      : 0x0000000f  T2      : 0xffffffff  
+S0/FP   : 0x4ff55300  S1      : 0xffffffff  A0      : 0x0000001f  A1      : 0xffffffff  
+A2      : 0x00013860  A3      : 0x000c0000  A4      : 0x00000000  A5      : 0x4ff54000  
+A6      : 0x00000003  A7      : 0x80808080  S2      : 0x00000000  S3      : 0x00013860  
+S4      : 0x4ff586a0  S5      : 0x00000000  S6      : 0x00000020  S7      : 0x4ff58688  
+S8      : 0x00000042  S9      : 0x000000ff  S10     : 0x4ff5867c  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0xc40b22a7  T6      : 0x00000000  
+MSTATUS : 0x00011881  MTVEC   : 0x4ff20003  MCAUSE  : 0x0000001b  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+Unrecognized argument "HUB/firmware/p4/build-h2-rcp-test/bootloader/bootloader.elf"
+0x4ff2f162 in xTaskGetSchedulerState () at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+5015	            if( xSchedulerRunning == pdFALSE )
+#0  0x4ff2f162 in xTaskGetSchedulerState () at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+#1  0x4ff2bbac in xQueueSemaphoreTake (xQueue=xQueue@entry=0x4ff55300, xTicksToWait=<optimized out>, xTicksToWait@entry=4294967295) at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c:1718
+#2  0x4ff2bcf2 in xQueueTakeMutexRecursive (xMutex=0x4ff55300, xTicksToWait=xTicksToWait@entry=4294967295) at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c:835
+#3  0x400b2de6 in spi_flash_op_lock () at /home/konatsu/esp/esp-idf/components/spi_flash/cache_utils.c:75
+#4  0x4ff22848 in spi_flash_disable_interrupts_caches_and_other_cpu () at /home/konatsu/esp/esp-idf/components/spi_flash/cache_utils.c:129
+#5  0x4ff22c5c in cache_disable (arg=arg@entry=0x0) at /home/konatsu/esp/esp-idf/components/spi_flash/spi_flash_os_func_app.c:75
+#6  0x4ff22c6c in spi1_start (arg=<optimized out>, flags=<optimized out>) at /home/konatsu/esp/esp-idf/components/spi_flash/spi_flash_os_func_app.c:133
+#7  0x4ff35b92 in spiflash_start_core (chip=0x4ff39a48 <default_chip>, flags=0) at /home/konatsu/esp/esp-idf/components/spi_flash/esp_flash_api.c:238
+#8  0x4ff35bcc in spiflash_start_default (chip=<optimized out>) at /home/konatsu/esp/esp-idf/components/spi_flash/esp_flash_api.c:249
+#9  0x4ff35620 in esp_flash_read (chip=<optimized out>, buffer=buffer@entry=0x4ff586a0, address=79968, length=32) at /home/konatsu/esp/esp-idf/components/spi_flash/esp_flash_api.c:981
+#10 0x400b1cdc in esp_partition_read (partition=<optimized out>, src_offset=<optimized out>, dst=0x4ff586a0, size=32) at /home/konatsu/esp/esp-idf/components/esp_partition/partition_target.c:38
+#11 0x400dc3b2 in nvs::NVSPartition::read (this=<optimized out>, src_offset=<optimized out>, dst=<optimized out>, size=<optimized out>) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_partition.cpp:37
+#12 0x400d99b6 in nvs::Page::readEntry (this=this@entry=0x4ffbb724, index=index@entry=65, dst=...) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:895
+#13 0x400da2c8 in nvs::Page::findItem (this=this@entry=0x4ffbb724, nsIndex=5 '\005', datatype=nvs::ItemType::BLOB_IDX, key=key@entry=0x4ff58688 "ZB0905", itemIndex=itemIndex@entry=@0x4ff5867c: 0, item=..., chunkIdx=chunkIdx@entry=255 '\377', chunkStart=chunkStart@entry=nvs::VerOffset::VER_ANY) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:948
+#14 0x400da8bc in nvs::Page::mLoadEntryTable (this=this@entry=0x4ffbb724) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:738
+#15 0x400daada in nvs::Page::load (this=0x4ffbb724, partition=partition@entry=0x4ffbb408, sectorNumber=sectorNumber@entry=1) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:88
+#16 0x400dd03e in nvs::PageManager::load (this=this@entry=0x4ffbb670, partition=0x4ffbb408, baseSector=baseSector@entry=0, sectorCount=sectorCount@entry=6) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_pagemanager.cpp:27
+#17 0x400db9d4 in nvs::Storage::init (this=this@entry=0x4ffbb660, baseSector=baseSector@entry=0, sectorCount=sectorCount@entry=6) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_storage.cpp:185
+#18 0x400dc66a in nvs::NVSPartitionManager::init_custom (this=this@entry=0x4ffbb384, partition=0x4ffbb408, baseSector=baseSector@entry=0, sectorCount=6) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_partition_manager.cpp:95
+#19 0x400dc700 in nvs::NVSPartitionManager::init_partition (this=0x4ffbb384, partition_label=partition_label@entry=0x4015c170 "") at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_partition_manager.cpp:57
+#20 0x400d8dfe in nvs_flash_init_partition (part_name=part_name@entry=0x4015c170 "") at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_api.cpp:133
+#21 0x400d8e3c in nvs_flash_init () at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_api.cpp:161
+#22 0x4000c642 in app_main () at /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/main/main.cpp:144
+#23 0x00000000 in ?? ()
+Backtrace stopped: frame did not save the PC
+
+
+
+ELF file SHA256: 76ba3b71f
+
+Rebooting...
+ESP-ROM:esp32p4-eco7-20260109
+Build:Jan  9 2026
+rst:0xc (SW_CPU_RESET),boot:0x30d (SPI_FAST_FLASH_BOOT)
+Core0 Saved PC:0x4ff23dc8
+Core1 Saved PC:0x40001d76
+use legacy efuse key
+SPI mode:DIO, clock div:1
+load:0x4ffb6240,len:0x2924
+load:0x4ffac2c0,len:0x1000
+load:0x4ffaefc0,len:0x5318
+entry 0x4ffac2ca
+[0;32mI (26) boot: ESP-IDF v5.5.5 2nd stage bootloader[0m
+[0;32mI (26) boot: compile time Nov  8 2026 12:08:39[0m
+[0;32mI (26) boot: Multicore bootloader[0m
+[0;32mI (27) boot: chip revision: v3.2[0m
+[0;32mI (27) boot: efuse block revision: v1.2[0m
+[0;32mI (28) boot.esp32p4: SPI Speed      : 80MHz[0m
+[0;32mI (28) boot.esp32p4: SPI Mode       : DIO[0m
+[0;32mI (28) boot.esp32p4: SPI Flash Size : 16MB[0m
+[0;32mI (28) boot: Enabling RNG early entropy source...[0m
+[0;32mI (29) boot: Partition Table:[0m
+[0;32mI (29) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (29) boot:  0 nvs              WiFi data        01 02 00012000 00006000[0m
+[0;32mI (30) boot:  1 phy_init         RF data          01 01 00018000 00001000[0m
+[0;32mI (30) boot:  2 factory          factory app      00 00 00020000 003f0000[0m
+[0;32mI (31) boot:  3 c6_fw            Unknown data     01 40 00410000 00200000[0m
+[0;32mI (31) boot:  4 wifi_keys        NVS keys         01 04 00610000 00001000[0m
+[0;32mI (32) boot:  5 wifi_cfg         WiFi data        01 02 00611000 00006000[0m
+[0;32mI (33) boot: End of partition table[0m
+[0;32mI (33) esp_image: segment 0: paddr=00020020 vaddr=40150020 size=5fedch (392924) map[0m
+[0;32mI (87) esp_image: segment 1: paddr=0007ff04 vaddr=30100000 size=00114h (   276) load[0m
+[0;32mI (89) esp_image: segment 2: paddr=00080020 vaddr=40000020 size=148384h (1344388) map[0m
+[0;32mI (270) esp_image: segment 3: paddr=001c83ac vaddr=30100114 size=000e0h (   224) load[0m
+[0;32mI (271) esp_image: segment 4: paddr=001c8494 vaddr=30100200 size=00048h (    72) load[0m
+[0;32mI (272) esp_image: segment 5: paddr=001c84e4 vaddr=4ff20000 size=172f4h ( 94964) load[0m
+[0;32mI (288) esp_image: segment 6: paddr=001df7e0 vaddr=4ff37300 size=04ca4h ( 19620) load[0m
+[0;32mI (292) esp_image: segment 7: paddr=001e448c vaddr=50108080 size=0000ch (    12) load[0m
+[0;32mI (298) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (298) boot: Checking flash encryption...[0m
+[0;32mI (298) flash_encrypt: flash encryption is enabled (1 plaintext flashes left)[0m
+[0;32mI (299) boot: Disabling RNG early entropy source...[0m
+[0;32mI (303) hex_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (303) hex_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (303) hex_psram: DriveStr.    : 0x00 (25 Ohm)[0m
+[0;32mI (303) hex_psram: dev id       : 0x03 (generation 4)[0m
+[0;32mI (304) hex_psram: density      : 0x07 (256 Mbit)[0m
+[0;32mI (304) hex_psram: good-die     : 0x06 (Pass)[0m
+[0;32mI (304) hex_psram: SRF          : 0x02 (Slow Refresh)[0m
+[0;32mI (304) hex_psram: BurstType    : 0x00 ( Wrap)[0m
+[0;32mI (305) hex_psram: BurstLen     : 0x03 (2048 Byte)[0m
+[0;32mI (305) hex_psram: BitMode      : 0x01 (X16 Mode)[0m
+[0;32mI (305) hex_psram: Readlatency  : 0x04 (14 cycles@Fixed)[0m
+[0;32mI (306) hex_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (306) MSPI Timing: Enter psram timing tuning[0m
+[0;32mI (466) esp_psram: Found 32MB PSRAM device[0m
+[0;32mI (466) esp_psram: Speed: 200MHz[0m
+[0;32mI (467) hex_psram: psram CS IO is dedicated[0m
+[0;32mI (467) cpu_start: Multicore app[0m
+[0;32mI (1688) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (1697) cpu_start: Pro cpu start user code[0m
+[0;32mI (1697) cpu_start: cpu freq: 400000000 Hz[0m
+[0;32mI (1697) app_init: Application information:[0m
+[0;32mI (1698) app_init: Project name:     hub_p4_esp_hosted_host[0m
+[0;32mI (1698) app_init: App version:      c7cd5d5-dirty[0m
+[0;32mI (1698) app_init: Compile time:     Nov  8 2026 12:10:19[0m
+[0;32mI (1698) app_init: ELF file SHA256:  76ba3b71f...[0m
+[0;32mI (1698) app_init: ESP-IDF:          v5.5.5[0m
+[0;32mI (1699) efuse_init: Min chip rev:     v3.1[0m
+[0;32mI (1699) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (1699) efuse_init: Chip rev:         v3.2[0m
+[0;32mI (1699) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1700) heap_init: At 4FF54740 len 00066880 (410 KiB): RETENT_RAM[0m
+[0;32mI (1700) heap_init: At 4FFBAFC0 len 00004BF0 (18 KiB): RAM[0m
+[0;32mI (1700) heap_init: At 5010808C len 00007F74 (31 KiB): RTCRAM[0m
+[0;32mI (1700) heap_init: At 30100248 len 00001DB8 (7 KiB): SPM[0m
+[0;32mI (1701) esp_psram: Adding pool of 32768K of PSRAM memory to heap allocator[0m
+[0;32mI (1702) spi_flash: detected chip: boya[0m
+[0;32mI (1702) spi_flash: flash io: dio[0m
+[0;32mI (1703) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (1704) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (1706) eh_mcu_transport: transport_init: probing bus backend[0m
+[0;32mI (1706) eh_sdio: transport[host]: SDIO 4-bit 5000 kHz CLK=18 CMD=19 D0=14 D1=15 D2=16 D3=17 RESET=54[0m
+[0;33mW (1707) eh_sdio: SDIO clock freq set to [5000]KHz, Max possible (on PCB) is 40000KHz[0m
+[0;32mI (1707) eh_sdio: sdio_data_to_rx_buf_task started[0m
+[0;32mI (1707) eh_mcu_transport: transport_init: bus backend up[0m
+[0;32mI (1707) main_task: Started on CPU0[0m
+W (1707I)  eh(_sdi1o7: 0Re8s)et  ceo-sppro_cpesssorra umsi:n g RGPIO[54]
+eserving pool of 32K of internal memory for DMA/internal allocations
+[0;32mI (1708) main_task: Calling app_main()[0m
+Guru Meditation Error: Core  0 panic'ed (Stack protection fault). 
+
+Detected in task "main" at 0x4ff2f154
+Stack pointer: 0x4ff584a0
+Stack bounds: 0x4ff584a4 - 0x4ff594a0
+
+
+Core  0 register dump:
+MEPC    : 0x4ff2f162  RA      : 0x4ff2f15e  SP      : 0x4ff584a0  GP      : 0x4ff37b00  
+TP      : 0x4ff59470  T0      : 0x4fc1a588  T1      : 0x0000000f  T2      : 0xffffffff  
+S0/FP   : 0x4ff55300  S1      : 0xffffffff  A0      : 0x0000001f  A1      : 0xffffffff  
+A2      : 0x00013860  A3      : 0x000c0000  A4      : 0x00000000  A5      : 0x4ff54000  
+A6      : 0x00000003  A7      : 0x80808080  S2      : 0x00000000  S3      : 0x00013860  
+S4      : 0x4ff586a0  S5      : 0x00000000  S6      : 0x00000020  S7      : 0x4ff58688  
+S8      : 0x00000042  S9      : 0x000000ff  S10     : 0x4ff5867c  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0xc40b22a7  T6      : 0x00000000  
+MSTATUS : 0x00011881  MTVEC   : 0x4ff20003  MCAUSE  : 0x0000001b  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+Unrecognized argument "HUB/firmware/p4/build-h2-rcp-test/bootloader/bootloader.elf"
+0x4ff2f162 in xTaskGetSchedulerState () at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+5015	            if( xSchedulerRunning == pdFALSE )
+#0  0x4ff2f162 in xTaskGetSchedulerState () at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+#1  0x4ff2bbac in xQueueSemaphoreTake (xQueue=xQueue@entry=0x4ff55300, xTicksToWait=<optimized out>, xTicksToWait@entry=4294967295) at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c:1718
+#2  0x4ff2bcf2 in xQueueTakeMutexRecursive (xMutex=0x4ff55300, xTicksToWait=xTicksToWait@entry=4294967295) at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c:835
+#3  0x400b2de6 in spi_flash_op_lock () at /home/konatsu/esp/esp-idf/components/spi_flash/cache_utils.c:75
+#4  0x4ff22848 in spi_flash_disable_interrupts_caches_and_other_cpu () at /home/konatsu/esp/esp-idf/components/spi_flash/cache_utils.c:129
+#5  0x4ff22c5c in cache_disable (arg=arg@entry=0x0) at /home/konatsu/esp/esp-idf/components/spi_flash/spi_flash_os_func_app.c:75
+#6  0x4ff22c6c in spi1_start (arg=<optimized out>, flags=<optimized out>) at /home/konatsu/esp/esp-idf/components/spi_flash/spi_flash_os_func_app.c:133
+#7  0x4ff35b92 in spiflash_start_core (chip=0x4ff39a48 <default_chip>, flags=0) at /home/konatsu/esp/esp-idf/components/spi_flash/esp_flash_api.c:238
+#8  0x4ff35bcc in spiflash_start_default (chip=<optimized out>) at /home/konatsu/esp/esp-idf/components/spi_flash/esp_flash_api.c:249
+#9  0x4ff35620 in esp_flash_read (chip=<optimized out>, buffer=buffer@entry=0x4ff586a0, address=79968, length=32) at /home/konatsu/esp/esp-idf/components/spi_flash/esp_flash_api.c:981
+#10 0x400b1cdc in esp_partition_read (partition=<optimized out>, src_offset=<optimized out>, dst=0x4ff586a0, size=32) at /home/konatsu/esp/esp-idf/components/esp_partition/partition_target.c:38
+#11 0x400dc3b2 in nvs::NVSPartition::read (this=<optimized out>, src_offset=<optimized out>, dst=<optimized out>, size=<optimized out>) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_partition.cpp:37
+#12 0x400d99b6 in nvs::Page::readEntry (this=this@entry=0x4ffbb724, index=index@entry=65, dst=...) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:895
+#13 0x400da2c8 in nvs::Page::findItem (this=this@entry=0x4ffbb724, nsIndex=5 '\005', datatype=nvs::ItemType::BLOB_IDX, key=key@entry=0x4ff58688 "ZB0905", itemIndex=itemIndex@entry=@0x4ff5867c: 0, item=..., chunkIdx=chunkIdx@entry=255 '\377', chunkStart=chunkStart@entry=nvs::VerOffset::VER_ANY) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:948
+#14 0x400da8bc in nvs::Page::mLoadEntryTable (this=this@entry=0x4ffbb724) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:738
+#15 0x400daada in nvs::Page::load (this=0x4ffbb724, partition=partition@entry=0x4ffbb408, sectorNumber=sectorNumber@entry=1) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:88
+#16 0x400dd03e in nvs::PageManager::load (this=this@entry=0x4ffbb670, partition=0x4ffbb408, baseSector=baseSector@entry=0, sectorCount=sectorCount@entry=6) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_pagemanager.cpp:27
+#17 0x400db9d4 in nvs::Storage::init (this=this@entry=0x4ffbb660, baseSector=baseSector@entry=0, sectorCount=sectorCount@entry=6) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_storage.cpp:185
+#18 0x400dc66a in nvs::NVSPartitionManager::init_custom (this=this@entry=0x4ffbb384, partition=0x4ffbb408, baseSector=baseSector@entry=0, sectorCount=6) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_partition_manager.cpp:95
+#19 0x400dc700 in nvs::NVSPartitionManager::init_partition (this=0x4ffbb384, partition_label=partition_label@entry=0x4015c170 "") at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_partition_manager.cpp:57
+#20 0x400d8dfe in nvs_flash_init_partition (part_name=part_name@entry=0x4015c170 "") at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_api.cpp:133
+#21 0x400d8e3c in nvs_flash_init () at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_api.cpp:161
+#22 0x4000c642 in app_main () at /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/main/main.cpp:144
+#23 0x00000000 in ?? ()
+Backtrace stopped: frame did not save the PC
+
+
+
+ELF file SHA256: 76ba3b71f
+
+Rebooting...
+ESP-ROM:esp32p4-eco7-20260109
+Build:Jan  9 2026
+rst:0xc (SW_CPU_RESET),boot:0x30d (SPI_FAST_FLASH_BOOT)
+Core0 Saved PC:0x4ff23dc8
+Core1 Saved PC:0x40001d76
+use legacy efuse key
+SPI mode:DIO, clock div:1
+load:0x4ffb6240,len:0x2924
+load:0x4ffac2c0,len:0x1000
+load:0x4ffaefc0,len:0x5318
+entry 0x4ffac2ca
+[0;32mI (25) boot: ESP-IDF v5.5.5 2nd stage bootloader[0m
+[0;32mI (26) boot: compile time Nov  8 2026 12:08:39[0m
+[0;32mI (26) boot: Multicore bootloader[0m
+[0;32mI (27) boot: chip revision: v3.2[0m
+[0;32mI (27) boot: efuse block revision: v1.2[0m
+[0;32mI (27) boot.esp32p4: SPI Speed      : 80MHz[0m
+[0;32mI (28) boot.esp32p4: SPI Mode       : DIO[0m
+[0;32mI (28) boot.esp32p4: SPI Flash Size : 16MB[0m
+[0;32mI (28) boot: Enabling RNG early entropy source...[0m
+[0;32mI (29) boot: Partition Table:[0m
+[0;32mI (29) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (29) boot:  0 nvs              WiFi data        01 02 00012000 00006000[0m
+[0;32mI (30) boot:  1 phy_init         RF data          01 01 00018000 00001000[0m
+[0;32mI (30) boot:  2 factory          factory app      00 00 00020000 003f0000[0m
+[0;32mI (31) boot:  3 c6_fw            Unknown data     01 40 00410000 00200000[0m
+[0;32mI (31) boot:  4 wifi_keys        NVS keys         01 04 00610000 00001000[0m
+[0;32mI (32) boot:  5 wifi_cfg         WiFi data        01 02 00611000 00006000[0m
+[0;32mI (33) boot: End of partition table[0m
+[0;32mI (33) esp_image: segment 0: paddr=00020020 vaddr=40150020 size=5fedch (392924) map[0m
+[0;32mI (87) esp_image: segment 1: paddr=0007ff04 vaddr=30100000 size=00114h (   276) load[0m
+[0;32mI (88) esp_image: segment 2: paddr=00080020 vaddr=40000020 size=148384h (1344388) map[0m
+[0;32mI (269) esp_image: segment 3: paddr=001c83ac vaddr=30100114 size=000e0h (   224) load[0m
+[0;32mI (271) esp_image: segment 4: paddr=001c8494 vaddr=30100200 size=00048h (    72) load[0m
+[0;32mI (272) esp_image: segment 5: paddr=001c84e4 vaddr=4ff20000 size=172f4h ( 94964) load[0m
+[0;32mI (288) esp_image: segment 6: paddr=001df7e0 vaddr=4ff37300 size=04ca4h ( 19620) load[0m
+[0;32mI (292) esp_image: segment 7: paddr=001e448c vaddr=50108080 size=0000ch (    12) load[0m
+[0;32mI (298) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (298) boot: Checking flash encryption...[0m
+[0;32mI (298) flash_encrypt: flash encryption is enabled (1 plaintext flashes left)[0m
+[0;32mI (299) boot: Disabling RNG early entropy source...[0m
+[0;32mI (302) hex_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (303) hex_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (303) hex_psram: DriveStr.    : 0x00 (25 Ohm)[0m
+[0;32mI (303) hex_psram: dev id       : 0x03 (generation 4)[0m
+[0;32mI (304) hex_psram: density      : 0x07 (256 Mbit)[0m
+[0;32mI (304) hex_psram: good-die     : 0x06 (Pass)[0m
+[0;32mI (304) hex_psram: SRF          : 0x02 (Slow Refresh)[0m
+[0;32mI (304) hex_psram: BurstType    : 0x00 ( Wrap)[0m
+[0;32mI (305) hex_psram: BurstLen     : 0x03 (2048 Byte)[0m
+[0;32mI (305) hex_psram: BitMode      : 0x01 (X16 Mode)[0m
+[0;32mI (305) hex_psram: Readlatency  : 0x04 (14 cycles@Fixed)[0m
+[0;32mI (306) hex_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (306) MSPI Timing: Enter psram timing tuning[0m
+[0;32mI (466) esp_psram: Found 32MB PSRAM device[0m
+[0;32mI (466) esp_psram: Speed: 200MHz[0m
+[0;32mI (467) hex_psram: psram CS IO is dedicated[0m
+[0;32mI (467) cpu_start: Multicore app[0m
+[0;32mI (1687) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (1697) cpu_start: Pro cpu start user code[0m
+[0;32mI (1697) cpu_start: cpu freq: 400000000 Hz[0m
+[0;32mI (1697) app_init: Application information:[0m
+[0;32mI (1698) app_init: Project name:     hub_p4_esp_hosted_host[0m
+[0;32mI (1698) app_init: App version:      c7cd5d5-dirty[0m
+[0;32mI (1698) app_init: Compile time:     Nov  8 2026 12:10:19[0m
+[0;32mI (1698) app_init: ELF file SHA256:  76ba3b71f...[0m
+[0;32mI (1698) app_init: ESP-IDF:          v5.5.5[0m
+[0;32mI (1699) efuse_init: Min chip rev:     v3.1[0m
+[0;32mI (1699) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (1699) efuse_init: Chip rev:         v3.2[0m
+[0;32mI (1699) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1700) heap_init: At 4FF54740 len 00066880 (410 KiB): RETENT_RAM[0m
+[0;32mI (1700) heap_init: At 4FFBAFC0 len 00004BF0 (18 KiB): RAM[0m
+[0;32mI (1700) heap_init: At 5010808C len 00007F74 (31 KiB): RTCRAM[0m
+[0;32mI (1700) heap_init: At 30100248 len 00001DB8 (7 KiB): SPM[0m
+[0;32mI (1701) esp_psram: Adding pool of 32768K of PSRAM memory to heap allocator[0m
+[0;32mI (1702) spi_flash: detected chip: boya[0m
+[0;32mI (1702) spi_flash: flash io: dio[0m
+[0;32mI (1703) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (1704) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (1706) eh_mcu_transport: transport_init: probing bus backend[0m
+[0;32mI (1706) eh_sdio: transport[host]: SDIO 4-bit 5000 kHz CLK=18 CMD=19 D0=14 D1=15 D2=16 D3=17 RESET=54[0m
+[0;33mW (1707) eh_sdio: SDIO clock freq set to [5000]KHz, Max possible (on PCB) is 40000KHz[0m
+[0;32mI (1707) eh_sdio: sdio_data_to_rx_buf_task started[0m
+[0;32mI (1707) eh_mcu_transport: transport_init: bus backend up[0m
+[0;32mI (1707) main_task: Started on CPU0[0m
+[0;33mW (1708) eh_sdio: Reset co-processor using GPIO[54][0m
+[0;32mI (1708) esp_psram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32mI (1708) main_task: Calling app_main()[0m
+Guru Meditation Error: Core  0 panic'ed (Stack protection fault). 
+
+Detected in task "main" at 0x4ff2f154
+Stack pointer: 0x4ff584a0
+Stack bounds: 0x4ff584a4 - 0x4ff594a0
+
+
+Core  0 register dump:
+MEPC    : 0x4ff2f162  RA      : 0x4ff2f15e  SP      : 0x4ff584a0  GP      : 0x4ff37b00  
+TP      : 0x4ff59470  T0      : 0x4fc1a588  T1      : 0x0000000f  T2      : 0xffffffff  
+S0/FP   : 0x4ff55300  S1      : 0xffffffff  A0      : 0x0000001f  A1      : 0xffffffff  
+A2      : 0x00013860  A3      : 0x000c0000  A4      : 0x00000000  A5      : 0x4ff54000  
+A6      : 0x00000003  A7      : 0x80808080  S2      : 0x00000000  S3      : 0x00013860  
+S4      : 0x4ff586a0  S5      : 0x00000000  S6      : 0x00000020  S7      : 0x4ff58688  
+S8      : 0x00000042  S9      : 0x000000ff  S10     : 0x4ff5867c  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0xc40b22a7  T6      : 0x00000000  
+MSTATUS : 0x00011881  MTVEC   : 0x4ff20003  MCAUSE  : 0x0000001b  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+Unrecognized argument "HUB/firmware/p4/build-h2-rcp-test/bootloader/bootloader.elf"
+0x4ff2f162 in xTaskGetSchedulerState () at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+5015	            if( xSchedulerRunning == pdFALSE )
+#0  0x4ff2f162 in xTaskGetSchedulerState () at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:5015
+#1  0x4ff2bbac in xQueueSemaphoreTake (xQueue=xQueue@entry=0x4ff55300, xTicksToWait=<optimized out>, xTicksToWait@entry=4294967295) at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c:1718
+#2  0x4ff2bcf2 in xQueueTakeMutexRecursive (xMutex=0x4ff55300, xTicksToWait=xTicksToWait@entry=4294967295) at /home/konatsu/esp/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c:835
+#3  0x400b2de6 in spi_flash_op_lock () at /home/konatsu/esp/esp-idf/components/spi_flash/cache_utils.c:75
+#4  0x4ff22848 in spi_flash_disable_interrupts_caches_and_other_cpu () at /home/konatsu/esp/esp-idf/components/spi_flash/cache_utils.c:129
+#5  0x4ff22c5c in cache_disable (arg=arg@entry=0x0) at /home/konatsu/esp/esp-idf/components/spi_flash/spi_flash_os_func_app.c:75
+#6  0x4ff22c6c in spi1_start (arg=<optimized out>, flags=<optimized out>) at /home/konatsu/esp/esp-idf/components/spi_flash/spi_flash_os_func_app.c:133
+#7  0x4ff35b92 in spiflash_start_core (chip=0x4ff39a48 <default_chip>, flags=0) at /home/konatsu/esp/esp-idf/components/spi_flash/esp_flash_api.c:238
+#8  0x4ff35bcc in spiflash_start_default (chip=<optimized out>) at /home/konatsu/esp/esp-idf/components/spi_flash/esp_flash_api.c:249
+#9  0x4ff35620 in esp_flash_read (chip=<optimized out>, buffer=buffer@entry=0x4ff586a0, address=79968, length=32) at /home/konatsu/esp/esp-idf/components/spi_flash/esp_flash_api.c:981
+#10 0x400b1cdc in esp_partition_read (partition=<optimized out>, src_offset=<optimized out>, dst=0x4ff586a0, size=32) at /home/konatsu/esp/esp-idf/components/esp_partition/partition_target.c:38
+#11 0x400dc3b2 in nvs::NVSPartition::read (this=<optimized out>, src_offset=<optimized out>, dst=<optimized out>, size=<optimized out>) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_partition.cpp:37
+#12 0x400d99b6 in nvs::Page::readEntry (this=this@entry=0x4ffbb724, index=index@entry=65, dst=...) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:895
+#13 0x400da2c8 in nvs::Page::findItem (this=this@entry=0x4ffbb724, nsIndex=5 '\005', datatype=nvs::ItemType::BLOB_IDX, key=key@entry=0x4ff58688 "ZB0905", itemIndex=itemIndex@entry=@0x4ff5867c: 0, item=..., chunkIdx=chunkIdx@entry=255 '\377', chunkStart=chunkStart@entry=nvs::VerOffset::VER_ANY) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:948
+#14 0x400da8bc in nvs::Page::mLoadEntryTable (this=this@entry=0x4ffbb724) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:738
+#15 0x400daada in nvs::Page::load (this=0x4ffbb724, partition=partition@entry=0x4ffbb408, sectorNumber=sectorNumber@entry=1) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_page.cpp:88
+#16 0x400dd03e in nvs::PageManager::load (this=this@entry=0x4ffbb670, partition=0x4ffbb408, baseSector=baseSector@entry=0, sectorCount=sectorCount@entry=6) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_pagemanager.cpp:27
+#17 0x400db9d4 in nvs::Storage::init (this=this@entry=0x4ffbb660, baseSector=baseSector@entry=0, sectorCount=sectorCount@entry=6) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_storage.cpp:185
+#18 0x400dc66a in nvs::NVSPartitionManager::init_custom (this=this@entry=0x4ffbb384, partition=0x4ffbb408, baseSector=baseSector@entry=0, sectorCount=6) at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_partition_manager.cpp:95
+#19 0x400dc700 in nvs::NVSPartitionManager::init_partition (this=0x4ffbb384, partition_label=partition_label@entry=0x4015c170 "") at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_partition_manager.cpp:57
+#20 0x400d8dfe in nvs_flash_init_partition (part_name=part_name@entry=0x4015c170 "") at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_api.cpp:133
+#21 0x400d8e3c in nvs_flash_init () at /home/konatsu/esp/esp-idf/components/nvs_flash/src/nvs_api.cpp:161
+#22 0x4000c642 in app_main () at /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/main/main.cpp:144
+#23 0x00000000 in ?? ()
+Backtrace stopped: frame did not save the PC
+
+
+
+ELF file SHA256: 76ba3b71f
+
+Rebooting...
+ESP-ROM:esp32p4-eco7-20260109
+Build:Jan  9 2026
+rst:0xc (SW_CPU_RESET),boot:0x30d (SPI_FAST_FLASH_BOOT)
+Core0 Saved PC:0x4ff23dc8
+Core1 Saved PC:0x40001d76
+use legacy efuse key
+SPI mode:DIO, clock div:1
+load:0x4ffb6240,len:0x2924
+load:0x4ffac2c0,len:0x1000
+load:0x4ffaefc0,len:0x5318
+entry 0x4ffac2ca
+[0;32mI (26) boot: ESP-IDF v5.5.5 2nd stage bootloader[0m
+[0;32mI (26) boot: compile time Nov  8 2026 12:08:39[0m
+[0;32mI (26) boot: Multicore bootloader[0m
+[0;32mI (27) boot: chip revision: v3.2[0m
+[0;32mI (27) boot: efuse block revision: v1.2[0m
+[0;32mI (28) boot.esp32p4: SPI Speed      : 80MHz[0m
+[0;32mI (28) boot.esp32p4: SPI Mode       : DIO[0m
+[0;32mI (28) boot.esp32p4: SPI Flash Size : 16MB[0m
+[0;32mI (28) boot: Enabling RNG early entropy source...[0m
+[0;32mI (29) boot: Partition Table:[0m
+[0;32mI (29) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (29) boot:  0 nvs              WiFi data        01 02 00012000 00006000[0m
+[0;32mI (30) boot:  1 phy_init         RF data          01 01 00018000 00001000[0m
+[0;32mI (30) boot:  2 factory          factory app      00 00 00020000 003f0000[0m
+[0;32mI (31) boot:  3 c6_fw            Unknown data     01 40 00410000 00200000[0m
+[0;32mI (31) boot:  4 wifi_keys        NVS keys         01 04 00610000 00001000[0m
+[0;32mI (32) boot:  5 wifi_cfg         WiFi data        01 02 00611000 00006000[0m
+[0;32mI (33) boot: End of partition table[0m
+[0;32mI (33) esp_image: segment 0: paddr=00020020 vaddr=40150020 size=5fedch (392924) map[0m
+[0;32mI (87) esp_image: segment 1: paddr=0007ff04 vaddr=30100000 size=00114h (   276) load[0m
+[0;32mI (88) esp_image: segment 2: paddr=00080020 vaddr=40000020 size=148384h (1344388) map[0m
+[0;32mI (269) esp_image: segment 3: paddr=001c83ac vaddr=30100114 size=000e0h (   224) load[0m
+[0;32mI (271) esp_image: segment 4: paddr=001c8494 vaddr=30100200 size=00048h (    72) load[0m
+[0;32mI (272) esp_image: segment 5: paddr=001c84e4 vaddr=4ff20000 size=172f4h ( 94964) load[0m
+[0;32mI (288) esp_image: segment 6: paddr=001df7e0 vaddr=4ff37300 size=04ca4h ( 19620) load[0m
+[0;32mI (292) esp_image: segment 7: paddr=001e448c vaddr=50108080 size=0000ch (    12) load[0m
+[0;32mI (298) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (298) boot: Checking flash encryption...[0m
+[0;32mI (298) flash_encrypt: flash encryption is enabled (1 plaintext flashes left)[0m
+[0;32mI (299) boot: Disabling RNG early entropy source...[0m
+[0;32mI (302) hex_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (303) hex_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (303) hex_psram: DriveStr.    : 0x00 (25 Ohm)[0m
+[0;32mI (303) hex_psram: dev id       : 0x03 (generation 4)[0m
+[0;32mI (304) hex_psram: density      : 0x07 (256 Mbit)[0m
+[0;32mI (304) hex_psram: good-die     : 0x06 (Pass)[0m
+[0;32mI (304) hex_psram: SRF          : 0x02 (Slow Refresh)[0m
+[0;32mI (304) hex_psram: BurstType    : 0x00 ( Wrap)[0m
+[0;32mI (305) hex_psram: BurstLen     : 0x03 (2048 Byte)[0m
+[0;32mI (305) hex_psram: BitMode      : 0x01 (X16 Mode)[0m
+[0;32mI (305) hex_psram: Readlatency  : 0x04 (14 cycles@Fixed)[0m
+[0;32mI (306) hex_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (306) MSPI Timing: Enter psram timing tuning[0m
+[0;32mI (466) esp_psram: Found 32MB PSRAM device[0m
+[0;32mI (466) esp_psram: Speed: 200MHz[0m
+[0;32mI (467) hex_psram: psram CS IO is dedicated[0m
+[0;32mI (467) cpu_start: Multicore app[0m
+[0;32mI (1688) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (1697) cpu_start: Pro cpu start user code[0m
+[0;32mI (1697) cpu_start: cpu freq: 400000000 Hz[0m
+[0;32mI (1697) app_init: Application information:[0m
+[0;32mI (1698) app_init: Project name:     hub_p4_esp_hosted_host[0m
+[0;32mI (1698) app_init: App version:      c7cd5d5-dirty[0m
+[0;32mI (1698) app_init: Compile time:     Nov  8 2026 12:10:19[0m
+[0;32mI (1698) app_init: ELF file SHA256:  76ba3b71f...[0m
+[0;32mI (1698) app_init: ESP-IDF:          v5.5.5[0m
+[0;32mI (1699) efuse_init: Min chip rev:     v3.1[0m
+[0;32mI (1699) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (1699) efuse_init: Chip rev:         v3.2[0m
+[0;32mI (1699) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1700) heap_init: At 4FF54740 len 00066880 (410 KiB): RETENT_RAM[0m
+[0;32mI (1700) heap_init: At 4FFBAFC0 len 00004BF0 (18 KiB): RAM[0m
+[0;32mI (1700) heap_init: At 5010808C len 00007F74 (31 KiB): RTCRAM[0m
+[0;32mI (1700) heap_init: At 30100248 len 00001DB8 (7 KiB): SPM[0m
+[0;32mI (1701) esp_psram: Adding pool of 32768K of PSRAM memory to heap allocator[0m
+[0;32mI (1702) spi_flash: detected chip: boya[0m
+[0;32mI (1702) spi_flash: flash io: dio[0m
+[0;32mI (1703) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (1704) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (1706) eh_mcu_transport: transport_init: probing bus backend[0m
+[0;32mI (1706) eh_sdio: transport[host]: SDIO 4-bit 5000 kHz CLK=18 CMD=19 D0=14 D1=15 D2=16 D3=17 RESET=54[0m
+[0;33mW (1707) eh_sdio: SDIO clock freq set to [5000]KHz, Max possible (on PCB) is 40000KHz[0m
+[0;32mI (1707) eh_sdio: sdio_data_to_rx_buf_task started[0m
+[0;32mI (1707) eh_mcu_transport: transport_init: bus backend up[0m
+[0;32mI (1707) main_task: Started on CPU0[0m
+W (1708I)  e(h_sd1io7: 0R8es)et  ceos-ppr_ocpesssrora ums:in g RGPIO[54]
+eserving pool of 32K of internal memory for DMA/internal allocations
+[0;32mI (1708) main_task: Calling app_main()[0m
+Guru Meditation Error: Core  0 panic'ed (Stack protection fault). 
+
+Detected in task "main" at 0x4ff2f154
+Stack pointer: 0x4ff584a0
+Stack bounds: 0x4ff584a4 - 0x4ff594a0
+
+
+Core  0 register dump:
+MEPC    : 0x4ff2f162  RA      : 0x4ff2f15e  SP      : 0x4ff584a0  GP      : 0x4ff37b00  
+TP      : 0x4ff59470  T0      : 0x4fc1a588  T1      : 0x0000000f  T2      : 0xffffffff  
+S0/FP   : 0x4ff55300  S1      : 0xffffffff  A0      : 0x0000001f  A1      : 0xffffffff  
+A2      : 0x00013860  A3      : 0x000c0000  A4      : 0x00000000  A5      : 0x4ff54000  
+A6      : 0x00000003  A7      : 0x80808080  S2      : 0x00000000  S3      : 0x00013860  
+S4      : 0x4ff586a0  S5      : 0x00000000  S6      : 0x00000020  S7      : 0x4ff58688  
+S8      : 0x00000042  S9      : 0x000000ff  S10     : 0x4ff5867c  S11     : 0x00000000  
+T3      : 0x00000000  T4      : 0x00000000  T5      : 0xc40b22a7  T6      : 0x00000000  
+MSTATUS : 0x00011881  MTVEC   : 0x4ff20003  MCAUSE  : 0x0000001b  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+

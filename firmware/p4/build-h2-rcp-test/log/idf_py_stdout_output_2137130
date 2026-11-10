@@ -1,0 +1,1619 @@
+Command: /home/konatsu/.espressif/python_env/idf5.5_py3.14_env/bin/python /home/konatsu/esp/esp-idf/tools/idf_monitor.py -p /dev/ttyACM0 -b 115200 --toolchain-prefix riscv32-esp-elf- --target esp32p4 --revision 301 --decode-panic backtrace /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-h2-rcp-test/hub_p4_esp_hosted_host.elf /home/konatsu/Documents/ESP32-P4 Multi HUB/firmware/p4/build-h2-rcp-test/bootloader/bootloader.elf -m '/home/konatsu/.espressif/python_env/idf5.5_py3.14_env/bin/python' '/home/konatsu/esp/esp-idf/tools/idf.py' '-B' 'build-h2-rcp-test' '-p' '/dev/ttyACM0'
+ESP-ROM:esp32p4-eco7-20260109
+Build:Jan  9 2026
+rst:0x17 (CHIP_USB_UART_RESET),boot:0x30d (SPI_FAST_FLASH_BOOT)
+Core0 Saved PC:0x4ff50296
+Core1 Saved PC:0x4fc06020
+use legacy efuse key
+SPI mode:DIO, clock div:1
+load:0x4ffb6240,len:0x2924
+load:0x4ffac2c0,len:0x1000
+load:0x4ffaefc0,len:0x5318
+entry 0x4ffac2ca
+[0;32mI (10) boot: ESP-IDF v5.5.5 2nd stage bootloader[0m
+[0;32mI (10) boot: compile time Nov  8 2026 12:08:39[0m
+[0;32mI (10) boot: Multicore bootloader[0m
+[0;32mI (12) boot: chip revision: v3.2[0m
+[0;32mI (12) boot: efuse block revision: v1.2[0m
+[0;32mI (12) boot.esp32p4: SPI Speed      : 80MHz[0m
+[0;32mI (12) boot.esp32p4: SPI Mode       : DIO[0m
+[0;32mI (13) boot.esp32p4: SPI Flash Size : 16MB[0m
+[0;32mI (13) boot: Enabling RNG early entropy source...[0m
+[0;32mI (13) boot: Partition Table:[0m
+[0;32mI (14) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (14) boot:  0 nvs              WiFi data        01 02 00012000 00006000[0m
+[0;32mI (15) boot:  1 phy_init         RF data          01 01 00018000 00001000[0m
+[0;32mI (15) boot:  2 factory          factory app      00 00 00020000 003f0000[0m
+[0;32mI (16) boot:  3 c6_fw            Unknown data     01 40 00410000 00200000[0m
+[0;32mI (16) boot:  4 wifi_keys        NVS keys         01 04 00610000 00001000[0m
+[0;32mI (17) boot:  5 wifi_cfg         WiFi data        01 02 00611000 00006000[0m
+[0;32mI (18) boot: End of partition table[0m
+[0;32mI (19) esp_image: segment 0: paddr=00020020 vaddr=40150020 size=5d35ch (381788) map[0m
+[0;32mI (71) esp_image: segment 1: paddr=0007d384 vaddr=30100000 size=001f4h (   500) load[0m
+[0;32mI (72) esp_image: segment 2: paddr=0007d580 vaddr=30100200 size=00048h (    72) load[0m
+[0;32mI (74) esp_image: segment 3: paddr=0007d5d0 vaddr=4ff20000 size=02a48h ( 10824) load[0m
+[0;32mI (77) esp_image: segment 4: paddr=00080020 vaddr=40000020 size=14576ch (1333100) map[0m
+[0;32mI (256) esp_image: segment 5: paddr=001c5794 vaddr=4ff22a48 size=148ach ( 84140) load[0m
+[0;32mI (271) esp_image: segment 6: paddr=001da048 vaddr=4ff37300 size=04ca4h ( 19620) load[0m
+[0;32mI (275) esp_image: segment 7: paddr=001decf4 vaddr=50108080 size=0000ch (    12) load[0m
+[0;32mI (281) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (281) boot: Checking flash encryption...[0m
+[0;32mI (281) flash_encrypt: flash encryption is enabled (1 plaintext flashes left)[0m
+[0;32mI (282) boot: Disabling RNG early entropy source...[0m
+[0;32mI (286) hex_psram: vendor id    : 0x0d (AP)[0m
+[0;32mI (286) hex_psram: Latency      : 0x01 (Fixed)[0m
+[0;32mI (286) hex_psram: DriveStr.    : 0x00 (25 Ohm)[0m
+[0;32mI (286) hex_psram: dev id       : 0x03 (generation 4)[0m
+[0;32mI (287) hex_psram: density      : 0x07 (256 Mbit)[0m
+[0;32mI (287) hex_psram: good-die     : 0x06 (Pass)[0m
+[0;32mI (287) hex_psram: SRF          : 0x02 (Slow Refresh)[0m
+[0;32mI (288) hex_psram: BurstType    : 0x00 ( Wrap)[0m
+[0;32mI (288) hex_psram: BurstLen     : 0x03 (2048 Byte)[0m
+[0;32mI (288) hex_psram: BitMode      : 0x01 (X16 Mode)[0m
+[0;32mI (289) hex_psram: Readlatency  : 0x04 (14 cycles@Fixed)[0m
+[0;32mI (289) hex_psram: DriveStrength: 0x00 (1/1)[0m
+[0;32mI (289) MSPI Timing: Enter psram timing tuning[0m
+[0;32mI (450) esp_psram: Found 32MB PSRAM device[0m
+[0;32mI (450) esp_psram: Speed: 200MHz[0m
+[0;32mI (451) hex_psram: psram CS IO is dedicated[0m
+[0;32mI (451) cpu_start: Multicore app[0m
+[0;32mI (1671) esp_psram: SPI SRAM memory test OK[0m
+[0;32mI (1681) cpu_start: Pro cpu start user code[0m
+[0;32mI (1681) cpu_start: cpu freq: 400000000 Hz[0m
+[0;32mI (1681) app_init: Application information:[0m
+[0;32mI (1681) app_init: Project name:     hub_p4_esp_hosted_host[0m
+[0;32mI (1682) app_init: App version:      c7cd5d5-dirty[0m
+[0;32mI (1682) app_init: Compile time:     Nov  8 2026 12:10:19[0m
+[0;32mI (1682) app_init: ELF file SHA256:  a7081d1b7...[0m
+[0;32mI (1682) app_init: ESP-IDF:          v5.5.5[0m
+[0;32mI (1682) efuse_init: Min chip rev:     v3.1[0m
+[0;32mI (1682) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (1683) efuse_init: Chip rev:         v3.2[0m
+[0;32mI (1683) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1683) heap_init: At 4FF52FE0 len 00067FE0 (415 KiB): RETENT_RAM[0m
+[0;32mI (1684) heap_init: At 4FFBAFC0 len 00004BF0 (18 KiB): RAM[0m
+[0;32mI (1684) heap_init: At 5010808C len 00007F74 (31 KiB): RTCRAM[0m
+[0;32mI (1684) heap_init: At 30100248 len 00001DB8 (7 KiB): SPM[0m
+[0;32mI (1685) esp_psram: Adding pool of 32768K of PSRAM memory to heap allocator[0m
+[0;32mI (1686) spi_flash: detected chip: boya[0m
+[0;32mI (1686) spi_flash: flash io: dio[0m
+[0;32mI (1687) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (1688) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (1690) eh_mcu_transport: transport_init: probing bus backend[0m
+[0;32mI (1690) eh_sdio: transport[host]: SDIO 4-bit 5000 kHz CLK=18 CMD=19 D0=14 D1=15 D2=16 D3=17 RESET=54[0m
+[0;33mW (1691) eh_sdio: SDIO clock freq set to [5000]KHz, Max possible (on PCB) is 40000KHz[0m
+[0;32mI (1691) eh_sdio: sdio_data_to_rx_buf_task started[0m
+[0;32mI (1691) eh_mcu_transport: transport_init: bus backend up[0m
+[0;33mW (1692) eh_sdio: Reset co-processor using GPIO[54][0m
+[0;32mI (1692) main_task: Started on CPU0[0m
+[0;32mI (1692) esp_psram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32mI (1692) main_task: Calling app_main()[0m
+[0;32mI (3212) eh_host_port_reset: reset done pin=54 parked=1[0m
+[0;32mI (3245) eh_host_port_sdio: bus applied: clk_khz=5000[0m
+[0;32mI (3246) eh_host_port_sdio: Function 0 Blocksize: 512[0m
+[0;32mI (3246) eh_host_port_sdio: Function 1 Blocksize: 512[0m
+[0;32mI (3346) eh_sdio: Card init success, TRANSPORT_RX_ACTIVE[0m
+[0;32mI (3391) eh_sdio: SDIO Host operating in STREAMING MODE[0m
+[0;32mI (3391) eh_sdio: Open data path at slave[0m
+[0;32mI (3391) eh_sdio: Starting SDIO process rx task[0m
+[0;32mI (3409) eh_init_evt: slave chip id: 0x0d (esp32c6)[0m
+[0;32mI (3409) eh_init_evt: capabilities: 0x01[0m
+[0;32mI (3409) eh_init_evt: Features supported are:[0m
+[0;32mI (3409) eh_init_evt: 	 * WLAN over SDIO[0m
+[0;32mI (3409) eh_init_evt: extended capabilities: 0x00024010[0m
+[0;32mI (3409) eh_init_evt: Extended Features supported:[0m
+[0;32mI (3410) eh_init_evt: 	 * WLAN[0m
+[0;32mI (3410) eh_init_evt: 	 * AUX interface[0m
+[0;32mI (3410) eh_init_evt: SDIO buf-config: e2h mode=0 bufsz=15872B, h2e mode=0 bufsz=15872B[0m
+[0;32mI (3410) eh_init_evt: coprocessor transport size: 1536[0m
+[0;32mI (3410) eh_init_evt: RPC version negotiated: V2[0m
+[0;32mI (3410) eh_init_evt: esp-hosted fw versions: host=3.1.0 coprocessor=3.1.0 (match)[0m
+[0;32mI (3410) eh_init_evt: SDIO SW_AGGR negotiated (e2h=15872B h2e=15872B)[0m
+[0;32mI (3411) eh_init_evt: SDIO mode: slave=streaming host=streaming[0m
+[0;32mI (3411) eh_init_evt: chip=0x0d (esp32c6) fw=0x00030100 caps=0x01 ext=0x00024010[0m
+[0;33mW (3411) eh_host_port_xport_defaults: SDIO clock freq set to [5000]KHz, Max possible (on PCB) is 40000KHz[0m
+[0;32mI (3411) eh_auto_init: auto_init: found 2 descriptor(s)[0m
+[0;32mI (3412) eh_auto_init: auto_init: initialising 'peer_data' (priority 80)[0m
+[0;32mI (3412) eh_auto_init: auto_init: initialising 'wifi' (priority 150)[0m
+[0;32mI (3412) eh_wifi_itwt: wifi iTWT ext init[0m
+[0;32mI (3483) eh_sdio: preallocated 2 SDIO RX staging slot(s), 15872 bytes each[0m
+[0;32mI (3547) p4_hosted_host: ESP-Hosted coprocessor firmware: 3.1.0[0m
+[0;32mI (3549) p4_hosted_host: ESP-Hosted coprocessor; target=esp32c6 chip_id=0x0000000d[0m
+[0;32mI (3550) p4_hosted_host: ESP32-P4 host ready; revision=302 cores=2[0m
+[0;33mW (3551) gdma: GDMA channel access encrypted external memory, adjust burst size to 16[0m
+[0;32mI (3564) ESP_RADIO_SPINEL: spinel UART interface initialization completed[0m
+[0;32mI (3565) ESP_RADIO_SPINEL: Spinel UART interface has been successfully enabled[0m
+[0;32mI (3565) ESP_ZIGBEE_RADIO_SPINEL_UART: Spinel UART interface enable successfully[0m
+I(3568) OPENTHREAD:[I] P-SpinelDrive-: co-processor reset: RESET_POWER_ON
+I(3570) OPENTHREAD:[I] P-SpinelDrive-: Software reset co-processor successfully
+[0;32mI (3581) web_security: HTTPS certificate SHA-256 fingerprint: 98:36:20:ea:81:f8:cf:a0:9a:a5:51:51:5e:2f:6c:37:0a:81:35:f1:71:4a:6c:9a:96:3b:83:8e:f2:2c:95:a3[0m
+[0;32mI (3582) esp_https_server: Starting server[0m
+[0;32mI (3583) esp_https_server: Server listening on port 443[0m
+[0;32mI (3585) http_diagnostics: HTTPS Web UI listening on port 443; HTTP redirects to HTTPS[0m
+[0;32mI (3585) mdns_mem: mDNS task will be created from internal RAM[0m
+[0;32mI (3586) p4_hosted_host: mDNS hostname: MultiHub.local[0m
+[0;32mI (3662) multipan: BDB initialization returned raw=0 mapped=ESP_OK[0m
+[0;32mI (3662) multipan: BDB device-start signal: status=0 factory_new=yes joined=no ready=yes[0m
+[0;32mI (3727) st7701: version: 2.0.3[0m
+[0;32mI (3741) st7701_mipi: LCD ID: FF FF FF[0m
+[0;32mI (3741) st7701_mipi:  st7701->madctl_val: 0x0, st7701->colmod_val: 0x55[0m
+[0;32mI (3882) LVGL: Starting LVGL task[0m
+[1;31mE (3885) lcd_panel: esp_lcd_panel_swap_xy(50): swap_xy is not supported by this panel[0m
+[0;32mI (3903) GT911: I2C address initialization procedure skipped - using default GT9xx setup[0m
+[0;32mI (3905) GT911: TouchPad_ID:0x39,0x31,0x31[0m
+[0;32mI (3905) GT911: TouchPad_Config_Version:250[0m
+[5n[0;32mI (3970) esp_wifi_remote: esp_wifi_internal_reg_rxcb: sta: 0x400e03d8[0m
+
+Type 'help' to get the list of commands.
+Use UP/DOWN arrows to navigate through command history.
+Press TAB when typing command name to auto-complete.
+[6n I (3987) main_task: Returned from app_main()
+[999C [6n [79Dp4-hosted> I (4990) esp_netif_handlers: sta ip: 192.168.69.17, mask: 255.255.254.0, gw: 192.168.68.1
+[0;32mI (4991) eh_rx_guard: sta: 1 held frames delivered[0m
+[0;32mI (6542) esp_https_server: performing session handshake[0m
+[1;31mE (6670) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (6671) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (6672) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (6673) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (6674) esp_https_server: performing session handshake[0m
+[0;32mI (7120) esp_https_server: performing session handshake[0m
+[1;31mE (7202) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (7202) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (7203) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (7204) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (7205) esp_https_server: performing session handshake[0m
+[1;31mE (7285) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (7286) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (7287) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (7287) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (7288) esp_https_server: performing session handshake[0m
+[1;31mE (7367) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (7368) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (7369) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (7369) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (7370) esp_https_server: performing session handshake[0m
+[1;31mE (7448) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (7449) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (7450) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (7451) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (7452) esp_https_server: performing session handshake[0m
+[1;31mE (7531) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (7532) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (7533) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (7534) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (7535) esp_https_server: performing session handshake[0m
+[1;31mE (7614) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (7615) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (7616) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (7616) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (7617) esp_https_server: performing session handshake[0m
+[1;31mE (7696) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (7697) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (7698) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (7698) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (7699) esp_https_server: performing session handshake[0m
+[1;31mE (7778) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (7779) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (7780) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (7780) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (7781) esp_https_server: performing session handshake[0m
+[1;31mE (7860) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (7861) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (7861) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (7862) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (7863) esp_https_server: performing session handshake[0m
+[1;31mE (7941) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (7942) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (7943) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (7943) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (7944) esp_https_server: performing session handshake[0m
+[1;31mE (8024) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (8024) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (8026) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (8026) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (8027) esp_https_server: performing session handshake[0m
+[1;31mE (8107) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (8108) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (8109) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (8109) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (8110) esp_https_server: performing session handshake[0m
+[1;31mE (8190) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (8191) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (8192) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (8192) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (8193) esp_https_server: performing session handshake[0m
+[1;31mE (8272) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (8273) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (8274) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (8274) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (8275) esp_https_server: performing session handshake[0m
+[1;31mE (8353) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (8354) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (8355) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (8355) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (8356) esp_https_server: performing session handshake[0m
+[1;31mE (8436) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (8436) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (8437) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (8438) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (8439) esp_https_server: performing session handshake[0m
+[1;31mE (8518) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (8519) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (8520) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (8521) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (8522) esp_https_server: performing session handshake[0m
+[1;31mE (8602) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (8603) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (8604) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (8604) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (8605) esp_https_server: performing session handshake[0m
+[1;31mE (8685) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (8685) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (8686) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (8686) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (8687) esp_https_server: performing session handshake[0m
+[0;32mI (8843) esp_https_server: performing session handshake[0m
+[1;31mE (8924) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (8925) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (8926) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (8926) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (8933) esp_https_server: performing session handshake[0m
+[1;31mE (9013) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (9014) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (9015) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (9015) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (9017) esp_https_server: performing session handshake[0m
+[1;31mE (9097) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (9098) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (9099) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (9099) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (9100) esp_https_server: performing session handshake[0m
+[1;31mE (9179) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (9179) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (9180) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (9181) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (9182) esp_https_server: performing session handshake[0m
+[1;31mE (9261) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (9262) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (9263) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (9263) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (9264) esp_https_server: performing session handshake[0m
+[1;31mE (9344) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (9345) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (9346) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (9346) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (9347) esp_https_server: performing session handshake[0m
+[0;32mI (9536) esp_https_server: performing session handshake[0m
+[1;31mE (9616) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (9617) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (9618) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (9618) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (9626) esp_https_server: performing session handshake[0m
+[1;31mE (9707) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (9707) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (9708) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (9709) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (9710) esp_https_server: performing session handshake[0m
+[1;31mE (9789) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (9790) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (9791) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (9792) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (9794) esp_https_server: performing session handshake[0m
+[1;31mE (9874) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (9875) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (9876) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (9876) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (9877) esp_https_server: performing session handshake[0m
+[1;31mE (9958) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (9959) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (9960) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (9960) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (9961) esp_https_server: performing session handshake[0m
+[1;31mE (10042) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (10043) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (10044) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (10045) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (10046) esp_https_server: performing session handshake[0m
+[0;32mI (10240) esp_https_server: performing session handshake[0m
+[1;31mE (10319) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (10320) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (10321) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (10321) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (10322) esp_https_server: performing session handshake[0m
+[0;32mI (10587) esp_https_server: performing session handshake[0m
+[1;31mE (10669) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (10669) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (10671) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (10671) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (10672) esp_https_server: performing session handshake[0m
+[1;31mE (10753) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (10753) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (10755) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (10755) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (10762) esp_https_server: performing session handshake[0m
+[1;31mE (10842) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (10843) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (10844) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (10844) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (10846) esp_https_server: performing session handshake[0m
+[1;31mE (10926) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (10927) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (10928) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (10929) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (10930) esp_https_server: performing session handshake[0m
+[1;31mE (11008) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (11009) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (11010) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (11011) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (11012) esp_https_server: performing session handshake[0m
+[0;32mI (11161) esp_https_server: performing session handshake[0m
+[1;31mE (11240) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (11241) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (11242) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (11243) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (11244) esp_https_server: performing session handshake[0m
+[1;31mE (11323) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (11323) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (11325) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (11325) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (11332) esp_https_server: performing session handshake[0m
+[1;31mE (11413) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (11414) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (11415) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (11415) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (11417) esp_https_server: performing session handshake[0m
+[1;31mE (11497) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (11498) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (11499) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (11499) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (11501) esp_https_server: performing session handshake[0m
+[1;31mE (11583) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (11584) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (11585) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (11585) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (11586) esp_https_server: performing session handshake[0m
+[1;31mE (11667) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (11668) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (11669) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (11669) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (11670) esp_https_server: performing session handshake[0m
+[0;32mI (11815) esp_https_server: performing session handshake[0m
+[1;31mE (11895) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (11896) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (11897) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (11897) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (11904) esp_https_server: performing session handshake[0m
+[1;31mE (11986) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (11986) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (11987) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (11988) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (11990) esp_https_server: performing session handshake[0m
+[1;31mE (12070) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (12070) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (12072) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (12072) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (12073) esp_https_server: performing session handshake[0m
+[1;31mE (12153) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (12154) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (12155) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (12155) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (12156) esp_https_server: performing session handshake[0m
+[1;31mE (12235) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (12235) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (12236) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (12237) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (12237) esp_https_server: performing session handshake[0m
+[1;31mE (12318) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (12318) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (12319) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (12320) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (12321) esp_https_server: performing session handshake[0m
+[0;32mI (12491) esp_https_server: performing session handshake[0m
+[1;31mE (12571) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (12572) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (12573) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (12574) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (12582) esp_https_server: performing session handshake[0m
+[1;31mE (12662) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (12663) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (12664) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (12664) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (12665) esp_https_server: performing session handshake[0m
+[1;31mE (12744) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (12745) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (12747) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (12747) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (12749) esp_https_server: performing session handshake[0m
+[1;31mE (12828) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (12829) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (12830) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (12830) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (12832) esp_https_server: performing session handshake[0m
+[1;31mE (12911) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (12912) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (12913) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (12913) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (12914) esp_https_server: performing session handshake[0m
+[1;31mE (12993) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (12994) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (12995) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (12995) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (12996) esp_https_server: performing session handshake[0m
+[1;31mE (13076) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (13076) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (13078) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (13078) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (13079) esp_https_server: performing session handshake[0m
+[1;31mE (13158) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (13159) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (13160) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (13160) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (13161) esp_https_server: performing session handshake[0m
+[1;31mE (13240) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (13241) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (13242) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (13242) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (13243) esp_https_server: performing session handshake[0m
+[0;32mI (13420) esp_https_server: performing session handshake[0m
+[1;31mE (13500) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (13500) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (13501) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (13502) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (13509) esp_https_server: performing session handshake[0m
+[1;31mE (13591) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (13592) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (13593) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (13593) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (13595) esp_https_server: performing session handshake[0m
+[1;31mE (13675) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (13676) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (13677) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (13677) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (13679) esp_https_server: performing session handshake[0m
+[1;31mE (13760) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (13761) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (13762) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (13762) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (13763) esp_https_server: performing session handshake[0m
+[1;31mE (13846) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (13847) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (13850) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (13851) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (13853) esp_https_server: performing session handshake[0m
+[1;31mE (13950) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (13950) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (13952) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (13952) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (13954) esp_https_server: performing session handshake[0m
+[0;32mI (14127) esp_https_server: performing session handshake[0m
+[1;31mE (14207) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (14208) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (14209) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (14209) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (14211) esp_https_server: performing session handshake[0m
+[1;31mE (14290) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (14291) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (14292) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (14292) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (14300) esp_https_server: performing session handshake[0m
+[1;31mE (14380) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (14380) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (14381) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (14382) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (14383) esp_https_server: performing session handshake[0m
+[1;31mE (14463) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (14464) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (14465) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (14465) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (14467) esp_https_server: performing session handshake[0m
+[1;31mE (14548) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (14548) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (14550) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (14550) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (14551) esp_https_server: performing session handshake[0m
+[1;31mE (14632) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (14633) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (14634) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (14634) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (14635) esp_https_server: performing session handshake[0m
+[0;32mI (14780) esp_https_server: performing session handshake[0m
+[1;31mE (14860) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (14861) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (14862) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (14862) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (14869) esp_https_server: performing session handshake[0m
+[1;31mE (14951) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (14951) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (14953) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (14953) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (14955) esp_https_server: performing session handshake[0m
+[1;31mE (15035) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (15036) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (15037) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (15037) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (15038) esp_https_server: performing session handshake[0m
+[1;31mE (15118) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (15118) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (15119) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (15120) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (15121) esp_https_server: performing session handshake[0m
+[1;31mE (15199) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (15200) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (15200) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (15201) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (15202) esp_https_server: performing session handshake[0m
+[1;31mE (15281) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (15282) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (15283) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (15283) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (15284) esp_https_server: performing session handshake[0m
+[0;32mI (15481) esp_https_server: performing session handshake[0m
+[1;31mE (15563) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (15563) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (15565) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (15565) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (15566) esp_https_server: performing session handshake[0m
+[1;31mE (15724) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (15725) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (15726) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (15726) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (15734) esp_https_server: performing session handshake[0m
+[1;31mE (15813) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (15814) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (15815) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (15816) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (15818) esp_https_server: performing session handshake[0m
+[1;31mE (15898) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (15899) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (15900) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (15900) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (15901) esp_https_server: performing session handshake[0m
+[1;31mE (15982) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (15982) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (15983) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (15984) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (15985) esp_https_server: performing session handshake[0m
+[1;31mE (16065) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (16065) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (16066) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (16067) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (16067) esp_https_server: performing session handshake[0m
+[0;32mI (16214) esp_https_server: performing session handshake[0m
+[1;31mE (16294) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (16295) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (16296) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (16297) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (16303) esp_https_server: performing session handshake[0m
+[1;31mE (16384) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (16385) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (16386) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (16387) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (16388) esp_https_server: performing session handshake[0m
+[1;31mE (16468) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (16469) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (16470) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (16470) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (16471) esp_https_server: performing session handshake[0m
+[1;31mE (16552) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (16553) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (16554) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (16554) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (16555) esp_https_server: performing session handshake[0m
+[1;31mE (16635) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (16635) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (16637) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (16637) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (16638) esp_https_server: performing session handshake[0m
+[1;31mE (16717) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (16718) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (16719) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (16719) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (16720) esp_https_server: performing session handshake[0m
+[1;31mE (16800) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (16801) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (16802) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (16803) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (16804) esp_https_server: performing session handshake[0m
+[1;31mE (16882) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (16883) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (16884) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (16885) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (16886) esp_https_server: performing session handshake[0m
+[1;31mE (16965) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (16966) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (16967) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (16967) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (16969) esp_https_server: performing session handshake[0m
+[1;31mE (17049) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (17050) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (17051) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (17051) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (17052) esp_https_server: performing session handshake[0m
+[1;31mE (17132) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (17133) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (17134) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (17134) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (17135) esp_https_server: performing session handshake[0m
+[1;31mE (17215) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (17215) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (17216) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (17217) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (17218) esp_https_server: performing session handshake[0m
+[1;31mE (17297) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (17298) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (17299) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (17300) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (17301) esp_https_server: performing session handshake[0m
+[1;31mE (17380) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (17381) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (17382) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (17382) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (17383) esp_https_server: performing session handshake[0m
+[1;31mE (17462) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (17463) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (17464) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (17464) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (17465) esp_https_server: performing session handshake[0m
+[0;32mI (17618) esp_https_server: performing session handshake[0m
+[1;31mE (17698) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (17699) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (17700) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (17701) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (17708) esp_https_server: performing session handshake[0m
+[1;31mE (17789) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (17790) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (17791) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (17791) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (17792) esp_https_server: performing session handshake[0m
+[1;31mE (17871) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (17872) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (17873) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (17874) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (17875) esp_https_server: performing session handshake[0m
+[1;31mE (17955) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (17956) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (17957) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (17957) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (17958) esp_https_server: performing session handshake[0m
+[1;31mE (18038) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (18038) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (18040) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (18040) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (18041) esp_https_server: performing session handshake[0m
+[1;31mE (18120) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (18120) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (18122) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (18122) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (18123) esp_https_server: performing session handshake[0m
+[1;31mE (18203) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (18204) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (18205) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (18205) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (18206) esp_https_server: performing session handshake[0m
+[1;31mE (18283) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (18284) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (18285) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (18286) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (18287) esp_https_server: performing session handshake[0m
+[1;31mE (18366) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (18367) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (18368) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (18368) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (18369) esp_https_server: performing session handshake[0m
+[1;31mE (18448) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (18449) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (18450) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (18450) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (18451) esp_https_server: performing session handshake[0m
+[1;31mE (18532) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (18532) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (18534) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (18534) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (18535) esp_https_server: performing session handshake[0m
+[1;31mE (18615) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (18615) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (18617) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (18617) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (18618) esp_https_server: performing session handshake[0m
+[1;31mE (18697) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (18698) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (18699) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (18699) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (18700) esp_https_server: performing session handshake[0m
+[1;31mE (18781) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (18781) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (18783) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (18783) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (18785) esp_https_server: performing session handshake[0m
+[1;31mE (18865) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (18865) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (18866) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (18867) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (18868) esp_https_server: performing session handshake[0m
+[1;31mE (18958) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (18958) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (18960) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (18960) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (18961) esp_https_server: performing session handshake[0m
+[1;31mE (19042) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (19043) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (19044) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (19044) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (19045) esp_https_server: performing session handshake[0m
+[1;31mE (19125) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (19126) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (19127) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (19127) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (19128) esp_https_server: performing session handshake[0m
+[1;31mE (19208) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (19208) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (19209) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (19210) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (19211) esp_https_server: performing session handshake[0m
+[1;31mE (19290) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (19291) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (19292) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (19292) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (19293) esp_https_server: performing session handshake[0m
+[1;31mE (19373) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (19374) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (19375) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (19375) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (19376) esp_https_server: performing session handshake[0m
+[1;31mE (19456) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (19457) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (19458) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (19458) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (19459) esp_https_server: performing session handshake[0m
+[0;32mI (19669) esp_https_server: performing session handshake[0m
+[1;31mE (19749) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (19749) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (19751) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (19751) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (19758) esp_https_server: performing session handshake[0m
+[1;31mE (19841) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (19842) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (19843) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (19843) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (19845) esp_https_server: performing session handshake[0m
+[1;31mE (19923) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (19924) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (19925) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (19925) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (19926) esp_https_server: performing session handshake[0m
+[1;31mE (20005) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (20006) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (20007) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (20007) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (20008) esp_https_server: performing session handshake[0m
+[1;31mE (20088) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (20089) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (20090) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (20090) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (20091) esp_https_server: performing session handshake[0m
+[1;31mE (20171) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (20171) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (20172) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (20173) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (20174) esp_https_server: performing session handshake[0m
+[0;32mI (20380) esp_https_server: performing session handshake[0m
+[1;31mE (20459) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (20460) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (20461) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (20461) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (20468) esp_https_server: performing session handshake[0m
+[1;31mE (20550) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (20551) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (20552) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (20552) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (20554) esp_https_server: performing session handshake[0m
+[1;31mE (20634) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (20635) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (20636) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (20636) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (20638) esp_https_server: performing session handshake[0m
+[1;31mE (20718) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (20718) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (20720) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (20720) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (20721) esp_https_server: performing session handshake[0m
+[1;31mE (20801) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (20801) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (20803) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (20803) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (20804) esp_https_server: performing session handshake[0m
+[1;31mE (20884) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (20884) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (20886) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (20886) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (20887) esp_https_server: performing session handshake[0m
+[1;31mE (20966) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (20967) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (20968) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (20968) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (20969) esp_https_server: performing session handshake[0m
+[1;31mE (21047) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (21048) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (21049) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (21049) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (21050) esp_https_server: performing session handshake[0m
+[1;31mE (21130) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (21131) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (21132) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (21132) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (21133) esp_https_server: performing session handshake[0m
+[1;31mE (21212) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (21213) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (21214) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (21215) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (21216) esp_https_server: performing session handshake[0m
+[1;31mE (21295) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (21296) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (21297) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (21297) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (21298) esp_https_server: performing session handshake[0m
+[1;31mE (21377) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (21378) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (21379) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (21379) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (21380) esp_https_server: performing session handshake[0m
+[1;31mE (21459) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (21459) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (21460) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (21461) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (21462) esp_https_server: performing session handshake[0m
+[1;31mE (21542) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (21543) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (21544) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (21545) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (21546) esp_https_server: performing session handshake[0m
+[1;31mE (21626) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (21627) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (21628) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (21628) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (21629) esp_https_server: performing session handshake[0m
+[1;31mE (21710) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (21711) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (21712) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (21712) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (21713) esp_https_server: performing session handshake[0m
+[1;31mE (21794) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (21794) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (21795) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (21796) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (21797) esp_https_server: performing session handshake[0m
+[1;31mE (21876) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (21877) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (21878) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (21879) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (21880) esp_https_server: performing session handshake[0m
+[1;31mE (21959) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (21959) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (21961) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (21961) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (21962) esp_https_server: performing session handshake[0m
+[0;32mI (22110) esp_https_server: performing session handshake[0m
+[1;31mE (22191) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (22191) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (22193) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (22193) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (22201) esp_https_server: performing session handshake[0m
+[1;31mE (22281) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (22281) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (22283) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (22283) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (22284) esp_https_server: performing session handshake[0m
+[1;31mE (22364) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (22365) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (22365) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (22366) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (22367) esp_https_server: performing session handshake[0m
+[1;31mE (22447) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (22448) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (22449) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (22449) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (22450) esp_https_server: performing session handshake[0m
+[1;31mE (22530) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (22530) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (22532) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (22532) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (22533) esp_https_server: performing session handshake[0m
+[1;31mE (22613) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (22613) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (22615) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (22615) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (22616) esp_https_server: performing session handshake[0m
+[0;32mI (22759) esp_https_server: performing session handshake[0m
+[1;31mE (22838) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (22839) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (22840) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (22840) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (22841) esp_https_server: performing session handshake[0m
+[1;31mE (22922) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (22923) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (22924) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (22924) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (22931) esp_https_server: performing session handshake[0m
+[1;31mE (23013) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (23014) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (23015) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (23015) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (23017) esp_https_server: performing session handshake[0m
+[1;31mE (23097) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (23097) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (23098) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (23099) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (23100) esp_https_server: performing session handshake[0m
+[1;31mE (23178) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (23179) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (23180) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (23180) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (23181) esp_https_server: performing session handshake[0m
+[1;31mE (23260) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (23261) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (23262) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (23262) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (23263) esp_https_server: performing session handshake[0m
+[0;32mI (23440) esp_https_server: performing session handshake[0m
+[1;31mE (23519) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (23520) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (23521) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (23522) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (23523) esp_https_server: performing session handshake[0m
+[1;31mE (23604) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (23605) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (23606) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (23606) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (23614) esp_https_server: performing session handshake[0m
+[1;31mE (23695) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (23695) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (23697) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (23697) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (23698) esp_https_server: performing session handshake[0m
+[1;31mE (23783) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (23784) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (23788) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (23788) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (23792) esp_https_server: performing session handshake[0m
+[1;31mE (23887) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (23887) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (23888) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (23889) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (23890) esp_https_server: performing session handshake[0m
+[1;31mE (23971) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (23971) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (23972) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (23973) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (23974) esp_https_server: performing session handshake[0m
+[0;32mI (24159) esp_https_server: performing session handshake[0m
+[1;31mE (24239) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (24240) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (24241) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (24241) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (24248) esp_https_server: performing session handshake[0m
+[1;31mE (24328) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (24328) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (24329) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (24330) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (24331) esp_https_server: performing session handshake[0m
+[1;31mE (24411) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (24412) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (24413) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (24413) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (24415) esp_https_server: performing session handshake[0m
+[1;31mE (24495) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (24495) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (24496) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (24497) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (24498) esp_https_server: performing session handshake[0m
+[1;31mE (24578) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (24579) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (24580) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (24580) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (24581) esp_https_server: performing session handshake[0m
+[1;31mE (24661) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (24662) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (24663) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (24663) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (24664) esp_https_server: performing session handshake[0m
+[0;32mI (24807) esp_https_server: performing session handshake[0m
+[1;31mE (24888) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (24888) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (24889) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (24890) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (24897) esp_https_server: performing session handshake[0m
+[1;31mE (24978) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (24979) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (24980) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (24980) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (24982) esp_https_server: performing session handshake[0m
+[1;31mE (25062) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (25063) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (25064) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (25064) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (25065) esp_https_server: performing session handshake[0m
+[1;31mE (25143) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (25144) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (25145) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (25145) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (25146) esp_https_server: performing session handshake[0m
+[1;31mE (25226) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (25227) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (25228) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (25228) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (25229) esp_https_server: performing session handshake[0m
+[1;31mE (25309) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (25310) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (25311) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (25311) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (25312) esp_https_server: performing session handshake[0m
+[0;32mI (25489) esp_https_server: performing session handshake[0m
+[1;31mE (25570) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (25571) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (25572) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (25573) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (25580) esp_https_server: performing session handshake[0m
+[1;31mE (25660) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (25660) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (25661) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (25662) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (25663) esp_https_server: performing session handshake[0m
+[1;31mE (25743) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (25744) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (25745) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (25745) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (25747) esp_https_server: performing session handshake[0m
+[1;31mE (25827) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (25828) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (25829) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (25829) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (25830) esp_https_server: performing session handshake[0m
+[1;31mE (25910) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (25911) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (25912) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (25912) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (25913) esp_https_server: performing session handshake[0m
+[1;31mE (25994) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (25994) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (25995) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (25996) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (25997) esp_https_server: performing session handshake[0m
+[1;31mE (26076) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (26076) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (26077) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (26078) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (26079) esp_https_server: performing session handshake[0m
+[1;31mE (26157) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (26158) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (26159) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (26159) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (26160) esp_https_server: performing session handshake[0m
+[1;31mE (26239) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (26240) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (26241) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (26241) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (26242) esp_https_server: performing session handshake[0m
+[1;31mE (26322) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (26323) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (26324) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (26324) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (26325) esp_https_server: performing session handshake[0m
+[1;31mE (26405) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (26406) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (26407) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (26408) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (26409) esp_https_server: performing session handshake[0m
+[1;31mE (26489) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (26490) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (26491) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (26491) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (26492) esp_https_server: performing session handshake[0m
+[1;31mE (26571) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (26572) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (26573) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (26573) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (26574) esp_https_server: performing session handshake[0m
+[1;31mE (26654) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (26655) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (26656) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (26656) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (26657) esp_https_server: performing session handshake[0m
+[1;31mE (26738) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (26738) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (26739) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (26740) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (26741) esp_https_server: performing session handshake[0m
+[1;31mE (26821) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (26821) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (26822) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (26823) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (26823) esp_https_server: performing session handshake[0m
+[1;31mE (26904) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (26905) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (26906) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (26906) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (26907) esp_https_server: performing session handshake[0m
+[1;31mE (26986) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (26987) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (26988) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (26988) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (26989) esp_https_server: performing session handshake[0m
+[0;32mI (27137) esp_https_server: performing session handshake[0m
+[1;31mE (27217) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (27218) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (27219) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (27219) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (27226) esp_https_server: performing session handshake[0m
+[1;31mE (27306) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (27307) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (27308) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (27309) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (27310) esp_https_server: performing session handshake[0m
+[1;31mE (27390) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (27390) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (27391) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (27392) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (27394) esp_https_server: performing session handshake[0m
+[1;31mE (27474) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (27474) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (27475) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (27476) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (27476) esp_https_server: performing session handshake[0m
+[1;31mE (27556) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (27557) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (27558) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (27559) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (27560) esp_https_server: performing session handshake[0m
+[1;31mE (27640) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (27641) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (27642) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (27642) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (27643) esp_https_server: performing session handshake[0m
+[0;32mI (27851) esp_https_server: performing session handshake[0m
+[1;31mE (27931) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (27931) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (27933) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (27933) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (27940) esp_https_server: performing session handshake[0m
+[1;31mE (28021) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (28021) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (28023) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (28023) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (28024) esp_https_server: performing session handshake[0m
+[1;31mE (28104) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (28104) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (28105) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (28106) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (28108) esp_https_server: performing session handshake[0m
+[1;31mE (28188) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (28189) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (28190) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (28190) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (28191) esp_https_server: performing session handshake[0m
+[1;31mE (28270) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (28271) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (28272) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (28272) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (28273) esp_https_server: performing session handshake[0m
+[1;31mE (28353) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (28353) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (28354) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (28354) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (28355) esp_https_server: performing session handshake[0m
+[0;32mI (28499) esp_https_server: performing session handshake[0m
+[1;31mE (28580) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (28581) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (28582) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (28583) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (28584) esp_https_server: performing session handshake[0m
+[1;31mE (28664) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (28665) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (28665) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (28666) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (28673) esp_https_server: performing session handshake[0m
+[1;31mE (28755) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (28756) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (28757) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (28757) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (28759) esp_https_server: performing session handshake[0m
+[1;31mE (28848) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (28849) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (28852) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (28852) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (28854) esp_https_server: performing session handshake[0m
+[1;31mE (28937) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (28938) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (28939) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (28939) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (28940) esp_https_server: performing session handshake[0m
+[1;31mE (29018) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (29019) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (29020) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (29020) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (29021) esp_https_server: performing session handshake[0m
+[0;32mI (29182) esp_https_server: performing session handshake[0m
+[1;31mE (29261) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (29262) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (29263) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (29263) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (29270) esp_https_server: performing session handshake[0m
+[1;31mE (29352) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (29353) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (29354) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (29354) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (29355) esp_https_server: performing session handshake[0m
+[1;31mE (29435) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (29436) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (29437) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (29437) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (29439) esp_https_server: performing session handshake[0m
+[1;31mE (29518) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (29518) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (29520) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (29520) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (29521) esp_https_server: performing session handshake[0m
+[1;31mE (29602) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (29603) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (29604) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (29604) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (29605) esp_https_server: performing session handshake[0m
+[1;31mE (29686) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (29687) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (29688) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (29688) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (29689) esp_https_server: performing session handshake[0m
+[1;31mE (29769) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (29770) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (29771) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (29771) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (29772) esp_https_server: performing session handshake[0m
+[1;31mE (29850) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (29850) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (29851) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (29852) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (29853) esp_https_server: performing session handshake[0m
+[1;31mE (29947) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (29948) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (29949) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (29949) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (29950) esp_https_server: performing session handshake[0m
+[0;32mI (30093) esp_https_server: performing session handshake[0m
+[1;31mE (30173) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (30174) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (30175) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (30176) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (30183) esp_https_server: performing session handshake[0m
+[1;31mE (30263) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (30264) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (30265) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (30265) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (30266) esp_https_server: performing session handshake[0m
+[1;31mE (30346) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (30346) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (30347) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (30348) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (30350) esp_https_server: performing session handshake[0m
+[1;31mE (30430) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (30431) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (30432) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (30432) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (30433) esp_https_server: performing session handshake[0m
+[1;31mE (30512) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (30513) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (30514) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (30514) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (30515) esp_https_server: performing session handshake[0m
+[1;31mE (30596) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (30597) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (30598) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (30598) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (30599) esp_https_server: performing session handshake[0m
+[0;32mI (30743) esp_https_server: performing session handshake[0m
+[1;31mE (30824) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (30824) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (30825) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (30826) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (30833) esp_https_server: performing session handshake[0m
+[1;31mE (30914) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (30915) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (30916) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (30916) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (30918) esp_https_server: performing session handshake[0m
+[1;31mE (30999) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (30999) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (31000) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (31001) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (31002) esp_https_server: performing session handshake[0m
+[1;31mE (31081) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (31081) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (31083) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (31083) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (31084) esp_https_server: performing session handshake[0m
+[1;31mE (31164) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (31165) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (31166) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (31166) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (31168) esp_https_server: performing session handshake[0m
+[1;31mE (31248) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (31249) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (31250) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (31250) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (31252) esp_https_server: performing session handshake[0m
+[0;32mI (31434) esp_https_server: performing session handshake[0m
+[1;31mE (31514) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (31514) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (31516) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (31516) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (31523) esp_https_server: performing session handshake[0m
+[1;31mE (31605) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (31606) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (31607) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (31607) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (31608) esp_https_server: performing session handshake[0m
+[1;31mE (31687) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (31688) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (31690) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (31690) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (31692) esp_https_server: performing session handshake[0m
+[1;31mE (31772) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (31773) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (31774) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (31774) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (31775) esp_https_server: performing session handshake[0m
+[1;31mE (31856) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (31857) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (31858) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (31858) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (31859) esp_https_server: performing session handshake[0m
+[1;31mE (31940) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (31941) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (31942) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (31942) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (31943) esp_https_server: performing session handshake[0m
+[1;31mE (32022) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (32023) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (32024) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (32024) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (32025) esp_https_server: performing session handshake[0m
+[1;31mE (32104) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (32104) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (32105) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (32105) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (32106) esp_https_server: performing session handshake[0m
+[1;31mE (32186) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (32186) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (32187) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (32187) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (32188) esp_https_server: performing session handshake[0m
+[1;31mE (32268) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (32268) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (32270) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (32270) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (32271) esp_https_server: performing session handshake[0m
+[1;31mE (32350) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (32350) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (32351) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (32352) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (32353) esp_https_server: performing session handshake[0m
+[1;31mE (32433) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (32434) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (32435) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (32435) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (32436) esp_https_server: performing session handshake[0m
+[1;31mE (32514) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (32515) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (32516) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (32516) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (32517) esp_https_server: performing session handshake[0m
+[1;31mE (32598) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (32598) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (32600) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (32600) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (32601) esp_https_server: performing session handshake[0m
+[1;31mE (32681) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (32682) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (32683) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (32683) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (32684) esp_https_server: performing session handshake[0m
+[1;31mE (32764) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (32765) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (32766) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (32766) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (32767) esp_https_server: performing session handshake[0m
+[1;31mE (32847) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (32848) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (32849) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (32849) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (32850) esp_https_server: performing session handshake[0m
+[1;31mE (32930) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (32931) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (32932) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (32932) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (32933) esp_https_server: performing session handshake[0m
+[1;31mE (33012) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (33012) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (33013) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (33014) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (33015) esp_https_server: performing session handshake[0m
+[1;31mE (33095) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (33095) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (33096) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (33097) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (33098) esp_https_server: performing session handshake[0m
+[1;31mE (33177) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (33178) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (33179) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (33179) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (33180) esp_https_server: performing session handshake[0m
+[1;31mE (33259) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (33260) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (33261) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (33261) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (33262) esp_https_server: performing session handshake[0m
+[1;31mE (33342) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (33343) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (33344) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (33344) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (33345) esp_https_server: performing session handshake[0m
+[1;31mE (33424) esp-tls-mbedtls: mbedtls_ssl_handshake returned -0x7780[0m
+[1;31mE (33424) esp_https_server: esp_tls_create_server_session failed, 0x7780[0m
+[1;31mE (33425) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (33426) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (33427) esp_https_server: performing session handshake[0m
+[0;32mI (33573) esp_https_server: performing session handshake[0m
+[0;32mI (33935) esp_https_server: performing session handshake[0m
+[0;32mI (34084) esp_https_server: performing session handshake[0m
+[0;32mI (34446) esp_https_server: performing session handshake[0m
+[0;32mI (34598) esp_https_server: performing session handshake[0m
+[0;32mI (35045) esp_https_server: performing session handshake[0m
+[0;32mI (35211) esp_https_server: performing session handshake[0m
+[0;32mI (35577) esp_https_server: performing session handshake[0m
+[0;32mI (35735) esp_https_server: performing session handshake[0m
+[0;32mI (36172) esp_https_server: performing session handshake[0m
+[0;32mI (36335) esp_https_server: performing session handshake[0m
+[0;32mI (36704) esp_https_server: performing session handshake[0m
+[0;32mI (36859) esp_https_server: performing session handshake[0m
+[0;32mI (37311) esp_https_server: performing session handshake[0m
+[0;32mI (37604) esp_https_server: performing session handshake[0m
+[0;32mI (37781) esp_https_server: performing session handshake[0m
+[0;32mI (38129) esp_https_server: performing session handshake[0m
+[0;32mI (38436) esp_https_server: performing session handshake[0m
+[0;32mI (38729) esp_https_server: performing session handshake[0m
+[0;32mI (38905) esp_https_server: performing session handshake[0m
+[0;32mI (39241) esp_https_server: performing session handshake[0m
+[0;32mI (39420) esp_https_server: performing session handshake[0m
+[0;32mI (39753) esp_https_server: performing session handshake[0m
+[0;32mI (40060) esp_https_server: performing session handshake[0m
+[0;32mI (40234) esp_https_server: performing session handshake[0m
+[0;32mI (40583) esp_https_server: performing session handshake[0m
+[0;32mI (40878) esp_https_server: performing session handshake[0m
+[0;32mI (41206) esp_https_server: performing session handshake[0m
+[0;32mI (41364) esp_https_server: performing session handshake[0m
+[0;32mI (41721) esp_https_server: performing session handshake[0m
+[0;32mI (42018) esp_https_server: performing session handshake[0m
+[0;32mI (42311) esp_https_server: performing session handshake[0m
+[0;32mI (42488) esp_https_server: performing session handshake[0m
+[0;32mI (42827) esp_https_server: performing session handshake[0m
+[0;32mI (43130) esp_https_server: performing session handshake[0m
+[0;32mI (43437) esp_https_server: performing session handshake[0m
+[0;32mI (43612) esp_https_server: performing session handshake[0m
+[0;32mI (44069) esp_https_server: performing session handshake[0m
+[0;32mI (44217) esp_https_server: performing session handshake[0m
+[0;32mI (44581) esp_https_server: performing session handshake[0m
+[0;32mI (44870) esp_https_server: performing session handshake[0m
+[0;32mI (45047) esp_https_server: performing session handshake[0m
+[0;32mI (45381) esp_https_server: performing session handshake[0m
+[0;32mI (45716) esp_https_server: performing session handshake[0m
+[0;32mI (45995) esp_https_server: performing session handshake[0m
+[0;32mI (46162) esp_https_server: performing session handshake[0m
+[0;32mI (46518) esp_https_server: performing session handshake[0m
+[0;32mI (46815) esp_https_server: performing session handshake[0m
+[0;32mI (47134) esp_https_server: performing session handshake[0m
+[0;32mI (47298) esp_https_server: performing session handshake[0m
+[0;32mI (47753) esp_https_server: performing session handshake[0m
+[0;32mI (48055) esp_https_server: performing session handshake[0m
+[0;32mI (48219) esp_https_server: performing session handshake[0m
+[0;32mI (48558) esp_https_server: performing session handshake[0m
+[0;32mI (48861) esp_https_server: performing session handshake[0m
+[0;32mI (49047) esp_https_server: performing session handshake[0m
+[0;32mI (49235) esp_https_server: performing session handshake[0m
+[0;32mI (49451) esp_https_server: performing session handshake[0m
+[0;33mW (58779) eh_host_feat_rpc: request: no response uid=20 msg_id=294 (5000 ms)[0m
+[1;31mE (59529) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (59531) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (59532) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (59533) esp_https_server: performing session handshake[0m
+[0;32mI (59684) esp_https_server: performing session handshake[0m
+[0;33mW (63804) eh_host_feat_rpc: request: no response uid=21 msg_id=294 (5000 ms)[0m
+[0;33mW (68829) eh_host_feat_rpc: request: no response uid=22 msg_id=294 (5000 ms)[0m
+[1;31mE (69763) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (69765) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (69766) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (69767) esp_https_server: performing session handshake[0m
+[0;32mI (69923) esp_https_server: performing session handshake[0m
+[0;33mW (73855) eh_host_feat_rpc: request: no response uid=23 msg_id=294 (5000 ms)[0m
+[0;33mW (78881) eh_host_feat_rpc: request: no response uid=24 msg_id=294 (5000 ms)[0m
+[1;31mE (80003) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (80005) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (80006) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (80013) esp_https_server: performing session handshake[0m
+[0;33mW (83907) eh_host_feat_rpc: request: no response uid=25 msg_id=294 (5000 ms)[0m
+[0;33mW (88932) eh_host_feat_rpc: request: no response uid=26 msg_id=294 (5000 ms)[0m
+[1;31mE (90094) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (90096) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (90097) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (90117) esp_https_server: performing session handshake[0m
+[0;33mW (93958) eh_host_feat_rpc: request: no response uid=27 msg_id=294 (5000 ms)[0m
+[0;33mW (98983) eh_host_feat_rpc: request: no response uid=28 msg_id=294 (5000 ms)[0m
+[1;31mE (100198) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (100200) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (100200) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (100247) esp_https_server: performing session handshake[0m
+[0;33mW (104009) eh_host_feat_rpc: request: no response uid=29 msg_id=294 (5000 ms)[0m
+[0;33mW (109034) eh_host_feat_rpc: request: no response uid=30 msg_id=294 (5000 ms)[0m
+[1;31mE (110327) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (110329) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (110329) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (110378) esp_https_server: performing session handshake[0m
+[0;33mW (114060) eh_host_feat_rpc: request: no response uid=31 msg_id=294 (5000 ms)[0m
+[0;33mW (119085) eh_host_feat_rpc: request: no response uid=32 msg_id=294 (5000 ms)[0m
+[1;31mE (120458) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (120460) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (120460) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (120512) esp_https_server: performing session handshake[0m
+[0;33mW (124111) eh_host_feat_rpc: request: no response uid=33 msg_id=294 (5000 ms)[0m
+[0;33mW (129136) eh_host_feat_rpc: request: no response uid=34 msg_id=294 (5000 ms)[0m
+[1;31mE (130593) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (130595) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (130596) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (131051) esp_https_server: performing session handshake[0m
+[0;33mW (134162) eh_host_feat_rpc: request: no response uid=35 msg_id=294 (5000 ms)[0m
+[0;33mW (139188) eh_host_feat_rpc: request: no response uid=36 msg_id=294 (5000 ms)[0m
+[1;31mE (141131) esp_https_server: esp_tls_create_server_session failed, 0xffff7ff7[0m
+[1;31mE (141133) httpd: httpd_accept_conn: session creation failed[0m
+[0;33mW (141133) httpd: httpd_server: error accepting new connection[0m
+[0;32mI (141184) esp_https_server: performing session handshake[0m
+[0;33mW (144215) eh_host_feat_rpc: request: no response uid=37 msg_id=294 (5000 ms)[0m
+[0;33mW (149240) eh_host_feat_rpc: request: no response uid=38 msg_id=294 (5000 ms)[0m
+[0;33mW (154266) eh_host_feat_rpc: request: no response uid=39 msg_id=294 (5000 ms)[0m
+[0;33mW (159292) eh_host_feat_rpc: request: no response uid=40 msg_id=294 (5000 ms)[0m
+[0;33mW (164318) eh_host_feat_rpc: request: no response uid=41 msg_id=294 (5000 ms)[0m
+[0;33mW (169344) eh_host_feat_rpc: request: no response uid=42 msg_id=294 (5000 ms)[0m
+[0;33mW (174370) eh_host_feat_rpc: request: no response uid=43 msg_id=294 (5000 ms)[0m
+[0;33mW (179397) eh_host_feat_rpc: request: no response uid=44 msg_id=294 (5000 ms)[0m
+[0;33mW (184423) eh_host_feat_rpc: request: no response uid=45 msg_id=294 (5000 ms)[0m
+[0;33mW (189449) eh_host_feat_rpc: request: no response uid=46 msg_id=294 (5000 ms)[0m
+[0;33mW (194475) eh_host_feat_rpc: request: no response uid=47 msg_id=294 (5000 ms)[0m
+[0;33mW (199501) eh_host_feat_rpc: request: no response uid=48 msg_id=294 (5000 ms)[0m
+[0;33mW (204528) eh_host_feat_rpc: request: no response uid=49 msg_id=294 (5000 ms)[0m
+[0;33mW (209555) eh_host_feat_rpc: request: no response uid=50 msg_id=294 (5000 ms)[0m
+[0;33mW (214581) eh_host_feat_rpc: request: no response uid=51 msg_id=294 (5000 ms)[0m
+[0;33mW (219607) eh_host_feat_rpc: request: no response uid=52 msg_id=294 (5000 ms)[0m
+[0;33mW (224633) eh_host_feat_rpc: request: no response uid=53 msg_id=294 (5000 ms)[0m
+[0;33mW (229659) eh_host_feat_rpc: request: no response uid=54 msg_id=294 (5000 ms)[0m
+[0;33mW (234685) eh_host_feat_rpc: request: no response uid=55 msg_id=294 (5000 ms)[0m
+[0;33mW (239711) eh_host_feat_rpc: request: no response uid=56 msg_id=294 (5000 ms)[0m
+[0;33mW (244737) eh_host_feat_rpc: request: no response uid=57 msg_id=294 (5000 ms)[0m
+[0;33mW (249763) eh_host_feat_rpc: request: no response uid=58 msg_id=294 (5000 ms)[0m
+[0;33mW (254789) eh_host_feat_rpc: request: no response uid=59 msg_id=294 (5000 ms)[0m
+[0;33mW (259815) eh_host_feat_rpc: request: no response uid=60 msg_id=294 (5000 ms)[0m
+[0;33mW (264841) eh_host_feat_rpc: request: no response uid=61 msg_id=294 (5000 ms)[0m
+[0;33mW (269868) eh_host_feat_rpc: request: no response uid=62 msg_id=294 (5000 ms)[0m
+[0;33mW (274895) eh_host_feat_rpc: request: no response uid=63 msg_id=294 (5000 ms)[0m
+[0;33mW (279921) eh_host_feat_rpc: request: no response uid=64 msg_id=294 (5000 ms)[0m
+[0;33mW (284947) eh_host_feat_rpc: request: no response uid=65 msg_id=294 (5000 ms)[0m
+[0;33mW (289973) eh_host_feat_rpc: request: no response uid=66 msg_id=294 (5000 ms)[0m
+[0;33mW (294999) eh_host_feat_rpc: request: no response uid=67 msg_id=294 (5000 ms)[0m
+[0;33mW (300025) eh_host_feat_rpc: request: no response uid=68 msg_id=294 (5000 ms)[0m
+[0;33mW (305051) eh_host_feat_rpc: request: no response uid=69 msg_id=294 (5000 ms)[0m
+[0;33mW (310077) eh_host_feat_rpc: request: no response uid=70 msg_id=294 (5000 ms)[0m
+[0;33mW (315103) eh_host_feat_rpc: request: no response uid=71 msg_id=294 (5000 ms)[0m
+[0;33mW (320129) eh_host_feat_rpc: request: no response uid=72 msg_id=294 (5000 ms)[0m
+[0;33mW (325155) eh_host_feat_rpc: request: no response uid=73 msg_id=294 (5000 ms)[0m
+[0;33mW (330181) eh_host_feat_rpc: request: no response uid=74 msg_id=294 (5000 ms)[0m
+[0;33mW (335208) eh_host_feat_rpc: request: no response uid=75 msg_id=294 (5000 ms)[0m
+[0;33mW (340234) eh_host_feat_rpc: request: no response uid=76 msg_id=294 (5000 ms)[0m
+[0;33mW (345260) eh_host_feat_rpc: request: no response uid=77 msg_id=294 (5000 ms)[0m
+[0;33mW (350286) eh_host_feat_rpc: request: no response uid=78 msg_id=294 (5000 ms)[0m
+[0;33mW (355312) eh_host_feat_rpc: request: no response uid=79 msg_id=294 (5000 ms)[0m
+[0;33mW (360338) eh_host_feat_rpc: request: no response uid=80 msg_id=294 (5000 ms)[0m

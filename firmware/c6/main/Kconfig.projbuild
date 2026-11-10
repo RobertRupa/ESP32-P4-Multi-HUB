@@ -1,0 +1,13 @@
+menu "HUB Zigbee coordinator"
+
+config HUB_C6_ZIGBEE_COORD_ENABLE
+    bool "Enable native Zigbee coordinator over ESP-Hosted SDIO"
+    depends on IDF_TARGET_ESP32C6 && ESP_HOSTED_CP_FEAT_WIFI
+    select ESP_HOSTED_CP_FEAT_PEER_DATA
+    default n
+    help
+        Run the Zigbee coordinator on the C6 native 802.15.4 radio while
+        keeping ESP-Hosted Wi-Fi on SDIO. Reports and commands use Peer Data
+        RPC. Pairing stays closed until a confirmed P4 command.
+
+endmenu

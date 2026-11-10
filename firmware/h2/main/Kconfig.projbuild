@@ -1,0 +1,10 @@
+menu "HUB H2 UART diagnostic"
+
+config HUB_H2_UART_DIAGNOSTIC_ENABLE
+    bool "Use temporary UART ping/ACK diagnostic startup"
+    depends on IDF_TARGET_ESP32H2
+    default n
+    help
+        Bypass the normal OpenThread RCP startup and exercise UART0 only.
+
+endmenu

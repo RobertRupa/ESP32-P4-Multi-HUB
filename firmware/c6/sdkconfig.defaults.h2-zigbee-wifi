@@ -1,0 +1,4 @@
+# Keep ESP-Hosted Wi-Fi on the C6; Zigbee coordinator ownership moves to P4/H2.
+# CONFIG_HUB_C6_ZIGBEE_COORD_ENABLE is not set
+CONFIG_ESP_HOSTED_CP_FEAT_WIFI=y
+# CONFIG_ESP_HOSTED_CP_FEAT_PEER_DATA is not set
